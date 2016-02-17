@@ -7,6 +7,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var CONFIG = require('.config/config.js');
 
 // var db = require('.models');
+//make sure to type 'sequelize init' in the iTerm
 
 app.use(session(CONFIG.SESSION));
 app.use('/vendor', require('./routes/vendor.js'));
