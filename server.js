@@ -7,18 +7,26 @@ var LocalStrategy = require('passport-local').Strategy;
 var CONFIG = require('./config/config.js');
 
 var db = require('./models');
-var Seller = db.Seller;
+var Company = db.Company;
 //make sure to type 'sequelize init' in the iTerm
 
 app.use(session(CONFIG.SESSION));
-app.use('/vendor', require('./routes/vendor.js'));
-app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.get('*', function(req,res) {
-  res.sendFile('/public/index.html', { root : __dirname });
+passport.serializeUser( function ( user, done ) {
+  return done( null, user );
 });
 
+passport.deserializeUser( function ( user, done ) {
+  return done( null, user );
+});
+
+
+app.use('/vendor', require('./routes/vendor.js'));
+
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.listen(3000,function(){
