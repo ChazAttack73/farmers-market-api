@@ -6,8 +6,13 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var CONFIG = require('./config/config.js');
 
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended:true}));
+
 var db = require('./models');
+
 var Company = db.Company;
+var Product = db.Product;
 //make sure to type 'sequelize init' in the iTerm
 
 app.use(session(CONFIG.SESSION));
@@ -30,6 +35,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.listen(3000,function(){
-  db.sequelize.sync();
   console.log('CONNECTED');
+  db.sequelize.sync();
 });
