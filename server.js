@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 var db = require('./models');
 
-var Company = db.Company;
+var Vendor = db.Vendor;
 var Product = db.Product;
 //make sure to type 'sequelize init' in the iTerm
 
