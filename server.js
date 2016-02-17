@@ -4,9 +4,10 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var CONFIG = require('.config/config.js');
+var CONFIG = require('./config/config.js');
 
-// var db = require('.models');
+var db = require('./models');
+var Seller = db.Seller;
 //make sure to type 'sequelize init' in the iTerm
 
 app.use(session(CONFIG.SESSION));
@@ -21,6 +22,6 @@ app.get('*', function(req,res) {
 
 
 app.listen(3000,function(){
-  //db.sequelize.sync();
+  db.sequelize.sync();
   console.log('CONNECTED');
 });
