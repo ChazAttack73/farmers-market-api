@@ -1,0 +1,46 @@
+<div class="navbar">
+  <a href="/">
+    <div class="navlogo"></div>
+  </a>
+  <div id="login" class="user">
+    <button ng-class="{ 'hidden' : login_user}" class="button" type="button" ng-click="login_user = !login_user">Login</button>
+    <div id="hideMe" ng-class="{ 'hidden' : ! login_user}" class="login">
+   <!--    <form ng-submit="login(user)">
+        <br>
+        Username:<input class="user_name" value="{{user.username}}" ng-model="user.username">
+        <br>
+        Password:<input class="user_password" value="{{user.password}}" ng-model="user.password"type="password">
+        <br><br>
+        <input type="submit" value="Login" class="button">
+      </form>
+      <br>
+      <div class="error">{{error}}</div>
+      <h4>Click Below to Register!</h4>
+      <span>
+        <button class="button"><a href="/#/register">Register</a></button>
+      </span> -->
+    </div>
+  </div>
+  <div id="register" class="user"><!-- Registration link redirects to one page with checkbox(Vendor or not) --></div>
+</div>
+<div class="info"><!-- Mission Statement --></div>
+<div class="events">
+  <div class="eventsmain">
+    <div class="eventscontent" ng-repeat="event in Events">
+      <div class="eventscolumn">
+       <!--  <form ng-submit="submitEdit(card)">
+          <br>
+          Title:<input class="card_title" value="{{card.title}}" ng-model="card.title">
+          <br>
+          Priority:<input class="card_priority" value="{{card.priority}}" ng-model="card.priority">
+          <br>
+          Created By: <label class="card_createdBy">{{card.createdBy.first_name}} {{card.createdBy.last_name}}</label>
+          <br>
+          Assigned To:<input class="card_assignedTo" value="{{card.assignedTo}}" ng-model="card.assignedTo">
+          <br><br>
+          <input type="submit" value="Edit" class="button">
+        </form> -->
+      </div>
+    </div>
+  </div>
+</div>
