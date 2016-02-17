@@ -35,24 +35,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.listen(3000,function(){
-console.log('         ___  ___          ');
-console.log('        /   \/   \   ');
-console.log('        |        |    ');
-console.log('         T  --  T      ');
-console.log('         |      |       ');
-console.log('         |      |       ');
-console.log('         |      |       ');
-console.log('         |      |      ');
-console.log('         |      |      ');
-console.log('         |      |      ');
-console.log('         |      |      ');
-console.log('         |      |      ');
-console.log('         |      |      ');
-console.log('         |      |      ');
-console.log('         |      |      ');
-console.log('     ___ |      | ___   ');
-console.log('    /   \-      -/   \   ');
-console.log('    |                |   ');
-console.log('    |                |');
-console.log('    \________________/    ');  db.sequelize.sync();
+  db.sequelize.sync();
+  console.log('CONNECTED ON PORT 3000');
 });
