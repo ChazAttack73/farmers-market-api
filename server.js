@@ -35,6 +35,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.listen(3000,function(){
-  console.log('CONNECTED');
   db.sequelize.sync();
+  console.log('CONNECTED ON PORT 3000');
 });
