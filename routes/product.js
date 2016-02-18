@@ -2,31 +2,30 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 var db = require('./../models');
-var Vendor = db.Vendor;
+var Product = db.Product;
 var bodyParser = require('body-parser');
 
 router.use(bodyParser.json());
 
 router.get( '/', function ( req, res ) {
-Vendor.findAll()
-  .then( function ( vendors ) {
-    res.json( vendors );
+Product.findAll()
+  .then( function ( products ) {
+    res.json( products );
   });
 });
 
 router.post( '/', function ( req, res ) {
-  Vendor.create(
+  Product.create(
     {
       name: req.body.name,
-      password: req.body.password,
-      phone: req.body.phone,
-      email : req.body.email,
-      website: req.body.website,
+      price: req.body.price,
+      quantity: req.body.quantity,
       description: req.body.description,
-      company_pic: req.body.company_pic
+      product_picture : req.body.product_picture,
+      // VendorId: req.vendor.id
     })
-    .then( function ( vendors ) {
-      res.json( vendors );
+    .then( function ( products ) {
+      res.json( products );
     });
   });
 

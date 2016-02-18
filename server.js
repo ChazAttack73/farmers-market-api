@@ -29,6 +29,7 @@ passport.deserializeUser( function ( user, done ) {
 
 
 app.use('/vendor', require('./routes/vendor.js'));
+app.use('/product', require('./routes/product.js'));
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
