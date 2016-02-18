@@ -8,9 +8,20 @@ var bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
 router.get( '/', function ( req, res ) {
-Vendor.findAll()
-  .then( function ( vendors ) {
-    res.json( vendors );
+  Vendor.findAll()
+    .then( function ( vendors ) {
+      res.json( vendors );
+    });
+  });
+
+router.get( '/:id', function( req, res){
+  Vendor.findOne({
+    where:{
+      id: req.params.id
+    }
+  })
+  .then (function (vendor){
+    res.json( vendor );
   });
 });
 
@@ -29,5 +40,20 @@ router.post( '/', function ( req, res ) {
       res.json( vendors );
     });
   });
+
+router.delete('/:id', function( req, res){
+  Vendor.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(function(){
+    Vendor.findAll()
+    .then( function ( vendors ) {
+      res.json( vendors );
+    });
+  });
+
+});
 
 module.exports = router;
