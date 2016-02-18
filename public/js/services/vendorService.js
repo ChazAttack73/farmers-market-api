@@ -9,7 +9,7 @@ angular.module('myApp')
       return $http.get('http://localhost:3000/vendor/'+id);
     };
     this.login = function(vendor) {
-      return $http.post('/login', vendor);
+      return $http.post('/login/vendor', vendor);
     };
     this.register = function(vendor) {
       return $http.post('/register', vendor);

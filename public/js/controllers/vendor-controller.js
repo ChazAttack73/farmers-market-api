@@ -26,7 +26,7 @@ angular.module('myApp')
       });
     };
 
-    $scope.login = function(){
+    $scope.loginVendor = function(){
       VendorService.login($scope.vendor).success(function(result) {
         // $rootScope.creator_vendor = result;
         // $rootScope.vendor_first_name = result.first_name;
@@ -34,6 +34,7 @@ angular.module('myApp')
         // $rootScope.vendor_full_name = result.first_name + " " + result.last_name;
         // $localStorage.creator_vendor = $rootScope.creator_vendor;
         // $localStorage.vendor_full_name = $rootScope.vendor_full_name;
+        $scope.login_user=true;
         $location.url('/events');
       }).error(function(error) {
           $scope.error ="Wrong username or password";
