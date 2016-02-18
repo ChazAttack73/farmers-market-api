@@ -86,12 +86,24 @@ router.post('/:id/products/', function( req, res){
   });
 });
 
+router.get( '/:id/products/:product', function( req, res){
+  Product.findOne({
+    where:{
+      id: req.params.product
+    }
+  })
+  .then (function (product){
+    res.json( product );
+  });
+});
+
+
 router.put('/:id/products/:product', function( req, res){
   req.body.updatedAt = "now()";
   Product.update(
     req.body, {
     where : {
-      VendorId : req.params.product
+      id : req.params.product
     }
   })
   .then(function(productUpdateCount){
@@ -103,6 +115,20 @@ router.put('/:id/products/:product', function( req, res){
   })
   .then(function(product){
     res.json( product );
+  });
+});
+
+router.delete('/:id/products/:product', function( req, res){
+  Product.destroy({
+    where: {
+      id: req.params.product
+    }
+  })
+  .then(function(){
+    Product.findAll()
+    .then( function ( product ) {
+      res.json( product );
+    });
   });
 });
 
