@@ -41,4 +41,19 @@ router.post( '/', function ( req, res ) {
     });
   });
 
+router.delete('/:id', function( req, res){
+  Vendor.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(function(){
+    Vendor.findAll()
+    .then( function ( vendors ) {
+      res.json( vendors );
+    });
+  });
+
+});
+
 module.exports = router;
