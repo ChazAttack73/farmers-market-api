@@ -1,12 +1,11 @@
-<div id="productView">
+<div id="vendorView">
 
   <div class="viewFilter">
-    <div id="vendorViewButton"> Vendor </div> //ng-href needed to render the vendor view
-    <div id="productViewButton"> Product </div> //ng-href not neeed, because it's on the page already
+    <div id="vendorViewButton"> Vendor </div> //ng-href not neeed, because it's on the page already
+    <div id="productViewButton"> Product </div> //ng-href needed to render the product view
   </div>
 
-  this is the part where we show all the type of products
-  <!-- <div ng-repeat= product in Event>
+  <div ng-repeat= vendor in Event>
     <div class="content">
       <a href="">
         <h2 class="vendor_name"> {{vendor.name}} </h2>
@@ -17,6 +16,5 @@
         <img src="" alt="" class="productThumbNail">
       </a>
     </div>
-  </div> -->
-
+  </div>
 </div>

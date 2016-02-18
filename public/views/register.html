@@ -1,0 +1,19 @@
+<div class="register">
+  <form ng-submit="register()">
+    <br>
+    Username:<input class="user_title" value="{{user.username}}" ng-model="user.username">
+    <br>
+    Password:<input class="user_priority" value="{{user.first_name}}" ng-model="user.first_name">
+    <br>
+    Phone:<input class="user_createdBy" value="{{user.last_name}}" ng-model="user.last_name">
+    <br>
+    Email:<input type="password" class="user_assignedTo" value="{{user.password}}" ng-model="user.password">
+    <br>
+    Website:<input type="email" class="user_assignedTo" value="{{user.email}}" ng-model="user.email">
+    Description:<input class="user_title" value="{{user.username}}" ng-model="user.username">
+    <br>
+    <br><br>
+    <input type="submit" value="Register" class="button">
+  </form>
+  <div class="error">{{error}}</div>
+</div>
