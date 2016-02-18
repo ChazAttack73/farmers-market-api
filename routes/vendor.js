@@ -67,6 +67,8 @@ router.delete('/:id', function( req, res){
   });
 });
 
+/////////////////////////////////////////////////////////////////////////
+
 router.get('/:id/products/', function( req , res){
   Product.findAll({
     where:{
