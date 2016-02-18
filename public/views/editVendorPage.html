@@ -27,6 +27,34 @@
         <input id="vendor_website" value="{{vendor.website}}" type="text" ng-model="vendor.website">
       </div>
 
+      <div class="postProductDiv">
+        <div>
+            <label for="product_name">product name</label>
+            <input id="product_name" type="text" ng-model="product.name">
+          </div>
+
+          <div>
+            <label for="product_image">product image</label>
+            <input id="product_image" type="text" ng-model="product.image">
+          </div>
+
+          <div>
+            <label for="product_price">product price</label>
+            <input id="product_price" type="text" ng-model="product.price">
+          </div>
+
+          <div>
+            <label for="product_quantity">product quantity</label>
+            <input id="product_quantity" type="text" ng-model="product.quantity">
+          </div>
+
+          <div class="commit">
+            <button type='button' ng-click='postProduct(product); product = null'>post product</button>
+          </div>
+      </div>
+
+
+
       <div class="productContent" ng-repeat="product in vendor" >
 
         <div class="product">
@@ -52,7 +80,7 @@
           </div>
 
           <div class="commit">
-            <button type='button' ng-click='editProduct(product); product = null'>edit product</button>
+            <button type='button' ng-click='editProduct(product);>edit product</button>
           </div>
 
         </div>
