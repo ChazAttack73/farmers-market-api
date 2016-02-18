@@ -17,12 +17,13 @@ Vendor.findAll()
 router.post( '/', function ( req, res ) {
   Vendor.create(
     {
-      title: req.body.title,
-      priority: req.body.priority,
-      created_by: req.user.username,
-      assigned_to : req.body.assigned_to,
-      status: 'toDo',
-      UserId: req.user.id
+      name: req.body.name,
+      password: req.body.password,
+      phone: req.body.phone,
+      email : req.body.email,
+      website: req.body.website,
+      description: req.body.description,
+      company_pic: req.body.company_pic
     })
     .then( function ( vendors ) {
       res.json( vendors );
