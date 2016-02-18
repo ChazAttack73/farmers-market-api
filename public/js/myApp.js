@@ -38,14 +38,11 @@ myApp
       .when('/login', {
         templateUrl : 'views/login.html',
         controller : 'VendorController'
+      })
+      .when('/vendor/', {
+        templateUrl : 'views/vendorPage.html',
+        controller : 'VendorController'
       });
-//     .when('/cards', {
-//       templateUrl : 'views/cards.html',
-//       controller : 'CardController',
-//       resolve: {
-//         loggedin: checkedLoggedIn
-//       }
-//     })
 //     .when('/register', {
 //       templateUrl : 'views/register.html',
 //       controller : 'VendorController'
