@@ -1,0 +1,11 @@
+<div class="login">
+  <form ng-submit="login()">
+    <br>
+    Username:<input class="user_title" value="{{user.username}}" ng-model="user.username">
+    <br>
+    Password:<input class="user_priority" value="{{user.first_name}}" ng-model="user.first_name">
+    <br><br>
+    <input type="submit" value="Login" class="button">
+  </form>
+  <div class="error">{{error}}</div>
+</div>

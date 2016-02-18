@@ -44,11 +44,11 @@ myApp
 //     })
 //     .when('/login', {
 //       templateUrl : 'views/login.html',
-//       controller : 'UserController'
+//       controller : 'VendorController'
 //     })
 //     .when('/register', {
 //       templateUrl : 'views/register.html',
-//       controller : 'UserController'
+//       controller : 'VendorController'
 //     });
 }])
 
