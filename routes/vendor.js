@@ -14,6 +14,17 @@ router.get( '/', function ( req, res ) {
     });
   });
 
+router.get( '/:id', function( req, res){
+  Vendor.findOne({
+    where:{
+      id: req.params.id
+    }
+  })
+  .then (function (vendor){
+    res.json( vendor );
+  });
+});
+
 router.post( '/', function ( req, res ) {
   Vendor.create(
     {
