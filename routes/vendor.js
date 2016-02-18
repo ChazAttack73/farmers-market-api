@@ -8,11 +8,11 @@ var bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
 router.get( '/', function ( req, res ) {
-Vendor.findAll()
-  .then( function ( vendors ) {
-    res.json( vendors );
+  Vendor.findAll()
+    .then( function ( vendors ) {
+      res.json( vendors );
+    });
   });
-});
 
 router.post( '/', function ( req, res ) {
   Vendor.create(
