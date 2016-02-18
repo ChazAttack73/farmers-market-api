@@ -48,7 +48,7 @@ myApp
 //     })
 //     .when('/register', {
 //       templateUrl : 'views/register.html',
-//       controller : 'UserController'
+//       controller : 'VendorController'
 //     });
 }])
 
