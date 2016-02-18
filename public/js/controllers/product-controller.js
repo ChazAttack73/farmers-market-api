@@ -19,8 +19,8 @@ angular.module('myApp')
 
   $scope.Vendors = [];
     $scope.VendorService = VendorService;
-    VendorService.getUsers().success(function(data) {
-      $scope.Users = data;
+    VendorService.getVendors().success(function(data) {
+      $scope.Vendors = data;
     });
 
   $scope.postButton=function(product) {

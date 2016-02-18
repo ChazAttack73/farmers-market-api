@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body ng-app="myApp">
@@ -12,7 +12,7 @@
       <div class="navlogo"></div>
     </a>
     <div id="login" class="user">
-      <button ng-class="{ 'hidden' : login_user}" class="button" type="button" ng-click="login_user = !login_user">Login</button>
+      <button ng-class="{ 'hidden' : login_user}" class="button" type="button" ng-click="login_user = !login_user"><a href="/#/login">Login</button>
       <div id="hideMe" ng-class="{ 'hidden' : ! login_user}" class="login">
      <!--    <form ng-submit="login(vendor)">
           <br>
@@ -54,7 +54,7 @@
   <script src="js/myApp.js"></script>
   <script src="js/controllers/product-controller.js"></script>
   <script src="js/controllers/vendor-controller.js"></script>
-  <script src="js/productService.js"></script>
-  <script src="js/vendorService.js"></script>
+  <script src="js/services/productService.js"></script>
+  <script src="js/services/vendorService.js"></script>
 </body>
 </html>

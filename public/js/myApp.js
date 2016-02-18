@@ -30,21 +30,21 @@ myApp
   $routeProvider
     .when('/', {
       templateUrl : 'views/landing.html',
-      // controller : 'productController',
+      controller : 'ProductController'//,
       // resolve: {
       //   loggedin: checkedLoggedIn
       // }
-    });
+    })
+      .when('/login', {
+        templateUrl : 'views/login.html',
+        controller : 'VendorController'
+      });
 //     .when('/cards', {
 //       templateUrl : 'views/cards.html',
 //       controller : 'CardController',
 //       resolve: {
 //         loggedin: checkedLoggedIn
 //       }
-//     })
-//     .when('/login', {
-//       templateUrl : 'views/login.html',
-//       controller : 'VendorController'
 //     })
 //     .when('/register', {
 //       templateUrl : 'views/register.html',
