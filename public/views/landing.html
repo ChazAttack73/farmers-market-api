@@ -3,18 +3,38 @@
 </div>
 <div class="events">
   <div class="eventsmain">
-     <div class="eventscontent" ng-repeat="event in Events">
-      <div class="eventscolumn">
-        <div>
-          <br>
-          Name:<label value="{{event.name}}" ng-model="event.name"> {{event.name}}
-          <br>
-          Address:<input value="{{event.address}}" ng-model="event.address">
-          <br>
-          Days:<input value="{{event.days}}" ng-model="event.days">
-          <br>
-          Time:<input value="{{event.time}}" ng-model="event.time">
+    <div class="addEvent">
+      <fieldset>
+        <label for="event_name ">Event Name</label>
+        <input id="event_name" type="text" ng-model="event.name">
+        <br>
+        <label for="event_address"> Event Address</label>
+        <input id="event_address" type="text" ng-model="event.address">
+        <br>
+        <label for="event_days">Event Day(s)</label>
+        <input id="event_days" type="text" ng-model="event.days">
+        <br>
+        <label for="event_time">Event Time</label>
+        <input id="event_time" type="text" ng-model="event.time">
+        <br>
+        <div class="commit">
+          <button type='button' ng-click='postEvent(event); event = null'>Add Event</button>
         </div>
+      </fieldset>
+    </div>
+    <div class="eventscontent" ng-repeat="event in Events">
+      <div class="eventscolumn">
+        <a href="/#/vendor/">
+          <div>
+            <h3>Name: {{event.name}}</h3>
+            <br>
+            Address: <input value="{{event.address}}" ng-model="event.address">
+            <br>
+            Days: <input value="{{event.days}}" ng-model="event.days">
+            <br>
+            Time: <input value="{{event.time}}" ng-model="event.time">
+          </div>
+        </a>
       <!-- Admin will eventually be able to edit events -->
        <!--  <form ng-submit="submitEdit(card)"> -->
         <!-- Priority:<input class="card_priority" value="{{card.priority}}" ng-model="card.priority">
@@ -25,7 +45,7 @@
         <br><br>
           <input type="submit" value="Edit" class="button">
         </form -->
-      </div>
+        </div>
     </div>
   </div>
 </div>

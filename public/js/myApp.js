@@ -30,7 +30,7 @@ myApp
   $routeProvider
     .when('/', {
       templateUrl : 'views/landing.html',
-      controller : 'ProductController'//,
+      controller : 'EventController'//,
       // resolve: {
       //   loggedin: checkedLoggedIn
       // }
@@ -57,9 +57,9 @@ myApp
         controller : 'VendorController'
       })
       .when('/register', {
-      templateUrl : 'views/register.html',
-      controller : 'VendorController'
-    });
+        templateUrl : 'views/register.html',
+        controller : 'VendorController'
+      });
 }])
 
 .run(['$rootScope', '$localStorage', function($rootScope, $localStorage){

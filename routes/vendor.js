@@ -10,7 +10,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 
-
 router.use(bodyParser.json());
 
 passport.serializeUser(function(vendor, done) {

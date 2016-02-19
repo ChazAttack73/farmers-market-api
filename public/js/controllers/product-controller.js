@@ -2,12 +2,6 @@
 
 angular.module('myApp')
 .controller('ProductController', ['$scope', 'ProductService', '$rootScope', 'VendorService', '$location', '$localStorage', function($scope, ProductService, $rootScope, VendorService, $location, $localStorage){
-  $scope.Events = [{
-    name : "Manoa Marketplace",
-    address: "2752 Woodlawn Drive",
-    days: "Tuesday, Thursday, Sunday",
-    time: "7:00 AM to 11:00"
-  }];
   $scope.Vendors = [];
   // $scope.vendor = {
   //   createdBy : $rootScope.creator_user
