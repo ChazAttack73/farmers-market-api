@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 var db = require('./models');
 
+var Event = db.Event;
 var Vendor = db.Vendor;
 var Product = db.Product;
 //make sure to type 'sequelize init' in the iTerm
@@ -27,13 +28,20 @@ passport.deserializeUser( function ( user, done ) {
   return done( null, user );
 });
 
-
+app.use('/event', require('./routes/event.js'));
 app.use('/product', require('./routes/product.js'));
 app.use('/vendor', require('./routes/vendor.js'));
 app.use('/register', require('./routes/user.js'));
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
+
+app.get('/', function ( req, res){
+  Event.findAll()
+    .then( function ( events ){
+      res.json ( events );
+    });
+});
 
 
 app.listen(3000,function(){

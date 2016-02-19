@@ -3,6 +3,33 @@
 </div>
 <div class="events">
   <div class="eventsmain">
+
+    <div class="addEvent">
+      <fieldset>
+
+        <label for="event_name ">Event Name</label>
+        <input id="event_name" type="text" ng-model="event.name">
+        <br>
+
+        <label for="event_address"> Event Address</label>
+        <input id="event_address" type="text" ng-model="event.address">
+        <br>
+
+        <label for="event_days">Event Day(s)</label>
+        <input id="event_days" type="text" ng-model="event.days">
+        <br>
+
+        <label for="event_time">Event Time</label>
+        <input id="event_time" type="text" ng-model="event.time">
+        <br>
+
+        <div class="commit">
+          <button type='button' ng-click='postEvent(event); event = null'>Add Event</button>
+        </div>
+
+      </fieldset>
+    </div>
+
      <div class="eventscontent" ng-repeat="event in Events">
       <div class="eventscolumn">
         <a href="/#/vendor">
