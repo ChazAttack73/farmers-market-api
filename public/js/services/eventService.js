@@ -4,7 +4,7 @@
 angular.module('myApp')
   .service('EventService', ['$http', function($http){
     this.getEvents = function(){
-      return $http.get('http://localhost:3000/event');
+      return $http.get('http://localhost:3000/#/event');
     };
     this.getEvent = function(){
     };
