@@ -7,7 +7,6 @@ angular.module('myApp')
       return $http.get('http://localhost:3000/product');
     };
     this.getProduct = function(){
-
     };
     this.addProduct = function(product){
       return $http.post('/new', product);

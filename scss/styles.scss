@@ -71,7 +71,10 @@ body {
   width: 100%;
   background-color: orange;
   text-align: center;
-  // background-image: url('./../');
+  background-image: url('http://chromecastbg.alexmeub.com/images/1200_AF1QipM_vC9YgtVyjZ3-GCh4e0xy_PtaurtcaaiK5sMd.jpg');
+  background-position: 50% 75%;
+  margin-bottom: 15px;
+  box-shadow : rgba(0,0,0,.2) 3px 5px 5px;
 }
 
 .eventsMain {
@@ -103,8 +106,6 @@ body {
     }
   }
 }
-
-
 
 .testContent {
   background-color: green;
