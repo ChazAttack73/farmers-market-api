@@ -13,7 +13,8 @@ angular.module('myApp')
   };
   $scope.EventService = EventService;
   EventService.getEvents().success(function(data){
-    $scope.Events = data;
+    console.log(data);
+    // $scope.Events = data;
   });
 
   $scope.Vendors = [];

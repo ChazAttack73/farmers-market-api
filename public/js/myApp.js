@@ -39,7 +39,7 @@ myApp
         templateUrl : 'views/login.html',
         controller : 'VendorController'
       })
-      .when('/vendor_view/', {
+      .when('/vendor/view', {
         templateUrl : 'views/vendorView.html',
         controller : 'VendorController'
       })
