@@ -48,7 +48,7 @@ myApp
         controller: 'VendorController'
       })
       .when('/vendor/:param1',{
-        templateUrl : 'views/vendorProfile.html',
+        templateUrl : 'views/vendorByIdView.html',
         controller : 'VendorController'
       })
       .when('/register', {
