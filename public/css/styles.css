@@ -54,5 +54,14 @@ body {
   flex-flow: row wrap;
   padding: 5px; }
 
-.eventscolumn a {
-  text-decoration: none; }
+.addEvent {
+  flex: 0 0 100%;
+  width: 100px;
+  height: 100px; }
+
+.eventscontent {
+  flex: 0 0 100%;
+  min-width: 100px;
+  min-height: 100px; }
+  .eventscontent .eventscolumn a {
+    text-decoration: none; }

@@ -51,10 +51,6 @@ myApp
         templateUrl : 'views/register.html',
         controller : 'VendorController'
       });
-      // .when('/event', {
-      //   templateUrl : '',
-      //   controller : ''
-      // });
 }])
 
 .run(['$rootScope', '$localStorage', function($rootScope, $localStorage){
