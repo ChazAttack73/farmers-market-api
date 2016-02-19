@@ -26,13 +26,6 @@ router.get( '/:id', function( req, res){
   });
 });
 
-router.post( '/', function ( req, res ) {
-  Product.create(req.body)
-    .then( function ( products ) {
-      res.json( products );
-    });
-  });
-
 router.put('/:id', function( req, res){
   req.body.updatedAt = "now()";
   Product.update(

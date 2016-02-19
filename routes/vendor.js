@@ -56,13 +56,6 @@ router.get( '/', function ( req, res ) {
     });
   });
 
-router.post( '/', function ( req, res ) {
-  req.body.EventId = req.params.id;
-  Vendor.create(req.body)
-    .then( function ( vendors ) {
-      res.json( vendors );
-    });
-  });
 
 router.get( '/:id', function( req, res){
   console.log("im on the server side!");
@@ -79,6 +72,14 @@ router.get( '/:id', function( req, res){
     res.json( vendorInfo );
   });
 });
+
+router.post( '/:id', function ( req, res ) {
+  req.body.VendorId = req.params.id;
+  Product.create(req.body)
+    .then( function ( products ) {
+      res.json( products );
+    });
+  });
 
 router.put('/:id', function( req, res){
   req.body.updatedAt = "now()";

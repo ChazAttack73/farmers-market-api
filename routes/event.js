@@ -35,15 +35,24 @@ router.post( '/', function ( req, res ) {
   });
 
 router.get( '/:id', function( req, res){
-  Event.findOne({
+  Vendor.findAll({
     where:{
-      id: req.params.id
+      EventId: req.params.id
     }
   })
   .then (function (events){
     res.json( events );
   });
 });
+
+
+router.post( '/:id', function ( req, res ) {
+  req.body.EventId = req.params.id;
+  Vendor.create(req.body)
+    .then( function ( vendors ) {
+      res.json( vendors );
+    });
+  });
 
 router.put('/:id', function( req, res){
   req.body.updatedAt = "now()";
