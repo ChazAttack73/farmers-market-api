@@ -19,10 +19,10 @@ router.post( '/', function ( req, res ) {
     {
       username : req.body.username,
       password : req.body.password
-    })
-    .then( function ( user ) {
-      res.json( user );
     });
+    // .then( function ( user ) {
+    //   res.json( user );
+    // });
   });
 
 

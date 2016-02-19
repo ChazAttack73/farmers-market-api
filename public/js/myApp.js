@@ -43,8 +43,8 @@ myApp
         templateUrl : 'views/vendorView.html',
         controller : 'VendorController'
       })
-      .when('/vendor_private', {
-        templateUrl : 'views/vendorPrivatePage.html',
+      .when('/vendor/private', {
+        templateUrl : 'views/vendorProfile.html',
         controller: 'VendorController'
       })
       .when('/vendor/:param1',{
