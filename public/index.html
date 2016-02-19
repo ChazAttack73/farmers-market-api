@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/styles.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body ng-app="myApp">
@@ -12,8 +12,9 @@
       <div class="navlogo"></div>
     </a>
     <div id="login" class="user">
-      <a href="/login"></a>
-      <button ng-class="{ 'hidden' : login_user}" class="button" type="button" ng-click="login_user = !login_user"><a href="/#/login">Login</button>
+      <a href="/#/login">
+        <span>Login</span>
+      </a>
       <div id="hideMe" ng-class="{ 'hidden' : ! login_user}" class="login">
      <!--    <form ng-submit="login(vendor)">
           <br>
@@ -31,7 +32,11 @@
         </span> -->
       </div>
     </div>
-    <div id="register" class="user"><a href="register.html"></a></div>
+    <div id="register" class="user">
+      <a href="/#/register">
+        <span>Sign Up</span>
+      </a>
+    </div>
   </div>
 
   <!-- HTML Layout Game Plan
@@ -43,7 +48,7 @@
   events
   -->
 
-  <div ng-view></div>
+  <div class="view" ng-view></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>

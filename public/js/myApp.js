@@ -42,11 +42,11 @@ myApp
       .when('/vendor/', {
         templateUrl : 'views/vendorPage.html',
         controller : 'VendorController'
-      });
-//     .when('/register', {
-//       templateUrl : 'views/register.html',
-//       controller : 'VendorController'
-//     });
+      })
+      .when('/register', {
+      templateUrl : 'views/register.html',
+      controller : 'VendorController'
+    });
 }])
 
 .run(['$rootScope', '$localStorage', function($rootScope, $localStorage){
