@@ -5,12 +5,12 @@ module.exports = function ( sequelize, DataTypes ) {
       allowNull: false
     },
     price : {
-      type: DataTypes.NUMBER,
+      type: DataTypes.FLOAT,
       allowNull: false
     },
     quantity : DataTypes.INTEGER,
     description : DataTypes.STRING( 255 ),
-    product_picture : DataTypes.STRING( 255 ),
+    product_picture : DataTypes.STRING( 255 )
   }, {
     classMethods: {
       associate: function ( models ) {
