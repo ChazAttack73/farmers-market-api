@@ -43,6 +43,7 @@ myApp
         templateUrl : 'views/vendorView.html',
         controller : 'ProductController'
       })
+
 //     .when('/register', {
 //       templateUrl : 'views/register.html',
 //       controller : 'VendorController'
@@ -50,6 +51,11 @@ myApp
       // .when('/vendor', {
       //   templateUrl : 'views/vendorPage.html',
 
+
+      .when('/vendor/:id',{
+        templateUrl : 'views/vendorPage.html',
+        controller : 'VendorController'
+      })
       .when('/register', {
       templateUrl : 'views/register.html',
       controller : 'VendorController'
