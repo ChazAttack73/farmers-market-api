@@ -152,3 +152,10 @@ body {
   flex: 0 0 100%;
   height: 50%;
 }
+.vendorPrivatePage {
+  justify-content: left;
+
+  .hidden{
+    display: none;
+  }
+}
