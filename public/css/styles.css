@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: cyan;
+  background-image: url("./../images/swirl.png");
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center; }
+
+.navbar {
+  height: 50px;
+  width: 100%;
+  background-color: black;
+  margin: 0px;
+  opacity: 0.5; }
+
+.view {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center; }
+
+.user {
+  color: white;
+  font-family: Arial;
+  font-size: 20px;
+  float: right;
+  margin-right: 15px;
+  padding: 5px;
+  height: 35px;
+  line-height: 35px; }
+  .user a {
+    color: white;
+    text-decoration: none;
+    transition: 0s ease; }
+
+.info {
+  color: red;
+  height: 350px;
+  width: 100%;
+  background-color: orange;
+  text-align: center; }
+
+.events {
+  background-color: red;
+  min-width: 100px;
+  min-height: 150px; }
+
+.eventsmain {
+  display: flex;
+  flex-flow: row wrap; }
