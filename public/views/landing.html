@@ -5,15 +5,17 @@
   <div class="eventsmain">
      <div class="eventscontent" ng-repeat="event in Events">
       <div class="eventscolumn">
-        <div>
-          <h3>Name: <input value="{{event.name}}" ng-model="event.name"></h3>
-          <br>
-          Address: <input value="{{event.address}}" ng-model="event.address">
-          <br>
-          Days: <input value="{{event.days}}" ng-model="event.days">
-          <br>
-          Time: <input value="{{event.time}}" ng-model="event.time">
-        </div>
+        <a href="/#/vendor">
+          <div>
+            <h3>Name: {{event.name}}</h3>
+            <br>
+            Address: <input value="{{event.address}}" ng-model="event.address">
+            <br>
+            Days: <input value="{{event.days}}" ng-model="event.days">
+            <br>
+            Time: <input value="{{event.time}}" ng-model="event.time">
+          </div>
+        </a>
       <!-- Admin will eventually be able to edit events -->
        <!--  <form ng-submit="submitEdit(card)"> -->
         <!-- Priority:<input class="card_priority" value="{{card.priority}}" ng-model="card.priority">

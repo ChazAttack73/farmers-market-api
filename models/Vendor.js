@@ -11,9 +11,9 @@ module.exports = function ( sequelize, DataTypes ) {
     classMethods: {
       associate: function ( models ) {
         Vendor.hasMany( models.Product );
+        Vendor.belongsTo( models.Event );
       }
     }
   });
-
   return Vendor;
 };
