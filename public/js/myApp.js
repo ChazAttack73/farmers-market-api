@@ -41,7 +41,7 @@ myApp
       })
       .when('/vendor_view/', {
         templateUrl : 'views/vendorView.html',
-        controller : 'ProductController'
+        controller : 'VendorController'
       })
 
 //     .when('/register', {
