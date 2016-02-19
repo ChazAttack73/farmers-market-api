@@ -25,11 +25,10 @@ angular.module('myApp')
         $scope.error = "Please try again";
       });
     }
-    $scope.Vendor = [];
+    $scope.vendor = [];
     var param1 = $routeParams.param1;
     VendorService.getOneVendor(param1).success(function (data){
-      console.log('Returned from server!', data);
-      $scope.Vendor = data;
+      $scope.vendor = data;
     });
 
     $scope.loginVendor = function(){

@@ -66,7 +66,7 @@ router.post( '/', function ( req, res ) {
 
 router.get( '/:id', function( req, res){
   console.log("im on the server side!");
-  Vendor.findAll({
+  Vendor.findOne({
     where:{
       id: req.params.id
     },
@@ -75,8 +75,8 @@ router.get( '/:id', function( req, res){
       model: Product
     }]
   })
-  .then (function (vendor){
-    res.json( vendor );
+  .then (function (vendorInfo){
+    res.json( vendorInfo );
   });
 });
 
