@@ -6,14 +6,13 @@
      <div class="eventscontent" ng-repeat="event in Events">
       <div class="eventscolumn">
         <div>
+          <h3>Name: <input value="{{event.name}}" ng-model="event.name"></h3>
           <br>
-          Name:<input value="{{event.name}}" ng-model="event.name">
+          Address: <input value="{{event.address}}" ng-model="event.address">
           <br>
-          Address:<input value="{{event.address}}" ng-model="event.address">
+          Days: <input value="{{event.days}}" ng-model="event.days">
           <br>
-          Days:<input value="{{event.days}}" ng-model="event.days">
-          <br>
-          Time:<input value="{{event.time}}" ng-model="event.time">
+          Time: <input value="{{event.time}}" ng-model="event.time">
         </div>
       <!-- Admin will eventually be able to edit events -->
        <!--  <form ng-submit="submitEdit(card)"> -->

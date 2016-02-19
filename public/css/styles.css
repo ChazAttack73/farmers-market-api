@@ -51,4 +51,5 @@ body {
 
 .eventsmain {
   display: flex;
-  flex-flow: row wrap; }
+  flex-flow: row wrap;
+  padding: 5px; }
