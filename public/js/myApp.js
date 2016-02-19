@@ -39,6 +39,7 @@ myApp
         templateUrl : 'views/login.html',
         controller : 'VendorController'
       })
+<<<<<<< HEAD
       .when('/vendor_view/', {
         templateUrl : 'views/vendorView.html',
         controller : 'ProductController'
@@ -47,6 +48,16 @@ myApp
 //       templateUrl : 'views/register.html',
 //       controller : 'VendorController'
 //     });
+=======
+      .when('/vendor/', {
+        templateUrl : 'views/vendorPage.html',
+        controller : 'VendorController'
+      })
+      .when('/register', {
+      templateUrl : 'views/register.html',
+      controller : 'VendorController'
+    });
+>>>>>>> 2d31cf0d91e709a41d8b6ffb3840fa1175d27de2
 }])
 
 .run(['$rootScope', '$localStorage', function($rootScope, $localStorage){
