@@ -1,9 +1,22 @@
 module.exports = function ( sequelize, DataTypes ) {
   var Event = sequelize.define( "Event", {
-    name : DataTypes.STRING( 255 ),
-    address : DataTypes.STRING( 255 ),
-    days : DataTypes.STRING( 100 ),
-    time : DataTypes.STRING( 100 )
+    name : {
+      type: DataTypes.STRING( 255 ),
+      allowNull: false,
+      unique: true
+    },
+    address : {
+      type: DataTypes.STRING( 255 ),
+      allowNull: false
+    },
+    days : {
+      type: DataTypes.STRING( 100 ),
+      allowNull: false
+    },
+    time : {
+      type: DataTypes.STRING( 100 ),
+      allowNull: false
+    }
   }, {
     classMethods: {
       associate: function ( models ) {

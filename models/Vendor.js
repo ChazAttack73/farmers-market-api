@@ -1,14 +1,39 @@
 module.exports = function ( sequelize, DataTypes ) {
   var Vendor = sequelize.define( "Vendor", {
-    name : DataTypes.STRING( 255 ),
-    password : DataTypes.STRING( 255 ),
-    phone : DataTypes.STRING( 20 ),
-    email : DataTypes.STRING( 255 ),
-    website : DataTypes.STRING( 255 ),
-    description : DataTypes.STRING( 500 ),
+    name : {
+      type: DataTypes.STRING( 255 ),
+      allowNull: false,
+      unique: true
+    },
+
+    password : {
+      type: DataTypes.STRING( 255 ),
+      allowNull: false,
+      unique: true
+    },
+    phone : {
+      type: DataTypes.STRING( 20 ),
+      allowNull: false,
+      unique: true
+    },
+    email : {
+      type: DataTypes.STRING( 255 ),
+      allowNull: false,
+      unique: true
+    },
+    website : {
+      type: DataTypes.STRING( 255 ),
+      allowNull: true,
+      unique: true
+    },
+    description : {
+      type: DataTypes.STRING( 500 ),
+      allowNull: false,
+      unique: true
+    },
     company_pic : {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true,
     }
   }, {
     classMethods: {

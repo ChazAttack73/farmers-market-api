@@ -27,7 +27,6 @@ router.get( '/:id', function( req, res){
 });
 
 router.post( '/', function ( req, res ) {
-  //when does the product acquire the VendorID *****************************
   Product.create(req.body)
     .then( function ( products ) {
       res.json( products );
