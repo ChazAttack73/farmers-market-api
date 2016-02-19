@@ -3,12 +3,62 @@ var app = express();
 var router = express.Router();
 var db = require('./../models');
 var Vendor = db.Vendor;
+var Product = db.Product;
 var bodyParser = require('body-parser');
+//var flash = require('connect-flash');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require('bcrypt');
+
 
 router.use(bodyParser.json());
 
+passport.serializeUser(function(vendor, done) {
+ done(null, vendor);
+});
+passport.deserializeUser(function(vendor, done) {
+ done(null, vendor);
+});
+
+//Login for Vendor
+// app.post('/login/vendor', passport.authenticate('local'), function(req, res) {
+//   res.send(req.vendor);
+// });
+
+// passport.use(new LocalStrategy({
+//   passReqToCallback: true
+//   },
+//   function(req, username, password, done) {
+//     var vendorUserName = req.body.username;
+//     Vendor.findOne({
+//       username: vendorUserName
+//     })
+//     .then(function(vendor){
+//       if(!vendor){
+//         return done(null, false);
+//       }
+//       bcrypt.compare(password, vendor.password, function(err, res){
+//         if(vendor.username === username && res === false){
+//           return done(null, false);
+//         }
+//         if(vendor.username === username && res === true){
+//           return done(null, vendor);
+//         }
+//       });
+//     });
+// }));
+
+
+
 router.get( '/', function ( req, res ) {
   Vendor.findAll()
+    .then( function ( vendors ) {
+      res.json( vendors );
+    });
+  });
+
+router.post( '/', function ( req, res ) {
+  Vendor.create(req.body)
     .then( function ( vendors ) {
       res.json( vendors );
     });
@@ -25,21 +75,25 @@ router.get( '/:id', function( req, res){
   });
 });
 
-router.post( '/', function ( req, res ) {
-  Vendor.create(
-    {
-      name: req.body.name,
-      password: req.body.password,
-      phone: req.body.phone,
-      email : req.body.email,
-      website: req.body.website,
-      description: req.body.description,
-      company_pic: req.body.company_pic
-    })
-    .then( function ( vendors ) {
-      res.json( vendors );
+router.put('/:id', function( req, res){
+  req.body.updatedAt = "now()";
+  Vendor.update(
+    req.body, {
+    where : {
+      id : req.params.id
+    }
+  })
+  .then(function(vendorUpdateCount){
+    return Vendor.findOne({
+      where:{
+        id:req.params.id
+      }
     });
+  })
+  .then(function(vendor){
+    res.json( vendor );
   });
+});
 
 router.delete('/:id', function( req, res){
   Vendor.destroy({
@@ -53,7 +107,74 @@ router.delete('/:id', function( req, res){
       res.json( vendors );
     });
   });
-
 });
+
+/////////////////////////////////////////////////////////////////////////
+
+router.get('/:id/products/', function( req , res){
+  Product.findAll({
+    where:{
+      VendorId: req.params.id
+    }
+  })
+  .then( function ( products){
+    res.json ( products );
+  });
+});
+
+router.post('/:id/products/', function( req, res){
+  req.body.VendorId = req.params.id;
+  Product.create(req.body)
+  .then( function ( product ){
+    res.json( product );
+  });
+});
+
+router.get( '/:id/products/:product', function( req, res){
+  Product.findOne({
+    where:{
+      id: req.params.product
+    }
+  })
+  .then (function (product){
+    res.json( product );
+  });
+});
+
+
+router.put('/:id/products/:product', function( req, res){
+  req.body.updatedAt = "now()";
+  Product.update(
+    req.body, {
+    where : {
+      id : req.params.product
+    }
+  })
+  .then(function(productUpdateCount){
+    return Product.findOne({
+      where:{
+        id:req.params.product
+      }
+    });
+  })
+  .then(function(product){
+    res.json( product );
+  });
+});
+
+router.delete('/:id/products/:product', function( req, res){
+  Product.destroy({
+    where: {
+      id: req.params.product
+    }
+  })
+  .then(function(){
+    Product.findAll()
+    .then( function ( product ) {
+      res.json( product );
+    });
+  });
+});
+
 
 module.exports = router;
