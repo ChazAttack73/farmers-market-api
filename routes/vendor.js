@@ -50,8 +50,7 @@ passport.deserializeUser(function(vendor, done) {
 
 
 
-router.get( '/vendors', function ( req, res ) {
-  console.log('are you here??');
+router.get( '/', function ( req, res ) {
   Vendor.findAll()
     .then( function ( vendors ) {
       res.json( vendors );
@@ -66,10 +65,15 @@ router.post( '/', function ( req, res ) {
   });
 
 router.get( '/:id', function( req, res){
-  Vendor.findOne({
+  console.log("im on the server side!");
+  Vendor.findAll({
     where:{
       id: req.params.id
-    }
+    },
+    include : [
+    {
+      model: Product
+    }]
   })
   .then (function (vendor){
     res.json( vendor );

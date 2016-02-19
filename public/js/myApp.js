@@ -52,7 +52,7 @@ myApp
       //   templateUrl : 'views/vendorPage.html',
 
 
-      .when('/vendor/:id',{
+      .when('/vendor/:param1',{
         templateUrl : 'views/vendorPage.html',
         controller : 'VendorController'
       })
