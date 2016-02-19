@@ -120,3 +120,8 @@ body {
   background-color: white;
   flex: 0 0 100%;
   height: 50%; }
+
+.vendorPrivatePage {
+  justify-content: left; }
+  .vendorPrivatePage .hidden {
+    display: none; }
