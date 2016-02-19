@@ -20,6 +20,13 @@ passport.deserializeUser(function(vendor, done) {
  done(null, vendor);
 });
 
+router.get('/', function ( req, res){
+  Event.findAll()
+    .then( function ( events ){
+      res.json ( events );
+    });
+});
+
 router.post( '/', function ( req, res ) {
   Event.create(req.body)
     .then( function ( events ) {

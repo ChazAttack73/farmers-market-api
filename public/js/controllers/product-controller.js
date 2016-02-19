@@ -3,19 +3,18 @@
 angular.module('myApp')
 .controller('ProductController', ['$scope', 'ProductService', '$rootScope', 'VendorService', '$location', '$localStorage', function($scope, ProductService, $rootScope, VendorService, $location, $localStorage){
   $scope.Vendors = [];
-  $scope.vendor = {
-    createdBy : $rootScope.creator_user
-  };
+  // $scope.vendor = {
+  //   createdBy : $rootScope.creator_user
+  // };
   $scope.ProductService = ProductService;
   ProductService.getProducts().success(function(data){
     $scope.Products = data;
   });
 
-  $scope.Vendors = [];
-    $scope.VendorService = VendorService;
-    VendorService.getVendors().success(function(data) {
-      $scope.Vendors = data;
-    });
+  $scope.VendorService = VendorService;
+  VendorService.getVendors().success(function(data) {
+    $scope.Vendors = data;
+  });
 
   $scope.postButton=function(product) {
     ProductService.addProduct(product).then(function(data) {

@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module('myApp')
-  .controller('VendorController', ['$scope', 'VendorService', '$location', '$rootScope', '$localStorage', function($scope, VendorService, $location, $rootScope, $localStorage){
+  .controller('VendorController', ['$scope', 'VendorService', '$location', '$rootScope', '$localStorage', '$routeParams', function($scope, VendorService, $location, $rootScope, $localStorage, $routeParams){
     $scope.Vendors = [];
     $scope.VendorService = VendorService;
     VendorService.getVendors().success(function(data) {
@@ -24,7 +24,12 @@ angular.module('myApp')
       }).error(function(error){
         $scope.error = "Please try again";
       });
-    };
+    }
+    $scope.vendor = [];
+    var param1 = $routeParams.param1;
+    VendorService.getOneVendor(param1).success(function (data){
+      $scope.vendor = data;
+    });
 
     $scope.loginVendor = function(){
       VendorService.login($scope.vendor).success(function(result) {
