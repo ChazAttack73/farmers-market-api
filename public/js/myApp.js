@@ -39,8 +39,8 @@ myApp
         templateUrl : 'views/login.html',
         controller : 'VendorController'
       })
-      .when('/vendor/', {
-        templateUrl : 'views/vendorPage.html',
+      .when('/vendor', {
+        templateUrl : 'views/vendorView.html',
         controller : 'VendorController'
       })
       .when('/register', {
