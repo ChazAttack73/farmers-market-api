@@ -65,13 +65,18 @@ router.post( '/', function ( req, res ) {
   });
 
 router.get( '/:id', function( req, res){
+  console.log("im on the server side!");
   Vendor.findOne({
     where:{
       id: req.params.id
-    }
+    },
+    include : [
+    {
+      model: Product
+    }]
   })
-  .then (function (vendor){
-    res.json( vendor );
+  .then (function (vendorInfo){
+    res.json( vendorInfo );
   });
 });
 
@@ -111,70 +116,6 @@ router.delete('/:id', function( req, res){
 
 /////////////////////////////////////////////////////////////////////////
 
-router.get('/:id/products/', function( req , res){
-  Product.findAll({
-    where:{
-      VendorId: req.params.id
-    }
-  })
-  .then( function ( products){
-    res.json ( products );
-  });
-});
-
-router.post('/:id/products/', function( req, res){
-  req.body.VendorId = req.params.id;
-  Product.create(req.body)
-  .then( function ( product ){
-    res.json( product );
-  });
-});
-
-router.get( '/:id/products/:product', function( req, res){
-  Product.findOne({
-    where:{
-      id: req.params.product
-    }
-  })
-  .then (function (product){
-    res.json( product );
-  });
-});
-
-
-router.put('/:id/products/:product', function( req, res){
-  req.body.updatedAt = "now()";
-  Product.update(
-    req.body, {
-    where : {
-      id : req.params.product
-    }
-  })
-  .then(function(productUpdateCount){
-    return Product.findOne({
-      where:{
-        id:req.params.product
-      }
-    });
-  })
-  .then(function(product){
-    res.json( product );
-  });
-});
-
-router.delete('/:id/products/:product', function( req, res){
-  Product.destroy({
-    where: {
-      id: req.params.product
-    }
-  })
-  .then(function(){
-    Product.findAll()
-    .then( function ( product ) {
-      res.json( product );
-    });
-  });
-});
 
 
 module.exports = router;

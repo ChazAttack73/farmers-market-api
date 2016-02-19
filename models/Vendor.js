@@ -6,7 +6,10 @@ module.exports = function ( sequelize, DataTypes ) {
     email : DataTypes.STRING( 255 ),
     website : DataTypes.STRING( 255 ),
     description : DataTypes.STRING( 500 ),
-    company_pic : DataTypes.STRING( 255 )
+    company_pic : {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     classMethods: {
       associate: function ( models ) {
