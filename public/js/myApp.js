@@ -44,11 +44,11 @@ myApp
         controller : 'VendorController'
       })
       .when('/vendor/private', {
-        templateUrl : 'views/vendorProfile.html',
+        templateUrl : 'views/vendorPrivatePage.html',
         controller: 'VendorController'
       })
       .when('/vendor/:param1',{
-        templateUrl : 'views/vendorByIdView.html',
+        templateUrl : 'views/vendorProfile.html',
         controller : 'VendorController'
       })
       .when('/register', {
