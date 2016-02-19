@@ -1,8 +1,14 @@
 "use strict";
 
 angular.module('myApp')
-.controller('ProductController', ['$scope', 'ProductService', '$rootScope', 'VendorService', '$location', '$localStorage', function($scope, ProductService, $rootScope, VendorService, $location, $localStorage){
-  $scope.Vendors = [];
+.controller('EventController', ['$scope', 'EventService', '$rootScope', 'VendorService', '$location', '$localStorage', function($scope, EventService, $rootScope, VendorService, $location, $localStorage){
+  $scope.Events = [{
+    name : "Manoa Marketplace",
+    address: "2752 Woodlawn Drive",
+    days: "Tuesday, Thursday, Sunday",
+    time: "7:00 AM to 11:00"
+  }];
+  $scope.Events = [];
   $scope.vendor = {
     createdBy : $rootScope.creator_user
   };
@@ -35,13 +41,6 @@ angular.module('myApp')
       ProductService.getProducts().success(function(data){
         $scope.Products = data;
       });
-    });
-  };
-
-  $scope.logoutButton = function() {
-    VendorService.logout().success(function() {
-      $localStorage.$reset();
-      $location.url('/events');
     });
   };
 }]);
