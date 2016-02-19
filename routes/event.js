@@ -45,6 +45,14 @@ router.get( '/:id', function( req, res){
   });
 });
 
+router.post( '/:id', function ( req, res ) {
+  req.body.EventId = req.params.id;
+  Vendor.create(req.body)
+    .then( function ( vendors ) {
+      res.json( vendors );
+    });
+  });
+
 router.put('/:id', function( req, res){
   req.body.updatedAt = "now()";
   Event.update(

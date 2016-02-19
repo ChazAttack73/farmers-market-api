@@ -1,4 +1,30 @@
 <div class="register">
+
+  <fieldset>
+    <h3>User Registration</h3>
+
+    <label for="user_username"></label>
+    <input id="user_usernme "type="text" ng-model="user.username">
+    <br>
+
+   <!--  with angular to check if user already exists with the search filter -->
+
+    <label for="user_password"></label>
+    <input id="user_password"type="text" ng-model="user.password">
+    <br>
+
+    <label for="user_verifyPassword"></label>
+    <input id="user_verifyPassword "type="text" ng-model="user.verifyPassword">
+    <br>
+
+    <div class="commit">
+      <button type='button' ng-click='register(user); user = null'>Add Task</button>
+    </div>
+
+  </fieldset>
+
+
+
   <form ng-submit="register()">
     <br>
     Username:<input class="user_title" value="{{user.username}}" ng-model="user.username">
