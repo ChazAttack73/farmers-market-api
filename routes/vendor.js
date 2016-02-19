@@ -50,7 +50,8 @@ passport.deserializeUser(function(vendor, done) {
 
 
 
-router.get( '/', function ( req, res ) {
+router.get( '/vendors', function ( req, res ) {
+  console.log('are you here??');
   Vendor.findAll()
     .then( function ( vendors ) {
       res.json( vendors );

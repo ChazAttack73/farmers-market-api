@@ -3,7 +3,8 @@
 angular.module('myApp')
   .service('VendorService', ['$http', function($http){
     this.getVendors = function(){
-      return $http.get('http://localhost:3000/vendor');
+      console.log('first should be here!!!');
+      return $http.get('/vendors');
     };
     this.getOneVendor = function(id){
       return $http.get('http://localhost:3000/vendor/'+id);
