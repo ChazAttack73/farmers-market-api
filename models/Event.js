@@ -16,6 +16,10 @@ module.exports = function ( sequelize, DataTypes ) {
     time : {
       type: DataTypes.STRING( 100 ),
       allowNull: false
+    },
+    event_picture: {
+      type: DataTypes.STRING( 100 ),
+      allowNull: false
     }
   }, {
     classMethods: {
