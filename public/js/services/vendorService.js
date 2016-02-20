@@ -6,16 +6,17 @@ angular.module('myApp')
       return $http.get('/vendor');
     };
     this.getOneVendor = function(vendorId){
-      return $http.get('http://localhost:3000/vendor/'+vendorId);
+      return $http.get('vendor/'+vendorId);
     };
-    this.login = function(vendor) {
-      return $http.post('/login/vendor', vendor);
+    this.loginVen = function(vendorLog) {
+      return $http.post('vendor/login', vendorLog);
     };
     this.register = function(vendor) {
       return $http.post('/event/', vendor);
     };
-    this.registerUser = function(user) {
-     return $http.post('/register', user);
+    this.regVendor = function(newVendor) {
+      console.log('at service for vendor', newVendor);
+     return $http.post('vendor/register', newVendor);
     };
     this.logout = function() {
       return $http.post('/logout');

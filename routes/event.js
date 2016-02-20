@@ -48,6 +48,7 @@ router.get( '/:id', function( req, res){
 
 router.post( '/:id', function ( req, res ) {
   req.body.EventId = req.params.id;
+  console.log(req.body);
   Vendor.create(req.body)
     .then( function ( vendors ) {
       res.json( vendors );

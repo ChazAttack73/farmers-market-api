@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 var db = require('./../models');
+var session = require('express-session');
+var CONFIG = require('./../config/config.json');
+var cookieParser = require('cookie-parser');
 var Vendor = db.Vendor;
 var Product = db.Product;
 var bodyParser = require('body-parser');
@@ -10,7 +13,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 
-router.use(bodyParser.json());
+router.use(bodyParser.json({ extended: false }));
+router.use(cookieParser());
 
 passport.serializeUser(function(vendor, done) {
  done(null, vendor);
@@ -19,33 +23,76 @@ passport.deserializeUser(function(vendor, done) {
  done(null, vendor);
 });
 
-//Login for Vendor
-// app.post('/login/vendor', passport.authenticate('local'), function(req, res) {
-//   res.send(req.vendor);
-// });
 
-// passport.use(new LocalStrategy({
-//   passReqToCallback: true
-//   },
-//   function(req, username, password, done) {
-//     var vendorUserName = req.body.username;
-//     Vendor.findOne({
-//       username: vendorUserName
-//     })
-//     .then(function(vendor){
-//       if(!vendor){
-//         return done(null, false);
-//       }
-//       bcrypt.compare(password, vendor.password, function(err, res){
-//         if(vendor.username === username && res === false){
-//           return done(null, false);
-//         }
-//         if(vendor.username === username && res === true){
-//           return done(null, vendor);
-//         }
-//       });
-//     });
-// }));
+function hash(req) {
+  return new Promise (function(resolve, reject) {
+  bcrypt.genSalt(12, function(err, salt) {
+    if(err) {
+      reject(err);
+    }
+    bcrypt.hash(req.body.password, salt, function(err, hash) {
+      console.log(hash);
+      resolve (hash);
+    });
+  });
+  });
+}
+
+router.post('/register', function(req, res){
+  console.log('made it too router post on server', req);
+  hash(req)
+  .then(function(hash) {
+    var userObj = {
+    name : req.body.name,
+    password: hash,
+    phone : req.body.phone,
+    email: req.body.email,
+    website : req.body.website,
+    description : req.body.description,
+    company_pic : req.body.company_pic
+    };
+    Vendor.create(userObj)
+    .then(function(user){
+      console.log("Register vendor");
+      req.login(user, function(err) {
+        if(err) {
+          return next(err);
+        }
+        return res.json(user);
+      });
+    });
+  });
+});
+
+
+//Login for Vendor
+router.post('/login', passport.authenticate('local'), function(req, res) {
+  res.send(req.vendor);
+});
+
+passport.use(new LocalStrategy({
+  passReqToCallback: true
+  },
+  function(req, name, password, done) {
+    console.log('at LocalStrategy', password);
+    var vendorUserName = req.body.name;
+    Vendor.findOne({
+      name: vendorUserName
+    })
+    .then(function(vendor){
+      if(!vendor){
+        return done(null, false);
+      }
+      bcrypt.compare(password, vendor.password, function(err, res){
+        if(vendor.name === name && res === false){
+          return done(null, false);
+        }
+        if(vendor.name === name && res === true){
+          return done(null, vendor);
+        }
+      });
+    });
+}));
 
 
 
@@ -58,8 +105,7 @@ router.get( '/', function ( req, res ) {
 });
 
 
-router.get( '/:id', function( req, res){
-  console.log("im on the server side!");
+router.get( '/:id', function( req, res) {
   Vendor.findOne({
     where:{
       id: req.params.id
@@ -116,6 +162,12 @@ router.delete('/:id', function( req, res){
   });
 });
 
+router.post('/logout', function(req, res) {
+  req.logout();
+  res.json({
+    success : true
+  });
+});
 /////////////////////////////////////////////////////////////////////////
 
 

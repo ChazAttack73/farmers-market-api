@@ -40,7 +40,7 @@ myApp
         controller : 'VendorController'
       })
 
-      .when('/vendor/view/', {
+      .when('/vendor/view', {
         templateUrl : 'views/vendorView.html',
         controller : 'VendorController'
       })
@@ -63,9 +63,8 @@ myApp
 }])
 
 .run(['$rootScope', '$localStorage', function($rootScope, $localStorage){
-  // if($localStorage.hasOwnProperty("creator_user")) {
-  // }
+  if($localStorage.hasOwnProperty("vendor_user")) {
+  }
   //initialize
-  // $rootScope.user_full_name = $localStorage.user_full_name  || '!loggedin';
-  // $rootScope.creator_user = $localStorage.creator_user || '!loggedin';
+  $rootScope.vendor_user = $localStorage.vendor_user || '!loggedin';
 }]);

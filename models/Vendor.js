@@ -9,12 +9,12 @@ module.exports = function ( sequelize, DataTypes ) {
     password : {
       type: DataTypes.STRING( 255 ),
       allowNull: false,
-      unique: true
+      unique: false
     },
     phone : {
       type: DataTypes.STRING( 20 ),
       allowNull: false,
-      unique: true
+      unique: false
     },
     email : {
       type: DataTypes.STRING( 255 ),
@@ -29,7 +29,7 @@ module.exports = function ( sequelize, DataTypes ) {
     description : {
       type: DataTypes.STRING( 500 ),
       allowNull: false,
-      unique: true
+      unique: false
     },
     company_pic : {
       type: DataTypes.STRING,
