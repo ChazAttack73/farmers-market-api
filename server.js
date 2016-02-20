@@ -36,6 +36,10 @@ app.use('/register', require('./routes/user.js'));
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
 
+app.get('/api/authenticate', function(req, res){
+  res.send(req.isAuthenticated() ? req.user : '0');
+});
+
 app.get('/', function ( req, res){
   Event.findAll()
     .then( function ( events ){
