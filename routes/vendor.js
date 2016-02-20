@@ -13,7 +13,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 
-router.use(bodyParser.json());
+router.use(bodyParser.json({ extended: false }));
+router.use(cookieParser());
 
 passport.serializeUser(function(vendor, done) {
  done(null, vendor);
@@ -37,6 +38,7 @@ function hash(req) {
 }
 
 router.post('/register', function(req, res){
+  console.log('made it too router post on server', req);
   hash(req)
   .then(function(hash) {
     var userObj = {
@@ -63,32 +65,33 @@ router.post('/register', function(req, res){
 
 
 //Login for Vendor
-// app.post('/login/vendor', passport.authenticate('local'), function(req, res) {
-//   res.send(req.vendor);
-// });
+router.post('/login', passport.authenticate('local'), function(req, res) {
+  res.send(req.vendor);
+});
 
-// passport.use(new LocalStrategy({
-//   passReqToCallback: true
-//   },
-//   function(req, username, password, done) {
-//     var vendorUserName = req.body.username;
-//     Vendor.findOne({
-//       username: vendorUserName
-//     })
-//     .then(function(vendor){
-//       if(!vendor){
-//         return done(null, false);
-//       }
-//       bcrypt.compare(password, vendor.password, function(err, res){
-//         if(vendor.username === username && res === false){
-//           return done(null, false);
-//         }
-//         if(vendor.username === username && res === true){
-//           return done(null, vendor);
-//         }
-//       });
-//     });
-// }));
+passport.use(new LocalStrategy({
+  passReqToCallback: true
+  },
+  function(req, name, password, done) {
+    console.log('at LocalStrategy', password);
+    var vendorUserName = req.body.name;
+    Vendor.findOne({
+      name: vendorUserName
+    })
+    .then(function(vendor){
+      if(!vendor){
+        return done(null, false);
+      }
+      bcrypt.compare(password, vendor.password, function(err, res){
+        if(vendor.name === name && res === false){
+          return done(null, false);
+        }
+        if(vendor.name === name && res === true){
+          return done(null, vendor);
+        }
+      });
+    });
+}));
 
 
 router.get( '/:id', function( req, res) {
@@ -148,6 +151,12 @@ router.delete('/:id', function( req, res){
   });
 });
 
+router.post('/logout', function(req, res) {
+  req.logout();
+  res.json({
+    success : true
+  });
+});
 /////////////////////////////////////////////////////////////////////////
 
 

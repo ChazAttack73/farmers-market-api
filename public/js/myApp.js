@@ -40,6 +40,7 @@ myApp
         controller : 'VendorController'
       })
 
+
       .when('/vendor/view/:id', {
         templateUrl : 'views/vendorView.html',
         controller : 'VendorController'
