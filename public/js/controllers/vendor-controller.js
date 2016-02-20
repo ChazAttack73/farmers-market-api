@@ -10,28 +10,28 @@ angular.module('myApp')
       $scope.Vendors = data;
     });
 
-    $scope.registerVendor = function() {
-      if(!$scope.vendor.name && $scope.vendor.password && $scope.vendor.phone && $scope.vendor.email && $scope.vendor.description) {
+    $scope.registerVendor = function(vendor) {
+      if(!vendor.username && vendor.password && vendor.phone && vendor.email && vendor.description) {
         $scope.error = "Please fill out all required fields";
-      } else if($scope.vendor.password !== $scope.vendor.verifyPassword) {
-        $scope.error = "Passwords do not match";
+      } else if(vendor.password !== vendor.verifyPassword) {
+          $scope.error = "Passwords do not match";
       } else {
-        var newVendor = {
-            name : $scope.vendor.name,
-            password : $scope.vendor.password,
-            phone : $scope.vendor.phone,
-            email : $scope.vendor.email,
-            website : $scope.vendor.website,
-            description : $scope.vendor.description,
-            company_pic : $scope.vendor.company_pic
-        };
-        VendorService.regVendor(newVendor).success(function(result) {
-          $rootScope.vendor_user = result;
-          $localStorage.vendor_user = $rootScope.vendor_user;
-          $location.url('/');
-        }).error(function(error) {
-          $scope.error = 'Unknow error.  Please try again';
-        });
+        // var newVendor = {
+        //     name : $scope.vendor.name,
+        //     password : $scope.vendor.password,
+        //     phone : $scope.vendor.phone,
+        //     email : $scope.vendor.email,
+        //     website : $scope.vendor.website,
+        //     description : $scope.vendor.description,
+        //     company_pic : $scope.vendor.company_pic
+        // };
+          VendorService.regVendor(vendor).success(function(result) {
+            $rootScope.vendor_user = result;
+            $localStorage.vendor_user = $rootScope.vendor_user;
+            $location.url('/');
+          }).error(function(error) {
+              $scope.error = 'Unknow error.  Please try again';
+          });
       }
     };
 
@@ -61,8 +61,8 @@ angular.module('myApp')
     //   });
     // };
 
-    $scope.vendor = [];
     $scope.getVendorAndProducts = function(vendor) {
+      $scope.vendor = [];
       $scope.vendorValue=false;
       //var param1 = $routeParams.param1;
       VendorService.getOneVendor(vendor.id).success(function (data){
@@ -70,13 +70,8 @@ angular.module('myApp')
       });
     };
 
-    $scope.loginVendor = function(){
-      var vendorLog = {
-        name : $scope.vendor.name,
-        password : $scope.vendor.password
-      };
-      console.log('What am I sending to VendorService?', vendorLog);
-      VendorService.loginVen(vendorLog).success(function(result) {
+    $scope.loginVendor = function(vendorLoginCredentials){
+      VendorService.loginVen(vendorLoginCredentials).success(function(result) {
         $rootScope.creator_vendor = result;
         $localStorage.creator_vendor = $rootScope.creator_vendor;
         $scope.login_user=true;
