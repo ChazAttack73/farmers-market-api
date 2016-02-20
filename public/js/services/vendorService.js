@@ -12,7 +12,10 @@ angular.module('myApp')
       return $http.post('/login/vendor', vendor);
     };
     this.register = function(vendor) {
-      return $http.post('/register', vendor);
+      return $http.post('/event/', vendor);
+    };
+    this.registerUser = function(user) {
+     return $http.post('/register', user);
     };
     this.logout = function() {
       return $http.post('/logout');
