@@ -6,8 +6,12 @@ angular.module('myApp')
     $scope.vendorValue=true;
     $scope.Vendors = [];
     $scope.VendorService = VendorService;
-    VendorService.getVendors().success(function(data) {
-      $scope.Vendors = data;
+
+    var id = $routeParams.id;
+
+    VendorService.getVendors(id)
+      .success(function(data) {
+        $scope.Vendors = data;
     });
 
     $scope.registerVendor = function() {
