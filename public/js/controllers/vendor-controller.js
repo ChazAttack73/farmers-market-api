@@ -6,16 +6,19 @@ angular.module('myApp')
     $scope.vendorValue=true;
     $scope.Vendors = [];
     $scope.VendorService = VendorService;
-    VendorService.getVendors().success(function(data) {
-      $scope.Vendors = data;
+
+    var id = $routeParams.id;
+
+    VendorService.getVendors(id)
+      .success(function(data) {
+        $scope.Vendors = data;
     });
 
-    $scope.registerVendor = function() {
-
-      if(!$scope.vendor.name && $scope.vendor.password && $scope.vendor.phone && $scope.vendor.email && $scope.vendor.description) {
+    $scope.registerVendor = function(vendor) {
+      if(!vendor.username && vendor.password && vendor.phone && vendor.email && vendor.description) {
         $scope.error = "Please fill out all required fields";
-      } else if($scope.vendor.password !== $scope.vendor.verifyPassword) {
-        $scope.error = "Passwords do not match";
+      } else if(vendor.password !== vendor.verifyPassword) {
+          $scope.error = "Passwords do not match";
       } else {
         VendorService.regVendor($scope.vendor).success(function(result) {
           console.log('Did I make it back to to the client side?', result);
@@ -28,33 +31,33 @@ angular.module('myApp')
       }
     };
 
-    $scope.registerUser = function(user) {
+    // $scope.registerUser = function(user) {
 
-      if(!user.username && user.password && user.verifyPassword){
-        $scope.error = "Please completely fill out form";
-        return false;
-      }
+    //   if(!user.username && user.password && user.verifyPassword){
+    //     $scope.error = "Please completely fill out form";
+    //     return false;
+    //   }
 
-      if(user.password !== user.verifyPassword){
-        $scope.error = "verify password does not match";
-        return false;
-      }
+    //   if(user.password !== user.verifyPassword){
+    //     $scope.error = "verify password does not match";
+    //     return false;
+    //   }
 
-      var newUser = {
-        username : user.username,
-        password : user.password
-      };
+    //   var newUser = {
+    //     username : user.username,
+    //     password : user.password
+    //   };
 
-      VendorService.registerUser(newUser).success(function(result){
+    //   VendorService.registerUser(newUser).success(function(result){
 
-        $location.url('/');
-      }).error(function(error){
-        $scope.error = "Please try again";
-      });
-    };
+    //     $location.url('/');
+    //   }).error(function(error){
+    //     $scope.error = "Please try again";
+    //   });
+    // };
 
-    $scope.vendor = [];
     $scope.getVendorAndProducts = function(vendor) {
+      $scope.vendor = [];
       $scope.vendorValue=false;
       //var param1 = $routeParams.param1;
       VendorService.getOneVendor(vendor.id).success(function (data){
@@ -62,16 +65,12 @@ angular.module('myApp')
       });
     };
 
-    $scope.loginVendor = function(){
-      VendorService.login($scope.vendor).success(function(result) {
-        // $rootScope.creator_vendor = result;
-        // $rootScope.vendor_first_name = result.first_name;
-        // $rootScope.vendor_last_name = result.last_name;
-        // $rootScope.vendor_full_name = result.first_name + " " + result.last_name;
-        // $localStorage.creator_vendor = $rootScope.creator_vendor;
-        // $localStorage.vendor_full_name = $rootScope.vendor_full_name;
+    $scope.loginVendor = function(vendorLoginCredentials){
+      VendorService.loginVen(vendorLoginCredentials).success(function(result) {
+        $rootScope.creator_vendor = result;
+        $localStorage.creator_vendor = $rootScope.creator_vendor;
         $scope.login_user=true;
-        $location.url('/events');
+        $location.url('/vendor/private');
       }).error(function(error) {
           $scope.error ="Wrong username or password";
       });

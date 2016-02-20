@@ -1,15 +1,15 @@
 <div class="register">
 
-  <fieldset>
+ <!--  <fieldset>
     <h2>User Registration</h3>
 
     <label for="user_username">username</label>
     <input id="user_usernme "type="text" ng-model="user.username">
-    <br>
+    <br> -->
 
    <!--  with angular to check if user already exists with the search filter -->
 
-    <label for="user_password">password</label>
+   <!--  <label for="user_password">password</label>
     <input id="user_password"type="text" ng-model="user.password">
     <br>
 
@@ -18,17 +18,17 @@
     <br>
 
     <div class="commit">
-      <button type='button' ng-click='registerUser(user); user = null'>register</button>
+      <button type='button' ng-click='registerUser(user)'>register</button>
     </div>
 
   </fieldset>
-
+ -->
 
   <fieldset>
     <h2>Vendor Registration</h3>
 
     <label for="vendor_name">Company Name</label>
-    <input id="vendor_name "type="text" ng-model="vendor.name">
+    <input id="vendor_name "type="text" ng-model="vendor.username">
     <br>
 
     <!--  with angular to check if user already exists with the search filter -->
@@ -60,11 +60,9 @@
     <label for="vendor_company_pic">Company Picture</label>
     <input id="vendor_company_pic"type="text" ng-model="vendor.company_pic">
     <br>
-    <div>
-      {{error}}
-    </div>
+   <div class="error">{{error}}</div>
     <div class="commit">
-      <button type='button' ng-click='registerVendor(vendor); vendor = null'>Register</button>
+      <button type='button' ng-click='registerVendor(vendor)'>Register</button>
     </div>
 
   </fieldset>

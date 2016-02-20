@@ -1,4 +1,5 @@
 <div id="vendorView" ng-show="vendorValue" class="ng-hide">
+<!--   if ng-show is false, ng-hide will activate causing to hide this whole div that ng-show is attached to, line 1 - line 24. At line 26, it is currently hiding because it's equal to false. but when line 13 is activated, it will change line 26 from being false to true therefore making it show. because one div ng-show is true and the other is false, when the button is activated (line 13), it will switch the showing of divs -->
   <div class="viewFilter">
     <div id="vendorViewButton"> Vendor </div>
     <!-- //ng-href not neeed, because it's on the page already -->
@@ -18,6 +19,7 @@
       <div>
         <img src="{{vendor.company_pic}}" alt="" class="productThumbNail">
       </div>
+
     </div>
   </div>
 </div>
