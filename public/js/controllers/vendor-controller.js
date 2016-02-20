@@ -1,7 +1,8 @@
 "use strict";
 
 angular.module('myApp')
-  .controller('VendorController', ['$scope', 'VendorService', '$location', '$rootScope', '$localStorage', '$routeParams', function($scope, VendorService, $location, $rootScope, $localStorage, $routeParams){
+  .controller('VendorController', ['$scope', 'VendorService', '$location', '$rootScope', '$localStorage', '$routeParams', '$route', function($scope, VendorService, $location, $rootScope, $localStorage, $routeParams, $route){
+    $scope.vendorPrivate=true;
     $scope.vendorValue=true;
     $scope.Vendors = [];
     $scope.VendorService = VendorService;
@@ -61,5 +62,9 @@ angular.module('myApp')
       });
     };
 
+    if($route.current.$$route.originalPath==='/vendor/private') {
+     $scope.getVendorAndProducts({id: 3});
+
+    }
 
   }]);
