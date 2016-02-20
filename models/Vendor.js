@@ -8,8 +8,7 @@ module.exports = function ( sequelize, DataTypes ) {
 
     password : {
       type: DataTypes.STRING( 255 ),
-      allowNull: false,
-      unique: false
+      allowNull: false
     },
     phone : {
       type: DataTypes.STRING( 20 ),
