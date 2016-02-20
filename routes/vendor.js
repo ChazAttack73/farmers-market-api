@@ -22,7 +22,6 @@ passport.deserializeUser(function(vendor, done) {
  done(null, vendor);
 });
 
-
 function hash(req) {
   return new Promise (function(resolve, reject) {
   bcrypt.genSalt(12, function(err, salt) {
@@ -90,16 +89,6 @@ router.post('/register', function(req, res){
 //       });
 //     });
 // }));
-
-
-
-router.get( '/', function ( req, res ) {
-  Vendor.findAll({})
-    .then( function ( vendors ) {
-      res.json( vendors );
-    })
-  ;
-});
 
 
 router.get( '/:id', function( req, res) {
