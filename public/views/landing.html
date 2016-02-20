@@ -6,12 +6,8 @@
     <div class="eventscolumn">
       <a href="/#/vendor/view">
         <div class="testContent">
-          <div class="testTitle">
-            <h3>{{event.name}}</h3>
-          </div>
-          <div class="testPic">
-            <img src="{{event.event_picture}}">
-          </div>
+          <div class="testTitle">{{event.name}}</div>
+          <div class="testPic" ng-style="{'background-image': 'url(' + event.event_picture + ')'}"></div>
           <div class="testInfo">
             <div class="testDays">{{event.days}}</div>
             <div class="testTimes">{{event.time}}</div>
