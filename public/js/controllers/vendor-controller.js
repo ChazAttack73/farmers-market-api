@@ -10,6 +10,24 @@ angular.module('myApp')
       $scope.Vendors = data;
     });
 
+    $scope.registerVendor = function() {
+
+      if(!$scope.vendor.name && $scope.vendor.password && $scope.vendor.phone && $scope.vendor.email && $scope.vendor.description) {
+        $scope.error = "Please fill out all required fields";
+      } else if($scope.vendor.password !== $scope.vendor.verifyPassword) {
+        $scope.error = "Passwords do not match";
+      } else {
+        VendorService.regVendor($scope.vendor).success(function(result) {
+          console.log('Did I make it back to to the client side?', result);
+          $rootScope.vendor_user = result;
+          $localStorage.vendor_user = $rootScope.vendor_user;
+          $location.url('/');
+        }).error(function(error) {
+          $scope.error = 'Unknow error.  Please try again';
+        });
+      }
+    };
+
     $scope.registerUser = function(user) {
 
       if(!user.username && user.password && user.verifyPassword){
@@ -39,10 +57,8 @@ angular.module('myApp')
     $scope.vendor = [];
     $scope.getVendorAndProducts = function(vendor) {
       $scope.vendorValue=false;
-      console.log('First', vendor);
       //var param1 = $routeParams.param1;
       VendorService.getOneVendor(vendor.id).success(function (data){
-        console.log('Two', data);
       $scope.vendor = data;
       });
     };
