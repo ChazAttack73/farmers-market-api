@@ -1,28 +1,23 @@
 <div class="info" ng-class="login_user=login_user">
   <h2>Distributing Homegrown Aloha</h2>
 </div>
-<div class="events">
-  <div class="eventsMain">
-    <div class="eventscontent" ng-repeat="event in Events">
-      <div class="eventscolumn">
-        <a href="/#/vendor/view">
-          <div class="testContent">
-            <div class="testTitle">
-              <h3>{{event.name}}</h3>
-            </div>
-            <div class="testPic">
-              <img src= {{event.event_picture}} alt="" class="productThumbNail">
-            </div>
-            <div class="testInfo">
-              <div class="testDays">{{event.days}}</div>
-              <div class="testTimes">{{event.time}}</div>
-              <div class="testLocation">{{event.address}}</div>
-            </div>
+<div class="eventsMain">
+  <div class="eventscontent" ng-repeat="event in Events">
+    <div class="eventscolumn">
+      <a href="/#/vendor/view">
+        <div class="testContent">
+          <div class="testTitle">{{event.name}}</div>
+          <div class="testPic" ng-style="{'background-image': 'url(' + event.event_picture + ')'}"></div>
+          <div class="testInfo">
+            <div class="testDays">{{event.days}}</div>
+            <div class="testTimes">{{event.time}}</div>
+            <div class="testLocation">{{event.address}}</div>
           </div>
-        </a>
-        Admin will eventually be able to edit events
-      </div>
+        </div>
+      </a>
     </div>
+  </div>
+</div>
 
           <!-- <div>
             <h3>Name: {{event.name}}</h3>
