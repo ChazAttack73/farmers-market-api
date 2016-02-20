@@ -15,15 +15,24 @@ router.get( '/', function ( req, res ) {
   });
 
 router.post( '/', function ( req, res ) {
-  User.create(
-    {
-      username : req.body.username,
-      password : req.body.password
-    });
-    // .then( function ( user ) {
-    //   res.json( user );
-    // });
+  User.findOne({
+    where:{
+      username: req.body.username
+    }
+  })
+  .then (function (data){
+    if(data===null){
+      User.create(req.body)
+        .then( function ( user ) {
+          return res.json( user );
+        });
+    } else {
+      return res.send("username already taken");
+    }
   });
+
+
+});
 
 
 module.exports = router;

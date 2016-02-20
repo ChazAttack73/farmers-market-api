@@ -52,6 +52,10 @@ myApp
         templateUrl : 'views/vendorProfile.html',
         controller : 'VendorController'
       })
+      .when('/product/view', {
+        templateUrl : 'views/productView.html',
+        controller : 'ProductController'
+      })
       .when('/register', {
         templateUrl : 'views/register.html',
         controller : 'VendorController'
