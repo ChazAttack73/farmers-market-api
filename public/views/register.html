@@ -1,46 +1,60 @@
 <div class="register">
 
   <fieldset>
-    <h3>User Registration</h3>
+    <h2>User Registration</h3>
 
-    <label for="user_username"></label>
+    <label for="user_username">username</label>
     <input id="user_usernme "type="text" ng-model="user.username">
     <br>
 
    <!--  with angular to check if user already exists with the search filter -->
 
-    <label for="user_password"></label>
+    <label for="user_password">password</label>
     <input id="user_password"type="text" ng-model="user.password">
     <br>
 
-    <label for="user_verifyPassword"></label>
+    <label for="user_verifyPassword">verify Pw</label>
     <input id="user_verifyPassword "type="text" ng-model="user.verifyPassword">
     <br>
 
     <div class="commit">
-      <button type='button' ng-click='register(user); user = null'>Add Task</button>
+      <button type='button' ng-click='register(user); user = null'>register</button>
     </div>
 
   </fieldset>
 
 
+  <fieldset>
+    <h2>Vendor Registration</h3>
 
-  <form ng-submit="register()">
+    <label for="vendor_name">company Name</label>
+    <input id="vendor_name "type="text" ng-model="vendor.name">
     <br>
-    Username:<input class="user_title" value="{{user.username}}" ng-model="user.username">
+
+    <!--  with angular to check if user already exists with the search filter -->
+
+    <label for="vendor_password">password</label>
+    <input id="vendor_password "type="text" ng-model="vendor.password">
     <br>
-    Password:<input class="user_priority" value="{{user.first_name}}" ng-model="user.first_name">
+
+    <label for="vendor_verifyPassword">verify PW</label>
+    <input id="vendor_verifyPassword "type="text" ng-model="vendor.verifyPassword">
     <br>
-    Phone:<input class="user_createdBy" value="{{user.last_name}}" ng-model="user.last_name">
+
+    <label for="vendor_phone">phone</label>
+    <input id="vendor_phone "type="text" ng-model="vendor.phone">
     <br>
-    Email:<input type="password" class="user_assignedTo" value="{{user.password}}" ng-model="user.password">
+
+    <label for="vendor_email">email</label>
+    <input id="vendor_email"type="text" ng-model="vendor.email">
     <br>
-    Website:<input type="email" class="user_assignedTo" value="{{user.email}}" ng-model="user.email">
+
+    <label for="vendor_description">description</label>
+    <input id="vendor_description "type="text" ng-model="vendor.description">
     <br>
-    Description:<input class="user_title" value="{{user.username}}" ng-model="user.username">
-    <br>
-    <br><br>
-    <input type="submit" value="Register" class="button">
-  </form>
-  <div class="error">{{error}}</div>
-</div>
+
+    <div class="commit">
+      <button type='button' ng-click='register(vendor); vendor = null'>register</button>
+    </div>
+
+  </fieldset>

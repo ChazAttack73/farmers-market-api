@@ -8,6 +8,7 @@ angular.module('myApp')
   };
   $scope.EventService = EventService;
   EventService.getEvents().success(function(data){
+    console.log(data);
     $scope.Events = data;
   });
 
