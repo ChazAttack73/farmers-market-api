@@ -105,7 +105,6 @@ body {
 }
 
 .testContent {
-  background-color: green;
   display: flex;
   flex-flow: row wrap;
   height: 250px;
@@ -156,6 +155,20 @@ body {
   flex: 0 0 100%;
   height: 50%;
 }
+
+// ============ Vendor View Layout
+.eventVendorsMain {
+
+}
+
+.vendorNavBar {
+  flex: 0 0 100%;
+  background-color: green;
+}
+
+.
+
+
 .vendorPrivatePage {
   justify-content: left;
 
