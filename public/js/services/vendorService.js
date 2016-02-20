@@ -6,7 +6,7 @@ angular.module('myApp')
       return $http.get('/vendor');
     };
     this.getOneVendor = function(vendorId){
-      return $http.get('http://localhost:3000/vendor/'+vendorId);
+      return $http.get('vendor/'+vendorId);
     };
     this.login = function(vendor) {
       return $http.post('/login/vendor', vendor);
@@ -14,8 +14,8 @@ angular.module('myApp')
     this.register = function(vendor) {
       return $http.post('/event/', vendor);
     };
-    this.registerUser = function(user) {
-     return $http.post('/register', user);
+    this.regVendor = function(vendor) {
+     return $http.post('vendor/register', vendor);
     };
     this.logout = function() {
       return $http.post('/logout');
