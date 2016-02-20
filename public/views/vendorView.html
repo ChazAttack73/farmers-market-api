@@ -2,13 +2,13 @@
   <div class="viewFilter">
     <div id="vendorViewButton"> Vendor </div>
     <!-- //ng-href not neeed, because it's on the page already -->
-    <div id="productViewButton"> Product </div>
+    <div id="productViewButton" ng-click="getEventProducts(event)"> Product </div>
     <!-- //ng-href needed to render the product view -->
   </div>
 ​
   <div ng-repeat= "vendor in Vendors">
 ​
-    <div class="content" > <!-- i'm not sure if this will take us to the individual, debating to add ng-href -->
+    <div class="content"> <!-- i'm not sure if this will take us to the individual, debating to add ng-href -->
       <div ng-click="getVendorAndProducts(vendor); vendorValue=!vendorValue">
         <h2 class="vendor_name"> {{vendor.name}} </h2>
       </div>
@@ -21,7 +21,9 @@
     </div>
   </div>
 </div>
-​
+
+<!-- Vendor page -->
+
 <div id="vendorPage" ng-show="!vendorValue">
   <div id="vendorInfo">
     <h1 class="vendor_name"> {{vendor.name}} </h1>
@@ -36,6 +38,25 @@
     <div class="product">
       <h4 class="productName">{{product.name}} </h4>
       <img class="productImage"  src="" alt=""> <!-- {{product_picture}} goes in here some where -->
+      <p class="productPrice">{{product.price}}</p>
+      <p class="productQuantity">{{product.quantity}}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Product page -->
+
+<div id="productPage" ng-show="!productValue">
+  <div id="productInfo">
+    <h1 class="product_name"> {{product.name}} </h1>
+    <p class="productDescription"> {{product.description}} </p>
+  </div>
+​
+  <div class="productContent" ng-repeat="product in event.Products" >
+​
+    <div class="product">
+      <h4 class="productName">{{product.name}} </h4>
+      <img class="productImage"  src="{{product.product_picture}}" alt=""> <!-- {{product_picture}} goes in here some where -->
       <p class="productPrice">{{product.price}}</p>
       <p class="productQuantity">{{product.quantity}}</p>
     </div>

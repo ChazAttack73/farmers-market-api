@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module('myApp')
-  .controller('VendorController', ['$scope', 'VendorService', '$location', '$rootScope', '$localStorage', '$routeParams', '$route', function($scope, VendorService, $location, $rootScope, $localStorage, $routeParams, $route){
+  .controller('VendorController', ['$scope', 'VendorService', 'EventService', '$location', '$rootScope', '$localStorage', '$routeParams', '$route', function($scope, VendorService, EventService, $location, $rootScope, $localStorage, $routeParams, $route){
     $scope.vendorPrivate=true;
     $scope.vendorValue=true;
     $scope.Vendors = [];
@@ -23,7 +23,7 @@ angular.module('myApp')
           $localStorage.vendor_user = $rootScope.vendor_user;
           $location.url('/');
         }).error(function(error) {
-          $scope.error = 'Unknow error.  Please try again';
+          $scope.error = 'Unknown error.  Please try again';
         });
       }
     };
@@ -34,7 +34,6 @@ angular.module('myApp')
         $scope.error = "Please completely fill out form";
         return false;
       }
-
 
       if(user.password !== user.verifyPassword){
         $scope.error = "verify password does not match";
