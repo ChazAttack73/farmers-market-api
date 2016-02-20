@@ -1,22 +1,57 @@
-<div id="vendorView">
-  <div class="viewFilter">
-    <div id="vendorViewButton"> Vendor </div>
-    <!-- //ng-href not neeed, because it's on the page already -->
-    <div id="productViewButton"> Product </div>
-    <!-- //ng-href needed to render the product view -->
+<div id="eventVendorsMain">
+  <div class="vendorNavBar">
+    <div class="vendorListingButton">Vendors</div>
+    <div class="productListingButton">Products</div>
   </div>
 
-  <div ng-repeat= "vendor in Vendors">
-    <a ng-href="/#/vendor/{{vendor.id}}">
-    <div class="content" > <!-- i'm not sure if this will take us to the individual, debating to add ng-href -->
-        <h2 class="vendor_name"> {{vendor.name}} </h2>
-        <p class="description"> {{vendor.description}} </p>
-        <img src= {{vendor.company_pic}} alt="" class="productThumbNail">
-        <!-- <img src="" alt="" class="productThumbNail">
-        <img src="" alt="" class="productThumbNail">
-        <img src="" alt="" class="productThumbNail"> -->
-    </div>
-
+  <div class="vendorListingCard" ng-repeat= "vendor in Vendors">
+    <a href="/#/vendor/{{vendor.id}}">
+      <div class="vendorContent">
+        <div class="vendorCompanyName">Company name goes here</div>
+        <div class="vendorCompanyPic">Company pic goes here</div>
+        <div class="featuredProducts">
+          <div class="productPics">Featured Item #1</div>
+          <div class="productPics">Featured Item #2</div>
+        </div>
+      </div>
     </a>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+  <div class="viewFilter">
+    <div id="vendorViewButton"> Vendor </div> -->
+    <!-- //ng-href not neeed, because it's on the page already -->
+    <!-- <div id="productViewButton"> Product </div> -->
+    <!-- //ng-href needed to render the product view -->
+  <!-- </div> -->
+
+ <!--  <div ng-repeat= "vendor in Vendors">
+    <a ng-href="/#/vendor/{{vendor.id}}">
+    <div class="content" > --> <!-- i'm not sure if this will take us to the individual, debating to add ng-href -->
+        <!-- <h2 class="vendor_name"> {{vendor.name}} </h2>
+        <p class="description"> {{vendor.description}} </p>
+        <img src= {{vendor.company_pic}} alt="" class="productThumbNail"> -->
+        <!-- <img src="" alt="" class="productThumbNail">
+        <img src="" alt="" class="productThumbNail">
+        <img src="" alt="" class="productThumbNail"> -->
+   <!--  </div>
+
+    </a>
+  </div> -->
