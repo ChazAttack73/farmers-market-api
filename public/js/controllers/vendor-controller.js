@@ -2,6 +2,7 @@
 
 angular.module('myApp')
   .controller('VendorController', ['$scope', 'VendorService', '$location', '$rootScope', '$localStorage', '$routeParams', function($scope, VendorService, $location, $rootScope, $localStorage, $routeParams){
+    $scope.vendorValue=true;
     $scope.Vendors = [];
     $scope.VendorService = VendorService;
     VendorService.getVendors().success(function(data) {
@@ -14,6 +15,7 @@ angular.module('myApp')
         $scope.error = "Please completely fill out form";
         return false;
       }
+<<<<<<< HEAD
 
       if(user.password !== user.verifyPassword){
         $scope.error = "verify password does not match";
@@ -28,15 +30,34 @@ angular.module('myApp')
       VendorService.registerUser(newUser).success(function(result){
 
         $location.url('/');
+=======
+      VendorService.register($scope.vendor).success(function(result){
+        // $rootScope.creator_vendor = result;
+        // $rootScope.vendor_first_name = result.first_name;
+        // $rootScope.vendor_last_name = result.last_name;
+        // $rootScope.creator_vendor = result;
+        // $localStorage.creator_vendor = $rootScope.creator_vendor;
+        // $rootScope.vendor_full_name = result.first_name + " " + result.last_name;
+        $location.url('/events');
+>>>>>>> 887d7aac6a54f5937a887bc6dd1b66783515919f
       }).error(function(error){
         $scope.error = "Please try again";
       });
     };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 887d7aac6a54f5937a887bc6dd1b66783515919f
     $scope.vendor = [];
-    var param1 = $routeParams.param1;
-    VendorService.getOneVendor(param1).success(function (data){
+    $scope.getVendorAndProducts = function(vendor) {
+      $scope.vendorValue=false;
+      console.log('First', vendor);
+      //var param1 = $routeParams.param1;
+      VendorService.getOneVendor(vendor.id).success(function (data){
+        console.log('Two', data);
       $scope.vendor = data;
-    });
+      });
+    };
 
     $scope.loginVendor = function(){
       VendorService.login($scope.vendor).success(function(result) {

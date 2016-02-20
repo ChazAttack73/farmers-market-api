@@ -50,11 +50,12 @@ passport.deserializeUser(function(vendor, done) {
 
 
 router.get( '/', function ( req, res ) {
-  Vendor.findAll()
+  Vendor.findAll({})
     .then( function ( vendors ) {
       res.json( vendors );
-    });
-  });
+    })
+  ;
+});
 
 
 router.get( '/:id', function( req, res){
