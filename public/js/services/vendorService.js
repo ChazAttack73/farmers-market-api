@@ -2,8 +2,8 @@
 
 angular.module('myApp')
   .service('VendorService', ['$http', function($http){
-    this.getVendors = function(){
-      return $http.get('/vendor');
+    this.getVendors = function(id){
+      return $http.get('/event/'+ id);
     };
     this.getOneVendor = function(vendorId){
       return $http.get('/vendor/'+vendorId);
@@ -15,7 +15,6 @@ angular.module('myApp')
       return $http.post('/event/', vendor);
     };
     this.regVendor = function(vendor) {
-      console.log('at service for vendor', vendor);
      return $http.post('/vendor/register', vendor);
     };
     this.logout = function() {

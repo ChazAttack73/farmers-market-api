@@ -7,14 +7,11 @@ angular.module('myApp')
     createdBy : $rootScope.creator_user
   };
   $scope.EventService = EventService;
+
   EventService.getEvents().success(function(data){
     console.log(data);
     $scope.Events = data;
   });
 
-  $scope.Vendors = [];
-    $scope.VendorService = VendorService;
-    VendorService.getVendors().success(function(data) {
-      $scope.Vendors = data;
-    });
+
 }]);

@@ -23,7 +23,6 @@ passport.deserializeUser(function(vendor, done) {
  done(null, vendor);
 });
 
-
 function hash(req) {
   return new Promise (function(resolve, reject) {
   bcrypt.genSalt(12, function(err, salt) {
@@ -88,16 +87,6 @@ passport.use(new LocalStrategy({
       });
     }).catch(done);
 }));
-
-
-
-router.get( '/', function ( req, res ) {
-  Vendor.findAll({})
-    .then( function ( vendors ) {
-      res.json( vendors );
-    })
-  ;
-});
 
 
 router.get( '/:id', function( req, res) {

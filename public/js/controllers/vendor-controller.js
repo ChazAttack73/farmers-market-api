@@ -6,8 +6,12 @@ angular.module('myApp')
     $scope.vendorValue=true;
     $scope.Vendors = [];
     $scope.VendorService = VendorService;
-    VendorService.getVendors().success(function(data) {
-      $scope.Vendors = data;
+
+    var id = $routeParams.id;
+
+    VendorService.getVendors(id)
+      .success(function(data) {
+        $scope.Vendors = data;
     });
 
     $scope.registerVendor = function(vendor) {
@@ -16,15 +20,6 @@ angular.module('myApp')
       } else if(vendor.password !== vendor.verifyPassword) {
           $scope.error = "Passwords do not match";
       } else {
-        // var newVendor = {
-        //     name : $scope.vendor.name,
-        //     password : $scope.vendor.password,
-        //     phone : $scope.vendor.phone,
-        //     email : $scope.vendor.email,
-        //     website : $scope.vendor.website,
-        //     description : $scope.vendor.description,
-        //     company_pic : $scope.vendor.company_pic
-        // };
           VendorService.regVendor(vendor).success(function(result) {
             $rootScope.vendor_user = result;
             $localStorage.vendor_user = $rootScope.vendor_user;
