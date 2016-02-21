@@ -128,55 +128,89 @@ body {
   flex-flow: row wrap;
   height: 100%;
   width: 100%;
-  justify-content: center; }
+  justify-content: center;
+  font-family: Arial; }
 
 .vendorNavBar {
   display: flex;
   flex-flow: row nowrap;
   flex: 0 0 100%;
+  margin: 3px 0px;
   justify-content: center;
-  background-color: green; }
+  align-content: space-between; }
+  .vendorNavBar a {
+    text-decoration: none; }
 
 .listingButton {
   flex: 0 0 40%;
   font-size: 30px;
   text-align: center;
-  background-color: purple; }
+  border-radius: 5px;
+  opacity: 0.90;
+  color: #E7DDD4;
+  box-shadow: 2px 2px #221F1C; }
+
+.listingButton.vendorButton {
+  margin-right: 1px;
+  background-color: #896544;
+  border: 1px solid #361D06;
+  text-shadow: 1px 1px 2px #361D06;
+  box-shadow: 2px 2px 2px #361D06; }
+
+.listingButton.productButton {
+  margin-left: 1px;
+  background-color: #8DAD8B;
+  border: 1px solid #0D2D05;
+  text-shadow: 1px 1px 2px #0D2D05;
+  box-shadow: 2px 2px 2px #0D2D05; }
+
+.vendorTab {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center; }
 
 .vendorListingCard {
   height: 250px;
-  width: 90%;
+  width: 95%;
   margin: 5px 0px;
-  justify-content: center;
-  border: 1px solid black; }
+  border: 1px solid #361D06;
+  border-radius: 5px;
+  text-shadow: 2px 2px 3px #361D06;
+  box-shadow: 2px 2px 2px #361D06; }
 
 .vendorContent {
   display: flex;
   flex-flow: row wrap;
+  align-content: space-between;
   width: 100%;
-  height: 250px;
-  border: 1px solid red; }
+  height: 250px; }
 
 .vendorCompanyName {
   flex: 0 0 100%;
   height: 15%;
   font-size: 1.5em;
-  border: 1px solid green; }
+  background-color: #896544;
+  color: #E7DDD4;
+  opacity: 0.90;
+  text-align: center;
+  padding-top: 4px; }
 
 .vendorCompanyPic {
   flex: 0 0 75%;
   height: 85%;
-  border: 1px solid blue; }
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover; }
 
 .featuredProducts {
   flex: 0 0 25%;
-  height: 85%;
-  border: 1px solid orange; }
+  height: 85%; }
 
 .productPics {
   flex: 0 0 60%;
-  height: 50%;
-  border: 1px dashed gray; }
+  height: 50%; }
 
 .vendorPrivatePage {
   justify-content: left; }
