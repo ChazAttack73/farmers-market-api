@@ -15,10 +15,9 @@ angular.module('myApp')
       return $http.post('/event/', vendor);
     };
     this.regVendor = function(vendor) {
-      console.log('at service for vendor', vendor);
      return $http.post('/vendor/register', vendor);
     };
-    this.logout = function() {
-      return $http.post('/logout');
+    this.logoutVen = function() {
+      return $http.post('/vendor/logout');
     };
   }]);

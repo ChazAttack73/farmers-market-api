@@ -39,7 +39,6 @@ function hash(req) {
 }
 
 router.post('/register', function(req, res){
-  console.log('made it too router post on server', req);
   hash(req)
   .then(function(hash) {
     var userObj = {
@@ -53,7 +52,6 @@ router.post('/register', function(req, res){
     };
     Vendor.create(userObj)
     .then(function(user){
-      console.log("Register vendor");
       req.login(user, function(err) {
         if(err) {
           return next(err);
@@ -67,14 +65,13 @@ router.post('/register', function(req, res){
 
 //Login for Vendor
 router.post('/login', passport.authenticate('local'), function(req, res) {
-  res.send(req.vendor);
+  res.json(req.body);
 });
 
 passport.use(new LocalStrategy({
   passReqToCallback: true
   },
   function(req, name, password, done) {
-    console.log('at LocalStrategy',req, password);
     var vendorUserName = name;
     Vendor.findOne({
       name: vendorUserName
@@ -112,6 +109,13 @@ router.get( '/:id', function( req, res) {
   })
   .then (function (vendorInfo){
     res.json( vendorInfo );
+  });
+});
+
+router.post('/logout', function(req, res) {
+  req.logout();
+  res.json({
+    success : true
   });
 });
 
@@ -157,12 +161,6 @@ router.delete('/:id', function( req, res){
   });
 });
 
-router.post('/logout', function(req, res) {
-  req.logout();
-  res.json({
-    success : true
-  });
-});
 /////////////////////////////////////////////////////////////////////////
 
 

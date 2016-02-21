@@ -16,15 +16,6 @@ angular.module('myApp')
       } else if(vendor.password !== vendor.verifyPassword) {
           $scope.error = "Passwords do not match";
       } else {
-        // var newVendor = {
-        //     name : $scope.vendor.name,
-        //     password : $scope.vendor.password,
-        //     phone : $scope.vendor.phone,
-        //     email : $scope.vendor.email,
-        //     website : $scope.vendor.website,
-        //     description : $scope.vendor.description,
-        //     company_pic : $scope.vendor.company_pic
-        // };
           VendorService.regVendor(vendor).success(function(result) {
             $rootScope.vendor_user = result;
             $localStorage.vendor_user = $rootScope.vendor_user;
@@ -61,6 +52,20 @@ angular.module('myApp')
     //   });
     // };
 
+
+    $scope.loginVendor = function(vendorLoginCredentials){
+      VendorService.loginVen(vendorLoginCredentials).success(function(result) {
+        $rootScope.vendor_user = result;
+        $localStorage.vendor_user = $rootScope.vendor_user;
+        // $scope.vendor_user=true;
+        $location.url('/vendor/private');
+      }).error(function(error) {
+          $scope.error ="Wrong username or password";
+      });
+    };
+
+
+
     $scope.getVendorAndProducts = function(vendor) {
       $scope.vendor = [];
       $scope.vendorValue=false;
@@ -70,20 +75,9 @@ angular.module('myApp')
       });
     };
 
-    $scope.loginVendor = function(vendorLoginCredentials){
-      VendorService.loginVen(vendorLoginCredentials).success(function(result) {
-        $rootScope.creator_vendor = result;
-        $localStorage.creator_vendor = $rootScope.creator_vendor;
-        $scope.login_user=true;
-        $location.url('/vendor/private');
-      }).error(function(error) {
-          $scope.error ="Wrong username or password";
-      });
-    };
+    // if($route.current.$$route.originalPath==='/vendor/private') {
+    //  $scope.getVendorAndProducts({id: 3});
 
-    if($route.current.$$route.originalPath==='/vendor/private') {
-     $scope.getVendorAndProducts({id: 3});
-
-    }
+    // }
 
   }]);

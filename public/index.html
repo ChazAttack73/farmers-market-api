@@ -7,16 +7,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body ng-app="myApp">
-  <div class="navbar">
+  <div class="navbar" ng-controller="HeaderController">
     <div id="home" class="user">
       <a href="/#/">Home
       </a>
     </div>
-    <div id="login" class="user">
-      <a href="/#/login">
+    <div id="login" ng-hide="vendor_user" class="user">
+      <a href="/#/login" ng-click="loggedInUser=!loggedInUser">
         <span>Login</span>
       </a>
-      <div id="hideMe" ng-class="{ 'hidden' : ! login_user}" class="login">
+      <div>
+      </div>
+    </div>
+    <div id="login" ng-show="vendor_user" class="user">
+      <a href="/#/" ng-click="logoutButton()>
+        <span>Logout</span>
+      </a>
+      <div>
       </div>
     </div>
     <!-- <div id="register" class="user">Registration link redirects to one page with checkbox(Vendor or not)
@@ -49,6 +56,7 @@
   <script src="js/controllers/product-controller.js"></script>
   <script src="js/controllers/vendor-controller.js"></script>
   <script src="js/controllers/event-controller.js"></script>
+  <script src="js/controllers/header-controller.js"></script>
   <script src="js/services/productService.js"></script>
   <script src="js/services/vendorService.js"></script>
   <script src="js/services/eventService.js"></script>
