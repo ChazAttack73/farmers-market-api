@@ -26,14 +26,13 @@
 
 <!--=====================================================================-->
 
-<div id="productPage" ng-show="productValue">
-  <div>aloha</div>
+<div id="productPage" ng-show="!vendorValue">
   <div id="productInfo">
-    <h1 class="product_name"> {{product.name}} </h1>
-    <p class="productDescription"> {{product.description}} </p>
+    <h1 class="product_name"> {{vendor.name}} </h1>
+    <p class="productDescription"> {{vendor.description}} </p>
   </div>
 ​
-  <div class="productContent" ng-repeat="product in event.Products" >
+  <div class="productContent" ng-repeat="product in vendor.Products" >
 ​
     <div class="product">
       <h4 class="productName">{{product.name}} </h4>
