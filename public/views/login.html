@@ -1,0 +1,29 @@
+<div>
+  <h1>Vendor Login</h1>
+</div>
+<div class="login">
+  <form>
+    <br>
+     Company Name:<input class="vendor_name" value="" ng-model="vendor.username">
+    <br>
+    Password:<input class="vendor_password" value="" ng-model="vendor.password">
+    <br><br>
+    <input type="submit" value="Login" class="button" ng-click="loginVendor(vendor)">
+  </form>
+  <div class="error">{{error}}</div>
+</div>
+
+<div>
+  <h1>User Login</h1>
+</div>
+<div class="login">
+  <form ng-submit="loginUser()">
+    <br>
+    Username:<input class="user_name" value="" ng-model="user.username">
+    <br>
+    Password:<input class="user_password" value="" ng-model="user.password">
+    <br><br>
+    <input type="submit" value="Login" class="button">
+  </form>
+  <!-- <div class="error">{{error}}</div> -->
+</div>

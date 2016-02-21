@@ -1,13 +1,47 @@
-<div id="productView">
+<div class="eventVendorsMain">
+  <div class="vendorNavBar">
+    <a href="/#/vendor/view">
+      <div class="listingButton vendorButton" ng-click="clickButton()">Vendors</div>
+    </a>
+    <a href="/#/product/view">
+      <div class="listingButton productButton" ng-click="!vendorValue">Products</div>
+    </a>
+  </div>
+
+  <div class="allProductsList">
+    <div class="productBox" ng-repeat="product in Products">
+      <div class="productContent">
+        <div class="productPic">Product Pic Goes Here</div>
+        <div class="productName">Product Name Goes Here</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div id="productView">
 
   <div class="viewFilter">
     <div id="vendorViewButton"> Vendor </div> //ng-href needed to render the vendor view
     <div id="productViewButton"> Product </div> //ng-href not neeed, because it's on the page already
   </div>
 
-
   this is the part where we show all the type of products
-  <!-- <div ng-repeat= product in Event>
+  <div ng-repeat= product in Products>
     <div class="content">
       <a href="">
         <h2 class="vendor_name"> {{vendor.name}} </h2>
@@ -18,6 +52,25 @@
         <img src="" alt="" class="productThumbNail">
       </a>
     </div>
-  </div> -->
-
+  </div>
 </div>
+ -->
+
+<!-- <div id="productView">
+  <div class="viewFilter">
+    <div id="vendorViewButton"> Vendor </div> -->
+    <!-- //ng-href not neeed, because it's on the page already -->
+    <!-- <div id="productViewButton"> Product </div> -->
+    <!-- //ng-href needed to render the product view -->
+  <!-- </div>
+
+  <div ng-repeat= "product in Products">
+    <a ng-href="/#/product/{{product.id}}"> -->
+    <!-- <div class="content" > --> <!-- i'm not sure if this will take us to the individual, debating to add ng-href -->
+        <!-- <h2 class="product_name"> {{product.name}} </h2>
+        <p class="description"> {{product.description}} </p>
+        <img src= {{product.product_picture}} alt="" class="productThumbNail">
+    </div>
+    </a>
+  </div>
+</div> -->

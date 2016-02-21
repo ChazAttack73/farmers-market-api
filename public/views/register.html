@@ -1,0 +1,68 @@
+<div class="register">
+
+ <!--  <fieldset>
+    <h2>User Registration</h3>
+
+    <label for="user_username">username</label>
+    <input id="user_usernme "type="text" ng-model="user.username">
+    <br> -->
+
+   <!--  with angular to check if user already exists with the search filter -->
+
+   <!--  <label for="user_password">password</label>
+    <input id="user_password"type="text" ng-model="user.password">
+    <br>
+
+    <label for="user_verifyPassword">verify Pw</label>
+    <input id="user_verifyPassword "type="text" ng-model="user.verifyPassword">
+    <br>
+
+    <div class="commit">
+      <button type='button' ng-click='registerUser(user)'>register</button>
+    </div>
+
+  </fieldset>
+ -->
+
+  <fieldset>
+    <h2>Vendor Registration</h3>
+
+    <label for="vendor_name">Company Name</label>
+    <input id="vendor_name "type="text" ng-model="vendor.username">
+    <br>
+
+    <!--  with angular to check if user already exists with the search filter -->
+
+    <label for="vendor_password">Password</label>
+    <input id="vendor_password "type="text" ng-model="vendor.password">
+    <br>
+
+    <label for="vendor_verifyPassword">Retype Password</label>
+    <input id="vendor_verifyPassword "type="text" ng-model="vendor.verifyPassword">
+    <br>
+
+    <label for="vendor_phone">Phone Number</label>
+    <input id="vendor_phone "type="text" ng-model="vendor.phone">
+    <br>
+
+    <label for="vendor_email">Email</label>
+    <input id="vendor_email"type="text" ng-model="vendor.email">
+    <br>
+
+    <label for="vendor_website">Website</label>
+    <input id="vendor_website"type="text" ng-model="vendor.website">
+    <br>
+
+    <label for="vendor_description"> Company Description</label>
+    <input id="vendor_description "type="text" ng-model="vendor.description">
+    <br>
+
+    <label for="vendor_company_pic">Company Picture</label>
+    <input id="vendor_company_pic"type="text" ng-model="vendor.company_pic">
+    <br>
+   <div class="error">{{error}}</div>
+    <div class="commit">
+      <button type='button' ng-click='registerVendor(vendor)'>Register</button>
+    </div>
+
+  </fieldset>

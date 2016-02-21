@@ -1,0 +1,45 @@
+<div class="info" ng-class="login_user=login_user">
+  <h2>Distributing Homegrown Aloha</h2>
+</div>
+<div class="eventsMain">
+  <div class="eventscontent" ng-repeat="event in Events">
+    <div class="eventscolumn">
+      <a href="/#/vendor/view/{{event.id}}">
+        <div class="testContent">
+          <div class="testTitle">{{event.name}}</div>
+          <div class="testPic" ng-style="{'background-image': 'url(' + event.event_picture + ')'}"></div>
+          <div class="testInfo">
+            <div class="testDays">{{event.days}}</div>
+            <div class="testTimes">{{event.time}}</div>
+            <div class="testLocation">{{event.address}}</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+          <!-- <div>
+            <h3>Name: {{event.name}}</h3>
+            <br>
+            Address: <input value="{{event.address}}" ng-model="event.address">
+            <br>
+            Days: <input value="{{event.days}}" ng-model="event.days">
+            <br>
+            Time: <input value="{{event.time}}" ng-model="event.time">
+          </div> -->
+
+
+
+
+        <!--  <form ng-submit="submitEdit(card)">
+        <!-- Priority:<input class="card_priority" value="{{card.priority}}" ng-model="card.priority">
+        <br>
+        Created By: <label class="card_createdBy">{{card.createdBy.first_name}} {{card.createdBy.last_name}}</label>
+        <br>
+        Assigned To:<input class="card_assignedTo" value="{{card.assignedTo}}" ng-model="card.assignedTo">
+        <br><br>
+          <input type="submit" value="Edit" class="button">
+        </form -->
+      <!-- </div>
+    </div> -->
