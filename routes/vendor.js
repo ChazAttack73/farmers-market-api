@@ -104,8 +104,10 @@ router.get( '/:id', function( req, res) {
   });
 });
 
+/////////////////////////
 router.post( '/:id', function ( req, res ) {
-  req.body.VendorId = req.params.id;
+  req.body.VendorId = parseInt(req.params.id);
+  console.log(typeof req.body.VendorId);
   Product.create(req.body)
     .then( function ( products ) {
       res.json( products );
