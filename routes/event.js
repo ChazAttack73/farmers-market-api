@@ -92,24 +92,24 @@ router.delete('/:id', function( req, res){
 
 
 
-router.get('/:id/product', function( req, res){
-  Event.findOne({
-    where:{
-      id: req.params.id
-    },
-    include : [
-    {
-      model: Vendor,
-        include : [
-      {
-        model: Product
-      }]
-    }]
-  })
-  .then (function (vendorInfo){
-    res.json( vendorInfo );
-  });
-});
+// router.get('/:id/product', function( req, res){
+//   Event.findOne({
+//     where:{
+//       id: req.params.id
+//     },
+//     include : [
+//     {
+//       model: Vendor,
+//         include : [
+//       {
+//         model: Product
+//       }]
+//     }]
+//   })
+//   .then (function (vendorInfo){
+//     res.json( vendorInfo );
+//   });
+// });
 
 
 

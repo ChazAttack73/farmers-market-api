@@ -24,7 +24,7 @@ module.exports = function ( sequelize, DataTypes ) {
   }, {
     classMethods: {
       associate: function ( models ) {
-        Event.hasMany( models.Vendor );
+        Event.hasMany( models.Vendor, {foreignKey: 'EventId'} );
       }
     }
   });
