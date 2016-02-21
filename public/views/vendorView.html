@@ -1,55 +1,51 @@
-<!-- <div class="eventVendorsMain">
+<div class="eventVendorsMain">
   <div class="vendorNavBar">
-    <div class="listingButton">Vendors</div>
-    <div class="listingButton">Products</div>
+    <a href="/#/vendor/view">
+      <div class="listingButton vendorButton" ng-click="clickButton()">Vendors</div>
+    </a>
+    <a href="/#/product/view">
+      <div class="listingButton productButton" ng-click="!vendorValue">Products</div>
+    </a>
   </div>
 
   <div class="vendorTab" ng-show="vendorValue" class="ng-hide">
     <div class="vendorListingCard" ng-repeat= "vendor in Vendors">
-      <a href="/#/vendor/{{vendor.id}}">
+      <div ng-click="getVendorAndProducts(vendor); vendorValue=!vendorValue">
         <div class="vendorContent">
-          <div class="vendorCompanyName">Company name goes here</div>
-          <div class="vendorCompanyPic">Company pic goes here</div>
+          <div class="vendorCompanyName">{{vendor.name}}</div>
+          <div class="vendorCompanyPic" ng-style="{'background-image': 'url(' + vendor.company_pic + ')'}"></div>
           <div class="featuredProducts">
             <div class="productPics">Featured Item #1</div>
             <div class="productPics">Featured Item #2</div>
           </div>
         </div>
-      </a>
-    </div>
-  </div>
-</div> -->
-
-<!--=====================================================================-->
-
-
-<div id="vendorView" >
-if ng-show is false, ng-hide will activate causing to hide this whole div that ng-show is attached to, line 1 - line 24. At line 26, it is currently hiding because it's equal to false. but when line 13 is activated, it will change line 26 from being false to true therefore making it show. because one div ng-show is true and the other is false, when the button is activated (line 13), it will switch the showing of divs
-  <div class="viewFilter">
-    <div id="vendorViewButton"> Vendor </div>
-     //ng-href not neeed, because it's on the page already
-     <div id="productViewButton"> Product </div>
-     //ng-href needed to render the product view
-   </div>
-
-   </div>
-​
-  <div ng-repeat= "vendor in Vendors">
-​
-    <div class="content" >   i'm not sure if this will take us to the individual, debating to add ng-href        <div ng-click="getVendorAndProducts(vendor); vendorValue=!vendorValue">
-        <h2 class="vendor_name"> {{vendor.name}} </h2>
-      </div>
-      <div>
-        <p class="description"> {{vendor.description}} </p>
-      </div>
-      <div>
-        <img src="{{vendor.company_pic}}" alt="" class="productThumbNail">
       </div>
     </div>
   </div>
 </div>
+
+<!--=====================================================================-->
+
+<div id="productPage" ng-show="!productValue">
+  <div id="productInfo">
+    <h1 class="product_name"> {{product.name}} </h1>
+    <p class="productDescription"> {{product.description}} </p>
+  </div>
 ​
-<div id="vendorPage" ng-show="!vendorValue">
+  <div class="productContent" ng-repeat="product in event.Products" >
+​
+    <div class="product">
+      <h4 class="productName">{{product.name}} </h4>
+      <img class="productImage"  src="{{product.product_picture}}" alt=""> <!-- {{product_picture}} goes in here some where -->
+      <p class="productPrice">{{product.price}}</p>
+      <p class="productQuantity">{{product.quantity}}</p>
+    </div>
+  </div>
+</div>
+​
+​
+​
+<!-- <div id="vendorPage" ng-show="!vendorValue">
   <div id="vendorInfo">
     <h1 class="vendor_name"> {{vendor.name}} </h1>
     <p class="vendorDescription"> {{vendor.description}} </p>
@@ -65,4 +61,4 @@ if ng-show is false, ng-hide will activate causing to hide this whole div that n
       <p class="productQuantity">{{product.quantity}}</p>
     </div>
   </div>
-</div>
+</div> -->
