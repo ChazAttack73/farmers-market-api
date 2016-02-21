@@ -68,19 +68,30 @@ angular.module('myApp')
 
     $scope.loginVendor = function(vendorLoginCredentials){
       VendorService.loginVen(vendorLoginCredentials).success(function(result) {
-        $rootScope.creator_vendor = result;
-        $localStorage.creator_vendor = $rootScope.creator_vendor;
-        $scope.login_user=true;
+        $rootScope.vendor_user = result;
+        $localStorage.vendor_user = $rootScope.vendor_user;
+        // $scope.vendor_user=true;
         $location.url('/vendor/private');
       }).error(function(error) {
           $scope.error ="Wrong username or password";
       });
     };
 
-    if($route.current.$$route.originalPath==='/vendor/private') {
-     $scope.getVendorAndProducts({id: 3});
 
-    }
+
+    $scope.getVendorAndProducts = function(vendor) {
+      $scope.vendor = [];
+      $scope.vendorValue=false;
+      //var param1 = $routeParams.param1;
+      VendorService.getOneVendor(vendor.id).success(function (data){
+      $scope.vendor = data;
+      });
+    };
+
+    // if($route.current.$$route.originalPath==='/vendor/private') {
+    //  $scope.getVendorAndProducts({id: 3});
+
+    // }
 
     $scope.clickButton = function () {
       console.log('BUTTON CLICKED');
