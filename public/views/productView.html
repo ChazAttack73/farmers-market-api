@@ -1,18 +1,14 @@
 <div class="eventVendorsMain">
   <div class="vendorNavBar">
-    <a href="/#/vendor/view">
       <div class="listingButton vendorButton" ng-click="clickButton()">Vendors</div>
-    </a>
-    <a href="/#/product/view">
       <div class="listingButton productButton" ng-click="!vendorValue">Products</div>
-    </a>
   </div>
 
   <div class="allProductsList">
     <div class="productBox" ng-repeat="product in Products">
       <div class="productContent">
-        <div class="productPic">Product Pic Goes Here</div>
-        <div class="productName">Product Name Goes Here</div>
+        <div class="productPic" ng-style="{'background-image': 'url(' + product.product_picture + ')'}"></div>
+        <div class="productName">{{product.name}}</div>
       </div>
     </div>
   </div>
