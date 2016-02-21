@@ -59,6 +59,7 @@ angular.module('myApp')
     $scope.getVendorAndProducts = function(vendor) {
       $scope.vendor = [];
       $scope.vendorValue=false;
+        console.log('VENDOR CONTROLLER');
       //var param1 = $routeParams.param1;
       VendorService.getOneVendor(vendor.id).success(function (data){
       $scope.vendor = data;
@@ -80,5 +81,9 @@ angular.module('myApp')
      $scope.getVendorAndProducts({id: 3});
 
     }
+
+    $scope.clickButton = function () {
+      console.log('BUTTON CLICKED');
+    };
 
   }]);
