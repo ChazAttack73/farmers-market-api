@@ -60,6 +60,7 @@ angular.module('myApp')
       $scope.vendor = [];
       $scope.vendorValue=false;
         console.log('VENDOR CONTROLLER');
+        console.log(vendor.id);
       //var param1 = $routeParams.param1;
       VendorService.getOneVendor(vendor.id).success(function (data){
       $scope.vendor = data;
