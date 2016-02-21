@@ -23,7 +23,6 @@ passport.deserializeUser(function(vendor, done) {
  done(null, vendor);
 });
 
-
 function hash(req) {
   return new Promise (function(resolve, reject) {
   bcrypt.genSalt(12, function(err, salt) {
@@ -43,7 +42,7 @@ router.post('/register', function(req, res){
   hash(req)
   .then(function(hash) {
     var userObj = {
-    name : req.body.name,
+    name : req.body.username,
     password: hash,
     phone : req.body.phone,
     email: req.body.email,
@@ -74,35 +73,20 @@ passport.use(new LocalStrategy({
   passReqToCallback: true
   },
   function(req, name, password, done) {
-    console.log('at LocalStrategy', password);
-    var vendorUserName = req.body.name;
+    console.log('at LocalStrategy',req, password);
+    var vendorUserName = name;
     Vendor.findOne({
       name: vendorUserName
     })
     .then(function(vendor){
-      if(!vendor){
-        return done(null, false);
-      }
       bcrypt.compare(password, vendor.password, function(err, res){
-        if(vendor.name === name && res === false){
-          return done(null, false);
+        if(err) {
+          return done(err);
         }
-        if(vendor.name === name && res === true){
-          return done(null, vendor);
-        }
+        return done(null, vendor);
       });
-    });
+    }).catch(done);
 }));
-
-
-
-router.get( '/', function ( req, res ) {
-  Vendor.findAll({})
-    .then( function ( vendors ) {
-      res.json( vendors );
-    })
-  ;
-});
 
 
 router.get( '/:id', function( req, res) {

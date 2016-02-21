@@ -4,7 +4,7 @@
 <div class="eventsMain">
   <div class="eventscontent" ng-repeat="event in Events">
     <div class="eventscolumn">
-      <a href="/#/vendor/view">
+      <a href="/#/vendor/view/{{event.id}}">
         <div class="testContent">
           <div class="testTitle">{{event.name}}</div>
           <div class="testPic" ng-style="{'background-image': 'url(' + event.event_picture + ')'}"></div>
