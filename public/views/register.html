@@ -32,11 +32,11 @@
     <!--  with angular to check if user already exists with the search filter -->
 
     <label for="vendor_password">Password</label>
-    <input id="vendor_password "type="text" ng-model="vendor.password">
+    <input id="vendor_password "type="password" ng-model="vendor.password">
     <br>
 
     <label for="vendor_verifyPassword">Retype Password</label>
-    <input id="vendor_verifyPassword "type="text" ng-model="vendor.verifyPassword">
+    <input id="vendor_verifyPassword "type="password" ng-model="vendor.verifyPassword">
     <br>
 
     <label for="vendor_phone">Phone Number</label>
@@ -64,7 +64,7 @@
       <option ng-repeat="event in Events" value="{{event.id}}">{{event.name}}</option>
     </select>
     <hr>
-    <input id="vendor_EventId" type="integer" ng-model="vendor.EventId"></input>
+    <input id="vendor_EventId" type="hidden" ng-model="vendor.EventId"></input>
 
    <div class="error">{{error}}</div>
     <div class="commit">
