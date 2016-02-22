@@ -42,7 +42,7 @@ router.post('/register', function(req, res){
   hash(req)
   .then(function(hash) {
     var userObj = {
-    name : req.body.username,
+    name : req.body.name,
     password: hash,
     phone : req.body.phone,
     email: req.body.email,
