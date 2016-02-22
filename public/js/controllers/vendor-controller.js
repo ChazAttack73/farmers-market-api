@@ -15,6 +15,7 @@ angular.module('myApp')
     });
 
     $scope.registerVendor = function(vendor) {
+      console.log(vendor.EventId);
       if(!vendor.name && vendor.password && vendor.phone && vendor.email && vendor.description) {
         $scope.error = "Please fill out all required fields";
       } else if(vendor.password !== vendor.verifyPassword) {
