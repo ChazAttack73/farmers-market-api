@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module('myApp')
-  .controller('VendorController', ['$scope', 'VendorService', 'EventService', '$location', '$rootScope', '$localStorage', '$routeParams', '$route', function($scope, VendorService, EventService, $location, $rootScope, $localStorage, $routeParams, $route){
+  .controller('VendorController', ['$scope', 'VendorService', 'ProductService', 'EventService', '$location', '$rootScope', '$localStorage', '$routeParams', '$route', function($scope, VendorService, ProductService, EventService, $location, $rootScope, $localStorage, $routeParams, $route){
     $scope.vendorPrivate=true;
     $scope.vendorValue=true;
     $scope.Vendors = [];
@@ -87,4 +87,16 @@ angular.module('myApp')
       console.log('BUTTON CLICKED');
     };
 
+    $scope.postProduct = function(product) {
+      if(!product.name && product.price && product.quantity && product.description && product.product_picture) {
+        $scope.error = "Please fill out all fields about your product";
+      } else {
+        ProductService.addProduct($scope.product).success(function(result) {
+          console.log(result);
+
+        }).error(function(error){
+          $scope.error = "Unknown error. Please try again.";
+        });
+      }
+    };
   }]);

@@ -48,7 +48,8 @@ router.post('/register', function(req, res){
     email: req.body.email,
     website : req.body.website,
     description : req.body.description,
-    company_pic : req.body.company_pic
+    company_pic : req.body.company_pic,
+    EventId : req.body.EventId
     };
     Vendor.create(userObj)
     .then(function(user){

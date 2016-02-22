@@ -60,6 +60,16 @@
     <label for="vendor_company_pic">Company Picture</label>
     <input id="vendor_company_pic"type="text" ng-model="vendor.company_pic">
     <br>
+
+    <div ng-controller="EventController">
+      Select Event:
+      <select type="input" name="eventSelect" id="eventSelect" ng-model="vendor.EventId">
+        <option ng-repeat="event in Events" value="{{event.id}}">{{event.name}}</option>
+      </select>
+      <hr>
+      <tt>EventId = {{vendor.EventId}}</tt>
+    </div>
+
    <div class="error">{{error}}</div>
     <div class="commit">
       <button type='button' ng-click='registerVendor(vendor)'>Register</button>

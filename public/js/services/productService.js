@@ -9,7 +9,7 @@ angular.module('myApp')
     this.getProduct = function(){
     };
     this.addProduct = function(product){
-      return $http.post('/new', product);
+      return $http.post('/vendor/new', product);
     };
     this.editProduct = function(product){
       return $http.put('/edit', product);
