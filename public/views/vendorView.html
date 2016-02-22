@@ -2,10 +2,7 @@
   <div class="vendorNavBar">
     <a href="/#/vendor/view/{{vendor.EventId}}">
       <div class="listingButton vendorButton" ng-click="clickButton()">Vendors</div>
-    </a>
-    <a href="/#/product/view">
       <div class="listingButton productButton" ng-click="!vendorValue">Products</div>
-    </a>
   </div>
 
   <div class="vendorTab" ng-show="vendorValue" class="ng-hide">
@@ -26,7 +23,8 @@
 
 <!--=====================================================================-->
 
-<div id="productPage" ng-show="!vendorValue">
+
+<!-- <div id="productPage" ng-show="!productValue">
   <div id="productInfo">
     <h1 class="product_name"> {{vendor.name}} </h1>
     <p class="productDescription"> {{vendor.description}} </p>
@@ -37,11 +35,11 @@
     <div class="product">
       <h4 class="productName">{{product.name}} </h4>
       <img class="productImage"  src="{{product.product_picture}}" alt=""> <!-- {{product_picture}} goes in here some where -->
-      <p class="productPrice">{{product.price}}</p>
+      <!-- <p class="productPrice">{{product.price}}</p>
       <p class="productQuantity">{{product.quantity}}</p>
     </div>
   </div>
-</div>
+</div> -->
 ​
 <!-- <div id="vendorPage" ng-show="!vendorValue">
   <div id="vendorInfo">
