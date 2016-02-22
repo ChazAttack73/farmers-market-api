@@ -65,8 +65,12 @@
         <input id="product_quantity" type="text" ng-model="product.quantity">
       </div>
       <div>
+        <label for="product_image">product description</label>
+        <input id="product_image" type="text" ng-model="product.description">
+      </div>
+      <div>
         <label for="product_image">product image</label>
-        <input id="product_image" type="text" ng-model="product.image">
+        <input id="product_image" type="text" ng-model="product.product_picture">
       </div>
       <div class="commit">
         <button type='button' ng-click='postProduct(product)'; 'product = null'>post product</button>

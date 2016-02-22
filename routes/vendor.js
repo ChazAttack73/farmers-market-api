@@ -41,13 +41,14 @@ router.post('/register', function(req, res){
   hash(req)
   .then(function(hash) {
     var userObj = {
-    name : req.body.username,
+    name : req.body.name,
     password: hash,
     phone : req.body.phone,
     email: req.body.email,
     website : req.body.website,
     description : req.body.description,
-    company_pic : req.body.company_pic
+    company_pic : req.body.company_pic,
+    EventId : req.body.EventId
     };
     Vendor.create(userObj)
     .then(function(user){
@@ -109,7 +110,8 @@ router.post('/logout', function(req, res) {
 });
 
 router.post( '/:id', function ( req, res ) {
-  req.body.VendorId = req.params.id;
+  req.body.VendorId = parseInt(req.params.id);
+  console.log(typeof req.body.VendorId);
   Product.create(req.body)
     .then( function ( products ) {
       res.json( products );

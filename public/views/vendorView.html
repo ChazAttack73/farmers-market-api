@@ -1,11 +1,8 @@
 <div class="eventVendorsMain">
   <div class="vendorNavBar" ng-init="vendorOn=true">
-    <!-- <a href="/#/vendor/view"> -->
-      <div class="listingButton vendorButton"  ng-click="clickButton(); vendorOn=true; vendorValue=true">Vendors</div>
-    </a>
-    <!-- <a href="/#/product/view"> -->
+    <!-- <a href="/#/vendor/view/{{vendor.EventId}}"> -->
+      <div class="listingButton vendorButton" ng-click="clickButton(); vendorOn=true; vendorValue=true">Vendors</div>
       <div class="listingButton productButton" ng-click="vendorOn=false">Products</div>
-    </a>
   </div>
 ​
   <div class=masterVendorView ng-if="vendorOn" >
@@ -45,7 +42,7 @@
     </div>
   </div>
 </div>
-<!--=====================================================================-->
+
 <div class="masterProductView" ng-if="!vendorOn" ng-init="productValue=true">
   <div id="productPage" ng-show="productValue">
     <div id="productInfo">I'm showing all the product categories!
@@ -65,6 +62,36 @@
       </div>
     </div>
   </div>
+</div>
+
+<!--=====================================================================-->
+
+
+<!-- <div id="productPage" ng-show="!productValue">
+  <div id="productInfo">
+    <h1 class="product_name"> {{vendor.name}} </h1>
+    <p class="productDescription"> {{vendor.description}} </p>
+  </div>
+​
+  <div class="productContent" ng-repeat="product in vendor.Products" >
+​
+    <div class="product">
+      <h4 class="productName">{{product.name}} </h4>
+      <img class="productImage"  src="{{product.product_picture}}" alt=""> <!{{product_picture}} goes in here some where -->
+      <!-- <p class="productPrice">{{product.price}}</p>
+      <p class="productQuantity">{{product.quantity}}</p>
+    </div>
+  </div>
+</div> -->
+​
+<!-- <div id="vendorPage" ng-show="!vendorValue">
+  <div id="vendorInfo">
+    <h1 class="vendor_name"> {{vendor.name}} </h1>
+    <p class="vendorDescription"> {{vendor.description}} </p>
+    <img class="vendorProfilPic"  src="" alt="">   {{vendor.company_pic}} this goes somewhere here      <p class="vendorEmail">{{vendor.email}} </p>
+    <p class="vendorWebsite">{{vendor.website}}</p>
+>>>>>>> 1d81d903fba99cd785500ccb78264c5828dac721
+  </div>
   <div ng-hide="productValue">
     Individual product category!
     I will be showing all products in one category listed with Vendor info, price and inventory
@@ -72,4 +99,9 @@
 ​
   </div>
 </div>
+<<<<<<< HEAD
 ​
+=======
+
+<!Product page -->
+

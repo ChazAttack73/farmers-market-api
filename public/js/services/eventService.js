@@ -6,7 +6,7 @@ angular.module('myApp')
     this.getEvents = function(){
       return $http.get('http://localhost:3000/event/');
     };
-    this.getEvent = function(eventId){
+    this.getOneEvent = function(eventId){
       return $http.get('http://localhost3000/'+eventId);
     };
     this.addEvent = function(event){

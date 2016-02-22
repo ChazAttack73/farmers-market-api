@@ -11,9 +11,6 @@ angular.module('myApp')
     this.loginVen = function(vendorLoginCredentials) {
       return $http.post('/vendor/login', vendorLoginCredentials);
     };
-    this.register = function(vendor) {
-      return $http.post('/event/', vendor);
-    };
     this.regVendor = function(vendor) {
      return $http.post('/vendor/register', vendor);
     };

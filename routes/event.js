@@ -34,7 +34,6 @@ router.post( '/', function ( req, res ) {
     });
   });
 
-
 router.get( '/:id', function( req, res){
   Vendor.findAll({
     where:{
@@ -45,7 +44,6 @@ router.get( '/:id', function( req, res){
     res.json( events );
   });
 });
-
 
 router.post( '/:id', function ( req, res ) {
   req.body.EventId = req.params.id;
@@ -90,27 +88,23 @@ router.delete('/:id', function( req, res){
   });
 });
 
-
-
-router.get('/:id/product', function( req, res){
-  Event.findOne({
-    where:{
-      id: req.params.id
-    },
-    include : [
-    {
-      model: Vendor,
-        include : [
-      {
-        model: Product
-      }]
-    }]
-  })
-  .then (function (vendorInfo){
-    res.json( vendorInfo );
-  });
-});
-
-
+// router.get('/:id/product', function( req, res){
+//   Event.findOne({
+//     where:{
+//       id: req.params.id
+//     },
+//     include : [
+//     {
+//       model: Vendor,
+//         include : [
+//       {
+//         model: Product
+//       }]
+//     }]
+//   })
+//   .then (function (vendorInfo){
+//     res.json( vendorInfo );
+//   });
+// });
 
 module.exports = router;

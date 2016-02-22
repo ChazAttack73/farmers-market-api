@@ -26,6 +26,17 @@ router.get( '/:id', function( req, res){
   });
 });
 
+router.post('/new', function(req, res){
+  var productObj = {
+    name : req.body.name,
+    price : req.body.price,
+    quantity : req.body.quantity,
+    description : req.body.description,
+    product_picture : req.body.product_picture
+  };
+  Product.create(productObj);
+});
+
 router.put('/:id', function( req, res){
   req.body.updatedAt = "now()";
   Product.update(
