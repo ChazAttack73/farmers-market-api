@@ -95,8 +95,7 @@ angular.module('myApp')
     // }
 
     $scope.clickButton = function () {
-      //$scope.vendorValue=true;
-      console.log('BUTTON CLICKED');
+      $scope.vendorValue=true;
     };
 
     $scope.postProduct = function(product) {
@@ -104,7 +103,6 @@ angular.module('myApp')
         $scope.error = "Please fill out all fields about your product";
       } else {
         ProductService.addProduct($scope.product).success(function(result) {
-          console.log(result);
 
         }).error(function(error){
           $scope.error = "Unknown error. Please try again.";
