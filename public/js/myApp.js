@@ -42,7 +42,10 @@ myApp
     })
     .when('/vendor/private', {
       templateUrl : 'views/vendorPrivatePage.html',
-      controller : 'VendorController'
+      controller : 'VendorController',
+      resolve: {
+        loggedin: checkedLoggedIn
+      }
     })
     .when('/vendor/:param1',{
       templateUrl : 'views/vendorProfile.html',
