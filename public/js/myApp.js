@@ -66,7 +66,7 @@ myApp
       })
       .when('/register', {
         templateUrl : 'views/register.html',
-        controller : 'VendorController'
+        controller : 'EventController'
       });
 }])
 

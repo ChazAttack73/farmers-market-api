@@ -1,5 +1,3 @@
-<div class="register">
-
  <!--  <fieldset>
     <h2>User Registration</h3>
 
@@ -24,7 +22,7 @@
   </fieldset>
  -->
 
-  <fieldset>
+  <fieldset ng-controller="VendorController">
     <h2>Vendor Registration</h3>
 
     <label for="vendor_name">Company Name</label>
@@ -58,17 +56,15 @@
     <br>
 
     <label for="vendor_company_pic">Company Picture</label>
-    <input id="vendor_company_pic"type="text" ng-model="vendor.company_pic">
+    <input id="vendor_company_pic" type="text" ng-model="vendor.company_pic">
     <br>
 
-    <div ng-controller="EventController">
-      Select Event:
-      <select type="input" name="eventSelect" id="eventSelect" ng-model="vendor.EventId">
-        <option ng-repeat="event in Events" value="{{event.id}}">{{event.name}}</option>
-      </select>
-      <hr>
-      <tt>EventId = {{vendor.EventId}}</tt>
-    </div>
+    Select Event:
+    <select type="text" name="eventSelect" id="eventSelect" ng-model="vendor.EventId">
+      <option ng-repeat="event in Events" value="{{event.id}}">{{event.name}}</option>
+    </select>
+    <hr>
+    <input id="vendor_EventId" type="integer" ng-model="vendor.EventId"></input>
 
    <div class="error">{{error}}</div>
     <div class="commit">
