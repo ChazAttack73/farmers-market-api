@@ -240,8 +240,6 @@ body {
 
 .vendorPrivatePage {
   justify-content: left; }
-  .vendorPrivatePage .hidden {
-    display: none; }
 
 .postProductDiv {
   margin-top: 20px; }
