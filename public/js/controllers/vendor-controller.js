@@ -94,6 +94,7 @@ angular.module('myApp')
     // }
 
     $scope.clickButton = function () {
+      //$scope.vendorValue=true;
       console.log('BUTTON CLICKED');
     };
 
