@@ -30,44 +30,32 @@ myApp
   $routeProvider
     .when('/', {
       templateUrl : 'views/landing.html',
-      controller : 'EventController'//,
-      // resolve: {
-      //   loggedin: checkedLoggedIn
-      // }
+      controller : 'EventController'
     })
-      .when('/login', {
-        templateUrl : 'views/login.html',
-        controller : 'VendorController'
-      })
-      .when('/vendor/view', {
-        templateUrl : 'views/vendorView.html',
-        controller : 'VendorController'
-      })
+    .when('/login', {
+      templateUrl : 'views/login.html',
+      controller : 'VendorController'
+    })
 
-      .when('/vendor/view/:id', {
-        templateUrl : 'views/vendorView.html',
-        controller : 'VendorController'
-      })
-      .when('/vendor/private', {
-        templateUrl : 'views/vendorPrivatePage.html',
-        controller : 'VendorController'
-      })
-      .when('/vendor/:param1',{
-        templateUrl : 'views/vendorProfile.html',
-        controller : 'VendorController'
-      })
-      .when('/product/view', {
-        templateUrl : 'views/productView.html',
-        controller : 'ProductController'
-      })
-      .when('/product/private', {
-        templateUrl : 'views/productPrivatePage.html',
-        controller : 'ProductController'
-      })
-      .when('/register', {
-        templateUrl : 'views/register.html',
-        controller : 'VendorController'
-      });
+    .when('/vendor/view/:id', {
+      templateUrl : 'views/vendorView.html',
+      controller : 'VendorController'
+    })
+    .when('/vendor/private', {
+      templateUrl : 'views/vendorPrivatePage.html',
+      controller : 'VendorController',
+      resolve: {
+      loggedin: checkedLoggedIn
+      }
+    })
+    // .when('/vendor/:param1',{
+    //   templateUrl : 'views/vendorProfile.html',
+    //   controller : 'VendorController'
+    // })
+    .when('/register', {
+      templateUrl : 'views/register.html',
+      controller : 'VendorController'
+    });
 }])
 
 .run(['$rootScope', '$localStorage', function($rootScope, $localStorage){
