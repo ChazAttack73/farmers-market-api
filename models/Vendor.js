@@ -38,7 +38,7 @@ module.exports = function ( sequelize, DataTypes ) {
     classMethods: {
       associate: function ( models ) {
         Vendor.hasMany( models.Product, {foreignKey: 'VendorId'});
-        Vendor.belongsTo( models.Event, {foreignKey: 'EventId'} );
+        Vendor.belongsToMany( models.Event, { through: 'EventsVendors', foreignKey: 'VendorId'} );
       }
     }
   });

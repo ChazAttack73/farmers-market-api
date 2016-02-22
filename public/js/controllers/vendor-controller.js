@@ -15,6 +15,7 @@ angular.module('myApp')
     });
 
     $scope.registerVendor = function(vendor) {
+      console.log(vendor.EventId);
       if(!vendor.name && vendor.password && vendor.phone && vendor.email && vendor.description) {
         $scope.error = "Please fill out all required fields";
       } else if(vendor.password !== vendor.verifyPassword) {
@@ -69,22 +70,33 @@ angular.module('myApp')
 
     $scope.loginVendor = function(vendorLoginCredentials){
       VendorService.loginVen(vendorLoginCredentials).success(function(result) {
-        $rootScope.creator_vendor = result;
-        $localStorage.creator_vendor = $rootScope.creator_vendor;
-        $scope.login_user=true;
+        $rootScope.vendor_user = result;
+        $localStorage.vendor_user = $rootScope.vendor_user;
+        // $scope.vendor_user=true;
         $location.url('/vendor/private');
       }).error(function(error) {
           $scope.error ="Wrong username or password";
       });
     };
 
-    if($route.current.$$route.originalPath==='/vendor/private') {
-     $scope.getVendorAndProducts({id: 3});
 
-    }
+
+    $scope.getVendorAndProducts = function(vendor) {
+      $scope.vendor = [];
+      $scope.vendorValue=false;
+      //var param1 = $routeParams.param1;
+      VendorService.getOneVendor(vendor.id).success(function (data){
+      $scope.vendor = data;
+      });
+    };
+
+    // if($route.current.$$route.originalPath==='/vendor/private') {
+    //  $scope.getVendorAndProducts({id: 3});
+
+    // }
 
     $scope.clickButton = function () {
-      console.log('BUTTON CLICKED');
+      $scope.vendorValue=true;
     };
 
     $scope.postProduct = function(product) {
@@ -92,7 +104,6 @@ angular.module('myApp')
         $scope.error = "Please fill out all fields about your product";
       } else {
         ProductService.addProduct($scope.product).success(function(result) {
-          console.log(result);
 
         }).error(function(error){
           $scope.error = "Unknown error. Please try again.";
