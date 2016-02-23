@@ -7,7 +7,23 @@ angular.module('myApp')
     createdBy : $rootScope.creator_user
   };
   $scope.EventService = EventService;
+
   EventService.getEvents().success(function(data){
     $scope.Events = data;
   });
+
+  $scope.registerEvent = function(theEvent){
+
+    EventService.addEvent(theEvent)
+    .success(function(data){
+      $location.url('/');
+    });
+
+
+  };
+
+
+
+
 }]);
+

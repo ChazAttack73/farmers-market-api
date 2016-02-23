@@ -1,64 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <link rel="stylesheet" href="/css/styles.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
-<body ng-app="myApp">
-  <div class="navbar" ng-controller="HeaderController">
-    <div id="home" class="user">
-      <a href="/#/">Home
-      </a>
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Six+Caps' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body ng-app="myApp">
+    <div class="mainTitleBar">Distributing Homegrown Aloha
     </div>
-    <div id="login" ng-hide="vendor_user" class="user">
-      <a href="/#/login" ng-click="loggedInUser=!loggedInUser">
-        <span>Login</span>
-      </a>
-      <div>
+
+    <div class="navbarButtonContainer">
+      <div class="navbarButton">
+        <a href="/#/">Home</a>
+      </div>
+      <div class="navbarButton">
+        <a href="/#/login">Login</a>
+      </div>
+      <div class="navbarButton">
+        <a href="/#/register">Sign Up</a>
       </div>
     </div>
-    <div id="login" ng-show="vendor_user" class="user">
-      <a href="/#/" ng-click="logoutButton()">
-        <span>Logout</span>
-      </a>
-      <div>
-      </div>
-    </div>
-    <!-- <div id="register" class="user">Registration link redirects to one page with checkbox(Vendor or not)
-    </di> -->
 
-    <div id="register" class="user">
-      <a href="/#/register">
-        <span>Sign Up</span>
-      </a>
-    </div>
-  </div>
 
-  <!-- HTML Layout Game Plan
-  landing page Events
-  one sign in and registration link top right
-    registration link directs to one page
-      checkbox: vendor or not
-  description section
-  events
-  -->
 
-  <div class="view" ng-view></div>
+    <div class="view" ng-view></div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js"></script>
- <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script> -->
-  <script src="js/myApp.js"></script>
-  <script src="js/controllers/product-controller.js"></script>
-  <script src="js/controllers/vendor-controller.js"></script>
-  <script src="js/controllers/event-controller.js"></script>
-  <script src="js/controllers/header-controller.js"></script>
-  <script src="js/services/productService.js"></script>
-  <script src="js/services/vendorService.js"></script>
-  <script src="js/services/eventService.js"></script>
-</body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js"></script>
+   <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script> -->
+    <script src="js/myApp.js"></script>
+    <script src="js/controllers/product-controller.js"></script>
+    <script src="js/controllers/vendor-controller.js"></script>
+    <script src="js/controllers/event-controller.js"></script>
+    <script src="js/services/productService.js"></script>
+    <script src="js/services/vendorService.js"></script>
+    <script src="js/services/eventService.js"></script>
+  </body>
 </html>

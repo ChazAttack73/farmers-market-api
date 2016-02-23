@@ -10,7 +10,7 @@ angular.module('myApp')
       return $http.get('http://localhost3000/'+eventId);
     };
     this.addEvent = function(event){
-      return $http.post('/new', event);
+      return $http.post('/event/', event);
     };
     this.editEvent = function(event){
       return $http.put('/edit', event);
