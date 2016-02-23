@@ -41,7 +41,7 @@ router.post('/register', function(req, res){
   hash(req)
   .then(function(hash) {
     var userObj = {
-    name : req.body.username,
+    name : req.body.name,
     password: hash,
     phone : req.body.phone,
     email: req.body.email,
@@ -94,7 +94,6 @@ router.get( '/', function ( req, res ) {
   ;
 });
 
-
 router.get( '/:id', function( req, res) {
   Vendor.findOne({
     where:{
@@ -110,29 +109,30 @@ router.get( '/:id', function( req, res) {
   });
 });
 
-  router.get('/products/:id', function(req, res) {
-    Product.findAll({
+router.get('/products/:id', function(req, res) {
+  console.log('Here I am at the vendor router and the params.id is', req.params.id);
+  Product.findAll({
       include: [{
-        model: Vendor,
+          model: Vendor,
           where: { EventId: req.params.id }
-       }]
-    })
-    .then(function(product){
-     var productsArray = [];
-      for(i = 0; i < product.length; i++){
-        var productObj = {
-         id : product[i].dataValues.id,
-         name : product[i].dataValues.name,
-         price : product[i].dataValues.price,
-         quantity : product[i].dataValues.quantity,
-         description : product[i].dataValues.description,
-         product_picture : product[i].dataValues.product_picture,
-       };
-      productsArray.push(productObj);
-     }
-     res.send (productsArray);
-   });
- });
+      }]
+  })
+  .then(function(product){
+    var productsArray = [];
+    for(i = 0; i < product.length; i++){
+      var productObj = {
+        id : product[i].dataValues.id,
+        name : product[i].dataValues.name,
+        price : product[i].dataValues.price,
+        quantity : product[i].dataValues.quantity,
+        description : product[i].dataValues.description,
+        product_picture : product[i].dataValues.product_picture,
+      };
+     productsArray.push(productObj);
+    }
+    res.send (productsArray);
+  });
+});
 
 router.post('/logout', function(req, res) {
   req.logout();
@@ -182,7 +182,6 @@ router.delete('/:id', function( req, res){
     });
   });
 });
-
 
 
 module.exports = router;

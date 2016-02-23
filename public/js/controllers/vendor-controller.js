@@ -32,15 +32,12 @@ angular.module('myApp')
       }
     };
 
-
-
     $scope.getAllProductsForEvent = function() {
       $scope.productsForEvent=[];
       VendorService.getProductsFromVendorsByEvent(id).success(function (data) {
         $scope.productsForEvent = data;
       });
     };
-
 
     // $scope.registerUser = function(user) {
 
@@ -75,6 +72,14 @@ angular.module('myApp')
       });
     };
 
+    $scope.event = [];
+    $scope.getEventProducts = function(event){
+      // $scope.productValue = false;
+      EventService.getOneEvent(event.id).success(function(data){
+        $scope.event = data;
+      });
+    };
+
     $scope.getVendorAndProducts = function(vendor) {
       $scope.vendor = [];
       $scope.vendorValue=false;
@@ -99,7 +104,7 @@ angular.module('myApp')
 
     // if($route.current.$$route.originalPath==='/vendor/private') {
     //  $scope.getVendorAndProducts({id: 3});
-    //  // }
+    // }
 
     $scope.clickButton = function () {
       $scope.vendorValue=true;
