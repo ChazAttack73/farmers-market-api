@@ -1,46 +1,71 @@
-
 * {
   box-sizing: border-box;
-}
-
-body {
   margin: 0px;
   padding: 0px;
-  background-color: #575450;
+}
+
+///// **VARIABLES**
+
+$black: #0F0F0E;
+$gray: #575450;
+$tan: #F4F3D5;
+$mont: 'Montserrat', sans-serif;
+$sixCaps: 'Six Caps', sans-serif;
+$percent: 100%;
+$flexFull: 0 0 100%;
+$flexHalf: 0 0 50%;
+
+///// **MIXINS**
+
+@mixin flexDisplayRow {
   display: flex;
   flex-flow: row wrap;
+}
+
+@mixin centerText {
+  position: absolute;
+  top: $percent/2;
+  left: $percent/2;
+  transform: translate(-$percent/2, -$percent/2);
+}
+
+
+body {
+  @include flexDisplayRow;
+  background-color: $gray;
   justify-content: center;
 }
 
 .mainTitleBar {
   height: 50px;
-  width: 100%;
-  background-color: #0F0F0E;
-  font-family: 'Montserrat', sans-serif;
-  color: #575450;
-  font-size: 1em;
+  width: $percent;
+  background-color: $black;
+  font-family: $mont;
+  color: $gray;
+  font-size: 0.8em;
+  font-weight: 700;
   line-height: 50px;
   text-align: center;
 }
 
 .navbarButtonContainer {
-  display: flex;
-  flex-flow: row wrap;
+  @include flexDisplayRow;
   position: absolute;
   top: 0%;
   right: 0%;
   height: 50px;
   line-height: 50px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: $mont;
 
   .navbarButton {
-    font-size: 15px;
-    margin: 0px 10px;
+    font-size: 0.8em;
+    font-weight: 700;
+    margin-right: 10px;
     align-self: center;
 
 
     a {
-      color: #F4F3D5;
+      color: $tan;
       text-decoration: none;
       transition: 0s ease;
     }
@@ -49,15 +74,15 @@ body {
 
 
 .view {
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
+  @include flexDisplayRow;
+  width: $percent;
   justify-content: space-around;
 }
 
 .eventsContent {
-  flex: 0 0 40%;
-  margin: 10px 0px;
+  flex: 0 0 $percent * 0.4;
+  margin: 20px 0px;
+  box-shadow: 3px 3px 5px 6px $gray - 15;
 
   a {
     text-decoration: none;
@@ -65,46 +90,67 @@ body {
 }
 
 .eventContainer {
-  display: flex;
-  flex-flow: column wrap;
+  @include flexDisplayRow;
   height: 500px;
-  width: 100%;
-  background-color: #F4F3D5;
+  width: $percent;
+  background-color: $tan;
   text-align: center;
+  justify-content: center;
+
+  .eventTopHalf {
+    position: relative;
+    flex: $flexFull;
+    height: $percent/2;
+
+    .eventName {
+      @include centerText;
+      font-family: $sixCaps;
+      color: $gray;
+      font-size: 4em;
+      line-height: 110%;
+      padding: 5% 10%;
+    }
+  }
+
+  .separatorLine {
+    height: 0.5%;
+    flex: $flexHalf;
+    background-color: $tan - 20;
+  }
+
+  .eventBottomHalf {
+    @include flexDisplayRow;
+    flex: $flexFull;
+    height: $percent/2;
+    font-family: $mont;
+    color: $gray;
+    justify-content: center;
+    font-size: 0.7em;
+    font-weight: 700;
+    line-height: 90%;
+
+    .eventDays {
+      flex: $flexFull;
+      margin-top: 7%;
+    }
+
+    .eventTimes {
+      flex: $flexFull;
+    }
+
+    .eventLocation {
+      flex: $flexFull;
+      height: $percent/5;
+    }
+
+    .eventLogo {
+      flex: $flexHalf;
+      height: $percent * 0.5;
+      border: 1px dashed black;
+    }
+  }
 }
 
-.eventName {
-  flex: 0 0 50%;
-  font-family: 'Six Caps', sans-serif;
-  color: #575450;
-  margin: 0px;
-  font-size: 5em;
-}
-
-.eventInfo {
-  display: flex;
-  flex-flow: row wrap;
-  flex: 0 0 50%;
-  font-family: 'Montserrat', sans-serif;
-  color: #575450;
-}
-
-.eventDays {
-  flex: 0 0 100%;
-}
-
-.eventTimes {
-  flex: 0 0 100%;
-}
-
-.eventLocation {
-  flex: 0 0 100%;
-}
-
-.eventLogo {
-  flex: 0 0 100%;
-  border: 1px dashed black;
-}
 
 // ============ Vendor View Layout
 .eventVendorsMain {

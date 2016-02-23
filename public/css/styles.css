@@ -1,21 +1,22 @@
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px; }
 
 body {
-  margin: 0px;
-  padding: 0px;
-  background-color: #575450;
   display: flex;
   flex-flow: row wrap;
+  background-color: #575450;
   justify-content: center; }
 
 .mainTitleBar {
   height: 50px;
   width: 100%;
   background-color: #0F0F0E;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #575450;
-  font-size: 1em;
+  font-size: 0.8em;
+  font-weight: 700;
   line-height: 50px;
   text-align: center; }
 
@@ -27,10 +28,11 @@ body {
   right: 0%;
   height: 50px;
   line-height: 50px;
-  font-family: 'Montserrat', sans-serif; }
+  font-family: "Montserrat", sans-serif; }
   .navbarButtonContainer .navbarButton {
-    font-size: 15px;
-    margin: 0px 10px;
+    font-size: 0.8em;
+    font-weight: 700;
+    margin-right: 10px;
     align-self: center; }
     .navbarButtonContainer .navbarButton a {
       color: #F4F3D5;
@@ -38,51 +40,67 @@ body {
       transition: 0s ease; }
 
 .view {
-  width: 100%;
   display: flex;
   flex-flow: row wrap;
+  width: 100%;
   justify-content: space-around; }
 
 .eventsContent {
   flex: 0 0 40%;
-  margin: 10px 0px; }
+  margin: 20px 0px;
+  box-shadow: 3px 3px 5px 6px #484541; }
   .eventsContent a {
     text-decoration: none; }
 
 .eventContainer {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row wrap;
   height: 500px;
   width: 100%;
   background-color: #F4F3D5;
-  text-align: center; }
-
-.eventName {
-  flex: 0 0 50%;
-  font-family: 'Six Caps', sans-serif;
-  color: #575450;
-  margin: 0px;
-  font-size: 5em; }
-
-.eventInfo {
-  display: flex;
-  flex-flow: row wrap;
-  flex: 0 0 50%;
-  font-family: 'Montserrat', sans-serif;
-  color: #575450; }
-
-.eventDays {
-  flex: 0 0 100%; }
-
-.eventTimes {
-  flex: 0 0 100%; }
-
-.eventLocation {
-  flex: 0 0 100%; }
-
-.eventLogo {
-  flex: 0 0 100%;
-  border: 1px dashed black; }
+  text-align: center;
+  justify-content: center; }
+  .eventContainer .eventTopHalf {
+    position: relative;
+    flex: 0 0 100%;
+    height: 50%; }
+    .eventContainer .eventTopHalf .eventName {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: "Six Caps", sans-serif;
+      color: #575450;
+      font-size: 4em;
+      line-height: 110%;
+      padding: 5% 10%; }
+  .eventContainer .separatorLine {
+    height: 0.5%;
+    flex: 0 0 50%;
+    background-color: #e0dfc1; }
+  .eventContainer .eventBottomHalf {
+    display: flex;
+    flex-flow: row wrap;
+    flex: 0 0 100%;
+    height: 50%;
+    font-family: "Montserrat", sans-serif;
+    color: #575450;
+    justify-content: center;
+    font-size: 0.7em;
+    font-weight: 700;
+    line-height: 90%; }
+    .eventContainer .eventBottomHalf .eventDays {
+      flex: 0 0 100%;
+      margin-top: 7%; }
+    .eventContainer .eventBottomHalf .eventTimes {
+      flex: 0 0 100%; }
+    .eventContainer .eventBottomHalf .eventLocation {
+      flex: 0 0 100%;
+      height: 20%; }
+    .eventContainer .eventBottomHalf .eventLogo {
+      flex: 0 0 50%;
+      height: 50%;
+      border: 1px dashed black; }
 
 .eventVendorsMain {
   display: flex;
