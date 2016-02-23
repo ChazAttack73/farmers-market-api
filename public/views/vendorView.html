@@ -2,7 +2,7 @@
   <div class="vendorNavBar" ng-init="vendorOn=true; getAllVendorsForEvent()">
     <!-- <a href="/#/vendor/view/{{vendor.EventId}}"> -->
       <div class="listingButton vendorButton" ng-click="clickButton(); vendorOn=true; vendorValue=true">Vendors</div>
-      <div class="listingButton productButton" ng-click="vendorOn=false ; ">Products</div>
+      <div class="listingButton productButton" ng-click="vendorOn=false; ">Products</div>
   </div>
 ​
   <div class=masterVendorView ng-if="vendorOn">
@@ -50,7 +50,7 @@
 
 
 
-<div class="masterProductView" ng-if="!vendorOn" ng-init="productValue=true">
+<div class="masterProductView" ng-if="!vendorOn" ng-init="productValue=true; getAllProductsForEvent()">
   <div id="productPage" ng-show="productValue">
     <div id="productInfo">I'm showing all the product categories!
       <h1 class="product_name"> {{product.name}} </h1>
@@ -59,7 +59,7 @@
       <button type="button" ng-click="productValue=false ; ">See individual product category!</button>
     </div>
   ​
-    <div class="productContent" ng-repeat="product in event.Products" >
+    <div class="productContent" ng-repeat="product in productsForEvent" >
   ​    <div ng-click="getVendorAndProducts(vendor)">
         <div class="product">
           <h4 class="productName">{{product.name}} </h4>

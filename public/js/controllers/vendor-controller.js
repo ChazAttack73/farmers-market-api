@@ -18,6 +18,7 @@ angular.module('myApp')
 
     $scope.registerVendor = function(vendor) {
       console.log(vendor.EventId);
+      console.log(vendor);
       if(!vendor.name && vendor.password && vendor.phone && vendor.email && vendor.description) {
         $scope.error = "Please fill out all required fields";
       } else if(vendor.password !== vendor.verifyPassword) {
@@ -31,6 +32,14 @@ angular.module('myApp')
           $scope.error = 'Unknown error.  Please try again';
         });
       }
+    };
+
+    $scope.getAllProductsForEvent = function() {
+      $scope.productsForEvent=[];
+      VendorService.getProductsFromVendorsByEvent(id).success(function (data) {
+        console.log('Give me some data damnit!',data);
+        $scope.productsForEvent = data;
+      });
     };
 
     // $scope.registerUser = function(user) {
@@ -90,7 +99,6 @@ angular.module('myApp')
 
     // if($route.current.$$route.originalPath==='/vendor/private') {
     //  $scope.getVendorAndProducts({id: 3});
-
     // }
 
     $scope.clickButton = function () {

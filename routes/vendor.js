@@ -31,7 +31,6 @@ function hash(req) {
       reject(err);
     }
     bcrypt.hash(req.body.password, salt, function(err, hash) {
-      console.log(hash);
       resolve (hash);
     });
   });
@@ -42,13 +41,14 @@ router.post('/register', function(req, res){
   hash(req)
   .then(function(hash) {
     var userObj = {
-    name : req.body.username,
+    name : req.body.name,
     password: hash,
     phone : req.body.phone,
     email: req.body.email,
     website : req.body.website,
     description : req.body.description,
-    company_pic : req.body.company_pic
+    company_pic : req.body.company_pic,
+    EventId : req.body.EventId
     };
     Vendor.create(userObj)
     .then(function(user){
@@ -61,7 +61,6 @@ router.post('/register', function(req, res){
     });
   });
 });
-
 
 //Login for Vendor
 router.post('/login', passport.authenticate('local'), function(req, res) {
@@ -87,8 +86,6 @@ passport.use(new LocalStrategy({
     }).catch(done);
 }));
 
-
-
 router.get( '/', function ( req, res ) {
   Vendor.findAll({})
     .then( function ( vendors ) {
@@ -96,7 +93,6 @@ router.get( '/', function ( req, res ) {
     })
   ;
 });
-
 
 router.get( '/:id', function( req, res) {
   Vendor.findOne({
@@ -110,6 +106,46 @@ router.get( '/:id', function( req, res) {
   })
   .then (function (vendorInfo){
     res.json( vendorInfo );
+  });
+});
+
+router.get('/products/:id', function(req, res) {
+  console.log('Here I am at the vendor router and the params.id is', req.params.id);
+  // Vendor.findAll({
+  //   where : {
+  //     EventId : req.params.id
+  //   },
+  //   include : [
+  //     {
+  //       model : Product
+  //     }
+  //   ]
+  // })
+  // .then (function (products) {
+    // console.log('Here on the server, returning from query for products', products[0].dataValues.Products
+      // );
+    // res.json ( products[0].dataValues.Products[0]);
+  // });
+  Product.findAll({
+      include: [{
+          model: Vendor,
+          where: { EventId: req.params.id }
+      }]
+  })
+  .then(function(product){
+    var productsArray = [];
+    for(i = 0; i < product.length; i++){
+      var productObj = {
+        id : product[i].dataValues.id,
+        name : product[i].dataValues.name,
+        price : product[i].dataValues.price,
+        quantity : product[i].dataValues.quantity,
+        description : product[i].dataValues.description,
+        product_picture : product[i].dataValues.product_picture,
+      };
+     productsArray.push(productObj);
+    }
+    res.send (productsArray);
   });
 });
 
@@ -163,7 +199,5 @@ router.delete('/:id', function( req, res){
 });
 
 /////////////////////////////////////////////////////////////////////////
-
-
 
 module.exports = router;
