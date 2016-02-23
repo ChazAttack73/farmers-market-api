@@ -10,22 +10,24 @@
   </head>
 
   <body ng-app="myApp">
-    <div class="mainTitleBar">Distributing Homegrown Aloha
+    <div class="mainTitleBar">DISTRIBUTING HOMEGROWN ALOHA
     </div>
 
     <div class="navbarButtonContainer">
       <div class="navbarButton">
-        <a href="/#/">Home</a>
+        <a href="/#/">HOME</a>
       </div>
+
       <div class="navbarButton" ng-hide="vendor_user">
-        <a href="/#/login" ng-click="loggedInUser=!loggedInUser">Login</a>
+        <a href="/#/login" ng-click="loggedInUser=!loggedInUser">LOGIN</a>
       </div>
 
       <div class="navbarButton" ng-show="vendor_user">
-        <a href="/#/" ng-click="logoutButton()">Logout</a>
+        <a href="/#/" ng-click="logoutButton()">LOGOUT</a>
       </div>
+
       <div class="navbarButton">
-        <a href="/#/register">Sign Up</a>
+        <a href="/#/register">SIGN UP</a>
       </div>
     </div>
 
