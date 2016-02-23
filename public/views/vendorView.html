@@ -1,5 +1,5 @@
 <div class="eventVendorsMain">
-  <div class="vendorNavBar" ng-init="vendorOn=true">
+  <div class="vendorNavBar" ng-init="vendorOn=true; getAllVendorsForEvent()">
     <!-- <a href="/#/vendor/view/{{vendor.EventId}}"> -->
       <div class="listingButton vendorButton" ng-click="clickButton(); vendorOn=true; vendorValue=true">Vendors</div>
       <div class="listingButton productButton" ng-click="vendorOn=false">Products</div>

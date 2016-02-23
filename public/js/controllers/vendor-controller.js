@@ -9,8 +9,8 @@ angular.module('myApp')
 
     var id = $routeParams.id;
 
-    $scope.getAllVendorsForEvent = function(eventId) {
-      VendorService.getVendors(eventId)
+    $scope.getAllVendorsForEvent = function() {
+      VendorService.getVendors(id)
       .success(function(data) {
         $scope.Vendors = data;
       });
@@ -24,7 +24,6 @@ angular.module('myApp')
           $scope.error = "Passwords do not match";
       } else {
         VendorService.regVendor($scope.vendor).success(function(result) {
-          console.log('Did I make it back to to the client side?', result);
           $rootScope.vendor_user = result;
           $localStorage.vendor_user = $rootScope.vendor_user;
           $location.url('/');

@@ -3,6 +3,7 @@
 angular.module('myApp')
   .service('VendorService', ['$http', function($http){
     this.getVendors = function(id){
+      console.log('At vendor service?', id);
       return $http.get('/event/'+ id);
     };
     this.getOneVendor = function(vendorId){
