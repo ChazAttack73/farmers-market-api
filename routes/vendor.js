@@ -111,21 +111,6 @@ router.get( '/:id', function( req, res) {
 
 router.get('/products/:id', function(req, res) {
   console.log('Here I am at the vendor router and the params.id is', req.params.id);
-  // Vendor.findAll({
-  //   where : {
-  //     EventId : req.params.id
-  //   },
-  //   include : [
-  //     {
-  //       model : Product
-  //     }
-  //   ]
-  // })
-  // .then (function (products) {
-    // console.log('Here on the server, returning from query for products', products[0].dataValues.Products
-      // );
-    // res.json ( products[0].dataValues.Products[0]);
-  // });
   Product.findAll({
       include: [{
           model: Vendor,
