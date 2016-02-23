@@ -6,7 +6,8 @@ angular.module('myApp')
     this.getProducts = function(){
       return $http.get('http://localhost:3000/product');
     };
-    this.getProduct = function(){
+    this.getProduct = function(id){
+      return $http.get('/product/'+id);
     };
     this.addProduct = function(product){
       return $http.post('/vendor/new', product);
