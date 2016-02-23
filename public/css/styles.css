@@ -46,9 +46,16 @@ body {
   justify-content: space-around; }
 
 .eventsContent {
-  flex: 0 0 40%;
+  flex: 0 0 80%;
   margin: 20px 0px;
   box-shadow: 3px 3px 5px 6px #484541; }
+
+@media (min-width: 501px) and (max-width: 768px) {
+  .eventsContent {
+    flex: 0 0 39%; } }
+  @media (min-width: 769px) {
+    .eventsContent {
+      flex: 0 0 29%; } }
   .eventsContent a {
     text-decoration: none; }
 
