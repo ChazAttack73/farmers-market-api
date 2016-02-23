@@ -55,8 +55,8 @@ myApp
       templateUrl : 'views/productView.html',
       controller : 'ProductController'
     })
-    .when('/product/private', {
-      templateUrl : 'views/productPrivatePage.html',
+    .when('/product/:id', {
+      templateUrl : 'views/individualProduct.html',
       controller : 'ProductController'
     })
     .when('/register', {

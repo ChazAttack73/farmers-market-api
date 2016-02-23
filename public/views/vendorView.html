@@ -33,11 +33,14 @@
       </div>
     ​
       <div class="productContent" ng-repeat="product in vendor.Products" >
-        <div class="product">
-          <h4 class="productName">{{product.name}} </h4>
-          <img class="productImage"  src="" alt="">   {{product_picture}} goes in here some where        <p class="productPrice">{{product.price}}</p>
-          <p class="productQuantity">{{product.quantity}}</p>
-        </div>
+        <a class="product" ng-href="/#/product/{{product.id}}">
+          <div>
+            <h4 class="productName">{{product.name}} </h4>
+            <img class="productImage"  src="" alt="">   {{product_picture}} goes in here some where
+            <p class="productPrice">{{product.price}}</p>
+            <p class="productQuantity">{{product.quantity}}</p>
+          </div>
+        </a>
       </div>
     </div>
   </div>
