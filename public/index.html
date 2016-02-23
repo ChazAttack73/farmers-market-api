@@ -17,8 +17,12 @@
       <div class="navbarButton">
         <a href="/#/">Home</a>
       </div>
-      <div class="navbarButton">
-        <a href="/#/login">Login</a>
+      <div class="navbarButton" ng-hide="vendor_user">
+        <a href="/#/login" ng-click="loggedInUser=!loggedInUser">Login</a>
+      </div>
+
+      <div class="navbarButton" ng-show="vendor_user">
+        <a href="/#/" ng-click="logoutButton()">Logout</a>
       </div>
       <div class="navbarButton">
         <a href="/#/register">Sign Up</a>

@@ -23,6 +23,7 @@ passport.deserializeUser(function(vendor, done) {
  done(null, vendor);
 });
 
+
 function hash(req) {
   return new Promise (function(resolve, reject) {
   bcrypt.genSalt(12, function(err, salt) {
@@ -41,14 +42,13 @@ router.post('/register', function(req, res){
   hash(req)
   .then(function(hash) {
     var userObj = {
-    name : req.body.name,
+    name : req.body.username,
     password: hash,
     phone : req.body.phone,
     email: req.body.email,
     website : req.body.website,
     description : req.body.description,
-    company_pic : req.body.company_pic,
-    EventId : req.body.EventId
+    company_pic : req.body.company_pic
     };
     Vendor.create(userObj)
     .then(function(user){
@@ -65,6 +65,7 @@ router.post('/register', function(req, res){
 
 //Login for Vendor
 router.post('/login', passport.authenticate('local'), function(req, res) {
+  console.log('Im at the login on server...here is the vendor', vendor);
   res.json(req.body);
 });
 
@@ -85,6 +86,16 @@ passport.use(new LocalStrategy({
       });
     }).catch(done);
 }));
+
+
+
+router.get( '/', function ( req, res ) {
+  Vendor.findAll({})
+    .then( function ( vendors ) {
+      res.json( vendors );
+    })
+  ;
+});
 
 
 router.get( '/:id', function( req, res) {
@@ -110,8 +121,7 @@ router.post('/logout', function(req, res) {
 });
 
 router.post( '/:id', function ( req, res ) {
-  req.body.VendorId = parseInt(req.params.id);
-  console.log(typeof req.body.VendorId);
+  req.body.VendorId = req.params.id;
   Product.create(req.body)
     .then( function ( products ) {
       res.json( products );
