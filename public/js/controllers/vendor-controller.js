@@ -9,10 +9,12 @@ angular.module('myApp')
 
     var id = $routeParams.id;
 
-    VendorService.getVendors(id)
+    $scope.getAllVendorsForEvent = function(eventId) {
+      VendorService.getVendors(eventId)
       .success(function(data) {
         $scope.Vendors = data;
-    });
+      });
+    };
 
     $scope.registerVendor = function(vendor) {
       console.log(vendor.EventId);
