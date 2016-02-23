@@ -1,12 +1,15 @@
 <div class="eventsContent" ng-repeat="event in Events">
     <a href="/#/vendor/view/{{event.id}}">
       <div class="eventContainer">
-        <div class="eventName">{{event.name}}</div>
-        <div class="eventInfo">
+        <div class="eventTopHalf">
+          <div class="eventName">{{event.name}}</div>
+        </div>
+        <div class="separatorLine"></div>
+        <div class="eventBottomHalf">
           <div class="eventDays">{{event.days}}</div>
           <div class="eventTimes">{{event.time}}</div>
           <div class="eventLocation">{{event.address}}</div>
-          <div class="eventLogo"></div>
+          <div class="eventLogo">LOGO</div>
         </div>
       </div>
     </a>
