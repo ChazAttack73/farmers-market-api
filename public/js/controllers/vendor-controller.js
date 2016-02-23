@@ -57,6 +57,14 @@ angular.module('myApp')
     //   });
     // };
 
+    $scope.event = [];
+    $scope.getEventProducts = function(event){
+      // $scope.productValue = false;
+      EventService.getOneEvent(event.id).success(function(data){
+        $scope.event = data;
+      });
+    };
+
     $scope.getVendorAndProducts = function(vendor) {
       $scope.vendor = [];
       $scope.vendorValue=false;
@@ -76,17 +84,6 @@ angular.module('myApp')
         $location.url('/vendor/private');
       }).error(function(error) {
           $scope.error ="Wrong username or password";
-      });
-    };
-
-
-
-    $scope.getVendorAndProducts = function(vendor) {
-      $scope.vendor = [];
-      $scope.vendorValue=false;
-      //var param1 = $routeParams.param1;
-      VendorService.getOneVendor(vendor.id).success(function (data){
-      $scope.vendor = data;
       });
     };
 

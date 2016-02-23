@@ -11,14 +11,6 @@ angular.module('myApp')
     $scope.Products = data;
   });
 
-  $scope.event = [];
-  $scope.getEventProducts = function(event){
-    $scope.productValue = false;
-    EventService.getOneEvent(event.id).success(function(data){
-      $scope.event = data;
-    });
-  };
-
   $scope.VendorService = VendorService;
   VendorService.getVendors().success(function(data) {
     $scope.Vendors = data;

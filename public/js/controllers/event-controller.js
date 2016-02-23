@@ -18,12 +18,5 @@ angular.module('myApp')
     .success(function(data){
       $location.url('/');
     });
-
-
   };
-
-
-
-
 }]);
-
