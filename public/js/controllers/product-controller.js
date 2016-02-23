@@ -1,19 +1,21 @@
 "use strict";
 
 angular.module('myApp')
-.controller('ProductController', ['$scope', 'ProductService', 'EventService', '$rootScope', 'VendorService', '$location', '$localStorage', function($scope, ProductService, EventService, $rootScope, VendorService, $location, $localStorage){
+.controller('ProductController', ['$scope', 'ProductService', 'EventService', '$rootScope', 'VendorService', '$location', '$localStorage', '$routeParams', function($scope, ProductService, EventService, $rootScope, VendorService, $location, $localStorage, $routeParams){
   $scope.Vendors = [];
   // $scope.vendor = {
   //   createdBy : $rootScope.creator_user
   // };
   $scope.ProductService = ProductService;
+
   ProductService.getProducts().success(function(data){
     $scope.Products = data;
   });
 
-  $scope.VendorService = VendorService;
-  VendorService.getVendors().success(function(data) {
-    $scope.Vendors = data;
+  var id = $routeParams.id;
+
+  ProductService.getProduct(id).success(function(data){
+    $scope.Product = data;
   });
 
   $scope.postButton=function(product) {
