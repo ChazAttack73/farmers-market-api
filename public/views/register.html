@@ -21,7 +21,7 @@
 
   </fieldset>
  -->
-  <h4><img src="http://loremflickr.com/320/240/dog"></h4>
+  <h4>http://loremflickr.com/320/240/dog</h4>
 
  <fieldset>
    <h2>Event Registration</h2>
@@ -91,7 +91,7 @@
 
     Select Event:
     <select type="text" name="eventSelect" id="eventSelect" ng-model="vendor.EventId">
-      <option ng-repeat="event in Events" value="{{event.id}}">{{event.name}}</option>
+      <option ng-repeat="event in Events | orderBy:'name'" value="{{event.id}}">{{event.name}}</option>
     </select>
     <hr>
     <input id="vendor_EventId" type="hidden" ng-model="vendor.EventId"></input>
