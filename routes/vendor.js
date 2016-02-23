@@ -31,7 +31,6 @@ function hash(req) {
       reject(err);
     }
     bcrypt.hash(req.body.password, salt, function(err, hash) {
-      console.log(hash);
       resolve (hash);
     });
   });
@@ -48,7 +47,8 @@ router.post('/register', function(req, res){
     email: req.body.email,
     website : req.body.website,
     description : req.body.description,
-    company_pic : req.body.company_pic
+    company_pic : req.body.company_pic,
+    EventId : req.body.EventId
     };
     Vendor.create(userObj)
     .then(function(user){
@@ -61,7 +61,6 @@ router.post('/register', function(req, res){
     });
   });
 });
-
 
 //Login for Vendor
 router.post('/login', passport.authenticate('local'), function(req, res) {
@@ -87,8 +86,6 @@ passport.use(new LocalStrategy({
     }).catch(done);
 }));
 
-
-
 router.get( '/', function ( req, res ) {
   Vendor.findAll({})
     .then( function ( vendors ) {
@@ -112,6 +109,30 @@ router.get( '/:id', function( req, res) {
     res.json( vendorInfo );
   });
 });
+
+  router.get('/products/:id', function(req, res) {
+    Product.findAll({
+      include: [{
+        model: Vendor,
+          where: { EventId: req.params.id }
+       }]
+    })
+    .then(function(product){
+     var productsArray = [];
+      for(i = 0; i < product.length; i++){
+        var productObj = {
+         id : product[i].dataValues.id,
+         name : product[i].dataValues.name,
+         price : product[i].dataValues.price,
+         quantity : product[i].dataValues.quantity,
+         description : product[i].dataValues.description,
+         product_picture : product[i].dataValues.product_picture,
+       };
+      productsArray.push(productObj);
+     }
+     res.send (productsArray);
+   });
+ });
 
 router.post('/logout', function(req, res) {
   req.logout();
@@ -161,8 +182,6 @@ router.delete('/:id', function( req, res){
     });
   });
 });
-
-/////////////////////////////////////////////////////////////////////////
 
 
 

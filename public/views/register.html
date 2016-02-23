@@ -91,11 +91,10 @@
 
     Select Event:
     <select type="text" name="eventSelect" id="eventSelect" ng-model="vendor.EventId">
-      <option ng-repeat="event in Events" value="{{event.id}}">{{event.name}}</option>
+      <option ng-repeat="event in Events" | orderBy:"name" value="{{event.id}}">{{event.name}}</option>
     </select>
     <hr>
-    <input id="vendor_EventId" type="integer" ng-model="vendor.EventId"></input>
-
+    <input id="vendor_EventId" type="hidden" ng-model="vendor.EventId"></input>
    <div class="error">{{error}}</div>
     <div class="commit">
       <button type='button' ng-click='registerVendor(vendor)'>Register</button>
