@@ -29,6 +29,7 @@ angular.module('myApp')
   $scope.registerUser = function(user){
     console.log(1111111111111, user);
     if(user===undefined || user === null){
+      //EEEEERRRRRRROOOOOOOORRRRRRRRR
       console.log(1.1);
       return $location.url('/register');
     }
@@ -37,10 +38,12 @@ angular.module('myApp')
        !user.hasOwnProperty('password') ||
        !user.hasOwnProperty('verifyPassword')){
       console.log(1.2);
+      //EEEEERRRRRRROOOOOOOORRRRRRRRR
       return $location.url('/register');
     }
 
     if(user.password !== user.verifyPassword){
+      //EEEEERRRRRRROOOOOOOORRRRRRRRR
       console.log(1.3);
       return $location.url('/register');
     }

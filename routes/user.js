@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 var db = require('./../models');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
 var User = db.User;
 var bodyParser = require('body-parser');
 var bcrypt = require('bcrypt');
@@ -57,8 +59,9 @@ router.post( '/', function ( req, res ) {
           });
         });
     } else {
-      return res.send("username already taken");
+      //EEEEERRRRRROOOOOOOORRRRRR
       console.log(4.5);
+      return res.send("username already taken");
     }
   });
 
