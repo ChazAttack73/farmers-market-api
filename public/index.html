@@ -18,7 +18,7 @@
         <a href="/#/">HOME</a>
       </div>
 
-      <div>
+      <div ng-controller="HeaderController">
         <div class="navbarButton" ng-hide="vendor_user">
           <a href="/#/login" ng-click="loggedInUser=!loggedInUser">LOGIN</a>
         </div>
@@ -54,5 +54,6 @@
     <script src="js/services/productService.js"></script>
     <script src="js/services/vendorService.js"></script>
     <script src="js/services/eventService.js"></script>
+    <script src="js/controllers/header-controller.js"></script>
   </body>
 </html>
