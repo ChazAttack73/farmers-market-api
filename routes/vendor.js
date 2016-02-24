@@ -37,6 +37,7 @@ function hash(req) {
   });
 }
 
+//Being called from VendorService regVendor function
 router.post('/register', function(req, res){
   hash(req)
   .then(function(hash) {
@@ -62,11 +63,12 @@ router.post('/register', function(req, res){
   });
 });
 
-//Login for Vendor
+//Login for Vendor being called from VendorService loginVen function
 router.post('/login', passport.authenticate('local'), function(req, res) {
   res.json(req.user.dataValues);
 });
 
+//authenticate middleware ('local') called in above function upon login
 passport.use(new LocalStrategy({
   passReqToCallback: true
   },
@@ -88,14 +90,27 @@ passport.use(new LocalStrategy({
     }).catch(done);
 }));
 
-router.get( '/', function ( req, res ) {
-  Vendor.findAll({})
-    .then( function ( vendors ) {
-      res.json( vendors );
-    })
-  ;
+//Being called from VendorService by getVendors function idenitfied by event id
+router.get( '/event/:id', function( req, res){
+  Vendor.findAll({
+    where:{
+      EventId: req.params.id
+    }
+  })
+  .then (function (events){
+    res.json( events );
+  });
 });
 
+// router.get( '/', function ( req, res ) {
+//   Vendor.findAll({})
+//     .then( function ( vendors ) {
+//       res.json( vendors );
+//     })
+//   ;
+// });
+
+//Being called from VendorService by getOneVendor function indentified by Vendor id
 router.get( '/:id', function( req, res) {
   Vendor.findOne({
     where:{
@@ -111,30 +126,9 @@ router.get( '/:id', function( req, res) {
   });
 });
 
-router.get('/products/:id', function(req, res) {
-  Product.findAll({
-      include: [{
-          model: Vendor,
-          where: { EventId: req.params.id }
-      }]
-  })
-  .then(function(product){
-    var productsArray = [];
-    for(i = 0; i < product.length; i++){
-      var productObj = {
-        id : product[i].dataValues.id,
-        name : product[i].dataValues.name,
-        price : product[i].dataValues.price,
-        quantity : product[i].dataValues.quantity,
-        description : product[i].dataValues.description,
-        product_picture : product[i].dataValues.product_picture,
-      };
-     productsArray.push(productObj);
-    }
-    res.send (productsArray);
-  });
-});
 
+
+//Being called from VendorService by logoutVen function
 router.post('/logout', function(req, res) {
   req.logout();
   res.json({
@@ -142,14 +136,9 @@ router.post('/logout', function(req, res) {
   });
 });
 
-router.post( '/:id', function ( req, res ) {
-  req.body.VendorId = req.params.id;
-  Product.create(req.body)
-    .then( function ( products ) {
-      res.json( products );
-    });
-  });
 
+
+//Being called from VendorService by editVendorInfo function
 router.put('/:id', function( req, res){
   console.log('here at server edit for vendor?', req.params);
   req.body.updatedAt = "now()";
@@ -162,18 +151,20 @@ router.put('/:id', function( req, res){
   });
 });
 
+
+//Being called from VendorService by delVendor function
 router.delete('/:id', function( req, res){
   Vendor.destroy({
     where: {
       id: req.params.id
     }
   })
-  .then(function(){
-    Vendor.findAll()
-    .then( function ( vendors ) {
-      res.json( vendors );
+  .then(function(data) {
+    res.json(data);
+  })
+  .catch(function(err){
+      console.log(err);
     });
-  });
 });
 
 
