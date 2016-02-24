@@ -17,8 +17,6 @@ angular.module('myApp')
     };
 
     $scope.registerVendor = function(vendor) {
-      console.log(vendor.EventId);
-      console.log(vendor);
       if(!vendor.name && vendor.password && vendor.phone && vendor.email && vendor.description) {
         $scope.error = "Please fill out all required fields";
       } else if(vendor.password !== vendor.verifyPassword) {
@@ -37,7 +35,6 @@ angular.module('myApp')
     $scope.getAllProductsForEvent = function() {
       $scope.productsForEvent=[];
       VendorService.getProductsFromVendorsByEvent(id).success(function (data) {
-        console.log('Give me some data damnit!',data);
         $scope.productsForEvent = data;
       });
     };
@@ -66,6 +63,14 @@ angular.module('myApp')
     //     $scope.error = "Please try again";
     //   });
     // };
+    //This will run every time controller (or page that uses this controler) is hit.  Do we want this?
+    $scope.event = [];
+    $scope.getEventProducts = function(event){
+      // $scope.productValue = false;
+      EventService.getOneEvent(event.id).success(function(data){
+        $scope.event = data;
+      });
+    };
 
     $scope.event = [];
     $scope.getEventProducts = function(event){
@@ -78,24 +83,24 @@ angular.module('myApp')
     $scope.getVendorAndProducts = function(vendor) {
       $scope.vendor = [];
       $scope.vendorValue=false;
-        console.log('VENDOR CONTROLLER');
-        console.log(vendor.id);
       //var param1 = $routeParams.param1;
       VendorService.getOneVendor(vendor.id).success(function (data){
       $scope.vendor = data;
       });
     };
 
+
+
     $scope.loginVendor = function(vendorLoginCredentials){
       VendorService.loginVen(vendorLoginCredentials).success(function(result) {
         $rootScope.vendor_user = result;
         $localStorage.vendor_user = $rootScope.vendor_user;
-        // $scope.vendor_user=true;
         $location.url('/vendor/private');
       }).error(function(error) {
           $scope.error ="Wrong username or password";
       });
     };
+
 
     // if($route.current.$$route.originalPath==='/vendor/private') {
     //  $scope.getVendorAndProducts({id: 3});
