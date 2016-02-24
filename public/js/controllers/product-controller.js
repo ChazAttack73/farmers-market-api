@@ -38,11 +38,3 @@ angular.module('myApp')
       });
     });
   };
-
-  $scope.logoutButton = function() {
-    VendorService.logout().success(function() {
-      $localStorage.$reset();
-      $location.url('/events');
-    });
-  };
-}]);
