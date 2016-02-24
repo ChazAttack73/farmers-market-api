@@ -19,4 +19,9 @@ angular.module('myApp')
     this.deleteEvent = function(event) {
       return $http.delete('/delete/' + event._id);
     };
+
+    this.addUser = function(user){
+      console.log(22222222, user);
+      return $http.post('user/', user);
+    };
   }]);
