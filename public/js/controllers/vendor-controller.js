@@ -63,6 +63,7 @@ angular.module('myApp')
     //     $scope.error = "Please try again";
     //   });
     // };
+    //
     //This will run every time controller (or page that uses this controler) is hit.  Do we want this?
     $scope.event = [];
     $scope.getEventProducts = function(event){
@@ -72,11 +73,11 @@ angular.module('myApp')
       });
     };
 
-    $scope.event = [];
-    $scope.getEventProducts = function(event){
-      // $scope.productValue = false;
-      EventService.getOneEvent(event.id).success(function(data){
-        $scope.event = data;
+    $scope.editVendor = function(vendor) {
+      VendorService.editVendorInfo(vendor, $rootScope.vendor_user.id).success(function(data) {
+      console.log('at vendor controller for edit vendor ', data);
+        $rootScope.vendor_user = data;
+        $location.url('/vendor/private');
       });
     };
 

@@ -20,4 +20,7 @@ angular.module('myApp')
     this.getProductsFromVendorsByEvent = function (id) {
       return $http.get('/vendor/products/' + id);
    };
+   this.editVendorInfo = function (vendor, vendorId) {
+      return $http.put('vendor/' + vendorId, vendor);
+   };
   }]);

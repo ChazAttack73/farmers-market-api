@@ -64,8 +64,7 @@ router.post('/register', function(req, res){
 
 //Login for Vendor
 router.post('/login', passport.authenticate('local'), function(req, res) {
-  console.log('Im at the login on server...here is the vendor', req);
-  res.json(req.body);
+  res.json(req.user.dataValues);
 });
 
 passport.use(new LocalStrategy({
@@ -113,7 +112,6 @@ router.get( '/:id', function( req, res) {
 });
 
 router.get('/products/:id', function(req, res) {
-  console.log('Here I am at the vendor router and the params.id is', req.params.id);
   Product.findAll({
       include: [{
           model: Vendor,
@@ -153,22 +151,14 @@ router.post( '/:id', function ( req, res ) {
   });
 
 router.put('/:id', function( req, res){
+  console.log('here at server edit for vendor?', req.params);
   req.body.updatedAt = "now()";
-  Vendor.update(
-    req.body, {
-    where : {
-      id : req.params.id
-    }
-  })
-  .then(function(vendorUpdateCount){
-    return Vendor.findOne({
-      where:{
-        id:req.params.id
-      }
+  Vendor.findById(req.params.id)
+  .then(function(data) {
+    data.update(req.body)
+    .then(function (vendor){
+      res.json( vendor );
     });
-  })
-  .then(function(vendor){
-    res.json( vendor );
   });
 });
 

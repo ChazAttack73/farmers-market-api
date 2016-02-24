@@ -1,50 +1,48 @@
 <div class="vendorPrivatePage">
   <div ng-show="vendorPrivate" class="ng-hide">
-    <div>{{vendor.name}}</div>
-    <div>{{vendor.phone}}</div>
-    <div>{{vendor.email}}</div>
-    <div>{{vendor.website}}</div>
-    <div>{{vendor.password}}</div>
-    <div>{{vendor.description}}</div>
-    <div>{{vendor.company_pic}}</div>
+    <div>{{vendor_user.name}}</div>
+    <div>{{vendor_user.phone}}</div>
+    <div>{{vendor_user.email}}</div>
+    <div>{{vendor_user.website}}</div>
+    <div>{{vendor_user.description}}</div>
+    <div>{{vendor_user.company_pic}}</div>
 
     <input type="button" value="Edit Profile"ng-click="vendorPrivate=!vendorPrivate">
   </div>
 
     <fieldset ng-show="!vendorPrivate">
       <h3>Edit Profile</h3>
-
       <div>
         <label for="vendor_name"> Company name </label>
-        <input id="vendor_name" value="{{vendor.name}}" type="text" ng-model="vendor.name">
+        <input id="vendor_name"  type="text" ng-model="vendor.name" ng-value="vendor_user.name" autofocus>
       </div>
 
       <div>
         <label for="vendor_phone">Phone Number</label>
-        <input id="vendor_phone" value="{{vendor.phone}}" type="text" ng-model="vendor.phone">
+        <input id="vendor_phone" ng-value="vendor_user.phone" type="text" ng-model="vendor.phone">
       </div>
 
       <div>
         <label for="vendor_email">Email</label>
-        <input id="vendor_email" value="{{vendor.email}}" type="text" ng-model="vendor.email">
+        <input id="vendor_email" ng-value="vendor_user.email" type="text" ng-model="vendor.email">
       </div>
 
       <div>
         <label for="vendor_website">Website (if you have one)</label>
-        <input id="vendor_website" value="{{vendor.website}}" type="text" ng-model="vendor.website">
+        <input id="vendor_website" ng-value="vendor_user.website" type="text" ng-model="vendor.website">
       </div>
 
       <div>
         <label for="vendor_description">Brief description of your company</label>
-        <input id="vendor_description" value="{{vendor.description}}" type="text" ng-model="vendor.description">
+        <input id="vendor_description" ng-value="vendor_user.description" type="text" ng-model="vendor.description">
       </div>
       <div>
         <label for="vendor_company_pic">Image of your company </label>
-        <input id="vendor_company_pic" value="{{vendor.company_pic}}" type="text" ng-model="vendor.company_pic">
+        <input id="vendor_company_pic" ng-value="vendor_user.company_pic" type="text" ng-model="vendor.company_pic">
       </div>
       <div class="finishEdit">
         <button type='button' ng-click=
-        "editVendor(vendor); vendorPrivate=!vendorPrivate">Edit Profile</button>
+        "editVendor(vendor); vendorPrivate=!vendorPrivate">Submit Changes</button>
       </div>
     </fieldset>
 
