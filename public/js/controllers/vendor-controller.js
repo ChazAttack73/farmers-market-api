@@ -25,11 +25,29 @@ angular.module('myApp')
         VendorService.regVendor($scope.vendor).success(function(result) {
           $rootScope.vendor_user = result;
           $localStorage.vendor_user = $rootScope.vendor_user;
-          $location.url('/');
+          $location.url('/vendor/private');
         }).error(function(error) {
           $scope.error = 'Unknown error.  Please try again';
         });
       }
+    };
+
+    $scope.loginVendor = function(vendorLoginCredentials){
+      VendorService.loginVen(vendorLoginCredentials).success(function(result) {
+        $rootScope.vendor_user = result;
+        $localStorage.vendor_user = $rootScope.vendor_user;
+        $location.url('/vendor/private');
+      }).error(function(error) {
+          $scope.error ="Wrong username or password";
+      });
+    };
+
+    $scope.deleteVendor = function(vendor) {
+      VendorService.delVendor(vendor, $rootScope.vendor_user.id).success(function(result) {
+        $rootScope.vendor_user=false;
+        $localStorage.$reset();
+        $location.url('/');
+      });
     };
 
     $scope.getAllProductsForEvent = function() {
@@ -63,6 +81,7 @@ angular.module('myApp')
     //     $scope.error = "Please try again";
     //   });
     // };
+    //
     //This will run every time controller (or page that uses this controler) is hit.  Do we want this?
     $scope.event = [];
     $scope.getEventProducts = function(event){
@@ -72,11 +91,10 @@ angular.module('myApp')
       });
     };
 
-    $scope.event = [];
-    $scope.getEventProducts = function(event){
-      // $scope.productValue = false;
-      EventService.getOneEvent(event.id).success(function(data){
-        $scope.event = data;
+    $scope.editVendor = function(vendor) {
+      VendorService.editVendorInfo(vendor, $rootScope.vendor_user.id).success(function(data) {
+        $rootScope.vendor_user = data;
+        $location.url('/vendor/private');
       });
     };
 
@@ -91,15 +109,6 @@ angular.module('myApp')
 
 
 
-    $scope.loginVendor = function(vendorLoginCredentials){
-      VendorService.loginVen(vendorLoginCredentials).success(function(result) {
-        $rootScope.vendor_user = result;
-        $localStorage.vendor_user = $rootScope.vendor_user;
-        $location.url('/vendor/private');
-      }).error(function(error) {
-          $scope.error ="Wrong username or password";
-      });
-    };
 
 
     // if($route.current.$$route.originalPath==='/vendor/private') {

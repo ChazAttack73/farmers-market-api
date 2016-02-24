@@ -6,7 +6,7 @@
 body {
   display: flex;
   flex-flow: row wrap;
-  background-color: #575450;
+  background-image: url("./../images/charcoal-bg.png");
   justify-content: center; }
 
 .mainTitleBar {
@@ -18,17 +18,94 @@ body {
   font-size: 0.8em;
   font-weight: 700;
   line-height: 50px;
-  text-align: center; }
+  text-align: center;
+  position: fixed;
+  z-index: 1; }
+  .mainTitleBar .mobileNav {
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    height: 50px;
+    width: 50px; }
+    @media (min-width: 421px) {
+      .mainTitleBar .mobileNav {
+        display: none; } }
+    .mainTitleBar .mobileNav .hamburgerHack1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 20px;
+      width: 20px;
+      border-top: 2px solid #575450;
+      border-bottom: 2px solid #575450; }
+      .mainTitleBar .mobileNav .hamburgerHack1 .hamburgerHack2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 2px;
+        width: 15px;
+        border: 1px solid #575450; }
+
+.mobileMenu {
+  width: 100px;
+  position: fixed;
+  top: 50px;
+  right: 0;
+  background-color: #0F0F0E;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  padding: 5px;
+  font-size: 1.0em;
+  z-index: 100;
+  height: 0;
+  opacity: 0;
+  transition: height 0.25s linear;
+  transition: opacity 0.25s linear; }
+  @media (min-width: 421px) {
+    .mobileMenu {
+      display: none; } }
+  .mobileMenu ul {
+    height: 0;
+    opacity: 0; }
+  .mobileMenu li {
+    list-style-type: none;
+    border-top: 1px solid #575450;
+    height: 0;
+    opacity: 0; }
+  .mobileMenu a {
+    text-decoration: none;
+    color: #575450;
+    height: 0;
+    opacity: 0; }
+
+.mobileMenu.menuOn {
+  height: 70px;
+  opacity: 1; }
+  .mobileMenu.menuOn ul {
+    height: auto;
+    opacity: 1; }
+  .mobileMenu.menuOn li {
+    height: auto;
+    opacity: 1; }
+  .mobileMenu.menuOn a {
+    height: auto;
+    opacity: 1; }
 
 .navbarButtonContainer {
   display: flex;
   flex-flow: row wrap;
-  position: absolute;
+  position: fixed;
   top: 0%;
   right: 0%;
   height: 50px;
   line-height: 50px;
-  font-family: "Montserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif;
+  z-index: 1; }
+  @media (max-width: 420px) {
+    .navbarButtonContainer {
+      display: none; } }
   .navbarButtonContainer .navbarButton {
     font-size: 0.8em;
     font-weight: 700;
@@ -43,19 +120,22 @@ body {
   display: flex;
   flex-flow: row wrap;
   width: 100%;
-  justify-content: space-around; }
+  justify-content: center;
+  margin-top: 60px; }
 
 .eventsContent {
   flex: 0 0 80%;
   margin: 20px 0px;
   box-shadow: 3px 3px 5px 6px #484541; }
 
-@media (min-width: 501px) and (max-width: 768px) {
+@media (min-width: 421px) and (max-width: 768px) {
   .eventsContent {
-    flex: 0 0 39%; } }
+    flex: 0 0 39%;
+    margin: 15px; } }
   @media (min-width: 769px) {
     .eventsContent {
-      flex: 0 0 29%; } }
+      flex: 0 0 29%;
+      margin: 15px; } }
   .eventsContent a {
     text-decoration: none; }
 
@@ -64,7 +144,7 @@ body {
   flex-flow: row wrap;
   height: 500px;
   width: 100%;
-  background-color: #F4F3D5;
+  background-image: url("./../images/tan-bg.jpg");
   text-align: center;
   justify-content: center; }
   .eventContainer .eventTopHalf {
@@ -105,9 +185,11 @@ body {
       flex: 0 0 100%;
       height: 20%; }
     .eventContainer .eventBottomHalf .eventLogo {
-      flex: 0 0 50%;
-      height: 50%;
-      border: 1px dashed black; }
+      flex: 0 0 30%;
+      height: 30%;
+      margin-bottom: 7%;
+      background-image: url("./../images/leaves.svg");
+      background-size: cover; }
 
 .eventVendorsMain {
   display: flex;
