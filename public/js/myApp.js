@@ -36,16 +36,16 @@ myApp
       templateUrl : 'views/login.html',
       controller : 'VendorController'
     })
-    .when('/vendor/view/:id', {
-      templateUrl : 'views/vendorView.html',
-      controller : 'VendorController'
-    })
     .when('/vendor/private', {
       templateUrl : 'views/vendorPrivatePage.html',
       controller : 'VendorController',
       resolve: {
         loggedin: checkedLoggedIn
       }
+    })
+    .when('/vendor/view/:id', {
+      templateUrl : 'views/vendorView.html',
+      controller : 'VendorController'
     })
     .when('/vendor/:param1',{
       templateUrl : 'views/vendorProfile.html',
