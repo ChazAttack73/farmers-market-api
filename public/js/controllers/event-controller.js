@@ -34,7 +34,7 @@ angular.module('myApp')
       return $location.url('/register');
     }
 
-    if(!user.hasOwnProperty('username') ||
+    if(!user.hasOwnProperty('email') ||
        !user.hasOwnProperty('password') ||
        !user.hasOwnProperty('verifyPassword')){
       console.log(1.2);
@@ -49,7 +49,7 @@ angular.module('myApp')
     }
 
     var new_user = {
-      username : user.username,
+      email : user.email,
       password : user.password
     };
 

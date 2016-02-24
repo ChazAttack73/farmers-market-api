@@ -6,6 +6,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var CONFIG = require('./config/config.json');
 
+
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
 
