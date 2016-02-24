@@ -6,4 +6,18 @@
     <p class="product_quantity">{{Product.quantity}}</p>
     <p class="product_description">{{Product.description}}</p>
   </div>
+
+  <form action="" method="POST">
+    <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="pk_test_gvpLjhrD3gTMQZj1Kl9Uw0Bj"
+      data-amount="{{Product.price}}"
+      data-name="Demo Site"
+      data-description="{{Product.description}}"
+      data-locale="auto">
+    </script>
+      <!-- data-image="{{Product.product_picture}}" this goes inside the script, but it's throwing errors-->
+  </form>
+
+
 </div>
