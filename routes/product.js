@@ -71,6 +71,31 @@ router.post('/new', function(req, res){
   Product.create(productObj);
 });
 
+router.put('/charge/:id', function(req, res){
+  console.log(33333333);
+  req.body.updatedAt = "now()";
+  console.log(req.body);
+  Product.update(
+    {
+      quantity: req.body.quantity
+    }, {
+    where : {
+      id : req.params.id
+    }
+  })
+  .then(function(ProductUpdateCount){
+    return Product.findOne({
+      where:{
+        id:req.params.id
+      }
+    });
+  })
+  .then(function(product){
+    res.json( product );
+  });
+
+});
+
 router.put('/:id', function( req, res){
   req.body.updatedAt = "now()";
   Product.update(

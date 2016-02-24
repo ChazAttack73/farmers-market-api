@@ -53,12 +53,7 @@ router.post( '/', function ( req, res ) {
           };
 //////////////////////////////////////////
 
-stripe.customers.create({
-  description: 'Customer for test@example.com',
-  source: "tok_17hqcIDK8coYE9nRCsq68CBk" // obtained with Stripe.js
-}, function(err, customer) {
-  // asynchronously called
-});
+
 //////////////////////////////////////////
           User.create(userObj)
           .then(function(user){

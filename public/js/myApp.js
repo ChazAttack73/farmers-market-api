@@ -1,4 +1,4 @@
-angular.module('myApp', ['ngRoute', 'ngStorage']);
+angular.module('myApp', ['ngRoute', 'ngStorage', 'angular-stripe']);
 
 var myApp = angular.module('myApp');
 
@@ -24,8 +24,10 @@ var checkedLoggedIn=function($q, $timeout, $http, $location, $rootScope) {
 };
 
 myApp
-.config(['$routeProvider', function($routeProvider){
+.config(['$routeProvider','stripeProvider', function($routeProvider, stripeProvider){
   //config
+
+  stripeProvider.setPublishableKey('pk_test_gvpLjhrD3gTMQZj1Kl9Uw0Bj');
 
   $routeProvider
     .when('/', {

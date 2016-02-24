@@ -19,4 +19,9 @@ angular.module('myApp')
     this.deleteProduct = function(product) {
       return $http.delete('/delete/' + product._id);
     };
+
+    this.chargeProduct = function(product){
+      return $http.put('/product/charge/'+product.routeParams,product);
+    };
+
   }]);

@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module('myApp')
-.controller('ProductController', ['$scope', 'ProductService', 'EventService', '$rootScope', 'VendorService', '$location', '$localStorage', '$routeParams', function($scope, ProductService, EventService, $rootScope, VendorService, $location, $localStorage, $routeParams){
+.controller('ProductController', ['$scope', 'ProductService', 'EventService', '$rootScope', 'VendorService', '$location', '$localStorage', '$routeParams', 'Stripe', function($scope, ProductService, EventService, $rootScope, VendorService, $location, $localStorage, $routeParams, Stripe){
   $scope.Vendors = [];
   // $scope.vendor = {
   //   createdBy : $rootScope.creator_user
@@ -23,6 +23,9 @@ angular.module('myApp')
     if($scope.stripe===undefined){
       return;
     }
+    if($scope.Product.quantity<=0){
+      return;
+    }
 
     var number = $scope.stripe.number;
     var cvc = $scope.stripe.cvc;
@@ -30,7 +33,7 @@ angular.module('myApp')
     var exp_year = $scope.stripe.exp_year;
 
     if(number && cvc && exp_month && exp_year){
-      Stripe.createToken({
+      Stripe.card.createToken({
         number: number,
         cvc : cvc,
         exp_month : exp_month,
@@ -42,13 +45,25 @@ angular.module('myApp')
           //call my service here
           //put call in the service, to the product
           //http.post('asdkf;dsfl')
+
           console.log(response);
+
+          // Stripe.customers.create({
+          //   description: 'Customer for test@example.com',
+          //   source: response.id // obtained with Stripe.js
+          //   }, function(err, customer) {
+          //     // asynchronously called
+          //   });
+
+          // $scope.Product.quantity--;
+          // response.quantity = $scope.Product.quantity;
+          // response.routeParams = parseInt($routeParams.id);
+          // ProductService.chargeProduct(response).then(function(data){
+          //   $location.path('/product/'+response.routeParams);
+          // });
         }
       });
     }
-
-    console.log($scope.stripe);
-    console.log(Stripe.createToken, 'alooooooooha');
   };
 
   $scope.postButton=function(product) {
