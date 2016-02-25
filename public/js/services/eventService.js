@@ -21,7 +21,12 @@ angular.module('myApp')
     };
 
     this.addUser = function(user){
-      console.log(22222222, user);
-      return $http.post('user/', user);
+      return $http.post('/user/', user);
     };
+
+    this.loginUser = function(user){
+      console.log(2222222222222, user);
+      return $http.post('/user/login', user);
+    };
+
   }]);

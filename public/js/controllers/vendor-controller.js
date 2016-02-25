@@ -32,7 +32,19 @@ angular.module('myApp')
       }
     };
 
+    $scope.loginUser = function(userLoginCredentials){
+      console.log(1111111111111, userLoginCredentials);
+      EventService.loginUser(userLoginCredentials).success(function(result) {
+        console.log(6666666666666);
+        $rootScope.user_user = result;
+        $location.url('/');
+      }).error(function(error) {
+          $scope.error ="Wrong username or password";
+      });
+    };
+
     $scope.loginVendor = function(vendorLoginCredentials){
+      console.log('At vendorservice', vendorLoginCredentials);
       VendorService.loginVen(vendorLoginCredentials).success(function(result) {
         $rootScope.vendor_user = result;
         $localStorage.vendor_user = $rootScope.vendor_user;

@@ -3,15 +3,61 @@ var app = express();
 var router = express.Router();
 var db = require('./../models');
 var session = require('express-session');
+var CONFIG = require('./../config/config.json');
 var cookieParser = require('cookie-parser');
 var User = db.User;
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 var stripe = require("stripe")(
   "sk_test_L3fF5CjV33nFCv2dg7vcKQmz"
 );
 
 router.use(bodyParser.json({ extended: false }));
+router.use(cookieParser());
+
+passport.serializeUser(function(user, done) {
+ done(null, user);
+});
+passport.deserializeUser(function(user, done) {
+ done(null, user);
+});
+
+router.post('/login', passport.authenticate('local'), function(req, res) {
+  res.json(req.user.dataValues);
+});
+
+//authenticate middleware ('local') called in above function upon login
+passport.use(new LocalStrategy({
+  passReqToCallback: true
+  },
+  function(req, name, password, done) {
+    console.log(33333333333333);
+    console.log(req.body);
+    console.log(name);
+    console.log(password);
+    var UserName = name;
+    console.log(UserName);
+    User.findOne({
+      where: {
+        name : UserName
+      }
+    }
+    )
+    .then(function(user){
+      console.log(4444444444444);
+      console.log(user);
+      bcrypt.compare(password, user.password, function(err, res){
+        if(err) {
+          console.log(4.5);
+          return done(err);
+        }
+        console.log(5555555555);
+        return done(null, user);
+      });
+    }).catch(done);
+}));
 
 function hash(req) {
   return new Promise (function(resolve, reject) {
@@ -51,10 +97,7 @@ router.post( '/', function ( req, res ) {
           email : req.body.email,
           password: hash,
           };
-//////////////////////////////////////////
 
-
-//////////////////////////////////////////
           User.create(userObj)
           .then(function(user){
             req.login(user, function(err) {
@@ -72,6 +115,9 @@ router.post( '/', function ( req, res ) {
       return res.send("username already taken");
     }
   });
+
+
+
 
 
 });

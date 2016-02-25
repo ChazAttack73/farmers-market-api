@@ -21,7 +21,8 @@ angular.module('myApp')
     };
 
     this.chargeProduct = function(product){
-      return $http.put('/product/charge/'+product.routeParams,product);
+      console.log(3333333333, product);
+      return $http.post('http://localhost:3000/payment/'+product.routeParams, product);
     };
 
   }]);

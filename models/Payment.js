@@ -1,21 +1,17 @@
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("User", {
-    email: {
+  var Payment = sequelize.define("Payment", {
+    token: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
     }
   }, {
     classMethods: {
       associate: function( models){
-        User.hasMany( models.Order, {foreignKey: 'UserId'});
+        Payment.belongsTo( models.Order, {foreignKey: 'OrderId'});
       }
     }
   });
 
-  return User;
+  return Payment;
 };

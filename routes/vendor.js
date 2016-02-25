@@ -136,7 +136,12 @@ router.post('/logout', function(req, res) {
   });
 });
 
-
+router.post('/:id',function(req,res){
+  Product.create(req.body)
+  .then(function(product){
+    res.json(product);
+  });
+});
 
 //Being called from VendorService by editVendorInfo function
 router.put('/:id', function( req, res){

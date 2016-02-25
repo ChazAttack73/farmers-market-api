@@ -17,13 +17,13 @@
   <h1>User Login</h1>
 </div>
 <div class="login">
-  <form ng-submit="loginUser()">
+  <form>
     <br>
-    Username:<input class="user_name" value="" ng-model="user.username">
+    email:<input class="user_email" value="" ng-model="user.email">
     <br>
     Password:<input class="user_password" value="" ng-model="user.password">
     <br><br>
-    <input type="submit" value="Login" class="button">
+    <input type="submit" value="Login" class="button" ng-click="loginUser(user)">
   </form>
   <!-- <div class="error">{{error}}</div> -->
 </div>

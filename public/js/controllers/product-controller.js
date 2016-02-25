@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module('myApp')
-.controller('ProductController', ['$scope', 'ProductService', 'EventService', '$rootScope', 'VendorService', '$location', '$localStorage', '$routeParams', 'Stripe', function($scope, ProductService, EventService, $rootScope, VendorService, $location, $localStorage, $routeParams, Stripe){
+.controller('ProductController', ['$scope', 'ProductService', 'EventService', '$rootScope', 'VendorService', '$location', '$localStorage', '$routeParams', 'stripe', '$http', function($scope, ProductService, EventService, $rootScope, VendorService, $location, $localStorage, $routeParams, stripe, $http){
   $scope.Vendors = [];
   // $scope.vendor = {
   //   createdBy : $rootScope.creator_user
@@ -19,6 +19,7 @@ angular.module('myApp')
   });
 
   $scope.handleStripe = function(){
+    console.log(1111111111);
 
     if($scope.stripe===undefined){
       return;
@@ -33,36 +34,51 @@ angular.module('myApp')
     var exp_year = $scope.stripe.exp_year;
 
     if(number && cvc && exp_month && exp_year){
-      Stripe.card.createToken({
-        number: number,
-        cvc : cvc,
-        exp_month : exp_month,
-        exp_year : exp_year
-      }, function(status, response){
-        if(response.error){
-          console.log("error", response.error);
-        } else {
-          //call my service here
-          //put call in the service, to the product
-          //http.post('asdkf;dsfl')
+      return stripe.card.createToken($scope.stripe)
+      .then(function (response) {
+        console.log(222222222);
+        console.log('token created for card ending in ', response.card.last4);
 
-          console.log(response);
 
-          // Stripe.customers.create({
-          //   description: 'Customer for test@example.com',
-          //   source: response.id // obtained with Stripe.js
-          //   }, function(err, customer) {
-          //     // asynchronously called
-          //   });
 
-          // $scope.Product.quantity--;
-          // response.quantity = $scope.Product.quantity;
-          // response.routeParams = parseInt($routeParams.id);
-          // ProductService.chargeProduct(response).then(function(data){
-          //   $location.path('/product/'+response.routeParams);
-          // });
-        }
-      });
+
+
+
+        var payment = angular.copy($scope.stripe);
+        payment.card = void 0;
+        payment.token = response.id;
+        payment.routeParams = id;
+        payment.product = $scope.Product.id;
+        payment.productQuantity = 1;
+        payment.amount = $scope.Product.price;
+        console.log(payment,222222222.555555);
+        ProductService.chargeProduct(payment);
+      })
+      // .then(function (payment) {
+      //   console.log('successfully submitted payment for $', payment.amount);
+      // });
+      // .catch(function (err) {
+      //   if (err.type && /^Stripe/.test(err.type)) {
+      //     console.log('Stripe error: ', err.message);
+      //   }
+      //   else {
+      //     console.log('Other error occurred, possibly with your API', err.message);
+
+      //     // Stripe.customers.create({
+      //     //   description: 'Customer for test@example.com',
+      //     //   source: response.id // the token
+      //     //   }, function(err, customer) {
+      //     //     // asynchronously called
+      //     //   });
+
+      //     // $scope.Product.quantity--;
+      //     // response.quantity = $scope.Product.quantity;
+      //     // response.routeParams = parseInt($routeParams.id);
+      //     // ProductService.chargeProduct(response).then(function(data){
+      //     //   $location.path('/product/'+response.routeParams);
+      //     // });
+      //   }
+      // });
     }
   };
 
