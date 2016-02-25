@@ -48,9 +48,9 @@ angular.module('myApp')
     };
 
     $scope.loginUser = function(userLoginCredentials){
-      console.log(1111111111111, userLoginCredentials);
+      userLoginCredentials.type = 'user';
       EventService.loginUser(userLoginCredentials).success(function(result) {
-        console.log(6666666666666);
+
         $rootScope.user_user = result;
         $location.url('/');
       }).error(function(error) {
@@ -59,7 +59,9 @@ angular.module('myApp')
     };
 
     $scope.loginVendor = function(vendorLoginCredentials){
+
       console.log('At vendorservice', vendorLoginCredentials);
+      vendorLoginCredentials.type = 'vendor';
       VendorService.loginVen(vendorLoginCredentials).success(function(result) {
         $rootScope.vendor_user = result;
         $localStorage.vendor_user = $rootScope.vendor_user;
