@@ -18,6 +18,39 @@ angular.module('myApp')
     $scope.Product = data;
   });
 
+  $scope.handleStripe = function(){
+
+    if($scope.stripe===undefined){
+      return;
+    }
+
+    var number = $scope.stripe.number;
+    var cvc = $scope.stripe.cvc;
+    var exp_month = $scope.stripe.exp_month;
+    var exp_year = $scope.stripe.exp_year;
+
+    if(number && cvc && exp_month && exp_year){
+      Stripe.createToken({
+        number: number,
+        cvc : cvc,
+        exp_month : exp_month,
+        exp_year : exp_year
+      }, function(status, response){
+        if(response.error){
+          console.log("error", response.error);
+        } else {
+          //call my service here
+          //put call in the service, to the product
+          //http.post('asdkf;dsfl')
+          console.log(response);
+        }
+      });
+    }
+
+    console.log($scope.stripe);
+    console.log(Stripe.createToken, 'alooooooooha');
+  };
+
   $scope.postButton=function(product) {
     ProductService.addProduct(product).then(function(data) {
       $scope.add_product = false;
@@ -38,11 +71,5 @@ angular.module('myApp')
       });
     });
   };
-
-  $scope.logoutButton = function() {
-    VendorService.logout().success(function() {
-      $localStorage.$reset();
-      $location.url('/events');
-    });
-  };
 }]);
+

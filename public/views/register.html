@@ -1,27 +1,25 @@
- <!--  <fieldset>
+ <fieldset>
     <h2>User Registration</h3>
 
-    <label for="user_username">username</label>
-    <input id="user_usernme "type="text" ng-model="user.username">
-    <br> -->
+    <label for="user_email">email</label>
+    <input id="user_email "type="text" ng-model="user.email">
+    <br>
 
    <!--  with angular to check if user already exists with the search filter -->
 
-   <!--  <label for="user_password">password</label>
-    <input id="user_password"type="text" ng-model="user.password">
+  <label for="user_password">password</label>
+    <input id="user_password"type="password" ng-model="user.password">
     <br>
 
     <label for="user_verifyPassword">verify Pw</label>
-    <input id="user_verifyPassword "type="text" ng-model="user.verifyPassword">
+    <input id="user_verifyPassword "type="password" ng-model="user.verifyPassword">
     <br>
 
     <div class="commit">
-      <button type='button' ng-click='registerUser(user)'>register</button>
+      <button type='button' ng-click='registerUser(user); user = null'>Register</button>
     </div>
 
   </fieldset>
- -->
-  <h4><img src="http://loremflickr.com/320/240/dog"></h4>
 
  <fieldset>
    <h2>Event Registration</h2>
@@ -91,7 +89,7 @@
 
     Select Event:
     <select type="text" name="eventSelect" id="eventSelect" ng-model="vendor.EventId">
-      <option ng-repeat="event in Events" value="{{event.id}}">{{event.name}}</option>
+      <option ng-repeat="event in Events | orderBy:'name'" value="{{event.id}}">{{event.name}}</option>
     </select>
     <hr>
     <input id="vendor_EventId" type="hidden" ng-model="vendor.EventId"></input>

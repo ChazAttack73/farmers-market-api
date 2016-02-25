@@ -46,16 +46,16 @@ router.get('/events/:id', function(req, res){
   });
 });
 
-router.get( '/:id', function( req, res){
-  Vendor.findAll({
-    where:{
-      EventId: req.params.id
-    }
-  })
-  .then (function (events){
-    res.json( events );
-  });
-});
+// router.get( '/:id', function( req, res){
+//   Vendor.findAll({
+//     where:{
+//       EventId: req.params.id
+//     }
+//   })
+//   .then (function (events){
+//     res.json( events );
+//   });
+// });
 
 router.post( '/:id', function ( req, res ) {
   req.body.EventId = req.params.id;

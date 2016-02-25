@@ -3,7 +3,7 @@
 angular.module('myApp')
   .service('VendorService', ['$http', function($http){
     this.getVendors = function(id){
-      return $http.get('/event/'+ id);
+      return $http.get('/vendor/event/'+ id);
     };
     this.getOneVendor = function(vendorId){
       return $http.get('/vendor/'+vendorId);
@@ -18,7 +18,12 @@ angular.module('myApp')
       return $http.post('/vendor/logout');
     };
     this.getProductsFromVendorsByEvent = function (id) {
-      console.log('Im at the vendor service here is the event id', id);
-      return $http.get('/vendor/products/' + id);
-    };
+      return $http.get('/products/' + id);
+   };
+   this.editVendorInfo = function (vendor, vendorId) {
+      return $http.put('vendor/' + vendorId, vendor);
+   };
+   this.delVendor = function (vendor, vendorId) {
+      return $http.delete('vendor/' + vendorId);
+   };
   }]);

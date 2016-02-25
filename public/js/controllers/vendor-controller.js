@@ -32,8 +32,6 @@ angular.module('myApp')
     };
 
     $scope.registerVendor = function(vendor) {
-      console.log(vendor.EventId);
-      console.log(vendor);
       if(!vendor.name && vendor.password && vendor.phone && vendor.email && vendor.description) {
         $scope.error = "Please fill out all required fields";
       } else if(vendor.password !== vendor.verifyPassword) {
@@ -42,11 +40,29 @@ angular.module('myApp')
         VendorService.regVendor($scope.vendor).success(function(result) {
           $rootScope.vendor_user = result;
           $localStorage.vendor_user = $rootScope.vendor_user;
-          $location.url('/');
+          $location.url('/vendor/private');
         }).error(function(error) {
           $scope.error = 'Unknown error.  Please try again';
         });
       }
+    };
+
+    $scope.loginVendor = function(vendorLoginCredentials){
+      VendorService.loginVen(vendorLoginCredentials).success(function(result) {
+        $rootScope.vendor_user = result;
+        $localStorage.vendor_user = $rootScope.vendor_user;
+        $location.url('/vendor/private');
+      }).error(function(error) {
+          $scope.error ="Wrong username or password";
+      });
+    };
+
+    $scope.deleteVendor = function(vendor) {
+      VendorService.delVendor(vendor, $rootScope.vendor_user.id).success(function(result) {
+        $rootScope.vendor_user=false;
+        $localStorage.$reset();
+        $location.url('/');
+      });
     };
 
     $scope.getAllProductsForEvent = function() {
@@ -80,7 +96,8 @@ angular.module('myApp')
     //     $scope.error = "Please try again";
     //   });
     // };
-
+    //
+    //This will run every time controller (or page that uses this controler) is hit.  Do we want this?
     $scope.event = [];
     $scope.getEventProducts = function(event){
       // $scope.productValue = false;
@@ -89,27 +106,25 @@ angular.module('myApp')
       });
     };
 
+    $scope.editVendor = function(vendor) {
+      VendorService.editVendorInfo(vendor, $rootScope.vendor_user.id).success(function(data) {
+        $rootScope.vendor_user = data;
+        $location.url('/vendor/private');
+      });
+    };
+
     $scope.getVendorAndProducts = function(vendor) {
       $scope.vendor = [];
       $scope.vendorValue=false;
-        console.log('VENDOR CONTROLLER');
-        console.log(vendor.id);
       //var param1 = $routeParams.param1;
       VendorService.getOneVendor(vendor.id).success(function (data){
       $scope.vendor = data;
       });
     };
 
-    $scope.loginVendor = function(vendorLoginCredentials){
-      VendorService.loginVen(vendorLoginCredentials).success(function(result) {
-        $rootScope.vendor_user = result;
-        $localStorage.vendor_user = $rootScope.vendor_user;
-        // $scope.vendor_user=true;
-        $location.url('/vendor/private');
-      }).error(function(error) {
-          $scope.error ="Wrong username or password";
-      });
-    };
+
+
+
 
     // if($route.current.$$route.originalPath==='/vendor/private') {
     //  $scope.getVendorAndProducts({id: 3});
