@@ -27,7 +27,7 @@ myApp
 .config(['$routeProvider','stripeProvider', function($routeProvider, stripeProvider){
   //config
 
-  stripeProvider.setPublishableKey('pk_test_gvpLjhrD3gTMQZj1Kl9Uw0Bj');
+  stripeProvider.setPublishableKey('pk_test_zjMkVWS57QxqiP9XPIdiy7uF');
 
   $routeProvider
     .when('/', {
