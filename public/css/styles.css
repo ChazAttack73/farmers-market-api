@@ -311,6 +311,97 @@ body {
 .postProductDiv {
   margin-top: 20px; }
 
+.loginMainWrapper {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  margin: 30px 0px;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  color: #F4F3D5; }
+
+.chooseLoginWrapper {
+  display: flex;
+  flex-flow: row wrap;
+  height: auto;
+  flex: 0 0 100%;
+  justify-content: center; }
+  .chooseLoginWrapper .chooseVendor {
+    height: 100px;
+    width: 100px;
+    margin-right: 15px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid #F4F3D5;
+    box-shadow: 3px 3px 5px 6px #484541;
+    background-image: url("./../images/small-vendors.svg"); }
+
+@media (min-width: 421px) and (max-width: 768px) {
+  .chooseLoginWrapper .chooseVendor {
+    height: 150px;
+    width: 150px; } }
+  .chooseLoginWrapper .chooseUser {
+    height: 100px;
+    width: 100px;
+    margin-right: 15px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid #F4F3D5;
+    box-shadow: 3px 3px 5px 6px #484541;
+    background-image: url("./../images/small-leaves.svg"); }
+
+@media (min-width: 421px) and (max-width: 768px) {
+  .chooseLoginWrapper .chooseUser {
+    height: 150px;
+    width: 150px; } }
+
+.loginWrapper {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 0 0 85%;
+  height: 300px;
+  margin: 40px 0px;
+  padding: 5px;
+  background-image: url("./../images/charcoal-bg.png");
+  border: 2px solid #F4F3D5;
+  box-shadow: 3px 3px 5px 6px #484541; }
+  .loginWrapper .loginTitle {
+    flex: 0 0 70%;
+    height: 20%;
+    margin-top: 20px;
+    padding: 5px 0px 0px 5px; }
+    .loginWrapper .loginTitle span {
+      font-size: 1.5em;
+      line-height: 1.5em; }
+  .loginWrapper .vendorLoginLogo {
+    flex: 0 0 30%;
+    background-image: url("./../images/small-vendors.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; }
+  .loginWrapper .userLoginLogo {
+    flex: 0 0 30%;
+    background-image: url("./../images/small-leaves.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat; }
+
+.loginForm {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 0 0 100%;
+  padding: 10px; }
+  .loginForm .loginSubmitBtn {
+    font-family: "Montserrat", sans-serif;
+    color: #F4F3D5;
+    border: 2px solid #F4F3D5;
+    height: 30px;
+    width: 80px;
+    background-image: url("./../images/charcoal-bg.png");
+    box-shadow: 1px 1px 2px 3px #484541; }
+
 .vendorHeader {
   display: flex;
   flex-flow: row wrap;
