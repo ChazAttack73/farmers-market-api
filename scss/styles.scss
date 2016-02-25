@@ -421,7 +421,7 @@ body {
 .vendorHeader {
   @include flexDisplayRow;
   justify-content: center;
-  background-color: orange;
+  background-color: $tan;
   height: 400px;
   width: 100%;
 
@@ -429,32 +429,39 @@ body {
     flex: 0 0 100%;
     text-align: center;
     font-size: 5em;
-    // margin-top: 25px;
-    // margin-bottom: 25px;
-    background-color: white;
     font-family: $sixCaps;
+    margin-top: 25px;
+    margin-bottom: -25px;
+    color: $gray;
+  }
+
+  .vendorGraphic {
+    background-image: url('./../images/leaves-and-lines.svg');
+    background-repeat: no-repeat;
+    width: 250px;
   }
 
   .vendorDays {
     flex: 0 0 100%;
     text-align: center;
-    margin-bottom: -40px;
-    background-color: red;
     font-family: $mont;
+    color: $gray;
+    margin-top: 15px;
   }
 
   .vendorTime {
     flex: 0 0 100%;
     text-align: center;
     margin-top: -40px;
-    background-color: white;
     font-family: $mont;
+    color: $gray;
   }
 
   .vendorAddress {
     flex: 0 0 100%;
     text-align: center;
-    background-color: red;
     font-family: $mont;
+    color: $gray;
+    margin-top: -35px;
   }
 }
