@@ -7,6 +7,9 @@ var cookieParser = require('cookie-parser');
 var User = db.User;
 var bodyParser = require('body-parser');
 var bcrypt = require('bcrypt');
+var stripe = require("stripe")(
+  "sk_test_L3fF5CjV33nFCv2dg7vcKQmz"
+);
 
 router.use(bodyParser.json({ extended: false }));
 
@@ -33,10 +36,10 @@ router.get( '/', function ( req, res ) {
 
 router.post( '/', function ( req, res ) {
   console.log(3333333);
-  console.log(req.body.username);
+  console.log(req.body.email);
   User.findOne({
     where:{
-      username: req.body.username
+      email: req.body.email
     }
   })
   .then (function (data){
@@ -45,9 +48,18 @@ router.post( '/', function ( req, res ) {
       hash(req)
         .then(function(hash) {
           var userObj = {
-          username : req.body.username,
+          email : req.body.email,
           password: hash,
           };
+//////////////////////////////////////////
+
+stripe.customers.create({
+  description: 'Customer for test@example.com',
+  source: "tok_17hqcIDK8coYE9nRCsq68CBk" // obtained with Stripe.js
+}, function(err, customer) {
+  // asynchronously called
+});
+//////////////////////////////////////////
           User.create(userObj)
           .then(function(user){
             req.login(user, function(err) {
@@ -57,6 +69,7 @@ router.post( '/', function ( req, res ) {
               return res.json(user);
             });
           });
+
         });
     } else {
       //EEEEERRRRRROOOOOOOORRRRRR
