@@ -9,6 +9,7 @@ angular.module('myApp')
       return $http.get('/vendor/'+vendorId);
     };
     this.loginVen = function(vendorLoginCredentials) {
+      console.log(222222222);
       return $http.post('/vendor/login', vendorLoginCredentials);
     };
     this.regVendor = function(vendor) {
