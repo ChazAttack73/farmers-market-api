@@ -34,6 +34,18 @@ router.post( '/', function ( req, res ) {
     });
   });
 
+router.get('/events/:id', function(req, res){
+  console.log('ROUTES',req.params.id);
+  Event.findAll({
+    where : {
+      id : req.params.id
+    }
+  })
+  .then(function(event){
+    res.json(event);
+  });
+});
+
 router.get( '/:id', function( req, res){
   Vendor.findAll({
     where:{

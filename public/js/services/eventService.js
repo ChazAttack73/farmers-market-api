@@ -7,10 +7,10 @@ angular.module('myApp')
       return $http.get('http://localhost:3000/event/');
     };
     this.getOneEvent = function(eventId){
-      return $http.get('http://localhost3000/'+eventId);
+      return $http.get('/event/events/'+eventId);
     };
     this.addEvent = function(event){
-      return $http.post('/event/', event);
+      return $http.post('/event', event);
     };
     this.editEvent = function(event){
       return $http.put('/edit', event);

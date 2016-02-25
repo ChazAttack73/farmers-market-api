@@ -64,7 +64,7 @@ router.post('/register', function(req, res){
 
 //Login for Vendor
 router.post('/login', passport.authenticate('local'), function(req, res) {
-  console.log('Im at the login on server...here is the vendor', vendor);
+  console.log('Im at the login on server...here is the vendor', req.body);
   res.json(req.body);
 });
 
@@ -72,9 +72,10 @@ passport.use(new LocalStrategy({
   passReqToCallback: true
   },
   function(req, name, password, done) {
-    var vendorUserName = name;
     Vendor.findOne({
-      name: vendorUserName
+      where : {
+        name: name
+      }
     })
     .then(function(vendor){
       bcrypt.compare(password, vendor.password, function(err, res){
@@ -90,8 +91,7 @@ router.get( '/', function ( req, res ) {
   Vendor.findAll({})
     .then( function ( vendors ) {
       res.json( vendors );
-    })
-  ;
+    });
 });
 
 router.get( '/:id', function( req, res) {

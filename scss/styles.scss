@@ -151,11 +151,9 @@ body {
   }
 }
 
-
 // ============ Vendor View Layout
 .eventVendorsMain {
-  display: flex;
-  flex-flow: row wrap;
+  @include flexDisplayRow;
   height: 100%;
   width: 100%;
   justify-content: center;
@@ -298,4 +296,47 @@ body {
 
 .postProductDiv {
   margin-top: 20px;
+}
+
+// ============= Vendor Listing by Event
+
+.vendorHeader {
+  @include flexDisplayRow;
+  justify-content: center;
+  background-color: orange;
+  height: 400px;
+  width: 100%;
+
+  .vendorName {
+    flex: 0 0 100%;
+    text-align: center;
+    font-size: 5em;
+    // margin-top: 25px;
+    // margin-bottom: 25px;
+    background-color: white;
+    font-family: $sixCaps;
+  }
+
+  .vendorDays {
+    flex: 0 0 100%;
+    text-align: center;
+    margin-bottom: -40px;
+    background-color: red;
+    font-family: $mont;
+  }
+
+  .vendorTime {
+    flex: 0 0 100%;
+    text-align: center;
+    margin-top: -40px;
+    background-color: white;
+    font-family: $mont;
+  }
+
+  .vendorAddress {
+    flex: 0 0 100%;
+    text-align: center;
+    background-color: red;
+    font-family: $mont;
+  }
 }
