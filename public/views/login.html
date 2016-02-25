@@ -1,29 +1,70 @@
-<div>
-  <h1>Vendor Login</h1>
-</div>
-<div class="login">
-  <form>
-    <br>
-     Company Name:<input class="vendor_name" value="" ng-model="vendor.username">
-    <br>
-    Password:<input class="vendor_password" value="" ng-model="vendor.password">
-    <br><br>
-    <input type="submit" value="Login" class="button" ng-click="loginVendor(vendor)">
-  </form>
-  <div class="error">{{error}}</div>
-</div>
+<div class="loginMainWrapper">
+  <div class="chooseLoginWrapper">
+    <div class="chooseVendor"></div>
+    <div class="chooseUser"></div>
+  </div>
 
-<div>
-  <h1>User Login</h1>
-</div>
-<div class="login">
-  <form ng-submit="loginUser()">
-    <br>
-    Username:<input class="user_name" value="" ng-model="user.username">
-    <br>
-    Password:<input class="user_password" value="" ng-model="user.password">
-    <br><br>
-    <input type="submit" value="Login" class="button">
-  </form>
-  <!-- <div class="error">{{error}}</div> -->
+
+  <div class="loginWrapper">
+    <div class="loginTitle">
+      <span>VENDOR LOGIN</span>
+    </div>
+    <div class="vendorLoginLogo"></div>
+    <div class="loginForm">
+      <form>
+        COMPANY USERNAME:
+        <br>
+        <input class="vendor_name" value="" ng-model="vendor.username">
+        <br>
+        <br>
+        PASSWORD:
+        <br>
+        <input class="vendor_password" value="" ng-model="vendor.password">
+        <br>
+        <br>
+        <input class="loginSubmitBtn" type="submit" value="Login" ng-click="loginVendor(vendor)">
+      </form>
+    </div>
+  </div>
+
+  <div class="error">{{error}}</div>
+
+  <div class="loginWrapper">
+    <div class="loginTitle">
+      <span>USER LOGIN</span>
+    </div>
+    <div class="userLoginLogo"></div>
+    <div class="loginForm">
+      <form>
+        USERNAME:
+        <br>
+        <input class="user_name" value="" ng-model="user.username">
+        <br>
+        <br>
+        PASSWORD:
+        <br>
+        <input class="user_password" value="" ng-model="user.password">
+        <br>
+        <br>
+        <input class="loginSubmitBtn" type="submit" value="Login" ng-click="loginUser()">
+      </form>
+    </div>
+  </div>
+
+  <!-- <div class="userLoginWrapper">
+    <div>
+      <h1>User Login</h1>
+    </div>
+    <div class="login">
+      <form ng-submit="loginUser()">
+        <br>
+        Username:<input class="user_name" value="" ng-model="user.username">
+        <br>
+        Password:<input class="user_password" value="" ng-model="user.password">
+        <br><br>
+        <input type="submit" value="Login" class="button">
+      </form>
+       <div class="error">{{error}}</div> -->
+    <!--</div>
+  </div> -->
 </div>
