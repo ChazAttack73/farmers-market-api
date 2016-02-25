@@ -9,6 +9,21 @@ angular.module('myApp')
 
     var id = $routeParams.id;
 
+    $scope.loadEvent = function(id) {
+      $scope.selectedEvent = [];
+      EventService.getOneEvent(id).success(function(data){
+        $scope.selectedEvent = data;
+      });
+    };
+
+    $scope.logoutButton = function() {
+      VendorService.logoutVen().success(function() {
+        $rootScope.vendor_user=false;
+        $localStorage.$reset();
+        $location.url('/');
+      });
+    };
+
     $scope.getAllVendorsForEvent = function() {
       VendorService.getVendors(id)
       .success(function(data) {

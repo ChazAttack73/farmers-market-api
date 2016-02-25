@@ -1,17 +1,33 @@
-<div>
-  <h1>Vendor Login</h1>
-</div>
-<div class="login">
-  <form>
-    <br>
-     Company Name:<input class="vendor_name" value="" ng-model="vendor.username">
-    <br>
-    Password:<input class="vendor_password" value="" ng-model="vendor.password">
-    <br><br>
-    <input type="submit" value="Login" class="button" ng-click="loginVendor(vendor)">
-  </form>
+<div class="loginMainWrapper">
+  <div class="chooseLoginWrapper">
+    <div class="chooseVendor"></div>
+    <div class="chooseUser"></div>
+  </div>
+
+
+  <div class="loginWrapper">
+    <div class="loginTitle">
+      <span>VENDOR LOGIN</span>
+    </div>
+    <div class="vendorLoginLogo"></div>
+    <div class="loginForm">
+      <form>
+        COMPANY USERNAME:
+        <br>
+        <input class="vendor_name" value="" ng-model="vendor.username">
+        <br>
+        <br>
+        PASSWORD:
+        <br>
+        <input class="vendor_password" value="" ng-model="vendor.password">
+        <br>
+        <br>
+        <input class="loginSubmitBtn" type="submit" value="Login" ng-click="loginVendor(vendor)">
+      </form>
+    </div>
+  </div>
+
   <div class="error">{{error}}</div>
-</div>
 
 <div>
   <h1>User Login</h1>
@@ -26,4 +42,5 @@
     <input type="submit" value="Login" class="button" ng-click="loginUser(user)">
   </form>
   <!-- <div class="error">{{error}}</div> -->
+
 </div>

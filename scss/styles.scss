@@ -22,6 +22,11 @@ $sixCaps: 'Six Caps', sans-serif;
 $percent: 100%;
 $flexFull: 0 0 100%;
 $flexHalf: 0 0 50%;
+$charcoal-bg: url('./../images/charcoal-bg.png');
+$tan-bg: url('./../images/tan-bg.jpg');
+$leaves: url('./../images/leaves.svg');
+$vendor: url('./../images/small-vendors.svg');
+$smallLeaves: url('./../images/small-leaves.svg');
 
 ///// **MIXINS**
 
@@ -48,7 +53,7 @@ $flexHalf: 0 0 50%;
 
 body {
   @include flexDisplayRow;
-  background-image: url('./../images/charcoal-bg.png');
+  background-image: $charcoal-bg;
   justify-content: center;
 }
 
@@ -209,7 +214,7 @@ body {
   @include flexDisplayRow;
   height: 500px;
   width: $percent;
-  background-image: url('./../images/tan-bg.jpg');
+  background-image: $tan-bg;
   text-align: center;
   justify-content: center;
 
@@ -263,17 +268,15 @@ body {
       flex: 0 0 30%;
       height: $percent * 0.3;
       margin-bottom: 7%;
-      background-image: url('./../images/leaves.svg');
+      background-image: $leaves;
       background-size: cover;
     }
   }
 }
 
-
 // ============ Vendor View Layout
 .eventVendorsMain {
-  display: flex;
-  flex-flow: row wrap;
+  @include flexDisplayRow;
   height: 100%;
   width: 100%;
   justify-content: center;
@@ -416,4 +419,147 @@ body {
 
 .postProductDiv {
   margin-top: 20px;
+}
+
+
+///// **LOGIN PAGE**
+
+.loginMainWrapper {
+  @include flexDisplayRow;
+  width: 100%;
+  margin: 30px 0px;
+  justify-content: center;
+  font-family: $mont;
+  color: $tan;
+}
+
+.chooseLoginWrapper {
+  @include flexDisplayRow;
+  height: auto;
+  flex: $flexFull;
+  justify-content: center;
+
+  @mixin loginToggleBtn {
+    height: 100px;
+    width: 100px;
+
+    @include media( ">phone", "<=tablet" ) {
+      height: 150px;
+      width: 150px;
+    }
+
+    margin-right: 15px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid $tan;
+    box-shadow: 3px 3px 5px 6px $gray - 15;
+  }
+
+  .chooseVendor {
+    @include loginToggleBtn;
+    background-image: $vendor;
+  }
+
+  .chooseUser {
+    @include loginToggleBtn;
+    background-image: $smallLeaves;
+  }
+}
+
+.loginWrapper {
+  @include flexDisplayRow;
+  flex: 0 0 85%;
+  height: 300px;
+  margin: 40px 0px;
+  padding: 5px;
+  background-image: $charcoal-bg;
+  border: 2px solid $tan;
+  box-shadow: 3px 3px 5px 6px $gray - 15;
+
+  .loginTitle {
+    flex: 0 0 70%;
+    height: 20%;
+    margin-top: 20px;
+    padding: 5px 0px 0px 5px;
+
+    span {
+      font-size: 1.5em;
+      line-height: 1.5em;
+    }
+  }
+
+  .vendorLoginLogo {
+    flex: 0 0 30%;
+    background-image: $vendor;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .userLoginLogo {
+    flex: 0 0 30%;
+    background-image: $smallLeaves;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+.loginForm {
+  @include flexDisplayRow;
+  flex: $flexFull;
+  padding: 10px;
+
+  .loginSubmitBtn {
+    font-family: $mont;
+    color: $tan;
+    border: 2px solid $tan;
+    height: 30px;
+    width: 80px;
+    background-image: $charcoal-bg;
+    box-shadow: 1px 1px 2px 3px $gray - 15;
+  }
+}
+// ============= Vendor Listing by Event
+
+.vendorHeader {
+  @include flexDisplayRow;
+  justify-content: center;
+  background-color: orange;
+  height: 400px;
+  width: 100%;
+
+  .vendorName {
+    flex: 0 0 100%;
+    text-align: center;
+    font-size: 5em;
+    // margin-top: 25px;
+    // margin-bottom: 25px;
+    background-color: white;
+    font-family: $sixCaps;
+  }
+
+  .vendorDays {
+    flex: 0 0 100%;
+    text-align: center;
+    margin-bottom: -40px;
+    background-color: red;
+    font-family: $mont;
+  }
+
+  .vendorTime {
+    flex: 0 0 100%;
+    text-align: center;
+    margin-top: -40px;
+    background-color: white;
+    font-family: $mont;
+  }
+
+  .vendorAddress {
+    flex: 0 0 100%;
+    text-align: center;
+    background-color: red;
+    font-family: $mont;
+  }
 }
