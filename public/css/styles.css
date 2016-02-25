@@ -402,3 +402,33 @@ body {
     width: 80px;
     background-image: url("./../images/charcoal-bg.png");
     box-shadow: 1px 1px 2px 3px #484541; }
+.vendorHeader {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  background-color: orange;
+  height: 400px;
+  width: 100%; }
+  .vendorHeader .vendorName {
+    flex: 0 0 100%;
+    text-align: center;
+    font-size: 5em;
+    background-color: white;
+    font-family: "Six Caps", sans-serif; }
+  .vendorHeader .vendorDays {
+    flex: 0 0 100%;
+    text-align: center;
+    margin-bottom: -40px;
+    background-color: red;
+    font-family: "Montserrat", sans-serif; }
+  .vendorHeader .vendorTime {
+    flex: 0 0 100%;
+    text-align: center;
+    margin-top: -40px;
+    background-color: white;
+    font-family: "Montserrat", sans-serif; }
+  .vendorHeader .vendorAddress {
+    flex: 0 0 100%;
+    text-align: center;
+    background-color: red;
+    font-family: "Montserrat", sans-serif; }

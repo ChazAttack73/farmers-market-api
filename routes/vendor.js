@@ -78,8 +78,7 @@ passport.use(new LocalStrategy({
       where: {
         name : vendorUserName
       }
-    }
-    )
+    })
     .then(function(vendor){
       bcrypt.compare(password, vendor.password, function(err, res){
         if(err) {

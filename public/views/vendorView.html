@@ -1,4 +1,13 @@
 <div class="eventVendorsMain">
+  <div class="vendorHeader" ng-controller="EventController">
+    <div class="vendorName">{{oneEvent.name}}</div>
+    <div class="vendorGraphic"></div>
+    <div class="vendorDays">{{oneEvent.days}}</div>
+    <div class="vendorTime">{{oneEvent.time}}</div>
+    <br>
+    <div class="vendorAddress">{{oneEvent.address}}</div>
+  </div>
+
   <div class="vendorNavBar" ng-init="vendorOn=true; getAllVendorsForEvent()">
     <!-- <a href="/#/vendor/view/{{vendor.EventId}}"> -->
       <div class="listingButton vendorButton" ng-click="clickButton(); vendorOn=true; vendorValue=true">Vendors</div>
@@ -6,7 +15,7 @@
   </div>
 ​
   <div class=masterVendorView ng-if="vendorOn">
-    <div class="vendorTab" ng-show="vendorValue" >
+    <div class="vendorTab" ng-show="vendorValue">
       <div class="vendorListingCard" ng-repeat= "vendor in Vendors">
         <div ng-click="getVendorAndProducts(vendor)">
           <div class="vendorContent">
