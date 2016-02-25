@@ -17,19 +17,28 @@ angular.module('myApp')
     };
 
     $scope.registerVendor = function(vendor) {
-      if(!vendor.name && vendor.password && vendor.phone && vendor.email && vendor.description) {
-        $scope.error = "Please fill out all required fields";
+      if (vendor === undefined) {
+        return $scope.error = "You left all fields blank.  Please retry."
+      }
+      if(vendor.name === undefined ||
+        vendor.password === undefined ||
+        vendor.phone === undefined ||
+        vendor.email === undefined ||
+        vendor.description === undefined ||
+        vendor.EventId === undefined
+      ) {
+        return $scope.error = "Please fill out all required fields";
       } else if(vendor.password !== vendor.verifyPassword) {
-          $scope.error = "Passwords do not match";
+          return $scope.error = "Passwords do not match";
       } else {
         VendorService.regVendor($scope.vendor).success(function(result) {
           $rootScope.vendor_user = result;
           $localStorage.vendor_user = $rootScope.vendor_user;
           $location.url('/vendor/private');
-        }).error(function(error) {
-          $scope.error = 'Unknown error.  Please try again';
         });
+        return;
       }
+      return $scope.error = 'Unknown error. Please try again';
     };
 
     $scope.loginVendor = function(vendorLoginCredentials){
@@ -50,9 +59,9 @@ angular.module('myApp')
       });
     };
 
-    $scope.getAllProductsForEvent = function() {
+    $scope.getAllProductsForEvent = function(vendorID) {
       $scope.productsForEvent=[];
-      VendorService.getProductsFromVendorsByEvent(id).success(function (data) {
+      VendorService.getProductsFromVendorsByEvent($scope.vendor_user.id).success(function (data) {
         $scope.productsForEvent = data;
       });
     };
@@ -102,7 +111,7 @@ angular.module('myApp')
       $scope.vendor = [];
       $scope.vendorValue=false;
       //var param1 = $routeParams.param1;
-      VendorService.getOneVendor(vendor.id).success(function (data){
+      VendorService.getOneVendorAndProducts(vendor.id).success(function (data){
       $scope.vendor = data;
       });
     };

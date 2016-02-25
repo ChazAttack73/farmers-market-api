@@ -5,7 +5,7 @@ angular.module('myApp')
     this.getVendors = function(id){
       return $http.get('/vendor/event/'+ id);
     };
-    this.getOneVendor = function(vendorId){
+    this.getOneVendorAndProducts = function(vendorId){
       return $http.get('/vendor/'+vendorId);
     };
     this.loginVen = function(vendorLoginCredentials) {
