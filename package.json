@@ -23,12 +23,14 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "include-media": "^1.4.2",
+    "jquery": "^2.2.1",
     "method-override": "^2.3.5",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "pg": "^4.4.6",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^3.19.2"
+    "sequelize": "^3.19.2",
+    "stripe": "^4.4.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

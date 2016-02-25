@@ -8,6 +8,40 @@ var bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
 
+//This should probably go in product router
+router.post( '/:id', function ( req, res ) {
+  req.body.VendorId = req.params.id;
+  Product.create(req.body)
+    .then( function ( products ) {
+      res.json( products );
+    });
+  });
+
+//Being called from VendorServer by getProductsFromVendorsByEvent function
+router.get('/products/:id', function(req, res) {
+  Product.findAll({
+      include: [{
+          model: Vendor,
+          where: { EventId: req.params.id }
+      }]
+  })
+  .then(function(product){
+    var productsArray = [];
+    for(i = 0; i < product.length; i++){
+      var productObj = {
+        id : product[i].dataValues.id,
+        name : product[i].dataValues.name,
+        price : product[i].dataValues.price,
+        quantity : product[i].dataValues.quantity,
+        description : product[i].dataValues.description,
+        product_picture : product[i].dataValues.product_picture,
+      };
+     productsArray.push(productObj);
+    }
+    res.send (productsArray);
+  });
+});
+
 router.get( '/', function ( req, res ) {
   Product.findAll()
     .then( function ( products ) {

@@ -7,13 +7,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Six+Caps' rel='stylesheet' type='text/css'>
+
+
+<!--     /////////////////////////////////////// -->
+
+<!-- this needs to go in a config file -->
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    <script type="text/javascript">
+    // This identifies your website in the createToken call below
+    Stripe.setPublishableKey('pk_test_gvpLjhrD3gTMQZj1Kl9Uw0Bj');
+
+  </script>
+
+
+
+<!--     ///////////////////////////////////////// -->
   </head>
 
   <body ng-app="myApp">
-    <div class="mainTitleBar">DISTRIBUTING HOMEGROWN ALOHA™
+    <div class="mainTitleBar">DISTRIBUTING HOMEGROWN ALOHA
+      <div class="mobileNav" ng-click="myVar==='menuOn' ? myVar='' : myVar='menuOn'">
+        <div class="hamburgerHack1">
+          <div class="hamburgerHack2"></div>
+        </div>
+      </div>
     </div>
 
-    <div class="navbarButtonContainer">
+    <div class="mobileMenu" ng-class="myVar">
+      <ul>
+        <li>
+          <a href="/#/">HOME</a>
+        </li>
+        <li ng-hide="vendor_user">
+          <a href="/#/login" ng-click="loggedInUser=!loggedInUser">LOGIN</a>
+        </li>
+        <li ng-show="vendor_user">
+          <a href="/#/" ng-href="/#/vendor/private">PROFILE</a>
+        </li>
+        <li>
+          <a href="/#/register">SIGN UP</a>
+        </li>
+        <li ng-show="vendor_user">
+          <a href="/#/" ng-click="logoutButton()">LOGOUT</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="navbarButtonContainer" ng-controller="HeaderController">
       <div class="navbarButton">
         <a href="/#/">HOME</a>
       </div>
@@ -23,14 +65,18 @@
       </div>
 
       <div class="navbarButton" ng-show="vendor_user">
-        <a href="/#/" ng-click="logoutButton()">LOGOUT</a>
-      </div>
+        <!-- Kai..why an href and an ng-href here with two different routes? -->
+        <a href="/#/" ng-href="/#/vendor/private">PROFILE</a>
+        </div>
 
       <div class="navbarButton">
         <a href="/#/register">SIGN UP</a>
       </div>
-    </div>
 
+      <div class="navbarButton" ng-show="vendor_user">
+        <a href="/#/" ng-click="logoutButton()">LOGOUT</a>
+      </div>
+    </div>
 
     <div class="view" ng-view></div>
 
@@ -47,5 +93,6 @@
     <script src="js/services/productService.js"></script>
     <script src="js/services/vendorService.js"></script>
     <script src="js/services/eventService.js"></script>
+    <script src="js/controllers/header-controller.js"></script>
   </body>
 </html>
