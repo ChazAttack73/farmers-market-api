@@ -10,7 +10,7 @@ angular.module('myApp')
       return $http.get('/product/'+id);
     };
     this.addProduct = function(product){
-      return $http.post('/vendor/new', product);
+      return $http.post('/product/new', product);
     };
     this.editProduct = function(product){
       return $http.put('/edit', product);

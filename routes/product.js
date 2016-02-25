@@ -8,14 +8,6 @@ var bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
 
-//This should probably go in product router
-router.post( '/:id', function ( req, res ) {
-  req.body.VendorId = req.params.id;
-  Product.create(req.body)
-    .then( function ( products ) {
-      res.json( products );
-    });
-  });
 
 //Being called from VendorServer by getProductsFromVendorsByEvent function
 router.get('/products/:id', function(req, res) {
@@ -61,16 +53,34 @@ router.get( '/:id', function( req, res){
 });
 
 router.post('/new', function(req, res){
+  console.log('req.body on Product post', req.body);
   var productObj = {
     name : req.body.name,
     price : req.body.price,
     quantity : req.body.quantity,
     description : req.body.description,
-    product_picture : req.body.product_picture
+    product_picture : req.body.product_picture,
+    VendorId : req.body.VendorId
   };
-  Product.create(productObj);
+  Product.create(productObj)
+  .then (function (product){
+    res.json( {
+      success : true
+    } );
+  })
+  .catch(function(error) {
+    res.json(error);
+  });
 });
 
+//This should probably go in product router
+router.post( '/:id', function ( req, res ) {
+  req.body.VendorId = req.params.id;
+  Product.create(req.body)
+    .then( function ( products ) {
+      res.json( products );
+    });
+  });
 
 router.put('/:id', function( req, res){
   req.body.updatedAt = "now()";

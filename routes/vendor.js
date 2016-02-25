@@ -37,8 +37,17 @@ function hash(req) {
   });
 }
 
+//Need to modify this to res. back an error (custom message or a
+//send server error code.  Can call this middleware function on
+//each route as done on register below.  On each Angular controller
+//function, must have a listener for errors)
+function logErrors(err, req, res, next) {
+  console.error(err.stack);
+  next(err);
+}
+
 //Being called from VendorService regVendor function
-router.post('/register', function(req, res){
+router.post('/register', function(req, res, next){
   hash(req)
   .then(function(hash) {
     var userObj = {
@@ -61,7 +70,7 @@ router.post('/register', function(req, res){
       });
     });
   });
-});
+}, logErrors);
 
 //Login for Vendor being called from VendorService loginVen function
 router.post('/login', passport.authenticate('local'), function(req, res) {
@@ -109,7 +118,8 @@ router.get( '/event/:id', function( req, res){
 //   ;
 // });
 
-//Being called from VendorService by getOneVendor function indentified by Vendor id
+//Being called from VendorService by getOneVendorAndProducts function indentified by Vendor id
+//gets one vendor and all products belonging to them
 router.get( '/:id', function( req, res) {
   Vendor.findOne({
     where:{
