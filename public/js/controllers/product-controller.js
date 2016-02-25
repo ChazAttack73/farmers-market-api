@@ -19,7 +19,6 @@ angular.module('myApp')
   });
 
   $scope.handleStripe = function(){
-    console.log(1111111111);
 
     if($scope.stripe===undefined){
       return;
@@ -36,7 +35,6 @@ angular.module('myApp')
     if(number && cvc && exp_month && exp_year){
       return stripe.card.createToken($scope.stripe)
       .then(function (response) {
-        console.log(222222222);
         console.log('token created for card ending in ', response.card.last4);
 
 
@@ -51,7 +49,7 @@ angular.module('myApp')
         payment.product = $scope.Product.id;
         payment.productQuantity = 1;
         payment.amount = $scope.Product.price;
-        console.log(payment,222222222.555555);
+
         ProductService.chargeProduct(payment);
       })
       // .then(function (payment) {
