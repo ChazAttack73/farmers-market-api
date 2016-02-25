@@ -10,100 +10,110 @@
     <input type="button" value="Edit Profile"ng-click="vendorPrivate=!vendorPrivate">
   </div>
 
-    <fieldset ng-show="!vendorPrivate">
-      <h3>Edit Profile</h3>
-      <div>
-        <label for="vendor_name"> Company name </label>
-        <input id="vendor_name"  type="text" ng-model="vendor.name" ng-value="vendor_user.name" autofocus>
-      </div>
-
-      <div>
-        <label for="vendor_phone">Phone Number</label>
-        <input id="vendor_phone" ng-value="vendor_user.phone" type="text" ng-model="vendor.phone">
-      </div>
-
-      <div>
-        <label for="vendor_email">Email</label>
-        <input id="vendor_email" ng-value="vendor_user.email" type="text" ng-model="vendor.email">
-      </div>
-
-      <div>
-        <label for="vendor_website">Website (if you have one)</label>
-        <input id="vendor_website" ng-value="vendor_user.website" type="text" ng-model="vendor.website">
-      </div>
-
-      <div>
-        <label for="vendor_description">Brief description of your company</label>
-        <input id="vendor_description" ng-value="vendor_user.description" type="text" ng-model="vendor.description">
-      </div>
-      <div>
-        <label for="vendor_company_pic">Image of your company </label>
-        <input id="vendor_company_pic" ng-value="vendor_user.company_pic" type="text" ng-model="vendor.company_pic">
-      </div>
-      <div class="finishEdit">
-        <button type='button' ng-click=
-        "editVendor(vendor); vendorPrivate=!vendorPrivate">Submit Changes</button>
-        <button type='button' ng-click=
-        "deleteVendor(vendor); vendorPrivate=!vendorPrivate">Delete Vendor</button>
-      </div>
-    </fieldset>
-
-
-    <div class="postProductDiv">
-      <div>
-        Post a new product below (include a picture!):
-        <br></br>
-        <label for="product_name">product name</label>
-        <input id="product_name" type="text" ng-model="product.name">
-      </div>
-      <div>
-        <label for="product_price">product price</label>
-        <input id="product_price" type="text" ng-model="product.price">
-      </div>
-      <div>
-        <label for="product_quantity">product quantity</label>
-        <input id="product_quantity" type="text" ng-model="product.quantity">
-      </div>
-      <div>
-        <label for="product_image">product description</label>
-        <input id="product_image" type="text" ng-model="product.description">
-      </div>
-      <div>
-        <label for="product_image">product image</label>
-        <input id="product_image" type="text" ng-model="product.product_picture">
-      </div>
-      <div class="commit">
-        <button type='button' ng-click='postProduct(product)'; 'product = null'>post product</button>
-      </div>
+  <fieldset ng-show="!vendorPrivate">
+    <h3>Edit Profile</h3>
+    <div>
+      <label for="vendor_name"> Company name </label>
+      <input id="vendor_name"  type="text" ng-model="vendor.name" ng-value="vendor_user.name" autofocus>
     </div>
 
+    <div>
+      <label for="vendor_phone">Phone Number</label>
+      <input id="vendor_phone" ng-value="vendor_user.phone" type="text" ng-model="vendor.phone">
+    </div>
 
-    <div class="productContent" ng-repeat="product in vendor.Products" >
-      <div class="product">
+    <div>
+      <label for="vendor_email">Email</label>
+      <input id="vendor_email" ng-value="vendor_user.email" type="text" ng-model="vendor.email">
+    </div>
+
+    <div>
+      <label for="vendor_website">Website (if you have one)</label>
+      <input id="vendor_website" ng-value="vendor_user.website" type="text" ng-model="vendor.website">
+    </div>
+
+    <div>
+      <label for="vendor_description">Brief description of your company</label>
+      <input id="vendor_description" ng-value="vendor_user.description" type="text" ng-model="vendor.description">
+    </div>
+    <div>
+      <label for="vendor_company_pic">Image of your company </label>
+      <input id="vendor_company_pic" ng-value="vendor_user.company_pic" type="text" ng-model="vendor.company_pic">
+    </div>
+    <div class="finishEdit">
+      <button type='button' ng-click=
+      "editVendor(vendor); vendorPrivate=!vendorPrivate">Submit Changes</button>
+      <button type='button' ng-click=
+      "deleteVendor(vendor); vendorPrivate=!vendorPrivate">Delete Vendor</button>
+    </div>
+  </fieldset>
+
+
+
+  <div ng-controller="ProductController" class="masterPrivateVendProductsNPost" ng-init="noNewPost=true" >
+    <div ng-show="noNewPost" >
+      <button type="button" ng-click="clickButt()">Post New Product</button>
+    </div>
+    <div  ng-init="getVendorAndProducts(vendor_user)">
+      <div class="postProductDiv" ng-hide="noNewPost">
         <div>
-          <label for="product_name">product name</label>
-          <input id="product_name" value="{{product.name}}" type="text" ng-model="product.name">
-        </div>
-
-
+          Enter a new product below.  You can choose a predefined category from the drop down list.  This is recommended even if you offer a specific variety (you can list that in your description).  If you product is outside the predefined options, select new.  If you have one, please include a picture!:
+          <br>
+          <label for="product_name">Product Name</label>
+          <input id="product_name" type="text" ng-model="product.name" required="true">
+       </div>
         <div>
           <label for="product_price">product price</label>
-          <input id="product_price" value="{{product.price}}" type="text" ng-model="product.price">
+          <input id="product_price" type="text" ng-model="product.price">
         </div>
-
         <div>
           <label for="product_quantity">product quantity</label>
-          <input id="product_quantity" value="{{product.quantity}}" type="text" ng-model="product.quantity">
+          <input id="product_quantity" type="text" ng-model="product.quantity">
+        </div>
+        <div>
+          <label for="product_image">product description</label>
+          <input id="product_image" type="text" ng-model="product.description">
         </div>
         <div>
           <label for="product_image">product image</label>
-          <input id="product_image" value="{{product.image}}" type="text" ng-model="product.image">
+          <input id="product_image" type="text" ng-model="product.product_picture">
         </div>
-
         <div class="commit">
-          <button type='button' ng-click="editProduct(product)"> Edit product</button> <button type='button' ng-click="deleteProduct(product)"> Delete product</button>
+          <button type="button" ng-click="postProduct(product)">Post</button>
+        </div>
+        <div ng-hide="errorDiv" class="error">{{error}}</div>
+      </div>
+
+
+
+
+
+
+      <div class="productContent" ng-repeat="product in vendor">
+        <div class="product">
+          <div>
+            <label for="product_name">product name</label>
+            <input id="product_name" ng-value="vendor.name" type="text" ng-model="product.name">
+          </div>
+          <div>
+            <label for="product_price">product price</label>
+            <input id="product_price" value="{{product.price}}" type="text" ng-model="product.price">
+          </div>
+          <div>
+            <label for="product_quantity">product quantity</label>
+            <input id="product_quantity" value="{{product.quantity}}" type="text" ng-model="product.quantity">
+          </div>
+          <div>
+            <label for="product_image">product image</label>
+            <input id="product_image" value="{{product.image}}" type="text" ng-model="product.image">
+          </div>
+          <div class="commit">
+            <button type='button' ng-click="editProduct(product)"> Edit product</button> <button type='button' ng-click="deleteProduct(product)"> Delete product</button>
+          </div>
         </div>
       </div>
+    </div>
   </div>
+</div>
 
-  </div>
+
