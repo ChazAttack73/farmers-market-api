@@ -292,21 +292,20 @@ body {
 }
 
 .listingButton {
-  flex: 0 0 40%;
+  flex: 0 0 15%;
   font-size: 30px;
   text-align: center;
-  border-radius: 5px;
   opacity: 0.90;
   color: #E7DDD4;
   box-shadow: 2px 2px #221F1C;
+  border: 1px solid red;
 }
 
 .listingButton.vendorButton {
   margin-right: 1px;
-  background-color: #896544;
-  border: 1px solid #361D06;
   text-shadow: 1px 1px 2px #361D06;
   box-shadow: 2px 2px 2px #361D06;
+  background-repeat: no-repeat;
 }
 
 .listingButton.productButton {
