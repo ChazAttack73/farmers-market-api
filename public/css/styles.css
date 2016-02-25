@@ -402,6 +402,7 @@ body {
     width: 80px;
     background-image: url("./../images/charcoal-bg.png");
     box-shadow: 1px 1px 2px 3px #484541; }
+
 .vendorHeader {
   display: flex;
   flex-flow: row wrap;
