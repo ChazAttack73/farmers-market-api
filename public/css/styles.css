@@ -312,11 +312,10 @@ body {
 .postProductDiv {
   margin-top: 20px; }
 
-<<<<<<< HEAD
 .error {
   color: red;
   font-weight: 700; }
-=======
+
 .loginMainWrapper {
   display: flex;
   flex-flow: row wrap;
@@ -438,4 +437,3 @@ body {
     text-align: center;
     background-color: red;
     font-family: "Montserrat", sans-serif; }
->>>>>>> 7c5acbbe81a740b95223a160e961abd1b494b934
