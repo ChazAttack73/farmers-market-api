@@ -68,26 +68,7 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
   res.json(req.user.dataValues);
 });
 
-//authenticate middleware ('local') called in above function upon login
-passport.use(new LocalStrategy({
-  passReqToCallback: true
-  },
-  function(req, name, password, done) {
-    var vendorUserName = name;
-    Vendor.findOne({
-      where: {
-        name : vendorUserName
-      }
-    })
-    .then(function(vendor){
-      bcrypt.compare(password, vendor.password, function(err, res){
-        if(err) {
-          return done(err);
-        }
-        return done(null, vendor);
-      });
-    }).catch(done);
-}));
+
 
 //Being called from VendorService by getVendors function idenitfied by event id
 router.get( '/event/:id', function( req, res){
