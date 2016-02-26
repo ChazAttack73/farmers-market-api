@@ -29,18 +29,39 @@
 
   <div class="error">{{error}}</div>
 
-<div>
-  <h1>User Login</h1>
-</div>
-<div class="login">
-  <form>
-    <br>
-    email:<input class="user_username" value="" ng-model="user.username">
-    <br>
-    Password:<input class="user_password" value="" ng-model="user.password">
-    <br><br>
-    <input type="submit" value="Login" class="button" ng-click="loginUser(user)">
-  </form>
-  <!-- <div class="error">{{error}}</div> -->
+  <div class="loginWrapper">
+    <div class="loginTitle">
+      <span>USER LOGIN</span>
+    </div>
+    <div class="userLoginLogo"></div>
+    <div class="loginForm">
+      <form>
+        EMAIL:
+        <br>
+        <input class="user_username" value="" ng-model="user.username">
+        <br>
+        <br>
+        PASSWORD:
+        <br>
+        <input class="user_password" value="" ng-model="user..password">
+        <br>
+        <br>
+        <input class="loginSubmitBtn" type="submit" value="Login" ng-click="loginUser(user)">
+      </form>
+    </div>
+  </div>
 
+  <!-- <div>
+    <h1>User Login</h1>
+  </div>
+  <div class="login">
+    <form>
+      <br>
+      email:<input class="user_username" value="" ng-model="user.username">
+      <br>
+      Password:<input class="user_password" value="" ng-model="user.password">
+      <br><br>
+      <input type="submit" value="Login" class="button" ng-click="loginUser(user)">
+    </form> -->
+    <!-- <div class="error">{{error}}</div> -->
 </div>
