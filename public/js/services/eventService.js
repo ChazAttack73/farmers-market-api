@@ -25,7 +25,6 @@ angular.module('myApp')
     };
 
     this.loginUser = function(user){
-      console.log(2222222222222, user);
       return $http.post('/user/login', user);
     };
 
