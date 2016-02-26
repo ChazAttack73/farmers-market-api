@@ -7,6 +7,9 @@
     <p class="product_description">{{Product.description}}</p>
   </div>
 
+  <button >Checkout</button>
+
+
   <form id="payment-form" ng-submit="handleStripe()">
     <span class="payment-errors"></span>
 
@@ -35,5 +38,13 @@
 
     <button type="submit">Submit Payment</button>
   </form>
+
+  <div class="existingCare">
+    <p>**** **** **** {{last4}}</p> <!-- how to get the last code -->
+    <p>address line 1</p>
+    <p>address line 2</p>
+    <a href="">change card</a>
+    <button type="submit">Submit Payment</button>
+  </div>
 
 </div>

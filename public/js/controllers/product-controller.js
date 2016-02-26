@@ -21,11 +21,13 @@ angular.module('myApp')
     $scope.Product = data;
   });
 
+
+
   $scope.postProduct=function(product) {
     if (product === undefined) {
       $scope.noNewPost = false;
       $scope.errorDiv = false;
-      return $scope.error = "You left all fields blank.  Please retry."
+      return $scope.error = "You left all fields blank.  Please retry.";
       }
       if(product.name === undefined ||
         product.price === undefined ||
@@ -85,13 +87,11 @@ angular.module('myApp')
 
         ProductService.chargeProduct(payment);
 
+        $rootScope.card.last4 = response.card.last4;
+
         $scope.Product.quantity--;
         response.quantity = $scope.Product.quantity;
         response.routeParams = parseInt($routeParams.id);
-
-        // ProductService.chargeProduct(response).then(function(data){
-        //   $location.path('/product/'+response.routeParams);
-        // });
 
       })
       .then(function (data) {
@@ -117,6 +117,18 @@ angular.module('myApp')
       });
     }
   };
+
+  $scope.checkout = function(){
+    //this will go to User table
+      //if($rootScope.user_user.false){
+        //show the card form to make token
+      //} else{
+        //bring out the div to show if they want to use the same card number
+        //a button to confirm payment
+        //a button to change payment - pops out another payment form
+      //}
+  };
+
 
   $scope.submitEdit = function(product) {
     ProductService.editProduct(product).then(function(data){
