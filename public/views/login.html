@@ -1,10 +1,26 @@
 <div class="loginMainWrapper">
-  <div class="chooseLoginWrapper">
-    <div class="chooseVendor"></div>
-    <div class="chooseUser"></div>
+  <div class="chooseLoginWrapper" ng-init="displayLogin=true">
+    <div class="chooseVendor" ng-click="displayLogin=false"></div>
+    <div class="chooseUser" ng-click="displayLogin=true"></div>
   </div>
 
-  <div class="loginWrapper">
+  <div class="loginWrapper" ng-show="displayLogin">
+    <div class="loginTitle">
+      <span>USER LOGIN</span>
+    </div>
+    <div class="userLoginLogo"></div>
+    <div class="loginForm">
+      <fieldset class="loginFieldset">
+        <label for="user_email">EMAIL:</label>
+        <input id="user_email" value="" ng-model="user.username">
+        <label for="user_password">PASSWORD:</label>
+        <input id="user_password" value="" ng-model="user.password">
+        <input class="loginSubmitBtn" type="submit" value="Login" ng-click="loginUser(user)">
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="loginWrapper" ng-hide="displayLogin">
     <div class="loginTitle">
       <span>VENDOR LOGIN</span>
     </div>
@@ -22,19 +38,4 @@
 
   <div class="error">{{error}}</div>
 
-  <div class="loginWrapper">
-    <div class="loginTitle">
-      <span>USER LOGIN</span>
-    </div>
-    <div class="userLoginLogo"></div>
-    <div class="loginForm">
-      <fieldset class="loginFieldset">
-        <label for="user_email">EMAIL:</label>
-        <input id="user_email" value="" ng-model="user.username">
-        <label for="user_password">PASSWORD:</label>
-        <input id="user_password" value="" ng-model="user.password">
-        <input class="loginSubmitBtn" type="submit" value="Login" ng-click="loginUser(user)">
-      </fieldset>
-    </div>
-  </div>
 </div>
