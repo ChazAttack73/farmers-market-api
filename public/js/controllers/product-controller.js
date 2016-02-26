@@ -17,9 +17,9 @@ angular.module('myApp')
     };
 //This is throwing error because it runs when vendorPrivatePage uses this controller
 //but it does not have an id to give it
-  // ProductService.getProduct(id).success(function(data){
-  //   $scope.Product = data;
-  // });
+  ProductService.getProduct(id).success(function(data){
+    $scope.Product = data;
+  });
 
   $scope.postProduct=function(product) {
     if (product === undefined) {
@@ -50,14 +50,20 @@ angular.module('myApp')
       return $scope.error = 'Unknown error. Please try again';
     };
 
+
   $scope.handleStripe = function(){
+    console.log(111111111111);
 
     if($scope.stripe===undefined){
-      return;
+      return $scope.error = "Please fill out all required fields";
     }
     if($scope.Product.quantity<=0){
-      return;
+      return $scope.error = "SOLD OUT";
     }
+    // a validation to make sure someone is logged in.
+    //if(loggin checker thing here, if someone isn't logged in){
+    //  return $scope.error = "need to log in"
+    //}
 
     var number = $scope.stripe.number;
     var cvc = $scope.stripe.cvc;
@@ -65,14 +71,12 @@ angular.module('myApp')
     var exp_year = $scope.stripe.exp_year;
 
     if(number && cvc && exp_month && exp_year){
+      console.log(22222222222);
+
       return stripe.card.createToken($scope.stripe)
       .then(function (response) {
+
         console.log('token created for card ending in ', response.card.last4);
-
-
-
-
-
 
         var payment = angular.copy($scope.stripe);
         payment.card = void 0;
@@ -81,34 +85,37 @@ angular.module('myApp')
         payment.product = $scope.Product.id;
         payment.productQuantity = 1;
         payment.amount = $scope.Product.price;
+        payment.user = $rootScope.user_user;
 
         ProductService.chargeProduct(payment);
       })
-      // .then(function (payment) {
-      //   console.log('successfully submitted payment for $', payment.amount);
-      // });
-      // .catch(function (err) {
-      //   if (err.type && /^Stripe/.test(err.type)) {
-      //     console.log('Stripe error: ', err.message);
-      //   }
-      //   else {
-      //     console.log('Other error occurred, possibly with your API', err.message);
+      .then(function () {
 
-      //     // Stripe.customers.create({
-      //     //   description: 'Customer for test@example.com',
-      //     //   source: response.id // the token
-      //     //   }, function(err, customer) {
-      //     //     // asynchronously called
-      //     //   });
+        console.log('successfully submitted payment for $', payment);
 
-      //     // $scope.Product.quantity--;
-      //     // response.quantity = $scope.Product.quantity;
-      //     // response.routeParams = parseInt($routeParams.id);
-      //     // ProductService.chargeProduct(response).then(function(data){
-      //     //   $location.path('/product/'+response.routeParams);
-      //     // });
-      //   }
-      // });
+        // $scope.Product.quantity--;
+        // response.quantity = $scope.Product.quantity;
+        // response.routeParams = parseInt($routeParams.id);
+        // ProductService.chargeProduct(response).then(function(data){
+        //   $location.path('/product/'+response.routeParams);
+        // });
+      })
+      .catch(function (err) {
+        if (err.type && /^Stripe/.test(err.type)) {
+          console.log('Stripe error: ', err.message);
+        }
+        else {
+          console.log('Other error occurred, possibly with your API', err.message);
+
+          // Stripe.customers.create({
+          //   description: 'Customer for test@example.com',
+          //   source: response.id // the token
+          //   }, function(err, customer) {
+          //     // asynchronously called
+          //   });
+
+        }
+      });
     }
   };
 

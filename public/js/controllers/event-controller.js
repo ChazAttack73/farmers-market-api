@@ -47,14 +47,11 @@ angular.module('myApp')
     if(!user.hasOwnProperty('email') ||
        !user.hasOwnProperty('password') ||
        !user.hasOwnProperty('verifyPassword')){
-      //EEEEERRRRRRROOOOOOOORRRRRRRRR
-      return $location.url('/register');
+      return $scope.error = "Please fill out all required fields";
     }
 
     if(user.password !== user.verifyPassword){
-      //EEEEERRRRRRROOOOOOOORRRRRRRRR
-      console.log(1.3);
-      return $location.url('/register');
+      return $scope.error = "Passwords do not match";
     }
 
     var new_user = {
@@ -63,8 +60,13 @@ angular.module('myApp')
     };
 
     EventService.addUser(new_user)
-    .success(function(data){
+
+    .success(function(result){
+      $rootScope.user_user = result;
       $location.url('/');
     });
+
+    return;
   };
+
 }]);
