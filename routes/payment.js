@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var db = require('./../models');
 var Order = db.Order;
 var Payment = db.Payment;
+var stripe = require("stripe")("pk_test_zjMkVWS57QxqiP9XPIdiy7uF");
 
 router.use(bodyParser.json({ extended: false }));
 
@@ -21,7 +22,17 @@ router.post('/:id',function( req, res){
       OrderId : order.id
     })
     .then(function(data){
-      res.json(data);
+      var charge = stripe.charges.create({
+        amount: 1000, // amount in cents, again
+        currency: "usd",
+        source: req.body.token,
+        description: "Example charge"
+      }, function(err, charge) {
+        if (err && err.type === 'StripeCardError') {
+          // The card has been declined
+        }
+      });
+      res.json(charge);
     });
 
   });
@@ -30,3 +41,5 @@ router.post('/:id',function( req, res){
 
 
 module.exports = router;
+
+

@@ -75,6 +75,7 @@ angular.module('myApp')
 
       return stripe.card.createToken($scope.stripe)
       .then(function (response) {
+        console.log(333333);
 
         console.log('token created for card ending in ', response.card.last4);
 
@@ -88,6 +89,7 @@ angular.module('myApp')
         payment.user = $rootScope.user_user;
 
         ProductService.chargeProduct(payment);
+
       })
       .then(function () {
 
