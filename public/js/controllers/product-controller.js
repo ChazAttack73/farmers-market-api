@@ -71,14 +71,9 @@ angular.module('myApp')
     var exp_year = $scope.stripe.exp_year;
 
     if(number && cvc && exp_month && exp_year){
-      console.log(22222222222);
-
       return stripe.card.createToken($scope.stripe)
       .then(function (response) {
-        console.log(333333);
-
         console.log('token created for card ending in ', response.card.last4);
-
         var payment = angular.copy($scope.stripe);
         payment.card = void 0;
         payment.token = response.id;
@@ -90,17 +85,19 @@ angular.module('myApp')
 
         ProductService.chargeProduct(payment);
 
-      })
-      .then(function () {
+        $scope.Product.quantity--;
+        response.quantity = $scope.Product.quantity;
+        response.routeParams = parseInt($routeParams.id);
 
-        console.log('successfully submitted payment for $', payment);
-
-        // $scope.Product.quantity--;
-        // response.quantity = $scope.Product.quantity;
-        // response.routeParams = parseInt($routeParams.id);
         // ProductService.chargeProduct(response).then(function(data){
         //   $location.path('/product/'+response.routeParams);
         // });
+
+      })
+      .then(function (data) {
+
+        console.log('successfully submitted payment for $', data);
+
       })
       .catch(function (err) {
         if (err.type && /^Stripe/.test(err.type)) {
