@@ -189,7 +189,7 @@ body {
       height: 30%;
       margin-bottom: 7%;
       background-image: url("./../images/leaves.svg");
-      background-size: cover; }
+      background-size: contain; }
 
 .eventVendorsMain {
   display: flex;
@@ -406,6 +406,15 @@ body {
     width: 80px;
     background-image: url("./../images/charcoal-bg.png");
     box-shadow: 1px 1px 2px 3px #484541; }
+
+.regMainWrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif; }
+
+.regWrapper {
+  flex: 0 0 80%; }
 
 .vendorHeader {
   display: flex;
