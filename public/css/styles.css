@@ -437,10 +437,16 @@ body {
     background-repeat: no-repeat; }
 
 .loginForm {
-  display: flex;
-  flex-flow: row wrap;
   flex: 0 0 100%;
   padding: 10px; }
+  .loginForm .loginFieldset {
+    border: 0;
+    padding: 0.01em 0 0 0;
+    margin: 0;
+    min-width: 0; }
+  .loginForm label, .loginForm input {
+    display: block;
+    margin: 10px; }
   .loginForm .loginSubmitBtn {
     font-family: "Montserrat", sans-serif;
     color: #F4F3D5;
@@ -449,6 +455,15 @@ body {
     width: 80px;
     background-image: url("./../images/charcoal-bg.png");
     box-shadow: 1px 1px 2px 3px #484541; }
+
+.regMainWrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif; }
+
+.regWrapper {
+  flex: 0 0 80%; }
 
 .vendorHeader {
   display: flex;

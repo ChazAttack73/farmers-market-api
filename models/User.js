@@ -8,6 +8,10 @@ module.exports = function(sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    stripeCustomer:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false
     }
   }, {
     classMethods: {

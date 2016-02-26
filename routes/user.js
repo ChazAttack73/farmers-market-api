@@ -51,7 +51,6 @@ router.get( '/', function ( req, res ) {
   });
 
 router.post( '/', function ( req, res ) {
-  console.log(3333333);
   console.log(req.body.email);
   User.findOne({
     where:{
@@ -59,13 +58,13 @@ router.post( '/', function ( req, res ) {
     }
   })
   .then (function (data){
-    console.log(444444444);
     if(data===null){
       hash(req)
         .then(function(hash) {
           var userObj = {
           email : req.body.email,
           password: hash,
+          stripeCustomer : false
           };
 
           User.create(userObj)
@@ -81,7 +80,6 @@ router.post( '/', function ( req, res ) {
         });
     } else {
       //EEEEERRRRRROOOOOOOORRRRRR
-      console.log(4.5);
       return res.send("username already taken");
     }
   });

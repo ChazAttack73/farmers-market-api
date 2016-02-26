@@ -17,15 +17,17 @@ angular.module('myApp')
     };
 //This is throwing error because it runs when vendorPrivatePage uses this controller
 //but it does not have an id to give it
-  // ProductService.getProduct(id).success(function(data){
-  //   $scope.Product = data;
-  // });
+  ProductService.getProduct(id).success(function(data){
+    $scope.Product = data;
+  });
+
+
 
   $scope.postProduct=function(product) {
     if (product === undefined) {
       $scope.noNewPost = false;
       $scope.errorDiv = false;
-      return $scope.error = "You left all fields blank.  Please retry."
+      return $scope.error = "You left all fields blank.  Please retry.";
       }
       if(product.name === undefined ||
         product.price === undefined ||
@@ -50,14 +52,20 @@ angular.module('myApp')
       return $scope.error = 'Unknown error. Please try again';
     };
 
+
   $scope.handleStripe = function(){
+    console.log(111111111111);
 
     if($scope.stripe===undefined){
-      return;
+      return $scope.error = "Please fill out all required fields";
     }
     if($scope.Product.quantity<=0){
-      return;
+      return $scope.error = "SOLD OUT";
     }
+    // a validation to make sure someone is logged in.
+    //if(loggin checker thing here, if someone isn't logged in){
+    //  return $scope.error = "need to log in"
+    //}
 
     var number = $scope.stripe.number;
     var cvc = $scope.stripe.cvc;
@@ -68,12 +76,6 @@ angular.module('myApp')
       return stripe.card.createToken($scope.stripe)
       .then(function (response) {
         console.log('token created for card ending in ', response.card.last4);
-
-
-
-
-
-
         var payment = angular.copy($scope.stripe);
         payment.card = void 0;
         payment.token = response.id;
@@ -81,36 +83,52 @@ angular.module('myApp')
         payment.product = $scope.Product.id;
         payment.productQuantity = 1;
         payment.amount = $scope.Product.price;
+        payment.user = $rootScope.user_user;
 
         ProductService.chargeProduct(payment);
+
+        $rootScope.card.last4 = response.card.last4;
+
+        $scope.Product.quantity--;
+        response.quantity = $scope.Product.quantity;
+        response.routeParams = parseInt($routeParams.id);
+
       })
-      // .then(function (payment) {
-      //   console.log('successfully submitted payment for $', payment.amount);
-      // });
-      // .catch(function (err) {
-      //   if (err.type && /^Stripe/.test(err.type)) {
-      //     console.log('Stripe error: ', err.message);
-      //   }
-      //   else {
-      //     console.log('Other error occurred, possibly with your API', err.message);
+      .then(function (data) {
 
-      //     // Stripe.customers.create({
-      //     //   description: 'Customer for test@example.com',
-      //     //   source: response.id // the token
-      //     //   }, function(err, customer) {
-      //     //     // asynchronously called
-      //     //   });
+        console.log('successfully submitted payment for $', data);
 
-      //     // $scope.Product.quantity--;
-      //     // response.quantity = $scope.Product.quantity;
-      //     // response.routeParams = parseInt($routeParams.id);
-      //     // ProductService.chargeProduct(response).then(function(data){
-      //     //   $location.path('/product/'+response.routeParams);
-      //     // });
-      //   }
-      // });
+      })
+      .catch(function (err) {
+        if (err.type && /^Stripe/.test(err.type)) {
+          console.log('Stripe error: ', err.message);
+        }
+        else {
+          console.log('Other error occurred, possibly with your API', err.message);
+
+          // Stripe.customers.create({
+          //   description: 'Customer for test@example.com',
+          //   source: response.id // the token
+          //   }, function(err, customer) {
+          //     // asynchronously called
+          //   });
+
+        }
+      });
     }
   };
+
+  $scope.checkout = function(){
+    //this will go to User table
+      //if($rootScope.user_user.false){
+        //show the card form to make token
+      //} else{
+        //bring out the div to show if they want to use the same card number
+        //a button to confirm payment
+        //a button to change payment - pops out another payment form
+      //}
+  };
+
 
   $scope.submitEdit = function(product) {
     ProductService.editProduct(product).then(function(data){
