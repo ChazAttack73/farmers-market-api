@@ -64,7 +64,7 @@ angular.module('myApp')
 
     EventService.addUser(new_user)
     .success(function(data){
-      $location.url('register');
+      $location.url('/');
     });
   };
 }]);
