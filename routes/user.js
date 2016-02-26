@@ -64,6 +64,7 @@ router.post( '/', function ( req, res ) {
           var userObj = {
           email : req.body.email,
           password: hash,
+          stripeCustomer : false
           };
 
           User.create(userObj)

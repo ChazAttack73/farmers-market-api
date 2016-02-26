@@ -27,7 +27,7 @@ router.post('/:id',function( req, res){
     .then(function(data){
       console.log(77777777777777);
       var charge = stripe.charges.create({
-        amount: 1000, // amount in cents, again
+        amount: req.body.amount, // amount in cents, again
         currency: "usd",
         source: req.body.token,
         description: "Example charge",
