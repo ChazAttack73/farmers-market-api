@@ -57,33 +57,39 @@
     <div  ng-init="getVendorAndProducts(vendor_user)">
       <div class="postProductDiv" ng-hide="noNewPost">
         <div>
-          Enter a new product below.  You can choose a predefined category from the drop down list.  This is recommended even if you offer a specific variety (you can list that in your description).  If you product is outside the predefined options, select new.  If you have one, please include a picture!:
+          Enter a new product below.  You can choose a predefined category from the drop down list.  This is recommended even if you offer a specific variety (you can list that in your description).  If you product is outside the predefined options, select other.  If you have one, please include a picture!:
+        </div>
           <br>
-          <label for="product_name">Product Name</label>
-          <input id="product_name" type="text" ng-model="product.name" required="true">
-       </div>
-        <div>
-          <label for="product_price">product price</label>
-          <input id="product_price" type="text" ng-model="product.price">
-        </div>
-        <div>
-          <label for="product_quantity">product quantity</label>
-          <input id="product_quantity" type="text" ng-model="product.quantity">
-        </div>
-        <div>
-          <label for="product_image">product description</label>
-          <input id="product_image" type="text" ng-model="product.description">
-        </div>
-        <div>
-          <label for="product_image">product image</label>
-          <input id="product_image" type="text" ng-model="product.product_picture">
-        </div>
-        <div class="commit">
-          <button type="button" ng-click="postProduct(product)">Post</button>
-        </div>
-        <div ng-hide="errorDiv" class="error">{{error}}</div>
-      </div>
 
+        <div ng-init="getAllProducts()">
+
+          <div>
+            <label for="product_name">Product Name</label>
+            <input id="product_name" type="text" ng-model=" searchProductsFilter" required="true" >
+              <option ng-repeat="product in Products | unique:'name' | orderBy:'name' | filter:product.name=searchProductsFilter"  value="{{product.name}}">{{product.name}}</option>
+          </div>
+          <div>
+            <label for="product_price">product price</label>
+            <input id="product_price" type="text" ng-model="product.price">
+          </div>
+          <div>
+            <label for="product_quantity">product quantity</label>
+            <input id="product_quantity" type="text" ng-model="product.quantity">
+          </div>
+          <div>
+            <label for="product_image">product description</label>
+            <input id="product_image" type="text" ng-model="product.description">
+          </div>
+          <div>
+            <label for="product_image">product image</label>
+            <input id="product_image" type="text" ng-model="product.product_picture">
+          </div>
+          <div class="commit">
+            <button type="button" ng-click="postProduct(product)">Post</button>
+          </div>
+          <div ng-hide="errorDiv" class="error">{{error}}</div>
+        </div>
+      </div>
 
 
 
@@ -91,21 +97,31 @@
 
       <div class="productContent" ng-repeat="product in vendor">
         <div class="product">
+          <div>{{product.name}}</div>
+          <div>{{product.price}}</div>
+          <div>{{product.quantity}}</div>
+          <div>{{product.description}}</div>
+          <div>{{product.product_picture}}</div>
           <div>
-            <label for="product_name">product name</label>
-            <input id="product_name" ng-value="vendor.name" type="text" ng-model="product.name">
+            <label for="product_name">Product Name</label>
+            <input id="product_name" type="text" ng-model="product.name" ng-value="product.name">
           </div>
           <div>
-            <label for="product_price">product price</label>
-            <input id="product_price" value="{{product.price}}" type="text" ng-model="product.price">
+          DOES NOT DISPAY CENTS IF IT IS .00
+            <label for="product_price">Product Price</label>
+            <input id="product_price" ng-value="product.price" type="text" ng-model="product.price">
           </div>
           <div>
-            <label for="product_quantity">product quantity</label>
-            <input id="product_quantity" value="{{product.quantity}}" type="text" ng-model="product.quantity">
+            <label for="product_quantity">Product Quantity</label>
+            <input id="product_quantity" ng-value="product.quantity" type="text" ng-model="product.quantity">
           </div>
           <div>
-            <label for="product_image">product image</label>
-            <input id="product_image" value="{{product.image}}" type="text" ng-model="product.image">
+            <label for="product_description">Product Description</label>
+            <input id="product_description" ng-value="product.description" type="text" ng-model="product.description">
+          </div>
+          <div>
+            <label for="product_poduct_picture">Product Image</label>
+            <input id="product_product_picture" ng-value="product.product_picture" type="text" ng-model="product.product_picture">
           </div>
           <div class="commit">
             <button type='button' ng-click="editProduct(product)"> Edit product</button> <button type='button' ng-click="deleteProduct(product)"> Delete product</button>

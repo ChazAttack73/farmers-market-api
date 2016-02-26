@@ -127,7 +127,7 @@ angular.module('myApp')
       $scope.vendorValue=false;
       //var param1 = $routeParams.param1;
       VendorService.getOneVendorAndProducts(vendor.id).success(function (data){
-      $scope.vendor = data;
+      return $scope.vendor = data.Products;
       });
     };
 

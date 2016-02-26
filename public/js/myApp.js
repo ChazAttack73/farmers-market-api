@@ -1,4 +1,8 @@
-angular.module('myApp', ['ngRoute', 'ngStorage']);
+angular.module('myApp', [
+  'ngRoute',
+  'ngStorage',
+  'angular.filter'
+  ]);
 
 var myApp = angular.module('myApp');
 

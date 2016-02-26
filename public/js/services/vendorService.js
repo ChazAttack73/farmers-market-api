@@ -19,11 +19,11 @@ angular.module('myApp')
     };
     this.getProductsFromVendorsByEvent = function (id) {
       return $http.get('/products/' + id);
-   };
-   this.editVendorInfo = function (vendor, vendorId) {
+    };
+    this.editVendorInfo = function (vendor, vendorId) {
       return $http.put('vendor/' + vendorId, vendor);
-   };
-   this.delVendor = function (vendor, vendorId) {
+    };
+    this.delVendor = function (vendor, vendorId) {
       return $http.delete('vendor/' + vendorId);
-   };
+    };
   }]);

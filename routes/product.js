@@ -34,6 +34,7 @@ router.get('/products/:id', function(req, res) {
   });
 });
 
+//Being called from Product Service by getProducts function
 router.get( '/', function ( req, res ) {
   Product.findAll()
     .then( function ( products ) {
