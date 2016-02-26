@@ -57,6 +57,7 @@ angular.module('myApp')
     };
 
     $scope.loginUser = function(userLoginCredentials){
+      console.log(11111111111111111);
       userLoginCredentials.type = 'user';
       EventService.loginUser(userLoginCredentials).success(function(result) {
 
