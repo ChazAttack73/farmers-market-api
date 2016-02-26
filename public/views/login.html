@@ -10,19 +10,13 @@
     </div>
     <div class="vendorLoginLogo"></div>
     <div class="loginForm">
-      <form>
-        COMPANY USERNAME:
-        <br>
-        <input class="vendor_name" value="" ng-model="vendor.username">
-        <br>
-        <br>
-        PASSWORD:
-        <br>
-        <input class="vendor_password" value="" ng-model="vendor.password">
-        <br>
-        <br>
+      <fieldset class="loginFieldset">
+        <label for="vendor_name">COMPANY USERNAME:</label>
+        <input id="vendor_name" value="" ng-model="vendor.username">
+        <label for="vendor_password">PASSWORD:</label>
+        <input id="vendor_password" value="" ng-model="vendor.password">
         <input class="loginSubmitBtn" type="submit" value="Login" ng-click="loginVendor(vendor)">
-      </form>
+      </fieldset>
     </div>
   </div>
 
@@ -34,33 +28,13 @@
     </div>
     <div class="userLoginLogo"></div>
     <div class="loginForm">
-      <form>
-        EMAIL:
-        <br>
-        <input class="user_username" value="" ng-model="user.username">
-        <br>
-        <br>
-        PASSWORD:
-        <br>
-        <input class="user_password" value="" ng-model="user..password">
-        <br>
-        <br>
+      <fieldset class="loginFieldset">
+        <label for="user_email">EMAIL:</label>
+        <input id="user_email" value="" ng-model="user.email">
+        <label for="user_password">PASSWORD:</label>
+        <input id="user_password" value="" ng-model="user.password">
         <input class="loginSubmitBtn" type="submit" value="Login" ng-click="loginUser(user)">
-      </form>
+      </fieldset>
     </div>
   </div>
-
-  <!-- <div>
-    <h1>User Login</h1>
-  </div>
-  <div class="login">
-    <form>
-      <br>
-      email:<input class="user_username" value="" ng-model="user.username">
-      <br>
-      Password:<input class="user_password" value="" ng-model="user.password">
-      <br><br>
-      <input type="submit" value="Login" class="button" ng-click="loginUser(user)">
-    </form> -->
-    <!-- <div class="error">{{error}}</div> -->
 </div>
