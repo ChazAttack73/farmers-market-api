@@ -282,8 +282,7 @@ body {
   width: 95%;
   margin: 5px 0px;
   border: 1px solid #361D06;
-  border-radius: 5px;
-  box-shadow: 2px 2px 2px #361D06; }
+  border-radius: 5px; }
 
 .vendorContent {
   display: flex;

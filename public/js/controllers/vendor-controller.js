@@ -33,7 +33,7 @@ angular.module('myApp')
 
     $scope.registerVendor = function(vendor) {
       if (vendor === undefined) {
-        return $scope.error = "You left all fields blank.  Please retry."
+        return $scope.error = "You left all fields blank.  Please retry.";
       }
       if(vendor.name === undefined ||
         vendor.password === undefined ||
@@ -141,10 +141,9 @@ angular.module('myApp')
       $scope.vendorValue=false;
       //var param1 = $routeParams.param1;
       VendorService.getOneVendorAndProducts(vendor.id).success(function (data){
-      $scope.vendor = data;
+        $scope.vendor = data;
       });
     };
-
 
 
 
