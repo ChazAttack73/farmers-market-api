@@ -4,10 +4,10 @@
 angular.module('myApp')
   .service('EventService', ['$http', function($http){
     this.getEvents = function(){
-      return $http.get('/event/');
+      return $http.get('/event');
     };
     this.getOneEvent = function(eventId){
-      return $http.get('/'+eventId);
+      return $http.get('event/events/'+eventId);
     };
     this.addEvent = function(event){
       return $http.post('/event', event);

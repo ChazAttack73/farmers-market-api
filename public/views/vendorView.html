@@ -10,8 +10,10 @@
 
   <div class="vendorNavBar" ng-init="vendorOn=true; getAllVendorsForEvent()">
     <!-- <a href="/#/vendor/view/{{vendor.EventId}}"> -->
-      <div class="listingButton vendorButton" ng-click="clickButton(); vendorOn=true; vendorValue=true">Vendors</div>
-      <div class="listingButton productButton" ng-click="vendorOn=false; ">Products</div>
+      <div class="navbarVendor" ng-click="clickButton(); vendorOn=true; vendorValue=true">
+      VENDORS
+      </div>
+      <div class="navbarProduce" ng-click="vendorOn=false">PRODUCE</div>
   </div>
 ​
   <div class=masterVendorView ng-if="vendorOn">
@@ -20,6 +22,7 @@
         <div ng-click="getVendorAndProducts(vendor)">
           <div class="vendorContent">
             <div class="vendorCompanyName">{{vendor.name}}</div>
+            <div class="vendorSeparator"></div>
             <div class="vendorCompanyPic" ng-style="{'background-image': 'url(' + vendor.company_pic + ')'}"></div>
             <div class="featuredProducts">
               <div class="productPics">Featured Item #1</div>
