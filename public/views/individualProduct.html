@@ -7,11 +7,54 @@
     <p class="product_description">{{Product.description}}</p>
   </div>
 
-  <button >Checkout</button>
+  <!-- <button >Checkout</button> -->
 
 
   <form id="payment-form" ng-submit="handleStripe()">
     <span class="payment-errors"></span>
+
+<!--     <div class="form-row">
+      <label>
+        <span>First Name</span>
+        <input type="text" size="30" ng-model="stripe.firstname"/>
+      </label>
+    </div> -->
+
+<!--     <div class="form-row">
+      <label>
+        <span>Last Name Name</span>
+        <input type="text" size="30" ng-model="stripe.lastname"/>
+      </label>
+    </div> -->
+
+<!--     <div class="form-row">
+      <label>
+        <span>E-mail address</span>
+        <input type="text" size="30" ng-model="stripe.email"/>
+      </label>
+    </div> -->
+
+<!--     <div class="form-row">
+      <label>
+        <span>Address Line 1</span>
+        <input type="text" size="30" ng-model="stripe.addressline1"/>
+      </label>
+    </div> -->
+
+<!--     <div class="form-row">
+      <label>
+        <span>Address Line 2</span>
+        <input type="text" size="30" ng-model="stripe.addressline2"/>
+      </label>
+    </div> -->
+
+<!--     <div class="form-row">
+      <label>
+        <span>Country / Region</span>
+        <input type="text" size="30" ng-model="stripe.country"/>
+      </label>
+    </div> -->
+
 
     <div class="form-row">
       <label>
@@ -39,12 +82,12 @@
     <button type="submit">Submit Payment</button>
   </form>
 
-  <div class="existingCare">
-    <p>**** **** **** {{last4}}</p> <!-- how to get the last code -->
+  <!-- <div class="existingCard">
+    <p>**** **** **** {{last4}}</p> how to get the last code
     <p>address line 1</p>
     <p>address line 2</p>
     <a href="">change card</a>
     <button type="submit">Submit Payment</button>
-  </div>
+  </div> -->
 
 </div>
