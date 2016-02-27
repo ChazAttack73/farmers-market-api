@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module('myApp')
-  .controller('VendorController', ['$scope', 'VendorService', 'ProductService', 'EventService', '$location', '$rootScope', '$localStorage', '$routeParams', '$route', function($scope, VendorService, ProductService, EventService, $location, $rootScope, $localStorage, $routeParams, $route){
+  .controller('VendorController', ['$scope', 'VendorService', 'ProductService', 'EventService', '$location', '$rootScope', '$localStorage', '$routeParams', '$route', '$window', function($scope, VendorService, ProductService, EventService, $location, $rootScope, $localStorage, $routeParams, $route, $window){
     $scope.vendorPrivate=true;
     $scope.vendorValue=true;
     $scope.Vendors = [];
@@ -49,7 +49,7 @@ angular.module('myApp')
         VendorService.regVendor($scope.vendor).success(function(result) {
           $rootScope.vendor_user = result;
           $localStorage.vendor_user = $rootScope.vendor_user;
-          $location.url('/vendor/private');
+          $window.location.href = ('https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_7ys0ugAueODi8W6rX3rWgIbwLuHANGt8&scope=read_write');
         });
         return;
       }
@@ -57,7 +57,7 @@ angular.module('myApp')
     };
 
     $scope.loginUser = function(userLoginCredentials){
-      console.log(11111111111111111);
+
       userLoginCredentials.type = 'user';
       EventService.loginUser(userLoginCredentials).success(function(result) {
 
