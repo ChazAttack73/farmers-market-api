@@ -13,9 +13,9 @@
       <div class="navbarVendor" ng-click="clickButton(); vendorOn=true; vendorValue=true">
       VENDORS
       </div>
-      <div class="navbarProduce" ng-click="vendorOn=false">PRODUCE</div>
+      <div class="navbarProduce" ng-click="vendorOn=false; getAllProductsForEvent()">PRODUCE</div>
   </div>
-​
+
   <div class=masterVendorView ng-if="vendorOn">
     <div class="vendorTab" ng-show="vendorValue">
       <div class="vendorListingCard" ng-repeat= "vendor in Vendors">
@@ -43,42 +43,36 @@
         <p>This page should show the Individual Vendor and their products</p>
         <button type="button" ng-click="clickButton()">Back</button>
       </div>
-    ​
-      <div class="productContent" ng-repeat="product in vendor.Products" >
-        <a class="product" ng-href="/#/product/{{product.id}}">
-          <div>
-            <h4 class="productName">{{product.name}} </h4>
-            <img class="productImage"  src="" alt="">   {{product_picture}} goes in here some where
-            <p class="productPrice">{{product.price}}</p>
-            <p class="productQuantity">{{product.quantity}}</p>
-          </div>
-        </a>
+    ​  <div class="vendorMain">
+        <div class="vendorProduct" ng-repeat="product in vendor.Products" >
+          <a class="privateVendorProduct" ng-href="/#/product/{{product.id}}">
+            <div class="vendorProductContainer">
+              <img class="privateVendorProductImage" src="{{product.product_picture}}">
+              <h4 class="privateVendorProductName">{{product.name}} </h4>
+              <p class="productPrice">${{product.price}}</p>
+              <p class="productQuantity">{{product.quantity}}</p>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-
-
-
-
-
-<div class="masterProductView" ng-if="!vendorOn" ng-init="productValue=true; getAllProductsForEvent()">
+<div class="masterProductView" ng-if="!vendorOn" ng-init="productValue=true">
   <div id="productPage" ng-show="productValue">
     <div id="productInfo">I'm showing all the product categories!
-      <h1 class="product_name"> {{product.name}} </h1>
       <p class="productDescription"> {{product.description}} </p>
       <p>There will be an ng-repeat below listing every product filtered by distinct.  These will be clickable.  I'm putting a button to represent this</p>
       <button type="button" ng-click="productValue=false ; ">See individual product category!</button>
     </div>
-  ​
-    <div class="productContent" ng-repeat="product in productsForEvent" >
-  ​    <div ng-click="getVendorAndProducts(vendor)">
-        <div class="product">
-          <h4 class="productName">{{product.name}} </h4>
-          <img class="productImage"  src="{{product.product_picture}}" alt=""> <!-- {{product_picture}} goes in here some where -->
-          <p class="productPrice">{{product.price}}</p>
-          <p class="productQuantity">{{product.quantity}}</p>
+  ​  <div class="productMain">
+      <div class="eventProductContent" ng-repeat="product in productsForEvent" >
+    ​    <div ng-click="getVendorAndProducts(vendor)">
+          <div class="product">
+            <img class="productImage"  src="{{product.product_picture}}" alt="">
+            <h4 class="eventProductName">{{product.name}} </h4>
+          </div>
         </div>
       </div>
     </div>
