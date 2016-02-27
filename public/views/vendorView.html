@@ -43,24 +43,21 @@
         <p>This page should show the Individual Vendor and their products</p>
         <button type="button" ng-click="clickButton()">Back</button>
       </div>
-    ​
-      <div class="vendorProduct" ng-repeat="product in vendor.Products" >
-        <a class="privateVendorProduct" ng-href="/#/product/{{product.id}}">
-          <div>
-            <h4 class="privateVendorProductName">{{product.name}} </h4>
-            <img class="privateVendorProductImage" src="{{product.product_picture}}">
-            <p class="productPrice">{{product.price}}</p>
-            <p class="productQuantity">{{product.quantity}}</p>
-          </div>
-        </a>
+    ​  <div class="vendorMain">
+        <div class="vendorProduct" ng-repeat="product in vendor.Products" >
+          <a class="privateVendorProduct" ng-href="/#/product/{{product.id}}">
+            <div class="vendorProductContainer">
+              <img class="privateVendorProductImage" src="{{product.product_picture}}">
+              <h4 class="privateVendorProductName">{{product.name}} </h4>
+              <p class="productPrice">${{product.price}}</p>
+              <p class="productQuantity">{{product.quantity}}</p>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
 
 <div class="masterProductView" ng-if="!vendorOn" ng-init="productValue=true">
   <div id="productPage" ng-show="productValue">

@@ -606,7 +606,6 @@ body {
   flex: 0 0 80%;
 
   fieldset {
-
   }
 }
 
@@ -695,14 +694,45 @@ body {
 
 // ============================= Individual Vendor View
 
-.vendorProduct {
+.vendorMain {
+  @include flexDisplayRow;
+  justify-content: center;
 
-  .privateVendorProduct {
+  .vendorProduct {
+    @include flexDisplayRow;
+
+    .vendorProductContainer {
+      @include flexDisplayRow;
+      min-height:200px;
+      width: 150px;
+      margin: 15px;
+      background-color: $tan;
+
+      a {
+        text-decoration: none;
+      }
+
+      .privateVendorProductImage {
+        height: 150px;
+        width: 150px;
+        padding: 6px;
+      }
+      .privateVendorProductName {
+        flex: $flexFull;
+        color: $gray;
+        text-align: center;
+      }
+      .productPrice {
+        flex: $flexFull;
+        color: $gray;
+        text-align: center;
+      }
+      .productQuantity {
+        flex: $flexFull;
+        color: $gray;
+        padding-bottom: 6px;
+        text-align: center;
+      }
+    }
   }
-
-  .privateVendorProductName {
-  }
-
-  .private
-
 }

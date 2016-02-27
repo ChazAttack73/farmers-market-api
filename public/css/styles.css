@@ -526,3 +526,37 @@ body {
         text-align: center;
         line-height: 40px;
         color: #575450; }
+
+.vendorMain {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center; }
+  .vendorMain .vendorProduct {
+    display: flex;
+    flex-flow: row wrap; }
+    .vendorMain .vendorProduct .vendorProductContainer {
+      display: flex;
+      flex-flow: row wrap;
+      min-height: 200px;
+      width: 150px;
+      margin: 15px;
+      background-color: #F4F3D5; }
+      .vendorMain .vendorProduct .vendorProductContainer a {
+        text-decoration: none; }
+      .vendorMain .vendorProduct .vendorProductContainer .privateVendorProductImage {
+        height: 150px;
+        width: 150px;
+        padding: 6px; }
+      .vendorMain .vendorProduct .vendorProductContainer .privateVendorProductName {
+        flex: 0 0 100%;
+        color: #575450;
+        text-align: center; }
+      .vendorMain .vendorProduct .vendorProductContainer .productPrice {
+        flex: 0 0 100%;
+        color: #575450;
+        text-align: center; }
+      .vendorMain .vendorProduct .vendorProductContainer .productQuantity {
+        flex: 0 0 100%;
+        color: #575450;
+        padding-bottom: 6px;
+        text-align: center; }
