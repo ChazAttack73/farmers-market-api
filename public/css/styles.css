@@ -278,18 +278,17 @@ body {
   justify-content: center; }
 
 .vendorListingCard {
-  height: 250px;
-  width: 95%;
-  margin: 5px 0px;
-  border: 1px solid #361D06;
-  border-radius: 5px; }
+  height: 300px;
+  width: 350px;
+  margin: 10px 15px;
+  border: 1px solid #361D06; }
 
 .vendorContent {
   display: flex;
   flex-flow: row wrap;
   align-content: space-between;
   width: 100%;
-  height: 250px;
+  height: 300px;
   background-color: #F4F3D5;
   color: #575450;
   justify-content: center; }
@@ -301,7 +300,8 @@ body {
     text-align: center;
     padding-top: 4px;
     font-family: "Six Caps", sans-serif;
-    font-weight: 100; }
+    font-weight: 100;
+    margin-bottom: -15px; }
   .vendorContent .vendorSeparator {
     height: 1.1%;
     flex: 0 0 33%;
@@ -310,7 +310,7 @@ body {
     margin-bottom: 20px; }
   .vendorContent .vendorCompanyPic {
     flex: 0 0 75%;
-    height: 65%;
+    height: 60%;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover; }
@@ -504,3 +504,25 @@ body {
     font-family: "Montserrat", sans-serif;
     color: #575450;
     margin-top: -35px; }
+
+.productMain {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center; }
+  .productMain .eventProductContent {
+    display: flex;
+    flex-flow: row wrap; }
+    .productMain .eventProductContent .product {
+      flex: 0 0 25%;
+      height: 200px;
+      width: 150px;
+      margin: 15px;
+      background-color: #F4F3D5; }
+      .productMain .eventProductContent .product .productImage {
+        height: 150px;
+        width: 150px;
+        padding: 6px; }
+      .productMain .eventProductContent .product .eventProductName {
+        text-align: center;
+        line-height: 40px;
+        color: #575450; }

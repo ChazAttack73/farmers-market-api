@@ -3,14 +3,16 @@ var app = express();
 var router = express.Router();
 var db = require('./../models');
 var Product = db.Product;
+var CONFIG = require('./../config/config.json');
 var bodyParser = require('body-parser');
+var Vendor = db.Vendor;
+var Product = db.Product;
 
 router.use(bodyParser.json());
 
-
-
 //Being called from VendorServer by getProductsFromVendorsByEvent function
-router.get('/products/:id', function(req, res) {
+router.get('/:id', function(req, res) {
+  console.log('Hello from Product Router', req.params.id);
   Product.findAll({
       include: [{
           model: Vendor,
@@ -41,16 +43,16 @@ router.get( '/', function ( req, res ) {
     });
   });
 
-router.get( '/:id', function( req, res){
-  Product.findOne({
-    where:{
-      id: req.params.id
-    }
-  })
-  .then (function (product){
-    res.json( product );
-  });
-});
+// router.get( '/:id', function( req, res){
+//   Product.findOne({
+//     where:{
+//       VendorId: req.params.id
+//     }
+//   })
+//   .then (function (product){
+//     res.json( product );
+//   });
+// });
 
 router.post('/new', function(req, res){
   console.log('req.body on Product post', req.body);

@@ -89,9 +89,10 @@ angular.module('myApp')
       });
     };
 
-    $scope.getAllProductsForEvent = function(vendorID) {
+    $scope.getAllProductsForEvent = function() {
+      id = $routeParams.id;
       $scope.productsForEvent=[];
-      VendorService.getProductsFromVendorsByEvent($scope.vendor_user.id).success(function (data) {
+      VendorService.getProductsFromVendorsByEvent(id).success(function(data) {
         $scope.productsForEvent = data;
       });
     };
@@ -120,15 +121,6 @@ angular.module('myApp')
     //     $scope.error = "Please try again";
     //   });
     // };
-    //
-    //This will run every time controller (or page that uses this controler) is hit.  Do we want this?
-    $scope.event = [];
-    $scope.getEventProducts = function(event){
-      // $scope.productValue = false;
-      EventService.getOneEvent(event.id).success(function(data){
-        $scope.event = data;
-      });
-    };
 
     $scope.editVendor = function(vendor) {
       VendorService.editVendorInfo(vendor, $rootScope.vendor_user.id).success(function(data) {

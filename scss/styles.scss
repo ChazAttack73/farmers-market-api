@@ -380,18 +380,17 @@ body {
 }
 
 .vendorListingCard {
-  height: 250px;
-  width: 95%;
-  margin: 5px 0px;
+  height: 300px;
+  width: 350px;
+  margin: 10px 15px;
   border: 1px solid #361D06;
-  border-radius: 5px;
 }
 
 .vendorContent {
   @include flexDisplayRow;
   align-content: space-between;
   width: 100%;
-  height: 250px;
+  height: 300px;
   background-color: $tan;
   color: $gray;
   justify-content: center;
@@ -405,6 +404,7 @@ body {
     padding-top: 4px;
     font-family: $sixCaps;
     font-weight: 100;
+    margin-bottom: -15px;
   }
 
   .vendorSeparator {
@@ -417,7 +417,7 @@ body {
 
   .vendorCompanyPic {
     flex: 0 0 75%;
-    height: 65%;
+    height: 60%;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -660,4 +660,49 @@ body {
     color: $gray;
     margin-top: -35px;
   }
+}
+
+// ======================== Product Listing by Event
+
+.productMain {
+  @include flexDisplayRow;
+  justify-content: center;
+
+  .eventProductContent {
+  @include flexDisplayRow;
+
+    .product {
+      flex: 0 0 25%;
+      height: 200px;
+      width: 150px;
+      margin: 15px;
+      background-color: $tan;
+
+      .productImage {
+        height: 150px;
+        width: 150px;
+        padding: 6px;
+      }
+
+      .eventProductName {
+        text-align: center;
+        line-height: 40px;
+        color: $gray;
+      }
+    }
+  }
+}
+
+// ============================= Individual Vendor View
+
+.vendorProduct {
+
+  .privateVendorProduct {
+  }
+
+  .privateVendorProductName {
+  }
+
+  .private
+
 }
