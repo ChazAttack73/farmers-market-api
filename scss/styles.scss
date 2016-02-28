@@ -28,6 +28,7 @@ $tan-bg: url('./../images/tan-bg.jpg');
 $leaves: url('./../images/leaves.svg');
 $vendor: url('./../images/small-vendors.svg');
 $smallLeaves: url('./../images/small-leaves.svg');
+$shopper: url('./../images/shopper-icon.svg');
 
 ///// **MIXINS**
 
@@ -56,6 +57,10 @@ body {
   @include flexDisplayRow;
   background-image: $charcoal-bg;
   justify-content: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 .mainTitleBar {
@@ -101,14 +106,13 @@ body {
     display: none;
   }
 
-  width: 100px;
+  width: 120px;
   position: fixed;
   top: 50px;
   right: 0;
   background-color: $black;
   font-family: $mont;
   text-align: center;
-  padding: 5px;
   font-size: 1.0em;
   z-index: 100;
   height: 0;
@@ -122,10 +126,11 @@ body {
   }
 
   li {
+    // height: 80px;
     list-style-type: none;
     border-top: 1px solid $gray;
-    height: 0;
-    opacity: 0;
+    // height: 0;
+    // opacity: 0;
   }
 
   a {
@@ -137,7 +142,7 @@ body {
 }
 
 .mobileMenu.menuOn {
-  height: 70px;
+  height: auto;
   opacity: 1;
 
   ul {
@@ -146,7 +151,7 @@ body {
   }
 
   li {
-    height: auto;
+    height: 40px;
     opacity: 1;
   }
 
@@ -230,7 +235,9 @@ body {
       color: $gray;
       font-size: 4em;
       line-height: 110%;
-      padding: 5% 10%;
+      padding: 5% 0;
+      max-height: 240px;
+      overflow: hidden;
     }
   }
 
@@ -484,115 +491,129 @@ body {
   font-weight : 700;
 }
 
-///// **LOGIN PAGE**
+///// **LOGIN PAGE** /////
 
 .loginMainWrapper {
   @include flexDisplayRow;
   width: 100%;
-  margin: 30px 0px;
+  margin: 20px 0px;
   justify-content: center;
   font-family: $mont;
-  color: $tan;
+  color: $gray;
 }
+
 
 .chooseLoginWrapper {
   @include flexDisplayRow;
   height: auto;
-  flex: $flexFull;
-  justify-content: center;
+  flex: 0 0 90%;
+  justify-content: space-between;
 
   @mixin loginToggleBtn {
-    height: 100px;
-    width: 100px;
-
-    @include media( ">phone", "<=tablet" ) {
-      height: 150px;
-      width: 150px;
-    }
-
-    margin-right: 15px;
-    background-size: contain;
+    height: 40px;
+    width: 49.5%;
+    text-align: center;
     background-position: center;
     background-repeat: no-repeat;
-    border: 2px solid $tan;
-    box-shadow: 3px 3px 5px 6px $gray - 15;
+    background-image: $tan-bg;
+    font-size: 0.7em;
+    line-height: 40px;
+    font-weight: 600;
+
+    @include media( ">phone", "<=tablet" ) {
+      height: 100px;
+      width: 49.5%;
+      font-size: 1em;
+      line-height: 100px;
+    }
+  }
+
+  .toggledBtn {
+    opacity: 0.7;
   }
 
   .chooseVendor {
     @include loginToggleBtn;
-    background-image: $vendor;
   }
 
   .chooseUser {
     @include loginToggleBtn;
-    background-image: $smallLeaves;
   }
 }
 
 .loginWrapper {
   @include flexDisplayRow;
-  flex: 0 0 85%;
-  height: 300px;
-  margin: 40px 0px;
-  padding: 5px;
-  background-image: $charcoal-bg;
-  border: 2px solid $tan;
-  box-shadow: 3px 3px 5px 6px $gray - 15;
+  flex: 0 0 90%;
+  height: 40%;
+  background-image: $tan-bg;
 
   .loginTitle {
+    font-family: $sixCaps;
     flex: 0 0 70%;
-    height: 20%;
-    margin-top: 20px;
-    padding: 5px 0px 0px 5px;
-
-    span {
-      font-size: 1.5em;
-      line-height: 1.5em;
-    }
+    margin: 10px 0px;
+    font-size: 3.0em;
+    text-align: center;
   }
 
   .vendorLoginLogo {
     flex: 0 0 30%;
-    background-image: $vendor;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    margin: auto;
+
+    svg {
+      height: 90%;
+      width: 90%;
+    }
+
+    path {
+      fill: $gray;
+    }
   }
 
   .userLoginLogo {
     flex: 0 0 30%;
-    background-image: $smallLeaves;
-    background-size: contain;
+    background-image: $shopper;
+    background-size: initial;
     background-position: center;
     background-repeat: no-repeat;
   }
 }
 
 .loginForm {
+  @include flexDisplayRow;
   flex: $flexFull;
-  padding: 10px;
+  justify-content: center;
 
   .loginFieldset {
+    flex: $flexFull;
     border: 0;
-    padding: 0.01em 0 0 0;
+    padding: 0.01em 30px 0 30px;
     margin: 0;
     min-width: 0;
   }
 
-  label, input {
+  label {
+    font-size: 0.65em;
+    font-weight: 700;
+    height: auto;
+  }
+
+  input {
     display: block;
-    margin: 10px;
+    height: 40px;
+    border: 0;
+    box-shadow: inset 0px 1px 6px $gray;
+    width: 100%;
   }
 
   .loginSubmitBtn {
     font-family: $mont;
+    font-weight: 700;
     color: $tan;
-    border: 2px solid $tan;
-    height: 30px;
-    width: 80px;
+    height: 40px;
     background-image: $charcoal-bg;
-    box-shadow: 1px 1px 2px 3px $gray - 15;
-
+    box-shadow: 0px 2px 5px $gray;
+    width: 100%;
+    margin: 30px 0 60px 0;
   }
 }
 
