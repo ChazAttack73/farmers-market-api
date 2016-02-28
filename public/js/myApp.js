@@ -71,5 +71,5 @@ myApp
   if($localStorage.hasOwnProperty("vendor_user")) {
   }
   //initialize
-  //$rootScope.vendor_user = $localStorage.vendor_user || '!loggedin';
+  $rootScope.vendor_user = $localStorage.vendor_user || '!loggedin';
 }]);

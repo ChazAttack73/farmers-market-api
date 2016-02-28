@@ -349,7 +349,6 @@ body {
     opacity: 1;
     transition: 0.6s ease;
   }
-
 }
 
 .listingButton {
@@ -388,19 +387,17 @@ body {
 }
 
 .vendorListingCard {
-  height: 250px;
-  width: 95%;
-  margin: 5px 0px;
+  height: 300px;
+  width: 350px;
+  margin: 10px 15px;
   border: 1px solid #361D06;
-  border-radius: 5px;
-  box-shadow: 2px 2px 2px #361D06;
 }
 
 .vendorContent {
   @include flexDisplayRow;
   align-content: space-between;
   width: 100%;
-  height: 250px;
+  height: 300px;
   background-color: $tan;
   color: $gray;
   justify-content: center;
@@ -414,6 +411,7 @@ body {
     padding-top: 4px;
     font-family: $sixCaps;
     font-weight: 100;
+    margin-bottom: -15px;
   }
 
   .vendorSeparator {
@@ -426,7 +424,7 @@ body {
 
   .vendorCompanyPic {
     flex: 0 0 75%;
-    height: 65%;
+    height: 60%;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -629,7 +627,6 @@ body {
   flex: 0 0 80%;
 
   fieldset {
-
   }
 }
 
@@ -682,5 +679,81 @@ body {
     font-family: $mont;
     color: $gray;
     margin-top: -35px;
+  }
+}
+
+// ======================== Product Listing by Event
+
+.productMain {
+  @include flexDisplayRow;
+  justify-content: center;
+
+  .eventProductContent {
+  @include flexDisplayRow;
+
+    .product {
+      flex: 0 0 25%;
+      height: 200px;
+      width: 150px;
+      margin: 15px;
+      background-color: $tan;
+
+      .productImage {
+        height: 150px;
+        width: 150px;
+        padding: 6px;
+      }
+
+      .eventProductName {
+        text-align: center;
+        line-height: 40px;
+        color: $gray;
+      }
+    }
+  }
+}
+
+// ============================= Individual Vendor View
+
+.vendorMain {
+  @include flexDisplayRow;
+  justify-content: center;
+
+  .vendorProduct {
+    @include flexDisplayRow;
+
+    .vendorProductContainer {
+      @include flexDisplayRow;
+      min-height:200px;
+      width: 150px;
+      margin: 15px;
+      background-color: $tan;
+
+      a {
+        text-decoration: none;
+      }
+
+      .privateVendorProductImage {
+        height: 150px;
+        width: 150px;
+        padding: 6px;
+      }
+      .privateVendorProductName {
+        flex: $flexFull;
+        color: $gray;
+        text-align: center;
+      }
+      .productPrice {
+        flex: $flexFull;
+        color: $gray;
+        text-align: center;
+      }
+      .productQuantity {
+        flex: $flexFull;
+        color: $gray;
+        padding-bottom: 6px;
+        text-align: center;
+      }
+    }
   }
 }

@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module('myApp')
-  .controller('VendorController', ['$scope', 'VendorService', 'ProductService', 'EventService', '$location', '$rootScope', '$localStorage', '$routeParams', '$route', function($scope, VendorService, ProductService, EventService, $location, $rootScope, $localStorage, $routeParams, $route){
+  .controller('VendorController', ['$scope', 'VendorService', 'ProductService', 'EventService', '$location', '$rootScope', '$localStorage', '$routeParams', '$route', '$window', function($scope, VendorService, ProductService, EventService, $location, $rootScope, $localStorage, $routeParams, $route, $window){
     $scope.vendorPrivate=true;
     $scope.vendorValue=true;
     $scope.Vendors = [];
@@ -33,7 +33,7 @@ angular.module('myApp')
 
     $scope.registerVendor = function(vendor) {
       if (vendor === undefined) {
-        return $scope.error = "You left all fields blank.  Please retry."
+        return $scope.error = "You left all fields blank.  Please retry.";
       }
       if(vendor.name === undefined ||
         vendor.password === undefined ||
@@ -49,7 +49,7 @@ angular.module('myApp')
         VendorService.regVendor($scope.vendor).success(function(result) {
           $rootScope.vendor_user = result;
           $localStorage.vendor_user = $rootScope.vendor_user;
-          $location.url('/vendor/private');
+          $window.location.href = ('https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_7ys0ugAueODi8W6rX3rWgIbwLuHANGt8&scope=read_write');
         });
         return;
       }
@@ -57,7 +57,7 @@ angular.module('myApp')
     };
 
     $scope.loginUser = function(userLoginCredentials){
-      console.log(11111111111111111);
+
       userLoginCredentials.type = 'user';
       EventService.loginUser(userLoginCredentials).success(function(result) {
 
@@ -89,9 +89,10 @@ angular.module('myApp')
       });
     };
 
-    $scope.getAllProductsForEvent = function(vendorID) {
+    $scope.getAllProductsForEvent = function() {
+      id = $routeParams.id;
       $scope.productsForEvent=[];
-      VendorService.getProductsFromVendorsByEvent($scope.vendor_user.id).success(function (data) {
+      VendorService.getProductsFromVendorsByEvent(id).success(function(data) {
         $scope.productsForEvent = data;
       });
     };
@@ -120,15 +121,6 @@ angular.module('myApp')
     //     $scope.error = "Please try again";
     //   });
     // };
-    //
-    //This will run every time controller (or page that uses this controler) is hit.  Do we want this?
-    $scope.event = [];
-    $scope.getEventProducts = function(event){
-      // $scope.productValue = false;
-      EventService.getOneEvent(event.id).success(function(data){
-        $scope.event = data;
-      });
-    };
 
     $scope.editVendor = function(vendor) {
       VendorService.editVendorInfo(vendor, $rootScope.vendor_user.id).success(function(data) {
@@ -142,10 +134,9 @@ angular.module('myApp')
       $scope.vendorValue=false;
       //var param1 = $routeParams.param1;
       VendorService.getOneVendorAndProducts(vendor.id).success(function (data){
-      $scope.vendor = data;
+        $scope.vendor = data;
       });
     };
-
 
 
 
