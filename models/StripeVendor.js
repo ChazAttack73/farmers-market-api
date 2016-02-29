@@ -4,20 +4,12 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    livemode: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
-    },
-    refresh_token: {
-      type: DataTypes.STRING,
-      allowNull: false
-      //unique:true
-    },
+    // refresh_token: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false
+    //   //unique:true
+    // },
     token_type: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    stripe_publishable_key: {
       type: DataTypes.STRING,
       allowNull: false
     },
