@@ -9,6 +9,9 @@ body {
   background-image: url("./../images/charcoal-bg.png");
   justify-content: center; }
 
+.uppercase {
+  text-transform: uppercase; }
+
 .mainTitleBar {
   height: 50px;
   width: 100%;
@@ -49,14 +52,13 @@ body {
         border: 1px solid #575450; }
 
 .mobileMenu {
-  width: 100px;
+  width: 120px;
   position: fixed;
   top: 50px;
   right: 0;
   background-color: #0F0F0E;
   font-family: "Montserrat", sans-serif;
   text-align: center;
-  padding: 5px;
   font-size: 1.0em;
   z-index: 100;
   height: 0;
@@ -71,9 +73,7 @@ body {
     opacity: 0; }
   .mobileMenu li {
     list-style-type: none;
-    border-top: 1px solid #575450;
-    height: 0;
-    opacity: 0; }
+    border-top: 1px solid #575450; }
   .mobileMenu a {
     text-decoration: none;
     color: #575450;
@@ -81,13 +81,13 @@ body {
     opacity: 0; }
 
 .mobileMenu.menuOn {
-  height: 70px;
+  height: auto;
   opacity: 1; }
   .mobileMenu.menuOn ul {
     height: auto;
     opacity: 1; }
   .mobileMenu.menuOn li {
-    height: auto;
+    height: 40px;
     opacity: 1; }
   .mobileMenu.menuOn a {
     height: auto;
@@ -160,7 +160,9 @@ body {
       color: #575450;
       font-size: 4em;
       line-height: 110%;
-      padding: 5% 10%; }
+      padding: 5% 0;
+      max-height: 240px;
+      overflow: hidden; }
   .eventContainer .separatorLine {
     height: 0.5%;
     flex: 0 0 50%;
@@ -363,98 +365,111 @@ body {
   display: flex;
   flex-flow: row wrap;
   width: 100%;
-  margin: 30px 0px;
+  margin: 20px 0px;
   justify-content: center;
   font-family: "Montserrat", sans-serif;
-  color: #F4F3D5; }
+  color: #575450; }
 
 .chooseLoginWrapper {
   display: flex;
   flex-flow: row wrap;
   height: auto;
-  flex: 0 0 100%;
-  justify-content: center; }
+  flex: 0 0 90%;
+  justify-content: space-between; }
+  .chooseLoginWrapper .toggledBtn {
+    opacity: 0.7; }
   .chooseLoginWrapper .chooseVendor {
-    height: 100px;
-    width: 100px;
-    margin-right: 15px;
-    background-size: contain;
+    height: 40px;
+    width: 49.5%;
+    text-align: center;
     background-position: center;
     background-repeat: no-repeat;
-    border: 2px solid #F4F3D5;
-    box-shadow: 3px 3px 5px 6px #484541;
-    background-image: url("./../images/small-vendors.svg"); }
+    background-image: url("./../images/tan-bg.jpg");
+    font-size: 0.7em;
+    line-height: 40px;
+    font-weight: 600; }
 
 @media (min-width: 421px) and (max-width: 768px) {
   .chooseLoginWrapper .chooseVendor {
-    height: 150px;
-    width: 150px; } }
-  .chooseLoginWrapper .chooseUser {
     height: 100px;
-    width: 100px;
-    margin-right: 15px;
-    background-size: contain;
+    width: 49.5%;
+    font-size: 1em;
+    line-height: 100px; } }
+  .chooseLoginWrapper .chooseUser {
+    height: 40px;
+    width: 49.5%;
+    text-align: center;
     background-position: center;
     background-repeat: no-repeat;
-    border: 2px solid #F4F3D5;
-    box-shadow: 3px 3px 5px 6px #484541;
-    background-image: url("./../images/small-leaves.svg"); }
+    background-image: url("./../images/tan-bg.jpg");
+    font-size: 0.7em;
+    line-height: 40px;
+    font-weight: 600; }
 
 @media (min-width: 421px) and (max-width: 768px) {
   .chooseLoginWrapper .chooseUser {
-    height: 150px;
-    width: 150px; } }
+    height: 100px;
+    width: 49.5%;
+    font-size: 1em;
+    line-height: 100px; } }
 
 .loginWrapper {
   display: flex;
   flex-flow: row wrap;
-  flex: 0 0 85%;
-  height: 300px;
-  margin: 40px 0px;
-  padding: 5px;
-  background-image: url("./../images/charcoal-bg.png");
-  border: 2px solid #F4F3D5;
-  box-shadow: 3px 3px 5px 6px #484541; }
+  flex: 0 0 90%;
+  height: 40%;
+  background-image: url("./../images/tan-bg.jpg"); }
   .loginWrapper .loginTitle {
+    font-family: "Six Caps", sans-serif;
     flex: 0 0 70%;
-    height: 20%;
-    margin-top: 20px;
-    padding: 5px 0px 0px 5px; }
-    .loginWrapper .loginTitle span {
-      font-size: 1.5em;
-      line-height: 1.5em; }
+    margin: 10px 0px;
+    font-size: 3.0em;
+    text-align: center; }
   .loginWrapper .vendorLoginLogo {
     flex: 0 0 30%;
-    background-image: url("./../images/small-vendors.svg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat; }
+    margin: auto; }
+    .loginWrapper .vendorLoginLogo svg {
+      height: 90%;
+      width: 90%; }
+    .loginWrapper .vendorLoginLogo path {
+      fill: #575450; }
   .loginWrapper .userLoginLogo {
     flex: 0 0 30%;
-    background-image: url("./../images/small-leaves.svg");
-    background-size: contain;
+    background-image: url("./../images/shopper-icon.svg");
+    background-size: initial;
     background-position: center;
     background-repeat: no-repeat; }
 
 .loginForm {
+  display: flex;
+  flex-flow: row wrap;
   flex: 0 0 100%;
-  padding: 10px; }
+  justify-content: center; }
   .loginForm .loginFieldset {
+    flex: 0 0 100%;
     border: 0;
-    padding: 0.01em 0 0 0;
+    padding: 0.01em 30px 0 30px;
     margin: 0;
     min-width: 0; }
-  .loginForm label, .loginForm input {
+  .loginForm label {
+    font-size: 0.65em;
+    font-weight: 700;
+    height: auto; }
+  .loginForm input {
     display: block;
-    margin: 10px; }
+    height: 40px;
+    border: 0;
+    box-shadow: inset 0px 1px 6px #575450;
+    width: 100%; }
   .loginForm .loginSubmitBtn {
     font-family: "Montserrat", sans-serif;
+    font-weight: 700;
     color: #F4F3D5;
-    border: 2px solid #F4F3D5;
-    height: 30px;
-    width: 80px;
+    height: 40px;
     background-image: url("./../images/charcoal-bg.png");
-    box-shadow: 1px 1px 2px 3px #484541; }
+    box-shadow: 0px 2px 5px #575450;
+    width: 100%;
+    margin: 30px 0 60px 0; }
 
 .regMainWrapper {
   display: flex;
@@ -577,3 +592,52 @@ body {
         color: #575450;
         padding-bottom: 6px;
         text-align: center; }
+
+.list-wrapper {
+  position: absolute;
+  width: 300px;
+  height: 150px;
+  top: 40%;
+  margin-top: -75px;
+  left: 50%;
+  margin-left: -150px; }
+
+.label {
+  padding: 5px 0px;
+  text-align: center; }
+
+.inputA {
+  width: 230px;
+  height: 30px;
+  outline: none;
+  padding: 0px 10px;
+  margin: 0px auto;
+  display: block; }
+
+.suggestions-list {
+  position: absolute;
+  list-style-type: none;
+  margin: 0 0 0 23px;
+  padding: 0;
+  overflow: auto; }
+
+.suggestions-list li {
+  color: red;
+  padding: 10px 10px;
+  height: 10px;
+  cursor: pointer;
+  background: tan;
+  border-bottom: 1px solid green;
+  width: 234px; }
+
+.suggestions-list li:hover {
+  background: yellow; }
+
+.suggestions-list li:active,
+.suggestions-list li.active {
+  color: #FFFFFF;
+  background: #0099FF;
+  width: 234px; }
+
+.suggestions-list:focus {
+  outline: none; }

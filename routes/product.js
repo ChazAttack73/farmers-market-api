@@ -12,7 +12,6 @@ router.use(bodyParser.json());
 
 //Being called from VendorServer by getProductsFromVendorsByEvent function
 router.get('/:id', function(req, res) {
-  console.log('Hello from Product Router', req.params.id);
   Product.findAll({
       include: [{
           model: Vendor,
@@ -36,6 +35,7 @@ router.get('/:id', function(req, res) {
   });
 });
 
+//Being called from Product Service by getProducts function
 router.get( '/', function ( req, res ) {
   Product.findAll()
     .then( function ( products ) {

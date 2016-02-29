@@ -16,14 +16,6 @@ angular.module('myApp')
       });
     };
 
-    $scope.logoutButton = function() {
-      VendorService.logoutVen().success(function() {
-        $rootScope.vendor_user=false;
-        $localStorage.$reset();
-        $location.url('/');
-      });
-    };
-
     $scope.getAllVendorsForEvent = function() {
       VendorService.getVendors(id)
       .success(function(data) {
@@ -47,8 +39,9 @@ angular.module('myApp')
           return $scope.error = "Passwords do not match";
       } else {
         VendorService.regVendor($scope.vendor).success(function(result) {
-          $rootScope.vendor_user = result;
-          $localStorage.vendor_user = $rootScope.vendor_user;
+          $rootScope.loggedInVendor = result;
+          $localStorage.loggedInVendor = $rootScope.loggedInVendor;
+          $location.url('/vendor/private');
           $window.location.href = ('https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_7ys0ugAueODi8W6rX3rWgIbwLuHANGt8&scope=read_write');
         });
         return;
@@ -73,8 +66,8 @@ angular.module('myApp')
       console.log('At vendorservice', vendorLoginCredentials);
       vendorLoginCredentials.type = 'vendor';
       VendorService.loginVen(vendorLoginCredentials).success(function(result) {
-        $rootScope.vendor_user = result;
-        $localStorage.vendor_user = $rootScope.vendor_user;
+        $rootScope.loggedInVendor = result;
+        $localStorage.loggedInVendor = $rootScope.loggedInVendor;
         $location.url('/vendor/private');
       }).error(function(error) {
           $scope.error ="Wrong username or password";
@@ -82,17 +75,17 @@ angular.module('myApp')
     };
 
     $scope.deleteVendor = function(vendor) {
-      VendorService.delVendor(vendor, $rootScope.vendor_user.id).success(function(result) {
-        $rootScope.vendor_user=false;
+      VendorService.delVendor(vendor, $rootScope.loggedInVendor.id).success(function(result) {
+        $rootScope.loggedInVendor=null;
         $localStorage.$reset();
         $location.url('/');
       });
     };
 
     $scope.getAllProductsForEvent = function() {
-      id = $routeParams.id;
+      var id = $routeParams.id;
       $scope.productsForEvent=[];
-      VendorService.getProductsFromVendorsByEvent(id).success(function(data) {
+      VendorService.getProductsFromVendorsByEvent(id).success(function (data) {
         $scope.productsForEvent = data;
       });
     };
@@ -123,18 +116,19 @@ angular.module('myApp')
     // };
 
     $scope.editVendor = function(vendor) {
-      VendorService.editVendorInfo(vendor, $rootScope.vendor_user.id).success(function(data) {
-        $rootScope.vendor_user = data;
+      VendorService.editVendorInfo(vendor, $rootScope.loggedInVendor.id).success(function(data) {
+        $rootScope.loggedInVendor = data;
+        $localStorage.loggedInVendor = $rootScope.loggedInVendor;
         $location.url('/vendor/private');
       });
     };
 
     $scope.getVendorAndProducts = function(vendor) {
-      $scope.vendor = [];
+      $scope.singleVendor = null;
       $scope.vendorValue=false;
       //var param1 = $routeParams.param1;
-      VendorService.getOneVendorAndProducts(vendor.id).success(function (data){
-        $scope.vendor = data;
+      VendorService.getOneVendorAndProducts(vendor.id).success(function (vendor){
+        $scope.singleVendor = vendor;
       });
     };
 
