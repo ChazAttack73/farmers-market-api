@@ -527,6 +527,23 @@ body {
         line-height: 40px;
         color: #575450; }
 
+#vendorInfo {
+  display: flex;
+  flex-flow: row wrap;
+  width: 450px;
+  background-color: #F4F3D5;
+  justify-content: center;
+  text-align: center;
+  color: #575450; }
+  #vendorInfo .vendor_name {
+    flex: 0 0 100%; }
+  #vendorInfo .separator {
+    flex: 0 0 33%;
+    height: 1.1%;
+    background-color: #e0dfc1;
+    margin-top: -15px;
+    margin-bottom: 20px; }
+
 .vendorMain {
   display: flex;
   flex-flow: row wrap;
