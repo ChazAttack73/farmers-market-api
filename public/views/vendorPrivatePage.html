@@ -57,7 +57,6 @@
     <div ng-init="getVendorAndProducts(loggedInVendor)">
       <div class="postProductDiv" ng-hide="noNewPost">
         <div>
-=======
           Enter a new product below.  You can choose a predefined category from the drop down list.  This is recommended even if you offer a specific variety (you can list that in your description).  If your product is outside the predefined options, select new.  If you have one, please include a picture!:
         </div>
         <div ng-init="getAllProducts()">
@@ -97,9 +96,9 @@
 
 
 
-      <div class="productContent" ng-repeat="product in singleVendor">
+      <div class="productContent" ng-repeat="product in singleVendor.Products">
         <div class="product">
-          <div>{{product.name}}</div>
+          <div>{{product.Products}}</div>
           <div>{{product.price}}</div>
           <div>{{product.quantity}}</div>
           <div>{{product.description}}</div>

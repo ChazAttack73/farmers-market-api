@@ -7,14 +7,16 @@ angular.module('myApp')
 
   var id = $routeParams.id;
 
-  $scope.EventService.getOneEvent(id).success(function(data){
+  $scope.getOneEvent = function(eventID) {
+    EventService.getOneEvent(id).success(function(data){
     $scope.oneEvent = {};
     $scope.oneEvent.id = data[0].id;
     $scope.oneEvent.name = data[0].name.toUpperCase();
     $scope.oneEvent.days = data[0].days.toUpperCase();
     $scope.oneEvent.time = data[0].time.toUpperCase();
     $scope.oneEvent.address = data[0].address.toUpperCase();
-  });
+    });
+  };
 
   EventService.getEvents().success(function(data){
     for( var i = 0; i < data.length; i++ ){

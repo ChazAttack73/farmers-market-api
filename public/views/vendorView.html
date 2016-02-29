@@ -1,5 +1,5 @@
 <div class="eventVendorsMain">
-  <div class="vendorHeader" ng-controller="EventController">
+  <div class="vendorHeader" ng-controller="EventController" ng-init = "getOneEvent(oneEvent.id)">
     <div class="vendorName">{{oneEvent.name}}</div>
     <div class="vendorGraphic"></div>
     <div class="vendorDays">{{oneEvent.days}}</div>
