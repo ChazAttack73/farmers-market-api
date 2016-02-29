@@ -19,4 +19,10 @@ angular.module('myApp')
     this.deleteProduct = function(product) {
       return $http.delete('/delete/' + product._id);
     };
+
+    this.chargeProduct = function(product){
+      console.log(44444444444, product);
+      return $http.post('http://localhost:3000/stripe/'+product.routeParams, product);
+    };
+
   }]);

@@ -1,70 +1,41 @@
 <div class="loginMainWrapper">
-  <div class="chooseLoginWrapper">
-    <div class="chooseVendor"></div>
-    <div class="chooseUser"></div>
+  <div class="chooseLoginWrapper" ng-init="displayLogin=true">
+    <div class="chooseVendor" ng-click="displayLogin=false"></div>
+    <div class="chooseUser" ng-click="displayLogin=true"></div>
   </div>
 
-
-  <div class="loginWrapper">
-    <div class="loginTitle">
-      <span>VENDOR LOGIN</span>
-    </div>
-    <div class="vendorLoginLogo"></div>
-    <div class="loginForm">
-      <form>
-        COMPANY USERNAME:
-        <br>
-        <input class="vendor_name" value="" ng-model="vendor.username">
-        <br>
-        <br>
-        PASSWORD:
-        <br>
-        <input class="vendor_password" value="" ng-model="vendor.password">
-        <br>
-        <br>
-        <input class="loginSubmitBtn" type="submit" value="Login" ng-click="loginVendor(vendor)">
-      </form>
-    </div>
-  </div>
-
-  <div class="error">{{error}}</div>
-
-  <div class="loginWrapper">
+  <div class="loginWrapper" ng-show="displayLogin">
     <div class="loginTitle">
       <span>USER LOGIN</span>
     </div>
     <div class="userLoginLogo"></div>
     <div class="loginForm">
-      <form>
-        USERNAME:
-        <br>
-        <input class="user_name" value="" ng-model="user.username">
-        <br>
-        <br>
-        PASSWORD:
-        <br>
-        <input class="user_password" value="" ng-model="user.password">
-        <br>
-        <br>
-        <input class="loginSubmitBtn" type="submit" value="Login" ng-click="loginUser()">
-      </form>
+      <fieldset class="loginFieldset">
+        <label for="user_email">EMAIL:</label>
+        <input id="user_email" value="" ng-model="user.username">
+        <label for="user_password">PASSWORD:</label>
+        <input id="user_password" value="" ng-model="user.password">
+        <input class="loginSubmitBtn" type="submit" value="Login" ng-click="loginUser(user)">
+      </fieldset>
     </div>
   </div>
 
-  <!-- <div class="userLoginWrapper">
-    <div>
-      <h1>User Login</h1>
+  <div class="loginWrapper" ng-hide="displayLogin">
+    <div class="loginTitle">
+      <span>VENDOR LOGIN</span>
     </div>
-    <div class="login">
-      <form ng-submit="loginUser()">
-        <br>
-        Username:<input class="user_name" value="" ng-model="user.username">
-        <br>
-        Password:<input class="user_password" value="" ng-model="user.password">
-        <br><br>
-        <input type="submit" value="Login" class="button">
-      </form>
-       <div class="error">{{error}}</div> -->
-    <!--</div>
-  </div> -->
+    <div class="vendorLoginLogo"></div>
+    <div class="loginForm">
+      <fieldset class="loginFieldset">
+        <label for="vendor_name">COMPANY USERNAME:</label>
+        <input id="vendor_name" value="" ng-model="vendor.username">
+        <label for="vendor_password">PASSWORD:</label>
+        <input id="vendor_password" value="" ng-model="vendor.password">
+        <input class="loginSubmitBtn" type="submit" value="Login" ng-click="loginVendor(vendor)">
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="error">{{error}}</div>
+
 </div>

@@ -1,13 +1,13 @@
 "use strict";
 
 angular.module('myApp')
-  .controller('VendorController', ['$scope', 'VendorService', 'ProductService', 'EventService', '$location', '$rootScope', '$localStorage', '$routeParams', '$route', function($scope, VendorService, ProductService, EventService, $location, $rootScope, $localStorage, $routeParams, $route){
+  .controller('VendorController', ['$scope', 'VendorService', 'ProductService', 'EventService', '$location', '$rootScope', '$localStorage', '$routeParams', '$route', '$window', function($scope, VendorService, ProductService, EventService, $location, $rootScope, $localStorage, $routeParams, $route, $window){
     $scope.vendorPrivate=true;
     $scope.vendorValue=true;
     $scope.Vendors = [];
     $scope.VendorService = VendorService;
 
-    //var id = $routeParams.id;
+    var id = $routeParams.id;
 
     $scope.loadEvent = function(id) {
       $scope.selectedEvent = [];
@@ -25,7 +25,7 @@ angular.module('myApp')
 
     $scope.registerVendor = function(vendor) {
       if (vendor === undefined) {
-        return $scope.error = "You left all fields blank.  Please retry."
+        return $scope.error = "You left all fields blank.  Please retry.";
       }
       if(vendor.name === undefined ||
         vendor.password === undefined ||
@@ -42,13 +42,29 @@ angular.module('myApp')
           $rootScope.loggedInVendor = result;
           $localStorage.loggedInVendor = $rootScope.loggedInVendor;
           $location.url('/vendor/private');
+          $window.location.href = ('https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_7ys0ugAueODi8W6rX3rWgIbwLuHANGt8&scope=read_write');
         });
         return;
       }
       return $scope.error = 'Unknown error. Please try again';
     };
 
+    $scope.loginUser = function(userLoginCredentials){
+
+      userLoginCredentials.type = 'user';
+      EventService.loginUser(userLoginCredentials).success(function(result) {
+
+        $rootScope.user_user = result;
+        $location.url('/');
+      }).error(function(error) {
+          $scope.error ="Wrong username or password";
+      });
+    };
+
     $scope.loginVendor = function(vendorLoginCredentials){
+
+      console.log('At vendorservice', vendorLoginCredentials);
+      vendorLoginCredentials.type = 'vendor';
       VendorService.loginVen(vendorLoginCredentials).success(function(result) {
         $rootScope.loggedInVendor = result;
         $localStorage.loggedInVendor = $rootScope.loggedInVendor;
@@ -98,15 +114,6 @@ angular.module('myApp')
     //     $scope.error = "Please try again";
     //   });
     // };
-    //
-    //This will run every time controller (or page that uses this controler) is hit.  Do we want this?
-    $scope.event = [];
-    $scope.getEventProducts = function(event){
-      // $scope.productValue = false;
-      EventService.getOneEvent(event.id).success(function(data){
-        $scope.event = data;
-      });
-    };
 
     $scope.editVendor = function(vendor) {
       VendorService.editVendorInfo(vendor, $rootScope.loggedInVendor.id).success(function(data) {
@@ -121,10 +128,9 @@ angular.module('myApp')
       $scope.vendorValue=false;
       //var param1 = $routeParams.param1;
       VendorService.getOneVendorAndProducts(vendor.id).success(function (vendor){
-        $scope.singleVendor = vendor.Products;
+        $scope.singleVendor = vendor;
       });
     };
-
 
 
 

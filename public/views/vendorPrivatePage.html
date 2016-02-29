@@ -57,38 +57,35 @@
     <div ng-init="getVendorAndProducts(loggedInVendor)">
       <div class="postProductDiv" ng-hide="noNewPost">
         <div>
-          Enter a new product below.  You can choose a predefined category from the drop down list.  This is recommended even if you offer a specific variety (you can list that in your description).  If you product is outside the predefined options, select other.  If you have one, please include a picture!:
+=======
+          Enter a new product below.  You can choose a predefined category from the drop down list.  This is recommended even if you offer a specific variety (you can list that in your description).  If your product is outside the predefined options, select new.  If you have one, please include a picture!:
+        </div>
+        <div ng-init="getAllProducts()">
+          <label for="product_name">Product Name</label>
+          <div>
+            <input class="inputA" id="product_name" type="text" ng-keydown="checkKeyDown($event)" ng-keyup="checkKeyUp($event)" ng-model="product.name" ng-change="search()" />
+          </div>
+          <ul>
+            <li ng-repeat="name in suggestions | unique : name" ng-class="{active : selectedIndex === $index}" ng-click="AssignValueAndHide($index)">{{name}}</li>
+          </ul>
+            <!-- <option ng-repeat="product in Products | unique:'name' | orderBy:'name' | filter:product.name=searchProductsFilter"  value="{{product.name}}">{{product.name}}</option> -->
         </div>
           <br>
-
-        <div ng-init="getAllProducts()" class="list-wrapper">
-
-          <div>
-            <label for="product_name">Product Name</label>
-            <div>
-              <input class="inputA" id="product_name" type="text" ng-keydown="checkKeyDown($event)" ng-keyup="checkKeyUp($event)" ng-model="product.name" ng-change="search()" />
-            </div>
-            <ul>
-              <li ng-repeat="name in suggestions | unique : name" ng-class="{active : selectedIndex === $index}" ng-click="AssignValueAndHide($index)">{{name}}</li>
-            </ul>
-              <!-- <option ng-repeat="product in Products | unique:'name' | orderBy:'name' | filter:product.name=searchProductsFilter"  value="{{product.name}}">{{product.name}}</option> -->
-          </div>
-          <div>
-            <label for="product_price">product price</label>
-            <input id="product_price" type="text" ng-model="product.price">
-          </div>
-          <div>
-            <label for="product_quantity">product quantity</label>
-            <input id="product_quantity" type="text" ng-model="product.quantity">
-          </div>
-          <div>
-            <label for="product_image">product description</label>
-            <input id="product_image" type="text" ng-model="product.description">
-          </div>
-          <div>
-            <label for="product_image">product image</label>
-            <input id="product_image" type="text" ng-model="product.product_picture">
-          </div>
+        <div>
+          <label for="product_price">Product Price</label>
+          <input id="product_price" type="text" ng-model="product.price">
+        </div>
+        <div>
+          <label for="product_quantity">Product Quantity</label>
+          <input id="product_quantity" type="text" ng-model="product.quantity">
+        </div>
+        <div>
+          <label for="product_image">Product Description</label>
+          <input id="product_image" type="text" ng-model="product.description">
+        </div>
+        <div>
+          <label for="product_image">Product Image</label>
+          <input id="product_image" type="text" ng-model="product.product_picture">
           <div class="commit">
             <button type="button" ng-click="postProduct(product)">Post</button>
           </div>
@@ -136,5 +133,3 @@
     </div>
   </div>
 </div>
-
-

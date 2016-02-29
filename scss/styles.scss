@@ -14,6 +14,7 @@ $breakpoints: (
 
 ///// **VARIABLES**
 
+$lightGray: #7f7a75;
 $black: #0F0F0E;
 $gray: #575450;
 $tan: #F4F3D5;
@@ -269,7 +270,8 @@ body {
       height: $percent * 0.3;
       margin-bottom: 7%;
       background-image: $leaves;
-      background-size: cover;
+      background-repeat: no-repeat;
+      background-size: contain;
     }
   }
 }
@@ -290,28 +292,73 @@ body {
   margin: 3px 0px;
   justify-content: center;
   align-content: space-between;
+  font-family: $mont;
+  margin-bottom: 45px;
 
   a {
     text-decoration: none;
   }
+
+  .navbarVendor{
+    flex: 0 0 10%;
+    background-image: $vendor;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 75px;
+    text-align: center;
+    line-height: 175px;
+    margin-top: 15px;
+    color: $tan;
+    opacity: 0.3;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+  }
+
+  .navbarVendor:hover {
+    color: $tan;
+    opacity: 1;
+    transition: 0.6s ease;
+  }
+
+  .navbarProduce {
+    flex: 0 0 10%;
+    background-image: $smallLeaves;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 75px;
+    text-align: center;
+    line-height: 175px;
+    margin-top: 15px;
+    color: $tan;
+    opacity: 0.3;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+  }
+
+  .navbarProduce:hover{
+    color: $tan;
+    opacity: 1;
+    transition: 0.6s ease;
+  }
 }
 
 .listingButton {
-  flex: 0 0 40%;
+  flex: 0 0 15%;
   font-size: 30px;
   text-align: center;
-  border-radius: 5px;
   opacity: 0.90;
   color: #E7DDD4;
   box-shadow: 2px 2px #221F1C;
+  border: 1px solid red;
 }
 
 .listingButton.vendorButton {
   margin-right: 1px;
-  background-color: #896544;
-  border: 1px solid #361D06;
   text-shadow: 1px 1px 2px #361D06;
   box-shadow: 2px 2px 2px #361D06;
+  background-repeat: no-repeat;
 }
 
 .listingButton.productButton {
@@ -333,40 +380,48 @@ body {
 }
 
 .vendorListingCard {
-  height: 250px;
-  width: 95%;
-  margin: 5px 0px;
+  height: 300px;
+  width: 350px;
+  margin: 10px 15px;
   border: 1px solid #361D06;
-  border-radius: 5px;
-  text-shadow: 2px 2px 3px #361D06;
-  box-shadow: 2px 2px 2px #361D06;
 }
 
 .vendorContent {
-  display: flex;
-  flex-flow: row wrap;
+  @include flexDisplayRow;
   align-content: space-between;
   width: 100%;
-  height: 250px;
-}
+  height: 300px;
+  background-color: $tan;
+  color: $gray;
+  justify-content: center;
 
-.vendorCompanyName {
-  flex: 0 0 100%;
-  height: 15%;
-  font-size: 1.5em;
-  background-color: #896544;
-  color: #E7DDD4;
-  opacity: 0.90;
-  text-align: center;
-  padding-top: 4px;
-}
+  .vendorCompanyName {
+    flex: 0 0 100%;
+    height: 35%;
+    font-size: 3em;
+    opacity: 0.9;
+    text-align: center;
+    padding-top: 4px;
+    font-family: $sixCaps;
+    font-weight: 100;
+    margin-bottom: -15px;
+  }
 
-.vendorCompanyPic {
-  flex: 0 0 75%;
-  height: 85%;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  .vendorSeparator {
+    height: 1.1%;
+    flex: 0 0 33%;
+    background-color: $tan - 20;
+    margin-top: -15px;
+    margin-bottom: 20px;
+  }
+
+  .vendorCompanyPic {
+    flex: 0 0 75%;
+    height: 60%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
 
 .featuredProducts {
@@ -512,9 +567,20 @@ body {
 }
 
 .loginForm {
-  @include flexDisplayRow;
   flex: $flexFull;
   padding: 10px;
+
+  .loginFieldset {
+    border: 0;
+    padding: 0.01em 0 0 0;
+    margin: 0;
+    min-width: 0;
+  }
+
+  label, input {
+    display: block;
+    margin: 10px;
+  }
 
   .loginSubmitBtn {
     font-family: $mont;
@@ -524,48 +590,150 @@ body {
     width: 80px;
     background-image: $charcoal-bg;
     box-shadow: 1px 1px 2px 3px $gray - 15;
+
   }
 }
+
+///// **REGISTRATION PAGE**
+
+.regMainWrapper {
+  @include flexDisplayRow;
+  justify-content: center;
+  font-family: $mont;
+}
+
+.regWrapper {
+  flex: 0 0 80%;
+
+  fieldset {
+  }
+}
+
 // ============= Vendor Listing by Event
 
 .vendorHeader {
   @include flexDisplayRow;
   justify-content: center;
-  background-color: orange;
+  background-color: $tan;
   height: 400px;
   width: 100%;
+  margin-top: -10px;
 
   .vendorName {
     flex: 0 0 100%;
-    text-align: center;
     font-size: 5em;
-    // margin-top: 25px;
-    // margin-bottom: 25px;
-    background-color: white;
     font-family: $sixCaps;
+    margin-top: 25px;
+    margin-bottom: -25px;
+    color: $gray;
+    letter-spacing: 3px;
+    text-align: center;
+  }
+
+  .vendorGraphic {
+    background-image: url('./../images/leaves-and-lines.svg');
+    background-repeat: no-repeat;
+    width: 250px;
   }
 
   .vendorDays {
     flex: 0 0 100%;
     text-align: center;
-    margin-bottom: -40px;
-    background-color: red;
     font-family: $mont;
+    color: $gray;
+    margin-top: 15px;
   }
 
   .vendorTime {
     flex: 0 0 100%;
     text-align: center;
     margin-top: -40px;
-    background-color: white;
     font-family: $mont;
+    color: $gray;
   }
 
   .vendorAddress {
     flex: 0 0 100%;
     text-align: center;
-    background-color: red;
     font-family: $mont;
+    color: $gray;
+    margin-top: -35px;
+  }
+}
+
+// ======================== Product Listing by Event
+
+.productMain {
+  @include flexDisplayRow;
+  justify-content: center;
+
+  .eventProductContent {
+  @include flexDisplayRow;
+
+    .product {
+      flex: 0 0 25%;
+      height: 200px;
+      width: 150px;
+      margin: 15px;
+      background-color: $tan;
+
+      .productImage {
+        height: 150px;
+        width: 150px;
+        padding: 6px;
+      }
+
+      .eventProductName {
+        text-align: center;
+        line-height: 40px;
+        color: $gray;
+      }
+    }
+  }
+}
+
+// ============================= Individual Vendor View
+
+.vendorMain {
+  @include flexDisplayRow;
+  justify-content: center;
+
+  .vendorProduct {
+    @include flexDisplayRow;
+
+    .vendorProductContainer {
+      @include flexDisplayRow;
+      min-height:200px;
+      width: 150px;
+      margin: 15px;
+      background-color: $tan;
+
+      a {
+        text-decoration: none;
+      }
+
+      .privateVendorProductImage {
+        height: 150px;
+        width: 150px;
+        padding: 6px;
+      }
+      .privateVendorProductName {
+        flex: $flexFull;
+        color: $gray;
+        text-align: center;
+      }
+      .productPrice {
+        flex: $flexFull;
+        color: $gray;
+        text-align: center;
+      }
+      .productQuantity {
+        flex: $flexFull;
+        color: $gray;
+        padding-bottom: 6px;
+        text-align: center;
+      }
+    }
   }
 }
 

@@ -7,7 +7,7 @@ angular.module('myApp')
 
   var id = $routeParams.id;
 
-  EventService.getOneEvent(id).success(function(data){
+  $scope.EventService.getOneEvent(id).success(function(data){
     $scope.oneEvent = {};
     $scope.oneEvent.id = data[0].id;
     $scope.oneEvent.name = data[0].name.toUpperCase();
@@ -34,26 +34,21 @@ angular.module('myApp')
     });
   };
 
+
   $scope.registerUser = function(user){
-    console.log(1111111111111, user);
     if(user===undefined || user === null){
       //EEEEERRRRRRROOOOOOOORRRRRRRRR
-      console.log(1.1);
       return $location.url('/register');
     }
 
     if(!user.hasOwnProperty('email') ||
        !user.hasOwnProperty('password') ||
        !user.hasOwnProperty('verifyPassword')){
-      console.log(1.2);
-      //EEEEERRRRRRROOOOOOOORRRRRRRRR
-      return $location.url('/register');
+      return $scope.error = "Please fill out all required fields";
     }
 
     if(user.password !== user.verifyPassword){
-      //EEEEERRRRRRROOOOOOOORRRRRRRRR
-      console.log(1.3);
-      return $location.url('/register');
+      return $scope.error = "Passwords do not match";
     }
 
     var new_user = {
@@ -62,8 +57,13 @@ angular.module('myApp')
     };
 
     EventService.addUser(new_user)
-    .success(function(data){
-      $location.url('register');
+
+    .success(function(result){
+      $rootScope.user_user = result;
+      $location.url('/');
     });
+
+    return;
   };
+
 }]);

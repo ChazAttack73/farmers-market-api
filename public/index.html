@@ -11,23 +11,17 @@
 
 <!--     /////////////////////////////////////// -->
 
-<!-- this needs to go in a config file -->
+
      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-
-    <script type="text/javascript">
-    // This identifies your website in the createToken call below
-    Stripe.setPublishableKey('pk_test_gvpLjhrD3gTMQZj1Kl9Uw0Bj');
-
-  </script>
-
 
 
 <!--     ///////////////////////////////////////// -->
   </head>
 
   <body ng-app="myApp">
-    <div class="mainTitleBar">DISTRIBUTING HOMEGROWN ALOHA
+    <div class="mainTitleBar">DISTRIBUTING HOMEGROWN ALOHA™
       <div class="mobileNav" ng-click="myVar==='menuOn' ? myVar='' : myVar='menuOn'">
         <div class="hamburgerHack1">
           <div class="hamburgerHack2"></div>
@@ -83,8 +77,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js"></script>
-   <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script> -->
+
+    <script src="js/angular-stripe.js"></script>
+
     <script src="js/myApp.js"></script>
+
+   <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script> -->
     <script src="js/controllers/product-controller.js"></script>
     <script src="js/controllers/vendor-controller.js"></script>
     <script src="js/controllers/event-controller.js"></script>

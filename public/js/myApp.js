@@ -1,7 +1,9 @@
+
 angular.module('myApp', [
   'ngRoute',
   'ngStorage',
-  'angular.filter'
+  'angular.filter',
+  'angular-stripe'
   ]);
 
 var myApp = angular.module('myApp');
@@ -28,8 +30,10 @@ var checkedLoggedIn=function($q, $timeout, $http, $location, $rootScope) {
 };
 
 myApp
-.config(['$routeProvider', function($routeProvider){
+.config(['$routeProvider','stripeProvider', function($routeProvider, stripeProvider){
   //config
+
+  stripeProvider.setPublishableKey('pk_test_zjMkVWS57QxqiP9XPIdiy7uF');
 
   $routeProvider
     .when('/', {
@@ -74,4 +78,4 @@ myApp
   }
   //initialize
   //$rootScope.loggedInVendor = $localStorage.loggedInVendor || '!loggedin';
-}])
+}]);

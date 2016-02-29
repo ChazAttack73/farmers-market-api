@@ -10,8 +10,6 @@ var Product = db.Product;
 
 router.use(bodyParser.json());
 
-
-
 //Being called from VendorServer by getProductsFromVendorsByEvent function
 router.get('/:id', function(req, res) {
   Product.findAll({
@@ -46,7 +44,6 @@ router.get( '/', function ( req, res ) {
   });
 
 // router.get( '/:id', function( req, res){
-//   console.log('hereeeeeee???');
 //   Product.findOne({
 //     where:{
 //       VendorId: req.params.id
@@ -86,8 +83,6 @@ router.post( '/:id', function ( req, res ) {
       res.json( products );
     });
   });
-
-
 
 router.put('/:id', function( req, res){
   req.body.updatedAt = "now()";

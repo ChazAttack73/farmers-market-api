@@ -15,6 +15,7 @@ module.exports = function ( sequelize, DataTypes ) {
     classMethods: {
       associate: function ( models ) {
         Product.belongsTo( models.Vendor,{foreignKey: 'VendorId'} );
+        Product.hasMany( models.Order, {foreignKey: 'ProductId'});
       }
     }
   });
