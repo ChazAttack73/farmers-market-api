@@ -7,20 +7,12 @@ angular.module('myApp')
     $scope.Vendors = [];
     $scope.VendorService = VendorService;
 
-    var id = $routeParams.id;
+    //var id = $routeParams.id;
 
     $scope.loadEvent = function(id) {
       $scope.selectedEvent = [];
       EventService.getOneEvent(id).success(function(data){
         $scope.selectedEvent = data;
-      });
-    };
-
-    $scope.logoutButton = function() {
-      VendorService.logoutVen().success(function() {
-        $rootScope.vendor_user=false;
-        $localStorage.$reset();
-        $location.url('/');
       });
     };
 
@@ -47,8 +39,8 @@ angular.module('myApp')
           return $scope.error = "Passwords do not match";
       } else {
         VendorService.regVendor($scope.vendor).success(function(result) {
-          $rootScope.vendor_user = result;
-          $localStorage.vendor_user = $rootScope.vendor_user;
+          $rootScope.loggedInVendor = result;
+          $localStorage.loggedInVendor = $rootScope.loggedInVendor;
           $location.url('/vendor/private');
         });
         return;
@@ -58,8 +50,8 @@ angular.module('myApp')
 
     $scope.loginVendor = function(vendorLoginCredentials){
       VendorService.loginVen(vendorLoginCredentials).success(function(result) {
-        $rootScope.vendor_user = result;
-        $localStorage.vendor_user = $rootScope.vendor_user;
+        $rootScope.loggedInVendor = result;
+        $localStorage.loggedInVendor = $rootScope.loggedInVendor;
         $location.url('/vendor/private');
       }).error(function(error) {
           $scope.error ="Wrong username or password";
@@ -67,16 +59,17 @@ angular.module('myApp')
     };
 
     $scope.deleteVendor = function(vendor) {
-      VendorService.delVendor(vendor, $rootScope.vendor_user.id).success(function(result) {
-        $rootScope.vendor_user=false;
+      VendorService.delVendor(vendor, $rootScope.loggedInVendor.id).success(function(result) {
+        $rootScope.loggedInVendor=null;
         $localStorage.$reset();
         $location.url('/');
       });
     };
 
-    $scope.getAllProductsForEvent = function(vendorID) {
+    $scope.getAllProductsForEvent = function() {
+      var id = $routeParams.id;
       $scope.productsForEvent=[];
-      VendorService.getProductsFromVendorsByEvent($scope.vendor_user.id).success(function (data) {
+      VendorService.getProductsFromVendorsByEvent(id).success(function (data) {
         $scope.productsForEvent = data;
       });
     };
@@ -116,18 +109,19 @@ angular.module('myApp')
     };
 
     $scope.editVendor = function(vendor) {
-      VendorService.editVendorInfo(vendor, $rootScope.vendor_user.id).success(function(data) {
-        $rootScope.vendor_user = data;
+      VendorService.editVendorInfo(vendor, $rootScope.loggedInVendor.id).success(function(data) {
+        $rootScope.loggedInVendor = data;
+        $localStorage.loggedInVendor = $rootScope.loggedInVendor;
         $location.url('/vendor/private');
       });
     };
 
     $scope.getVendorAndProducts = function(vendor) {
-      $scope.vendor = [];
+      $scope.singleVendor = null;
       $scope.vendorValue=false;
       //var param1 = $routeParams.param1;
-      VendorService.getOneVendorAndProducts(vendor.id).success(function (data){
-      return $scope.vendor = data.Products;
+      VendorService.getOneVendorAndProducts(vendor.id).success(function (vendor){
+        $scope.singleVendor = vendor.Products;
       });
     };
 

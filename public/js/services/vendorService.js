@@ -18,7 +18,7 @@ angular.module('myApp')
       return $http.post('/vendor/logout');
     };
     this.getProductsFromVendorsByEvent = function (id) {
-      return $http.get('/products/' + id);
+      return $http.get('/product/' + id);
     };
     this.editVendorInfo = function (vendor, vendorId) {
       return $http.put('vendor/' + vendorId, vendor);

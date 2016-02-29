@@ -8,18 +8,93 @@ angular.module('myApp')
     $scope.errorDiv = true;
     var id = $routeParams.id;
 
+    //Define Suggestions List
+    $rootScope.suggestions = [];
+    $rootScope.selectedIndex = -1;
+
   //Is this what Micah is doing????
     $scope.getAllProducts = function () {
       ProductService.getProducts().success(function(data){
+        $rootScope.productNames = [];
+        for(var x=0; x<data.length; x++) {
+          $rootScope.productNames.push(data[x].name);
+        }
+
+        //Sort Array alphabetically
+        $rootScope.productNames.sort();
         $scope.Products = data;
-        console.log('dataaaaaa',typeof data[0].name, data[0].name);
       });
     };
 
+    $rootScope.search = function() {
+      var myMaxSuggestionListLength = 0;
+      console.log('at search function $scope.productNames and myMaxSuggestionListLength', $scope.productNames, myMaxSuggestionListLength);
+      for (var i=0; i<$rootScope.productNames.length; i++) {
+        var searchItemsSmallLetters = angular.lowercase($rootScope.productNames[i]);
+        var searchTextSmallLetters = angular.lowercase($scope.searchText);
+        console.log('looking at this', searchItemsSmallLetters.indexOf(searchTextSmallLetters), searchTextSmallLetters);
+        if ( searchItemsSmallLetters.indexOf(searchTextSmallLetters) !== -1) {
+          $rootScope.suggestions.push(searchItemsSmallLetters);
+      console.log('on search function $scope.suggestions', $scope.suggestions);
+          myMaxSuggestionListLength += 1;
+          if (myMaxSuggestionListLength === 5) {
+            console.log('does my myMaxSuggestionListLength go over 5?');
+            break;
+          }
+        }
+      }
+    };
+
+    //Keep Track Of Search Text Value During The Selection From The Suggestions List
+    $rootScope.$watch('selectedIndex',function(val){
+      console.log('at $watch looking at selectedIndex value ', val);
+      if(val !== -1) {
+       $scope.searchText = $rootScope.suggestions[$rootScope.selectedIndex];
+     }
+    });
+
+      //Text Field Events
+      //Function To Call on ng-keydown
+    $rootScope.checkKeyDown = function(event){
+      if(event.keyCode === 40){//down key, increment selectedIndex
+        console.log('did you hit the down key??');
+        event.preventDefault();
+        if($rootScope.selectedIndex+1 !== $rootScope.suggestions.length){
+          $rootScope.selectedIndex++;
+        }
+      }else if(event.keyCode === 38){ //up key, decrement selectedIndex
+        event.preventDefault();
+        if($rootScope.selectedIndex-1 !== -1){
+          $rootScope.selectedIndex--;
+        }
+      }else if(event.keyCode === 13){ //enter key, empty suggestions array
+        event.preventDefault();
+        $rootScope.suggestions = [];
+      }
+    };
+    //Function To Call on ng-keyup
+    $scope.checkKeyUp = function(event){
+      if(event.keyCode !== 8 || event.keyCode !== 46){//delete or backspace
+        if($scope.searchText === ""){
+          $scope.suggestions = [];
+        }
+      }
+    };
+  //======================================
+
+    //List Item Events
+    //Function To Call on ng-click
+    $rootScope.AssignValueAndHide = function(index){
+       $scope.searchText = $rootScope.suggestions[index];
+       $scope.product.name = $scope.searchText;
+      console.log('are you here??? at AssignValueAndHide looking at index and $scope.searchText', index, $scope.searchText);
+       $rootScope.suggestions=[];
+    };
+    //======================================
 
     $scope.clickButt = function () {
-        $scope.noNewPost = !$scope.noNewPost;
-      };
+      $scope.noNewPost = !$scope.noNewPost;
+    };
   //This is throwing error because it runs when vendorPrivatePage uses this controller
   //but it does not have an id to give it
     // ProductService.getProduct(id).success(function(data){
@@ -44,7 +119,7 @@ angular.module('myApp')
           $scope.noNewPost = true;
           $scope.errorDiv = true;
           $scope.error = null;
-          product.VendorId = $rootScope.vendor_user.id;
+          product.VendorId = $rootScope.loggedInVendor.id;
           ProductService.addProduct(product).then(function(data) {
             $scope.product = null;
         });

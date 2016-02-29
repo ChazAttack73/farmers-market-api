@@ -70,8 +70,8 @@ myApp
 }])
 
 .run(['$rootScope', '$localStorage', function($rootScope, $localStorage){
-  if($localStorage.hasOwnProperty("vendor_user")) {
+  if($localStorage.hasOwnProperty("loggedInVendor")) {
   }
   //initialize
-  //$rootScope.vendor_user = $localStorage.vendor_user || '!loggedin';
-}]);
+  //$rootScope.loggedInVendor = $localStorage.loggedInVendor || '!loggedin';
+}])

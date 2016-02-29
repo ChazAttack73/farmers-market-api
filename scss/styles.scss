@@ -425,7 +425,7 @@ body {
 .error {
   color : red;
   font-weight : 700;
-
+}
 
 ///// **LOGIN PAGE**
 
@@ -567,4 +567,55 @@ body {
     background-color: red;
     font-family: $mont;
   }
+}
+
+.list-wrapper {
+  position:absolute;
+  width:300px;
+  height:150px;
+  top:40%;
+  margin-top:-75px;
+  left:50%;
+  margin-left:-150px;
+}
+
+.label{
+  padding:5px 0px;
+  text-align:center;
+}
+.inputA {
+  width:230px;
+  height:30px;
+  outline:none;
+  padding:0px 10px;
+  margin:0px auto;
+  display:block;
+}
+.suggestions-list {
+  position: absolute;
+  list-style-type: none;
+  margin: 0 0 0 23px;
+  padding: 0;
+  overflow: auto;
+}
+.suggestions-list li {
+  color: red;
+  padding: 10px 10px;
+  height:10px;
+  cursor: pointer;
+  background: tan;
+  border-bottom: 1px solid green;
+  width:234px;
+}
+.suggestions-list li:hover {
+  background: yellow;
+}
+.suggestions-list li:active,
+.suggestions-list li.active {
+  color: #FFFFFF;
+  background: #0099FF;
+  width:234px;
+}
+.suggestions-list:focus{
+  outline:none;
 }

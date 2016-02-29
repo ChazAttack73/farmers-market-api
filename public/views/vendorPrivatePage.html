@@ -1,11 +1,11 @@
 <div class="vendorPrivatePage">
   <div ng-show="vendorPrivate" class="ng-hide">
-    <div>{{vendor_user.name}}</div>
-    <div>{{vendor_user.phone}}</div>
-    <div>{{vendor_user.email}}</div>
-    <div>{{vendor_user.website}}</div>
-    <div>{{vendor_user.description}}</div>
-    <div>{{vendor_user.company_pic}}</div>
+    <div>{{loggedInVendor.name}}</div>
+    <div>{{loggedInVendor.phone}}</div>
+    <div>{{loggedInVendor.email}}</div>
+    <div>{{loggedInVendor.website}}</div>
+    <div>{{loggedInVendor.description}}</div>
+    <div>{{loggedInVendor.company_pic}}</div>
 
     <input type="button" value="Edit Profile"ng-click="vendorPrivate=!vendorPrivate">
   </div>
@@ -14,31 +14,31 @@
     <h3>Edit Profile</h3>
     <div>
       <label for="vendor_name"> Company name </label>
-      <input id="vendor_name"  type="text" ng-model="vendor.name" ng-value="vendor_user.name" autofocus>
+      <input id="vendor_name"  type="text" ng-model="vendor.name" ng-value="loggedInVendor.name" autofocus>
     </div>
 
     <div>
       <label for="vendor_phone">Phone Number</label>
-      <input id="vendor_phone" ng-value="vendor_user.phone" type="text" ng-model="vendor.phone">
+      <input id="vendor_phone" ng-value="loggedInVendor.phone" type="text" ng-model="vendor.phone">
     </div>
 
     <div>
       <label for="vendor_email">Email</label>
-      <input id="vendor_email" ng-value="vendor_user.email" type="text" ng-model="vendor.email">
+      <input id="vendor_email" ng-value="loggedInVendor.email" type="text" ng-model="vendor.email">
     </div>
 
     <div>
       <label for="vendor_website">Website (if you have one)</label>
-      <input id="vendor_website" ng-value="vendor_user.website" type="text" ng-model="vendor.website">
+      <input id="vendor_website" ng-value="loggedInVendor.website" type="text" ng-model="vendor.website">
     </div>
 
     <div>
       <label for="vendor_description">Brief description of your company</label>
-      <input id="vendor_description" ng-value="vendor_user.description" type="text" ng-model="vendor.description">
+      <input id="vendor_description" ng-value="loggedInVendor.description" type="text" ng-model="vendor.description">
     </div>
     <div>
       <label for="vendor_company_pic">Image of your company </label>
-      <input id="vendor_company_pic" ng-value="vendor_user.company_pic" type="text" ng-model="vendor.company_pic">
+      <input id="vendor_company_pic" ng-value="loggedInVendor.company_pic" type="text" ng-model="vendor.company_pic">
     </div>
     <div class="finishEdit">
       <button type='button' ng-click=
@@ -50,23 +50,28 @@
 
 
 
-  <div ng-controller="ProductController" class="masterPrivateVendProductsNPost" ng-init="noNewPost=true" >
-    <div ng-show="noNewPost" >
+  <div class="masterPrivateVendProductsNPost" ng-init="noNewPost=true" ng-controller="ProductController">
+    <div ng-show="noNewPost">
       <button type="button" ng-click="clickButt()">Post New Product</button>
     </div>
-    <div  ng-init="getVendorAndProducts(vendor_user)">
+    <div ng-init="getVendorAndProducts(loggedInVendor)">
       <div class="postProductDiv" ng-hide="noNewPost">
         <div>
           Enter a new product below.  You can choose a predefined category from the drop down list.  This is recommended even if you offer a specific variety (you can list that in your description).  If you product is outside the predefined options, select other.  If you have one, please include a picture!:
         </div>
           <br>
 
-        <div ng-init="getAllProducts()">
+        <div ng-init="getAllProducts()" class="list-wrapper">
 
           <div>
             <label for="product_name">Product Name</label>
-            <input id="product_name" type="text" ng-model=" searchProductsFilter" required="true" >
-              <option ng-repeat="product in Products | unique:'name' | orderBy:'name' | filter:product.name=searchProductsFilter"  value="{{product.name}}">{{product.name}}</option>
+            <div>
+              <input class="inputA" id="product_name" type="text" ng-keydown="checkKeyDown($event)" ng-keyup="checkKeyUp($event)" ng-model="product.name" ng-change="search()" />
+            </div>
+            <ul>
+              <li ng-repeat="name in suggestions | unique : name" ng-class="{active : selectedIndex === $index}" ng-click="AssignValueAndHide($index)">{{name}}</li>
+            </ul>
+              <!-- <option ng-repeat="product in Products | unique:'name' | orderBy:'name' | filter:product.name=searchProductsFilter"  value="{{product.name}}">{{product.name}}</option> -->
           </div>
           <div>
             <label for="product_price">product price</label>
@@ -95,7 +100,7 @@
 
 
 
-      <div class="productContent" ng-repeat="product in vendor">
+      <div class="productContent" ng-repeat="product in singleVendor">
         <div class="product">
           <div>{{product.name}}</div>
           <div>{{product.price}}</div>

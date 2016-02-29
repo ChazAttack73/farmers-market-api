@@ -35,21 +35,21 @@
       </div>
     </div>
 
-    <div class="mobileMenu" ng-class="myVar" ng-click="myVar=''">
+    <div class="mobileMenu" ng-class="myVar" ng-click="myVar=''" ng-controller="HeaderController">
       <ul>
         <li>
           <a href="/#/">HOME</a>
         </li>
-        <li ng-hide="vendor_user">
+        <li ng-hide="loggedInVendor">
           <a href="/#/login" ng-click="loggedInUser=!loggedInUser">LOGIN</a>
         </li>
-        <li ng-show="vendor_user">
+        <li ng-show="loggedInVendor">
           <a href="/#/" ng-href="/#/vendor/private">PROFILE</a>
         </li>
         <li>
           <a href="/#/register">SIGN UP</a>
         </li>
-        <li ng-show="vendor_user">
+        <li ng-show="loggedInVendor">
           <a href="/#/" ng-click="logoutButton()">LOGOUT</a>
         </li>
       </ul>
@@ -60,11 +60,11 @@
         <a href="/#/">HOME</a>
       </div>
 
-      <div class="navbarButton" ng-hide="vendor_user">
+      <div class="navbarButton" ng-hide="loggedInVendor">
         <a href="/#/login" ng-click="loggedInUser=!loggedInUser">LOGIN</a>
       </div>
 
-      <div class="navbarButton" ng-show="vendor_user">
+      <div class="navbarButton" ng-show="loggedInVendor">
         <!-- Kai..why an href and an ng-href here with two different routes? -->
         <a href="/#/" ng-href="/#/vendor/private">PROFILE</a>
         </div>
@@ -73,14 +73,12 @@
         <a href="/#/register">SIGN UP</a>
       </div>
 
-      <div class="navbarButton" ng-show="vendor_user">
+      <div class="navbarButton" ng-show="loggedInVendor">
         <a href="/#/" ng-click="logoutButton()">LOGOUT</a>
       </div>
     </div>
 
     <div class="view" ng-view></div>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
