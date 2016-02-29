@@ -4,7 +4,7 @@
 angular.module('myApp')
   .service('ProductService', ['$http', function($http){
     this.getProducts = function(){
-      return $http.get('/product');
+      return $http.get('/product/');
     };
     this.getProduct = function(id){
       return $http.get('/product/'+id);

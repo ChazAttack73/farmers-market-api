@@ -91,14 +91,6 @@ router.get( '/event/:id', function( req, res){
   });
 });
 
-// router.get( '/', function ( req, res ) {
-//   Vendor.findAll({})
-//     .then( function ( vendors ) {
-//       res.json( vendors );
-//     })
-//   ;
-// });
-
 //Being called from VendorService by getOneVendorAndProducts function indentified by Vendor id
 //gets one vendor and all products belonging to them
 router.get( '/:id', function( req, res) {

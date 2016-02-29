@@ -1,4 +1,10 @@
-angular.module('myApp', ['ngRoute', 'ngStorage', 'angular-stripe']);
+
+angular.module('myApp', [
+  'ngRoute',
+  'ngStorage',
+  'angular.filter',
+  'angular-stripe'
+  ]);
 
 var myApp = angular.module('myApp');
 
@@ -68,8 +74,8 @@ myApp
 }])
 
 .run(['$rootScope', '$localStorage', function($rootScope, $localStorage){
-  if($localStorage.hasOwnProperty("vendor_user")) {
+  if($localStorage.hasOwnProperty("loggedInVendor")) {
   }
   //initialize
-  $rootScope.vendor_user = $localStorage.vendor_user || '!loggedin';
+  //$rootScope.loggedInVendor = $localStorage.loggedInVendor || '!loggedin';
 }]);

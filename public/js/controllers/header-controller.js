@@ -5,7 +5,7 @@ angular.module('myApp')
 
  $scope.logoutButton = function() {
       VendorService.logoutVen().success(function() {
-        $rootScope.vendor_user=false;
+        $rootScope.loggedInVendor=null;
         $localStorage.$reset();
         $location.url('/');
       });

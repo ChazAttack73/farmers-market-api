@@ -12,6 +12,8 @@ var Product = db.Product;
 var StripeVendor = db.StripeVendor;
 var stripe = require("stripe")("sk_test_L3fF5CjV33nFCv2dg7vcKQmz");
 
+var vendorForCallBack = null;
+
 router.use(bodyParser.json({ extended: false }));
 
 router.post('/:id',function( req, res){
@@ -93,15 +95,21 @@ router.get('/callback', function(req, res){
 //80457604856754039678349586754093687345897345096873405968734059687
     //=====46-028475-47829-876-9428762-9ew68795449-w68724-98
     //this is where i save body to the StripeVendor table
-    StripeVendor.create(body)
+    StripeVendor.create({
+      access_token : accessToken,
+      token_type : body.token_type,
+      stripe_user_id : body.stripe_user_id,
+      scope : body.scope
+      //VendorId :
+    })
     //and then redirect them to the vendor/private
-    .then(function(){
-      res.redirect('/vendor/private');
+    .then(function(data){
+      console.log(data);
+      return res.redirect('/#/vendor/private');
     });
-    res.send({ "Your Token": body });
-
+    // return res.send({ "Your Token": body });
   });
-
+  // return;
 });
 
 module.exports = router;
