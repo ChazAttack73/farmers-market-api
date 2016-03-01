@@ -12,7 +12,7 @@ angular.module('myApp')
 
     $scope.loadEvent = function(id) {
       $scope.selectedEvent = [];
-      EventService.getOneEvent(id).success(function(data){
+      EventService.getOneEventService(id).success(function(data){
         $scope.selectedEvent = data;
       });
     };
@@ -56,16 +56,15 @@ angular.module('myApp')
       EventService.loginUser(userLoginCredentials).success(function(result) {
 
         $rootScope.loggedInVendor = result;
+        $rootScope.loggedInVendor.user = true;
         $localStorage.loggedInVendor = $rootScope.loggedInVendor;
-        $location.url('/');
+        $location.url('/user/private');
       }).error(function(error) {
           $scope.error ="Wrong username or password";
       });
     };
 
     $scope.loginVendor = function(vendorLoginCredentials){
-
-      console.log('At vendorservice', vendorLoginCredentials);
       vendorLoginCredentials.type = 'vendor';
       VendorService.loginVen(vendorLoginCredentials).success(function(result) {
         $rootScope.loggedInVendor = result;

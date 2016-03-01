@@ -54,7 +54,6 @@ passport.use(new LocalStrategy({
 
 
     } else {
-
       User.findOne({
         where: {
           email : name

@@ -97,17 +97,20 @@ angular.module('myApp')
       $scope.noNewPost = !$scope.noNewPost;
     };
 
-    //This is throwing error because it runs when vendorPrivatePage uses this controller
-    //but it does not have an id to give it
-    // ProductService.getProduct(id).success(function(data){
-    //   $scope.Product = data;
-    // });
+    $scope.getOneProduct = function(id) {
+      ProductService.getProduct(id).success(function(data){
+      $scope.Product = data;
+      });
+    };
 
-    //This is throwing error because it runs when vendorPrivatePage uses this controller
-    //but it does not have an id to give it
-    ProductService.getProduct(id).success(function(data){
-    $scope.Product = data;
-    });
+    $scope.getIndividualProduct = function(){
+      console.log(111111);
+      var params = $location.url();
+      console.log(params);
+      ProductService.getIndiProduct($location.url()).success(function(data){
+        $scope.Product = data;
+      });
+    };
 
     $scope.postProduct=function(product) {
       if (product === undefined) {
@@ -139,8 +142,6 @@ angular.module('myApp')
     };
 
     $scope.handleStripe = function(){
-      console.log(111111111111);
-
       if($scope.stripe===undefined){
         return $scope.error = "Please fill out all required fields";
       }
@@ -172,7 +173,7 @@ angular.module('myApp')
 
           ProductService.chargeProduct(payment);
 
-          $rootScope.card.last4 = response.card.last4;
+          $rootScope.card = response.card;
 
           $scope.Product.quantity--;
           response.quantity = $scope.Product.quantity;
@@ -182,6 +183,7 @@ angular.module('myApp')
         .then(function (data) {
 
           console.log('successfully submitted payment for $', data);
+          $scope.aloha = false;
 
         })
         .catch(function (err) {

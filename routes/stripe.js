@@ -17,7 +17,6 @@ var vendorForCallBack = null;
 router.use(bodyParser.json({ extended: false }));
 
 router.post('/:id',function( req, res){
-  console.log(11111111111111,req.body);
   Order.create({
     productQuantity : req.body.productQuantity,
     totalCost : req.body.amount,
@@ -25,13 +24,11 @@ router.post('/:id',function( req, res){
     ProductId : req.body.product
   }).
   then(function(order){
-    console.log(2222222222222, order);
        Payment.create({
       token : req.body.token,
       OrderId : order.id
     })
     .then(function(data){
-      console.log(333333333333333333, data);
       var charge = stripe.charges.create({
         amount: req.body.amount, // amount in cents, again
         currency: "usd",
@@ -47,14 +44,12 @@ router.post('/:id',function( req, res){
         }
 
       }, function(err, charge) {
-        console.log(444444444444444, charge);
         if (err && err.type === 'StripeCardError') {
           // The card has been declined
           return res.json('error');
         }
 
         Product.findById(req.body.product).then(function(product) {
-          console.log(55555555555)
           return product.decrement('quantity', {by: req.body.productQuantity});
         });
 
@@ -87,9 +82,6 @@ router.get('/callback', function(req, res){
     // Do something with your accessToken
 
     // For demo"s sake, output in response:
-
-    console.log(111111, body);
-    console.log(222222, accessToken);
 
 
 //80457604856754039678349586754093687345897345096873405968734059687
