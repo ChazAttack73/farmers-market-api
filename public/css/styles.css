@@ -372,15 +372,15 @@ body {
   font-family: "Montserrat", sans-serif;
   color: #575450; }
 
-.chooseLoginWrapper {
+.loginNavbar {
   display: flex;
   flex-flow: row wrap;
   height: auto;
   flex: 0 0 90%;
   justify-content: space-between; }
-  .chooseLoginWrapper .toggledBtn {
+  .loginNavbar .toggledBtn {
     opacity: 0.7; }
-  .chooseLoginWrapper .chooseVendor {
+  .loginNavbar .chooseVendor {
     height: 40px;
     width: 49.5%;
     text-align: center;
@@ -392,12 +392,12 @@ body {
     font-weight: 600; }
 
 @media (min-width: 421px) and (max-width: 768px) {
-  .chooseLoginWrapper .chooseVendor {
+  .loginNavbar .chooseVendor {
     height: 100px;
     width: 49.5%;
     font-size: 1em;
     line-height: 100px; } }
-  .chooseLoginWrapper .chooseUser {
+  .loginNavbar .chooseUser {
     height: 40px;
     width: 49.5%;
     text-align: center;
@@ -409,64 +409,64 @@ body {
     font-weight: 600; }
 
 @media (min-width: 421px) and (max-width: 768px) {
-  .chooseLoginWrapper .chooseUser {
+  .loginNavbar .chooseUser {
     height: 100px;
     width: 49.5%;
     font-size: 1em;
     line-height: 100px; } }
 
-.loginWrapper {
+.formWrapper {
   display: flex;
   flex-flow: row wrap;
   flex: 0 0 90%;
   height: 40%;
   background-image: url("./../images/tan-bg.jpg"); }
-  .loginWrapper .loginTitle {
+  .formWrapper .formTitle {
     font-family: "Six Caps", sans-serif;
     flex: 0 0 70%;
     margin: 10px 0px;
     font-size: 3.0em;
     text-align: center; }
-  .loginWrapper .vendorLoginLogo {
+  .formWrapper .vendorLoginLogo {
     flex: 0 0 30%;
     margin: auto; }
-    .loginWrapper .vendorLoginLogo svg {
+    .formWrapper .vendorLoginLogo svg {
       height: 90%;
       width: 90%; }
-    .loginWrapper .vendorLoginLogo path {
+    .formWrapper .vendorLoginLogo path {
       fill: #575450; }
-  .loginWrapper .userLoginLogo {
+  .formWrapper .shoppingCartLogo {
     flex: 0 0 30%;
     background-image: url("./../images/shopper-icon.svg");
     background-size: initial;
     background-position: center;
     background-repeat: no-repeat; }
 
-.loginForm {
+.formContainer {
   display: flex;
   flex-flow: row wrap;
   flex: 0 0 100%;
   justify-content: center; }
-  .loginForm .loginFieldset {
+  .formContainer .formFieldset {
     flex: 0 0 100%;
     border: 0;
     padding: 0.01em 30px 0 30px;
     margin: 0;
     min-width: 0; }
-  .loginForm label {
+  .formContainer label {
     font-size: 0.65em;
     font-weight: 700;
     height: auto; }
-  .loginForm input {
+  .formContainer input {
     display: block;
     height: 40px;
     border: 0;
     box-shadow: inset 0px 1px 6px #575450;
     width: 100%;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: #575450;
     padding-left: 5px; }
-  .loginForm .loginSubmitBtn {
+  .formContainer .formSubmitBtn {
     font-family: "Montserrat", sans-serif;
     font-size: 0.8em;
     font-weight: 700;
@@ -498,6 +498,13 @@ body {
   font-size: 0.7em;
   text-align: center;
   line-height: 40px; }
+
+.eventLogo {
+  flex: 0 0 30%;
+  background-image: url("./../images/leaves.svg");
+  background-size: initial;
+  background-position: center;
+  background-repeat: no-repeat; }
 
 .regWrapper {
   flex: 0 0 90%; }

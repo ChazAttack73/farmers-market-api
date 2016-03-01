@@ -503,7 +503,7 @@ body {
 }
 
 
-.chooseLoginWrapper {
+.loginNavbar {
   @include flexDisplayRow;
   height: auto;
   flex: 0 0 90%;
@@ -541,13 +541,13 @@ body {
   }
 }
 
-.loginWrapper {
+.formWrapper {
   @include flexDisplayRow;
   flex: 0 0 90%;
   height: 40%;
   background-image: $tan-bg;
 
-  .loginTitle {
+  .formTitle {
     font-family: $sixCaps;
     flex: 0 0 70%;
     margin: 10px 0px;
@@ -569,7 +569,7 @@ body {
     }
   }
 
-  .userLoginLogo {
+  .shoppingCartLogo {
     flex: 0 0 30%;
     background-image: $shopper;
     background-size: initial;
@@ -578,12 +578,12 @@ body {
   }
 }
 
-.loginForm {
+.formContainer {
   @include flexDisplayRow;
   flex: $flexFull;
   justify-content: center;
 
-  .loginFieldset {
+  .formFieldset {
     flex: $flexFull;
     border: 0;
     padding: 0.01em 30px 0 30px;
@@ -603,12 +603,12 @@ body {
     border: 0;
     box-shadow: inset 0px 1px 6px $gray;
     width: 100%;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: $gray;
     padding-left: 5px;
   }
 
-  .loginSubmitBtn {
+  .formSubmitBtn {
     font-family: $mont;
     font-size: 0.8em;
     font-weight: 700;
@@ -644,6 +644,14 @@ body {
   font-size: 0.7em;
   text-align: center;
   line-height: 40px;
+}
+
+.eventLogo {
+  flex: 0 0 30%;
+  background-image: $leaves;
+  background-size: initial;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .regWrapper {
