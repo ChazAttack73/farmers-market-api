@@ -38,10 +38,10 @@
         <h1 class="vendor_name"> {{singleVendor.name}} </h1>
         <div class="separator"></div>
         <div class="vendorProfilePic">
-          <img   src="{{singleVendor.company_pic}}" alt="">
+          <img src="http://lorempixel.com/1000/1000" alt="">
         </div>
         <p class="vendorDescription">{{singleVendor.description}}</p>
-        <a class="vendorWebsite" href="//www.google.com" target="_blank">{{singleVendor.website}}</a>
+        <a class="vendorWebsite" href="//{{singleVendor.website}}" target="_blank">{{singleVendor.website}}</a>
         <p class="vendorEmail">{{singleVendor.email}} </p>
         <button class="privateVendorButton" type="button" ng-click="clickButton()">Back</button>
       </div>
@@ -66,7 +66,7 @@
     <div id="productInfo">I'm showing all the product categories!
       <p class="productDescription"> {{product.description}} </p>
       <p>There will be an ng-repeat below listing every product filtered by distinct.  These will be clickable.  I'm putting a button to represent this</p>
-      <button type="button" ng-click="productValue=false ; ">See individual product category!</button>
+      <button type="button" ng-click="productValue=false">See individual product category!</button>
     </div>
   ​  <div class="productMain">
       <div class="eventProductContent" ng-repeat="product in productsForEvent" >

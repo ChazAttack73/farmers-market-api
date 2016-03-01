@@ -208,7 +208,7 @@ body {
   flex: 0 0 100%;
   margin: 3px 0px;
   justify-content: center;
-  align-content: space-between;
+  align-content: center;
   font-family: "Montserrat", sans-serif;
   margin-bottom: 45px; }
   .vendorNavBar a {
@@ -226,7 +226,8 @@ body {
     color: #F4F3D5;
     opacity: 0.3;
     font-size: 0.8em;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    margin-right: 5px; }
   .vendorNavBar .navbarVendor:hover {
     color: #F4F3D5;
     opacity: 1;
@@ -244,7 +245,8 @@ body {
     color: #F4F3D5;
     opacity: 0.3;
     font-size: 0.8em;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    margin-left: 5px; }
   .vendorNavBar .navbarProduce:hover {
     color: #F4F3D5;
     opacity: 1;
@@ -545,12 +547,13 @@ body {
 #vendorInfo {
   display: flex;
   flex-flow: row wrap;
-  width: 450px;
+  width: 350px;
   background-color: #F4F3D5;
   justify-content: center;
   text-align: center;
   color: #575450;
-  font-family: "Montserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif;
+  margin: 5px; }
   #vendorInfo a {
     color: #575450; }
   #vendorInfo .vendor_name {
@@ -568,6 +571,9 @@ body {
   #vendorInfo .vendorProfilePic {
     margin-top: 10px;
     flex: 0 0 100%; }
+    #vendorInfo .vendorProfilePic img {
+      max-height: 45%;
+      max-width: 80%; }
   #vendorInfo .vendorDescription {
     flex: 0 0 100%; }
   #vendorInfo .vendorEmail {
