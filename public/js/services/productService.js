@@ -7,7 +7,6 @@ angular.module('myApp')
       return $http.get('/product/');
     };
     this.getProduct = function(id){
-      console.log('peekaboooooo!');
       return $http.get('/product/'+id);
     };
     this.getIndiProduct = function(id){
