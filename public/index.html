@@ -21,7 +21,7 @@
   </head>
 
   <body ng-app="myApp">
-    <div class="mainTitleBar">DISTRIBUTING HOMEGROWN ALOHA™
+    <div class="mainTitleBar">HOMEGROWN ALOHA™
       <div class="mobileNav" ng-click="myVar==='menuOn' ? myVar='' : myVar='menuOn'">
         <div class="hamburgerHack1">
           <div class="hamburgerHack2"></div>
@@ -38,13 +38,13 @@
           <a href="/#/login" ng-click="loggedInUser=!loggedInUser">LOGIN</a>
         </li>
         <li ng-show="loggedInVendor">
-          <a href="/#/" ng-href="/#/vendor/private">PROFILE</a>
+          <a href="" ng-click="whosLoggedIn()">PROFILE</a>
         </li>
         <li>
           <a href="/#/register">SIGN UP</a>
         </li>
         <li ng-show="loggedInVendor">
-          <a href="/#/" ng-click="logoutButton()">LOGOUT</a>
+          <a href="" ng-click="logoutButton()">LOGOUT</a>
         </li>
       </ul>
     </div>
@@ -60,7 +60,7 @@
 
       <div class="navbarButton" ng-show="loggedInVendor">
         <!-- Kai..why an href and an ng-href here with two different routes? -->
-        <a href="/#/" ng-href="/#/vendor/private">PROFILE</a>
+        <a href="" ng-click="whosLoggedIn()">PROFILE</a>
         </div>
 
       <div class="navbarButton">
@@ -68,7 +68,7 @@
       </div>
 
       <div class="navbarButton" ng-show="loggedInVendor">
-        <a href="/#/" ng-click="logoutButton()">LOGOUT</a>
+        <a href="" ng-click="logoutButton()">LOGOUT</a>
       </div>
     </div>
 

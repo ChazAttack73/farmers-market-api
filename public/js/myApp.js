@@ -70,6 +70,10 @@ myApp
     .when('/register', {
       templateUrl : 'views/register.html',
       controller : 'EventController'
+    })
+    .when('/user/private', {
+      templateUrl : 'views/userEdit.html',
+      controller : 'VendorController'
     });
 }])
 

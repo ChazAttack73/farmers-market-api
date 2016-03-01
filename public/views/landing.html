@@ -1,14 +1,14 @@
 <div class="eventsContent" ng-repeat="event in Events">
-    <a href="/#/vendor/view/{{event.id}}" ng-click="getOneEvent(event.id)">
+    <a href="/#/vendor/view/{{event.id}}">
       <div class="eventContainer">
         <div class="eventTopHalf">
-          <div class="eventName">{{event.name}}</div>
+          <div class="eventName uppercase">{{event.name}}</div>
         </div>
         <div class="separatorLine"></div>
         <div class="eventBottomHalf">
-          <div class="eventDays">{{event.days}}</div>
-          <div class="eventTimes">{{event.time}}</div>
-          <div class="eventLocation">{{event.address}}</div>
+          <div class="eventDays uppercase">{{event.days}}</div>
+          <div class="eventTimes uppercase">{{event.time}}</div>
+          <div class="eventLocation uppercase">{{event.address}}</div>
           <div class="eventLogo"></div>
         </div>
       </div>

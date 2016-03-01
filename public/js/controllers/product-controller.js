@@ -6,6 +6,7 @@ angular.module('myApp')
     $scope.ProductService = ProductService;
     $scope.noNewPost = true;
     $scope.errorDiv = true;
+    $scope.noProductEdit = true;
     var id = $routeParams.id;
     $rootScope.loggedInVendor = $localStorage.loggedInVendor;
 
@@ -97,17 +98,11 @@ angular.module('myApp')
       $scope.noNewPost = !$scope.noNewPost;
     };
 
-    //This is throwing error because it runs when vendorPrivatePage uses this controller
-    //but it does not have an id to give it
-    // ProductService.getProduct(id).success(function(data){
-    //   $scope.Product = data;
-    // });
-
-    //This is throwing error because it runs when vendorPrivatePage uses this controller
-    //but it does not have an id to give it
-    ProductService.getProduct(id).success(function(data){
-    $scope.Product = data;
-    });
+    $scope.getOneProduct = function(id) {
+      ProductService.getProduct(id).success(function(data){
+      $scope.Product = data;
+      });
+    };
 
     $scope.postProduct=function(product) {
       if (product === undefined) {
@@ -129,7 +124,8 @@ angular.module('myApp')
           $scope.error = null;
           product.VendorId = $rootScope.loggedInVendor.id;
           ProductService.addProduct(product).then(function(data) {
-            $scope.product = null;
+          //$scope.product = null;
+          $rootScope.singleVendor.Products.push(data.config.data);
         });
         return;
         }
@@ -168,7 +164,7 @@ angular.module('myApp')
           payment.product = $scope.Product.id;
           payment.productQuantity = 1;
           payment.amount = $scope.Product.price;
-          payment.user = $rootScope.user_user;
+          payment.user = $rootScope.loggedInVendor; //this is actually a user and not a vendor
 
           ProductService.chargeProduct(payment);
 
@@ -205,7 +201,7 @@ angular.module('myApp')
 
   $scope.checkout = function(){
     //this will go to User table
-      //if($rootScope.user_user.false){
+      //if($rootScope.loggedInVendor.false){     //this is a user and not a vendor
         //show the card form to make token
       //} else{
         //bring out the div to show if they want to use the same card number
@@ -220,17 +216,20 @@ angular.module('myApp')
 
 
     $scope.submitEdit = function(product) {
-      ProductService.editProduct(product).then(function(data){
-        ProductService.getProducts().success(function(data){
-          $scope.Products = data;
+      ProductService.editProduct(product, product.id).then(function(data){
+        VendorService.getOneVendorAndProducts($rootScope.loggedInVendor.id).success(function (vendor){
+          //see if anyway to arrange by id with filter
+          $rootScope.singleVendor = vendor;
         });
       });
     };
 
-    $scope.delProduct = function(product) {
-      ProductService.deleteProduct(product).then(function(data) {
-        ProductService.getProducts().success(function(data){
-          $scope.Products = data;
+    $scope.delProduct = function(productID) {
+      ProductService.deleteProduct(productID).then(function(data) {
+        console.log('ldsjfljsdfljsdf', data);
+        VendorService.getOneVendorAndProducts($rootScope.loggedInVendor.id).success(function (vendor){
+          //see if anyway to arrange by id with filter
+          $rootScope.singleVendor = vendor;
         });
       });
     };

@@ -5,10 +5,10 @@ angular.module('myApp')
   $scope.Events = [];
   $scope.EventService = EventService;
 
-  var id = $routeParams.id;
 
-  $scope.getOneEvent = function(eventID) {
-    EventService.getOneEvent(id).success(function(data){
+  $scope.getOneEvent = function() {
+    var id = $routeParams.id;
+    EventService.getOneEventService(id).success(function(data){
     $scope.oneEvent = {};
     $scope.oneEvent.id = data[0].id;
     $scope.oneEvent.name = data[0].name.toUpperCase();
@@ -19,14 +19,7 @@ angular.module('myApp')
   };
 
   EventService.getEvents().success(function(data){
-    for( var i = 0; i < data.length; i++ ){
-      var event = $scope.Events[i] = {};
-      event.id = data[i].id;
-      event.name = data[i].name.toUpperCase();
-      event.days = data[i].days.toUpperCase();
-      event.time = data[i].time.toUpperCase();
-      event.address = data[i].address.toUpperCase();
-    }
+    $scope.Events = data;
   });
 
   $scope.registerEvent = function(theEvent){
@@ -35,7 +28,6 @@ angular.module('myApp')
       $location.url('/');
     });
   };
-
 
   $scope.registerUser = function(user){
     if(user===undefined || user === null){
@@ -61,7 +53,7 @@ angular.module('myApp')
     EventService.addUser(new_user)
 
     .success(function(result){
-      $rootScope.user_user = result;
+      $rootScope.loggedInVendor = result; //this is actually a user and not a vendor
       $location.url('/');
     });
 
