@@ -37,12 +37,13 @@
       <div id="vendorInfo">
         <h1 class="vendor_name"> {{singleVendor.name}} </h1>
         <div class="separator"></div>
-        <p class="vendorDescription"> {{singleVendor.description}} </p>
-        <img class="vendorProfilPic"  src="" alt="">   {{singleVendor.company_pic}} this goes somewhere here
+        <div class="vendorProfilePic">
+          <img   src="{{singleVendor.company_pic}}" alt="">
+        </div>
+        <p class="vendorDescription">{{singleVendor.description}}</p>
+        <a class="vendorWebsite" href="//www.google.com" target="_blank">{{singleVendor.website}}</a>
         <p class="vendorEmail">{{singleVendor.email}} </p>
-        <p class="vendorWebsite">{{singleVendor.website}}</p>
-        <p>This page should show the Individual Vendor and their products</p>
-        <button type="button" ng-click="clickButton()">Back</button>
+        <button class="privateVendorButton" type="button" ng-click="clickButton()">Back</button>
       </div>
     ​  <div class="vendorMain">
         <div class="vendorProduct" ng-repeat="product in singleVendor.Products" >
@@ -84,4 +85,3 @@
     <button type="button" ng-click="productValue=true">Back</button>
   </div>
 </div>
-
