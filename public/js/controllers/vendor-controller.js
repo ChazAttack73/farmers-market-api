@@ -6,6 +6,7 @@ angular.module('myApp')
     $scope.vendorValue=true;
     $scope.Vendors = [];
     $scope.VendorService = VendorService;
+    $rootScope.loggedInVendor = $localStorage.loggedInVendor;
 
     var id = $routeParams.id;
 

@@ -7,6 +7,7 @@ angular.module('myApp')
     $scope.noNewPost = true;
     $scope.errorDiv = true;
     var id = $routeParams.id;
+    $rootScope.loggedInVendor = $localStorage.loggedInVendor;
 
     //Define Suggestions List
     $rootScope.suggestions = [];
