@@ -13,20 +13,20 @@
   </div>
 
 
-  <div class="loginWrapper">
-    <div class="loginTitle">
+  <div class="formWrapper">
+    <div class="formTitle">
       <span>USER REGISTRATION</span>
     </div>
-    <div class="userLoginLogo"></div>
-    <div class="loginForm">
-      <fieldset class="loginFieldset">
+    <div class="shoppingCartLogo"></div>
+    <div class="formContainer">
+      <fieldset class="formFieldset">
         <label for="user_email">EMAIL</label>
         <input id="user_email "type="text" ng-model="user.email">
         <label for="user_password">PASSWORD</label>
         <input id="user_password"type="password" ng-model="user.password">
         <label for="user_verifyPassword">VERIFY PASSWORD</label>
         <input id="user_verifyPassword "type="password" ng-model="user.verifyPassword">
-        <input class="loginSubmitBtn" type="submit" value="register" ng-click="registerUser(user); user = null">
+        <input class="formSubmitBtn" type="submit" value="register" ng-click="registerUser(user); user = null">
         <!-- <div class="commit">
           <button class="loginSubmitBtn" type='button' ng-click='registerUser(user); user = null'>REGISTER</button>
         </div> -->
@@ -34,10 +34,13 @@
     </div>
   </div>
 
-  <div class="loginWrapper">
-    <div class="loginForm">
-      <fieldset class="loginFieldset">
-        <h2>EVENT REGISTRATION</h2>
+  <div class="formWrapper">
+    <div class="formTitle">
+      <span>EVENT REGISTRATION</span>
+    </div>
+    <div class="eventLogo"></div>
+    <div class="formContainer">
+      <fieldset class="formFieldset">
 
         <label for="event_name">EVENT NAME</label>
         <input id="event_name "type="text" ng-model="event.name">
@@ -60,16 +63,16 @@
         <br>
 
         <div class="commit">
-          <button class="loginSubmitBtn" type='button' ng-click='registerEvent(event); event=null'>REGISTER</button>
+          <button class="formSubmitBtn" type='button' ng-click='registerEvent(event); event=null'>REGISTER</button>
         </div>
 
       </fieldset>
     </div>
   </div>
 
-  <div class="loginWrapper">
-    <div class="loginForm">
-      <fieldset class="loginFieldset" ng-controller="VendorController">
+  <div class="formWrapper">
+    <div class="formContainer">
+      <fieldset class="formFieldset" ng-controller="VendorController">
         <h2>Vendor Registration</h3>
 
         <label for="vendor_name">Company Name</label>
@@ -114,7 +117,7 @@
         <input id="vendor_EventId" type="hidden" ng-model="vendor.EventId"></input>
         <div class="error">{{error}}</div>
         <div class="commit">
-          <button class="loginSubmitBtn" type='button' ng-click='registerVendor(vendor)'>Register</button>
+          <button class="formSubmitBtn" type='button' ng-click='registerVendor(vendor)'>Register</button>
         </div>
 
       </fieldset>
