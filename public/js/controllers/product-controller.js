@@ -244,4 +244,3 @@ angular.module('myApp')
     };
   }
 ]);
-
