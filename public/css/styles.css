@@ -460,25 +460,45 @@ body {
     height: 40px;
     border: 0;
     box-shadow: inset 0px 1px 6px #575450;
-    width: 100%; }
+    width: 100%;
+    font-size: 1.5em;
+    color: #575450;
+    padding-left: 5px; }
   .loginForm .loginSubmitBtn {
     font-family: "Montserrat", sans-serif;
+    font-size: 0.8em;
     font-weight: 700;
     color: #F4F3D5;
     height: 40px;
     background-image: url("./../images/charcoal-bg.png");
     box-shadow: 0px 2px 5px #575450;
     width: 100%;
-    margin: 30px 0 60px 0; }
+    margin: 30px 0 60px 0;
+    text-transform: uppercase; }
 
 .regMainWrapper {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  font-family: "Montserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif;
+  color: #575450; }
+
+.regNavbar {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 0 0 90%;
+  height: 40px;
+  justify-content: space-between; }
+
+.regNavBtn {
+  flex: 0 0 32.8%;
+  background: url("./../images/tan-bg.jpg");
+  font-size: 0.7em;
+  text-align: center;
+  line-height: 40px; }
 
 .regWrapper {
-  flex: 0 0 80%; }
+  flex: 0 0 90%; }
 
 .vendorHeader {
   display: flex;
