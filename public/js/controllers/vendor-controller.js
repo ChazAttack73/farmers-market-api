@@ -6,6 +6,7 @@ angular.module('myApp')
     $scope.vendorValue=true;
     $scope.Vendors = [];
     $scope.VendorService = VendorService;
+    $rootScope.loggedInVendor = $localStorage.loggedInVendor;
 
     var id = $routeParams.id;
 
@@ -54,7 +55,8 @@ angular.module('myApp')
       userLoginCredentials.type = 'user';
       EventService.loginUser(userLoginCredentials).success(function(result) {
 
-        $rootScope.user_user = result;
+        $rootScope.loggedInVendor = result;
+        $localStorage.loggedInVendor = $rootScope.loggedInVendor;
         $location.url('/');
       }).error(function(error) {
           $scope.error ="Wrong username or password";

@@ -53,7 +53,7 @@ angular.module('myApp')
     EventService.addUser(new_user)
 
     .success(function(result){
-      $rootScope.user_user = result;
+      $rootScope.loggedInVendor = result; //this is actually a user and not a vendor
       $location.url('/');
     });
 
