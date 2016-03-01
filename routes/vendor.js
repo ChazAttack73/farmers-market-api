@@ -127,7 +127,6 @@ router.post('/:id',function(req,res){
 
 //Being called from VendorService by editVendorInfo function
 router.put('/:id', function( req, res){
-  console.log('here at server edit for vendor?', req.params);
   req.body.updatedAt = "now()";
   Vendor.findById(req.params.id)
   .then(function(data) {

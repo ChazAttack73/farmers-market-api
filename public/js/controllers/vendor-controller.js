@@ -125,11 +125,11 @@ angular.module('myApp')
     };
 
     $scope.getVendorAndProducts = function(vendor) {
-      $scope.singleVendor = null;
+      $rootScope.singleVendor = null;
       $scope.vendorValue=false;
       //var param1 = $routeParams.param1;
       VendorService.getOneVendorAndProducts(vendor.id).success(function (vendor){
-        $scope.singleVendor = vendor;
+        $rootScope.singleVendor = vendor;
       });
     };
 
