@@ -6,6 +6,7 @@ angular.module('myApp')
     $scope.ProductService = ProductService;
     $scope.noNewPost = true;
     $scope.errorDiv = true;
+    $scope.noProductEdit = true;
     var id = $routeParams.id;
     $rootScope.loggedInVendor = $localStorage.loggedInVendor;
 
@@ -132,7 +133,8 @@ angular.module('myApp')
           $scope.error = null;
           product.VendorId = $rootScope.loggedInVendor.id;
           ProductService.addProduct(product).then(function(data) {
-            $scope.product = null;
+          //$scope.product = null;
+          $rootScope.singleVendor.Products.push(data.config.data);
         });
         return;
         }
@@ -222,17 +224,21 @@ angular.module('myApp')
 
 
     $scope.submitEdit = function(product) {
-      ProductService.editProduct(product).then(function(data){
-        ProductService.getProducts().success(function(data){
-          $scope.Products = data;
+      console.log('what product are you editing????', product);
+      ProductService.editProduct(product, product.id).then(function(data){
+        VendorService.getOneVendorAndProducts($rootScope.loggedInVendor.id).success(function (vendor){
+          //see if anyway to arrange by id with filter
+          $rootScope.singleVendor = vendor;
         });
       });
     };
 
-    $scope.delProduct = function(product) {
-      ProductService.deleteProduct(product).then(function(data) {
-        ProductService.getProducts().success(function(data){
-          $scope.Products = data;
+    $scope.delProduct = function(productID) {
+      ProductService.deleteProduct(productID).then(function(data) {
+        console.log('ldsjfljsdfljsdf', data);
+        VendorService.getOneVendorAndProducts($rootScope.loggedInVendor.id).success(function (vendor){
+          //see if anyway to arrange by id with filter
+          $rootScope.singleVendor = vendor;
         });
       });
     };
