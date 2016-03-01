@@ -183,6 +183,7 @@ angular.module('myApp')
         .then(function (data) {
 
           console.log('successfully submitted payment for $', data);
+          $scope.aloha = false;
 
         })
         .catch(function (err) {

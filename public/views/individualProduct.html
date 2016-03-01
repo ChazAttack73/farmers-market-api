@@ -1,93 +1,52 @@
-<div id="productPage" ng-init="getIndividualProduct()">
-  <div id="vendorInfo">
-    <img src="{{Product.product_picture}}" class="productThumbnail">
-    <h1 class="product_name">{{Product.name}}</h1>
-    <p class="product_price">{{Product.price}}</p>
-    <p class="product_quantity">{{Product.quantity}}</p>
-    <p class="product_description">{{Product.description}}</p>
+<div id="productPage" ng-init="getIndividualProduct(); aloha=true">
+  <div ng-show="aloha">
+    <div id="vendorInfo">
+      <img src="{{Product.product_picture}}" class="productThumbnail">
+      <h1 class="product_name">{{Product.name}}</h1>
+      <p class="product_price">{{Product.price}}</p>
+      <p class="product_quantity">{{Product.quantity}}</p>
+      <p class="product_description">{{Product.description}}</p>
+    </div>
+
+    <form id="payment-form" ng-submit="handleStripe()">
+      <span class="payment-errors"></span>
+
+      <div class="form-row">
+        <label>
+          <span>Card Number</span>
+          <input type="text" size="16" data-stripe="number" ng-model="stripe.number" payments-validate="card" payments-type-model="type" payments-format="card" />
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>
+          <span>CVC</span>
+          <input type="text" size="4" data-stripe="cvc" ng-model="stripe.cvc" payments-validate="cvc" payments-type-model="type"/>
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>
+          <span>Expiration (MM/YYYY)</span>
+          <input type="text" size="2" data-stripe="exp-month" ng-model="stripe.exp_month" payments-validate="expiry"/>
+        </label>
+        <span> / </span>
+        <input type="text" size="4" data-stripe="exp-year" ng-model="stripe.exp_year"/>
+      </div>
+
+      <button type="submit">Submit Payment</button>
+    </form>
+
+    <!-- <div class="existingCard">
+      <p>**** **** **** {{last4}}</p> how to get the last code
+      <p>address line 1</p>
+      <p>address line 2</p>
+      <a href="">change card</a>
+      <button type="submit">Submit Payment</button>
+    </div> -->
   </div>
 
-  <!-- <button >Checkout</button> -->
-
-
-  <form id="payment-form" ng-submit="handleStripe()">
-    <span class="payment-errors"></span>
-
-<!--     <div class="form-row">
-      <label>
-        <span>First Name</span>
-        <input type="text" size="30" ng-model="stripe.firstname"/>
-      </label>
-    </div> -->
-
-<!--     <div class="form-row">
-      <label>
-        <span>Last Name Name</span>
-        <input type="text" size="30" ng-model="stripe.lastname"/>
-      </label>
-    </div> -->
-
-<!--     <div class="form-row">
-      <label>
-        <span>E-mail address</span>
-        <input type="text" size="30" ng-model="stripe.email"/>
-      </label>
-    </div> -->
-
-<!--     <div class="form-row">
-      <label>
-        <span>Address Line 1</span>
-        <input type="text" size="30" ng-model="stripe.addressline1"/>
-      </label>
-    </div> -->
-
-<!--     <div class="form-row">
-      <label>
-        <span>Address Line 2</span>
-        <input type="text" size="30" ng-model="stripe.addressline2"/>
-      </label>
-    </div> -->
-
-<!--     <div class="form-row">
-      <label>
-        <span>Country / Region</span>
-        <input type="text" size="30" ng-model="stripe.country"/>
-      </label>
-    </div> -->
-
-
-    <div class="form-row">
-      <label>
-        <span>Card Number</span>
-        <input type="text" size="16" data-stripe="number" ng-model="stripe.number" payments-validate="card" payments-type-model="type" payments-format="card" />
-      </label>
-    </div>
-
-    <div class="form-row">
-      <label>
-        <span>CVC</span>
-        <input type="text" size="4" data-stripe="cvc" ng-model="stripe.cvc" payments-validate="cvc" payments-type-model="type"/>
-      </label>
-    </div>
-
-    <div class="form-row">
-      <label>
-        <span>Expiration (MM/YYYY)</span>
-        <input type="text" size="2" data-stripe="exp-month" ng-model="stripe.exp_month" payments-validate="expiry"/>
-      </label>
-      <span> / </span>
-      <input type="text" size="4" data-stripe="exp-year" ng-model="stripe.exp_year"/>
-    </div>
-
-    <button type="submit">Submit Payment</button>
-  </form>
-
-  <!-- <div class="existingCard">
-    <p>**** **** **** {{last4}}</p> how to get the last code
-    <p>address line 1</p>
-    <p>address line 2</p>
-    <a href="">change card</a>
-    <button type="submit">Submit Payment</button>
-  </div> -->
-
+  <div ng-hide="aloha">
+    Thank you for supporting local farmers
+  </div>
 </div>
