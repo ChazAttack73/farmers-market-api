@@ -27,7 +27,7 @@ angular.module('myApp')
     };
 
     this.chargeProduct = function(product){
-      console.log(44444444444, product);
+      console.log(555555555, product);
       return $http.post('http://localhost:3000/stripe/'+product.routeParams, product);
     };
 

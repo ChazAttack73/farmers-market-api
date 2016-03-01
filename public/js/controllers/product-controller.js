@@ -142,8 +142,6 @@ angular.module('myApp')
     };
 
     $scope.handleStripe = function(){
-      console.log(111111111111);
-
       if($scope.stripe===undefined){
         return $scope.error = "Please fill out all required fields";
       }
@@ -175,7 +173,7 @@ angular.module('myApp')
 
           ProductService.chargeProduct(payment);
 
-          $rootScope.card.last4 = response.card.last4;
+          $rootScope.card = response.card;
 
           $scope.Product.quantity--;
           response.quantity = $scope.Product.quantity;
