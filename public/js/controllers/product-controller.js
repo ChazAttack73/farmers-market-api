@@ -167,7 +167,7 @@ angular.module('myApp')
           payment.product = $scope.Product.id;
           payment.productQuantity = 1;
           payment.amount = $scope.Product.price;
-          payment.user = $rootScope.user_user;
+          payment.user = $rootScope.loggedInVendor; //this is actually a user and not a vendor
 
           ProductService.chargeProduct(payment);
 
@@ -204,7 +204,7 @@ angular.module('myApp')
 
   $scope.checkout = function(){
     //this will go to User table
-      //if($rootScope.user_user.false){
+      //if($rootScope.loggedInVendor.false){     //this is a user and not a vendor
         //show the card form to make token
       //} else{
         //bring out the div to show if they want to use the same card number
