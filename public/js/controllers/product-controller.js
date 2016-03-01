@@ -10,7 +10,6 @@ angular.module('myApp')
     var id = $routeParams.id;
     $rootScope.loggedInVendor = $localStorage.loggedInVendor;
 
-
     //Define Suggestions List
     $rootScope.suggestions = [];
     $rootScope.selectedIndex = -1;
@@ -225,6 +224,7 @@ angular.module('myApp')
 
 
     $scope.submitEdit = function(product) {
+      console.log('what product are you editing????', product);
       ProductService.editProduct(product, product.id).then(function(data){
         VendorService.getOneVendorAndProducts($rootScope.loggedInVendor.id).success(function (vendor){
           //see if anyway to arrange by id with filter
@@ -244,4 +244,3 @@ angular.module('myApp')
     };
   }
 ]);
-

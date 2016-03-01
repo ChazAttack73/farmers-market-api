@@ -11,7 +11,6 @@ var Product = db.Product;
 router.use(bodyParser.json());
 
 //Being called from VendorServer by getProductsFromVendorsByEvent function
-
 router.get('/:id', function(req, res) {
   Product.findAll({
       include: [{

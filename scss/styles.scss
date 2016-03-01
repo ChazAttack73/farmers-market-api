@@ -926,3 +926,91 @@ body {
 .suggestions-list:focus{
   outline:none;
 }
+
+// ========================= Individual Product View
+
+#aloha {
+  @include flexDisplayRow;
+  justify-content: center;
+  height: 350px;
+  width: 350px;
+
+
+  #productInfo {
+    @include flexDisplayRow;
+    flex: $flexFull;
+    justify-content: center;
+    background-color: $tan;
+    height: 100%;
+    width: 100%;
+    color: $gray;
+    font-family: $mont;
+
+    img {
+      height: 65%;
+      width: 100%;
+      margin: 6px;
+    }
+
+    .product_name {
+      flex: $flexFull;
+      text-align: center;
+    }
+
+    .product_price {
+      flex: $flexFull;
+      text-align: center;
+    }
+
+    .product_quantity {
+      flex: $flexFull;
+      text-align: center;
+    }
+
+    .product_description {
+      flex: $flexFull;
+      text-align: center;
+    }
+  }
+
+  #payment-form {
+    @include flexDisplayRow;
+    flex: $flexFull;
+    justify-content: center;
+    background-color: $tan;
+    margin-top: 5px;
+    padding: 10px;
+    // height: 150px;
+    width: 300px;
+    font-family: $mont;
+    color: $gray;
+
+    .privateVendorButton {
+      -moz-box-shadow: 0px 1px 0px 0px #3d3b37;
+      -webkit-box-shadow: 0px 1px 0px 0px #3d3b37;
+      box-shadow: 0px 1px 0px 0px #3d3b37;
+      background-color:#575450;
+      -moz-border-radius:15px;
+      -webkit-border-radius:15px;
+      border-radius:15px;
+      border:2px solid #333029;
+      display:inline-block;
+      cursor:pointer;
+      color:#f4f3d5;
+      font-family:Arial;
+      font-size:14px;
+      font-weight:bold;
+      padding:4px 8px;
+      text-decoration:none;
+      text-shadow:0px 1px 0px #000000;
+      margin: 15px 0px 5px 70px;
+    }
+    .privateVendorButton:hover {
+      background-color:#575450;
+    }
+    .privateVendorButton:active {
+      position:relative;
+      top:1px;
+    }
+  }
+}
