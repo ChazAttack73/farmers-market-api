@@ -2,8 +2,8 @@
 
 angular.module('myApp')
   .controller('VendorController', ['$scope', 'VendorService', 'ProductService', 'EventService', '$location', '$rootScope', '$localStorage', '$routeParams', '$route', '$window', function($scope, VendorService, ProductService, EventService, $location, $rootScope, $localStorage, $routeParams, $route, $window){
-    $scope.vendorPrivate=true;
-    $scope.vendorValue=true;
+    $scope.vendorPrivate = true;
+    $scope.vendorValue = true;
     $scope.Vendors = [];
     $scope.VendorService = VendorService;
     $rootScope.loggedInVendor = $localStorage.loggedInVendor;
@@ -133,6 +133,13 @@ angular.module('myApp')
       });
     };
 
+    $scope.getAllVendsWithProdCat = function(prodName, id) {
+      $scope.productValue = false;
+      id = $routeParams.id;
+      VendorService.getAllVendorsWithProduct(prodName, id).success(function(result){
+        $scope.VendorsWithTheProduct = result;
+      });
+    };
 
 
 

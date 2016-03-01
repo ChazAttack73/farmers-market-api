@@ -2,6 +2,7 @@
 
 angular.module('myApp')
 .controller('HeaderController', ['$scope', 'VendorService', '$localStorage', '$location', '$rootScope', function($scope, VendorService, $localStorage, $location, $rootScope){
+$rootScope.loggedInVendor = $localStorage.loggedInVendor;
 
 $rootScope.loggedInVendor = $localStorage.loggedInVendor;
 

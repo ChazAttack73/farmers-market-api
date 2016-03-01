@@ -10,7 +10,6 @@ angular.module('myApp')
     var id = $routeParams.id;
     $rootScope.loggedInVendor = $localStorage.loggedInVendor;
 
-
     //Define Suggestions List
     $rootScope.suggestions = [];
     $rootScope.selectedIndex = -1;

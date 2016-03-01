@@ -109,6 +109,23 @@ router.get( '/:id', function( req, res) {
 });
 
 
+router.get( '/:productName/:id', function( req, res) {
+  Vendor.findAll({
+    where:{
+      EventId: req.params.id
+    },
+    include : [
+    {
+      model: Product,
+      where: {
+        name: req.params.productName
+      }
+    }]
+  })
+  .then (function (vendorInfo){
+    res.send( vendorInfo );
+  });
+});
 
 //Being called from VendorService by logoutVen function
 router.post('/logout', function(req, res) {
