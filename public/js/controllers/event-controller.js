@@ -54,7 +54,9 @@ angular.module('myApp')
 
     .success(function(result){
       $rootScope.loggedInVendor = result; //this is actually a user and not a vendor
-      $location.url('/');
+      $rootScope.loggedInVendor.user = true;
+      $localStorage.loggedInVendor = $rootScope.loggedInVendor;
+      $location.url('/user/private');
     });
 
     return;
