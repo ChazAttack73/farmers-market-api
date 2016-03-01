@@ -1,109 +1,123 @@
 <div class="regMainWrapper">
-  <div class="regWrapper">
-    <fieldset>
-      <h2>USER REGISTRATION</h3>
 
-      <label for="user_email">EMAIL</label>
-      <input id="user_email "type="text" ng-model="user.email">
-      <br>
-
-      <!--  with angular to check if user already exists with the search filter -->
-
-      <label for="user_password">PASSWORD</label>
-      <input id="user_password"type="password" ng-model="user.password">
-      <br>
-
-      <label for="user_verifyPassword">VERIFY PASSWORD</label>
-      <input id="user_verifyPassword "type="password" ng-model="user.verifyPassword">
-      <br>
-
-      <div class="commit">
-        <button type='button' ng-click='registerUser(user); user = null'>REGISTER</button>
-      </div>
-
-    </fieldset>
+  <div class="regNavbar">
+    <div class="regNavBtn">
+      <span>SHOPPER</span>
+    </div>
+    <div class="regNavBtn">
+      <span>EVENT</span>
+    </div>
+    <div class="regNavBtn">
+      <span>VENDOR</span>
+    </div>
   </div>
 
-  <div class="regWrapper">
-    <fieldset>
-      <h2>EVENT REGISTRATION</h2>
 
-      <label for="event_name">EVENT NAME</label>
-      <input id="event_name "type="text" ng-model="event.name">
-      <br>
-
-      <label for="event_address">LOCATION</label>
-      <input id="event_address "type="text" ng-model="event.address">
-      <br>
-
-      <label for="event_days">DAYS</label>
-      <input id="event_days "type="text" ng-model="event.days">
-      <br>
-
-      <label for="event_time">TIME</label>
-      <input id="event_time "type="text" ng-model="event.time">
-      <br>
-
-      <label for="event_picture">EVENT PICTURE</label>
-      <input id="event_picture "type="text" ng-model="event.event_picture">
-      <br>
-
-      <div class="commit">
-        <button type='button' ng-click='registerEvent(event); event=null'>REGISTER</button>
-      </div>
-
-    </fieldset>
+  <div class="loginWrapper">
+    <div class="loginTitle">
+      <span>USER REGISTRATION</span>
+    </div>
+    <div class="userLoginLogo"></div>
+    <div class="loginForm">
+      <fieldset class="loginFieldset">
+        <label for="user_email">EMAIL</label>
+        <input id="user_email "type="text" ng-model="user.email">
+        <label for="user_password">PASSWORD</label>
+        <input id="user_password"type="password" ng-model="user.password">
+        <label for="user_verifyPassword">VERIFY PASSWORD</label>
+        <input id="user_verifyPassword "type="password" ng-model="user.verifyPassword">
+        <input class="loginSubmitBtn" type="submit" value="register" ng-click="registerUser(user); user = null">
+        <!-- <div class="commit">
+          <button class="loginSubmitBtn" type='button' ng-click='registerUser(user); user = null'>REGISTER</button>
+        </div> -->
+      </fieldset>
+    </div>
   </div>
 
-  <div class="regWrapper">
-    <fieldset ng-controller="VendorController">
-      <h2>Vendor Registration</h3>
+  <div class="loginWrapper">
+    <div class="loginForm">
+      <fieldset class="loginFieldset">
+        <h2>EVENT REGISTRATION</h2>
 
-      <label for="vendor_name">Company Name</label>
-      <input id="vendor_name "type="text" ng-model="vendor.name">
-      <br>
+        <label for="event_name">EVENT NAME</label>
+        <input id="event_name "type="text" ng-model="event.name">
+        <br>
 
-      <!--  with angular to check if user already exists with the search filter -->
+        <label for="event_address">LOCATION</label>
+        <input id="event_address "type="text" ng-model="event.address">
+        <br>
 
-      <label for="vendor_password">Password</label>
-      <input id="vendor_password "type="password" ng-model="vendor.password">
-      <br>
+        <label for="event_days">DAYS</label>
+        <input id="event_days "type="text" ng-model="event.days">
+        <br>
 
-      <label for="vendor_verifyPassword">Retype Password</label>
-      <input id="vendor_verifyPassword "type="password" ng-model="vendor.verifyPassword">
-      <br>
+        <label for="event_time">TIME</label>
+        <input id="event_time "type="text" ng-model="event.time">
+        <br>
 
-      <label for="vendor_phone">Phone Number</label>
-      <input id="vendor_phone "type="text" ng-model="vendor.phone">
-      <br>
+        <label for="event_picture">EVENT PICTURE</label>
+        <input id="event_picture "type="text" ng-model="event.event_picture">
+        <br>
 
-      <label for="vendor_email">Email</label>
-      <input id="vendor_email"type="text" ng-model="vendor.email">
-      <br>
+        <div class="commit">
+          <button class="loginSubmitBtn" type='button' ng-click='registerEvent(event); event=null'>REGISTER</button>
+        </div>
 
-      <label for="vendor_website">Website</label>
-      <input id="vendor_website"type="text" ng-model="vendor.website">
-      <br>
+      </fieldset>
+    </div>
+  </div>
 
-      <label for="vendor_description"> Company Description</label>
-      <input id="vendor_description "type="text" ng-model="vendor.description">
-      <br>
+  <div class="loginWrapper">
+    <div class="loginForm">
+      <fieldset class="loginFieldset" ng-controller="VendorController">
+        <h2>Vendor Registration</h3>
 
-      <label for="vendor_company_pic">Company Picture</label>
-      <input id="vendor_company_pic" type="text" ng-model="vendor.company_pic">
-      <br>
+        <label for="vendor_name">Company Name</label>
+        <input id="vendor_name "type="text" ng-model="vendor.name">
+        <br>
 
-      Select Event:
-      <select type="text" name="eventSelect" id="eventSelect" ng-model="vendor.EventId">
-        <option ng-repeat="event in Events | orderBy:'name'" value="{{event.id}}">{{event.name}}</option>
-      </select>
-      <hr>
-      <input id="vendor_EventId" type="hidden" ng-model="vendor.EventId"></input>
-      <div class="error">{{error}}</div>
-      <div class="commit">
-        <button type='button' ng-click='registerVendor(vendor)'>Register</button>
-      </div>
+        <!--  with angular to check if user already exists with the search filter -->
 
-    </fieldset>
+        <label for="vendor_password">Password</label>
+        <input id="vendor_password "type="password" ng-model="vendor.password">
+        <br>
+
+        <label for="vendor_verifyPassword">Retype Password</label>
+        <input id="vendor_verifyPassword "type="password" ng-model="vendor.verifyPassword">
+        <br>
+
+        <label for="vendor_phone">Phone Number</label>
+        <input id="vendor_phone "type="text" ng-model="vendor.phone">
+        <br>
+
+        <label for="vendor_email">Email</label>
+        <input id="vendor_email"type="text" ng-model="vendor.email">
+        <br>
+
+        <label for="vendor_website">Website</label>
+        <input id="vendor_website"type="text" ng-model="vendor.website">
+        <br>
+
+        <label for="vendor_description"> Company Description</label>
+        <input id="vendor_description "type="text" ng-model="vendor.description">
+        <br>
+
+        <label for="vendor_company_pic">Company Picture</label>
+        <input id="vendor_company_pic" type="text" ng-model="vendor.company_pic">
+        <br>
+
+        Select Event:
+        <select type="text" name="eventSelect" id="eventSelect" ng-model="vendor.EventId">
+          <option ng-repeat="event in Events | orderBy:'name'" value="{{event.id}}">{{event.name}}</option>
+        </select>
+        <hr>
+        <input id="vendor_EventId" type="hidden" ng-model="vendor.EventId"></input>
+        <div class="error">{{error}}</div>
+        <div class="commit">
+          <button class="loginSubmitBtn" type='button' ng-click='registerVendor(vendor)'>Register</button>
+        </div>
+
+      </fieldset>
+    </div>
   </div>
 </div>
