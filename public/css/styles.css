@@ -208,7 +208,7 @@ body {
   flex: 0 0 100%;
   margin: 3px 0px;
   justify-content: center;
-  align-content: space-between;
+  align-content: center;
   font-family: "Montserrat", sans-serif;
   margin-bottom: 45px; }
   .vendorNavBar a {
@@ -226,7 +226,8 @@ body {
     color: #F4F3D5;
     opacity: 0.3;
     font-size: 0.8em;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    margin-right: 5px; }
   .vendorNavBar .navbarVendor:hover {
     color: #F4F3D5;
     opacity: 1;
@@ -244,7 +245,8 @@ body {
     color: #F4F3D5;
     opacity: 0.3;
     font-size: 0.8em;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    margin-left: 5px; }
   .vendorNavBar .navbarProduce:hover {
     color: #F4F3D5;
     opacity: 1;
@@ -565,24 +567,67 @@ body {
 #vendorInfo {
   display: flex;
   flex-flow: row wrap;
-  width: 450px;
+  width: 350px;
   background-color: #F4F3D5;
   justify-content: center;
   text-align: center;
-  color: #575450; }
+  color: #575450;
+  font-family: "Montserrat", sans-serif;
+  margin: 5px; }
+  #vendorInfo a {
+    color: #575450; }
   #vendorInfo .vendor_name {
-    flex: 0 0 100%; }
+    flex: 0 0 100%;
+    margin-bottom: 10px;
+    font-family: "Six Caps", sans-serif;
+    font-size: 3em;
+    opacity: 0.9;
+    font-weight: 100; }
   #vendorInfo .separator {
     flex: 0 0 33%;
-    height: 1.1%;
     background-color: #e0dfc1;
-    margin-top: -15px;
-    margin-bottom: 20px; }
+    height: 3px;
+    margin-bottom: 10px; }
+  #vendorInfo .vendorProfilePic {
+    margin-top: 10px;
+    flex: 0 0 100%; }
+    #vendorInfo .vendorProfilePic img {
+      max-height: 45%;
+      max-width: 80%; }
+  #vendorInfo .vendorDescription {
+    flex: 0 0 100%; }
+  #vendorInfo .vendorEmail {
+    flex: 0 0 100%; }
+  #vendorInfo .privateVendorButton {
+    -moz-box-shadow: 0px 1px 0px 0px #3d3b37;
+    -webkit-box-shadow: 0px 1px 0px 0px #3d3b37;
+    box-shadow: 0px 1px 0px 0px #3d3b37;
+    background-color: #575450;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    border: 2px solid #333029;
+    display: inline-block;
+    cursor: pointer;
+    color: #f4f3d5;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 8px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #000000;
+    margin: 10px; }
+  #vendorInfo .privateVendorButton:hover {
+    background-color: #575450; }
+  #vendorInfo .privateVendorButton:active {
+    position: relative;
+    top: 1px; }
 
 .vendorMain {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center; }
+  justify-content: center;
+  font-family: "Montserrat", sans-serif; }
   .vendorMain .vendorProduct {
     display: flex;
     flex-flow: row wrap; }

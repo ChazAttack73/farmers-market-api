@@ -298,7 +298,7 @@ body {
   flex: 0 0 100%;
   margin: 3px 0px;
   justify-content: center;
-  align-content: space-between;
+  align-content: center;
   font-family: $mont;
   margin-bottom: 45px;
 
@@ -320,6 +320,7 @@ body {
     opacity: 0.3;
     font-size: 0.8em;
     letter-spacing: 1px;
+    margin-right: 5px;
   }
 
   .navbarVendor:hover {
@@ -342,6 +343,7 @@ body {
     opacity: 0.3;
     font-size: 0.8em;
     letter-spacing: 1px;
+    margin-left: 5px;
   }
 
   .navbarProduce:hover{
@@ -735,37 +737,86 @@ body {
 
 #vendorInfo {
   @include flexDisplayRow;
-  width: 450px;
+  width: 350px;
   background-color: $tan;
   justify-content: center;
   text-align: center;
   color: $gray;
+  font-family: $mont;
+  margin: 5px;
+
+  a {
+    color: $gray;
+  }
 
   .vendor_name {
     flex: 0 0 100%;
-
+    margin-bottom: 10px;
+    font-family: $sixCaps;
+    font-size: 3em;
+    opacity: 0.9;
+    font-weight: 100;
   }
 
   .separator {
     flex: 0 0 33%;
-    height: 1.1%;
     background-color: $tan - 20;
-    margin-top: -15px;
-    margin-bottom: 20px;
+    height: 3px;
+    margin-bottom: 10px;
+  }
+
+  .vendorProfilePic {;
+    margin-top: 10px;
+    flex: $flexFull;
+
+    img {
+      max-height: 45%;
+      max-width: 80%;
+    }
+  }
+
+  .vendorDescription {
+    flex: $flexFull;
   }
 
 
+  .vendorEmail {
+    flex: $flexFull;
+  }
 
-
-
+  .privateVendorButton {
+    -moz-box-shadow: 0px 1px 0px 0px #3d3b37;
+    -webkit-box-shadow: 0px 1px 0px 0px #3d3b37;
+    box-shadow: 0px 1px 0px 0px #3d3b37;
+    background-color:#575450;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+    border:2px solid #333029;
+    display:inline-block;
+    cursor:pointer;
+    color:#f4f3d5;
+    font-family:Arial;
+    font-size:14px;
+    font-weight:bold;
+    padding:4px 8px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #000000;
+    margin: 10px;
+  }
+  .privateVendorButton:hover {
+    background-color:#575450;
+  }
+  .privateVendorButton:active {
+    position:relative;
+    top:1px;
+  }
 }
-
-
-
 
 .vendorMain {
   @include flexDisplayRow;
   justify-content: center;
+  font-family: $mont;
 
   .vendorProduct {
     @include flexDisplayRow;

@@ -1,0 +1,22 @@
+<fieldset>
+      <h2>EDIT USER PROFILE</h3>
+
+      <label for="user_email">EMAIL</label>
+      <input id="user_email "type="text" ng-model="user.email">
+      <br>
+
+      <!--  with angular to check if user already exists with the search filter -->
+
+      <label for="user_password">PASSWORD</label>
+      <input id="user_password"type="password" ng-model="user.password">
+      <br>
+
+      <label for="user_verifyPassword">VERIFY PASSWORD</label>
+      <input id="user_verifyPassword "type="password" ng-model="user.verifyPassword">
+      <br>
+
+      <div class="commit">
+        <button type='button' ng-click='registerUser(user); user = null'>REGISTER</button>
+      </div>
+
+    </fieldset>
