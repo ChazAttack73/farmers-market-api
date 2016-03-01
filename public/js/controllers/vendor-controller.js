@@ -12,7 +12,7 @@ angular.module('myApp')
 
     $scope.loadEvent = function(id) {
       $scope.selectedEvent = [];
-      EventService.getOneEvent(id).success(function(data){
+      EventService.getOneEventService(id).success(function(data){
         $scope.selectedEvent = data;
       });
     };

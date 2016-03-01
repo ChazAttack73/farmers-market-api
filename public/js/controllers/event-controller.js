@@ -5,10 +5,10 @@ angular.module('myApp')
   $scope.Events = [];
   $scope.EventService = EventService;
 
-  var id = $routeParams.id;
 
-  $scope.getOneEvent = function(eventID) {
-    EventService.getOneEvent(id).success(function(data){
+  $scope.getOneEvent = function() {
+    var id = $routeParams.id;
+    EventService.getOneEventService(id).success(function(data){
     $scope.oneEvent = {};
     $scope.oneEvent.id = data[0].id;
     $scope.oneEvent.name = data[0].name.toUpperCase();
