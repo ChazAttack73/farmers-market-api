@@ -216,6 +216,7 @@ angular.module('myApp')
 
 
     $scope.submitEdit = function(product) {
+      console.log('asdflsdfjsdf', product);
       ProductService.editProduct(product, product.id).then(function(data){
         VendorService.getOneVendorAndProducts($rootScope.loggedInVendor.id).success(function (vendor){
           //see if anyway to arrange by id with filter

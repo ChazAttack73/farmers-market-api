@@ -13,7 +13,7 @@
       <div class="navbarVendor" ng-click="clickButton(); vendorOn=true; vendorValue=true">
       VENDORS
       </div>
-      <div class="navbarProduce" ng-click="vendorOn=false; getAllProductsForEvent()">PRODUCE</div>
+      <div class="navbarProduce" ng-click="vendorOn=false; getAllProductsForEvent(); productValue=true">PRODUCE</div>
   </div>
 
   <div class=masterVendorView ng-if="vendorOn">
@@ -61,17 +61,15 @@
   </div>
 </div>
 
-<div class="masterProductView" ng-if="!vendorOn" ng-init="productValue=true">
+<div class="masterProductView" ng-if="!vendorOn">
   <div id="productPage" ng-show="productValue">
-    <div id="productInfo">I'm showing all the product categories!
+    <div id="productInfo">
       <p class="productDescription"> {{product.description}} </p>
-      <p>There will be an ng-repeat below listing every product filtered by distinct.  These will be clickable.  I'm putting a button to represent this</p>
-      <button type="button" ng-click="productValue=false ; ">See individual product category!</button>
     </div>
   ​  <div class="productMain">
       <div class="eventProductContent" ng-repeat="product in productsForEvent" >
-    ​    <div ng-click="">
-          <div class="product">
+    ​    <div>
+          <div class="product" ng-click="getAllVendsWithProdCat(product.name)">
             <img class="productImage"  src="{{product.product_picture}}" alt="">
             <h4 class="eventProductName">{{product.name}} </h4>
           </div>
@@ -80,8 +78,13 @@
     </div>
   </div>
   <div ng-hide="productValue">
-    Individual product category!
-    I will be showing all products in one category listed with Vendor info, price and inventory
-    <button type="button" ng-click="productValue=true">Back</button>
+    <div ng-repeat="stuff in VendorsWithTheProduct">
+      <div>{{stuff.name}}</div>
+      <div>{{stuff.Products[0].name}}</div>
+      <div>{{stuff.Products[0].quantity}}</div>
+      <div>{{stuff.Products[0].price}}</div>
+      <br>
+      <br>
+    </div>
   </div>
 </div>
