@@ -555,7 +555,7 @@ body {
     text-align: center;
   }
 
-  .vendorLoginLogo {
+  .vendorLogo {
     flex: 0 0 30%;
     margin: auto;
 
@@ -631,6 +631,15 @@ body {
   color: $gray;
 }
 
+.regHeader {
+  flex: 0 0 90%;
+  height: 50px;
+  background: $tan-bg;
+  margin: 15px 0px;
+  text-align: center;
+  line-height: 50px;
+}
+
 .regNavbar {
   @include flexDisplayRow;
   flex: 0 0 90%;
@@ -648,14 +657,16 @@ body {
 
 .eventLogo {
   flex: 0 0 30%;
-  background-image: $leaves;
-  background-size: initial;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+  margin: auto;
 
-.regWrapper {
-  flex: 0 0 90%;
+  svg {
+    height: 90%;
+    width: 90%;
+  }
+
+  path {
+    fill: $gray;
+  }
 }
 
 // ============= Vendor Listing by Event

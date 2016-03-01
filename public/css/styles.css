@@ -427,13 +427,13 @@ body {
     margin: 10px 0px;
     font-size: 3.0em;
     text-align: center; }
-  .formWrapper .vendorLoginLogo {
+  .formWrapper .vendorLogo {
     flex: 0 0 30%;
     margin: auto; }
-    .formWrapper .vendorLoginLogo svg {
+    .formWrapper .vendorLogo svg {
       height: 90%;
       width: 90%; }
-    .formWrapper .vendorLoginLogo path {
+    .formWrapper .vendorLogo path {
       fill: #575450; }
   .formWrapper .shoppingCartLogo {
     flex: 0 0 30%;
@@ -485,6 +485,14 @@ body {
   font-family: "Montserrat", sans-serif;
   color: #575450; }
 
+.regHeader {
+  flex: 0 0 90%;
+  height: 50px;
+  background: url("./../images/tan-bg.jpg");
+  margin: 15px 0px;
+  text-align: center;
+  line-height: 50px; }
+
 .regNavbar {
   display: flex;
   flex-flow: row wrap;
@@ -501,13 +509,12 @@ body {
 
 .eventLogo {
   flex: 0 0 30%;
-  background-image: url("./../images/leaves.svg");
-  background-size: initial;
-  background-position: center;
-  background-repeat: no-repeat; }
-
-.regWrapper {
-  flex: 0 0 90%; }
+  margin: auto; }
+  .eventLogo svg {
+    height: 90%;
+    width: 90%; }
+  .eventLogo path {
+    fill: #575450; }
 
 .vendorHeader {
   display: flex;
