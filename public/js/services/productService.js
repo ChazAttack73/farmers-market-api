@@ -10,6 +10,11 @@ angular.module('myApp')
       console.log('peekaboooooo!');
       return $http.get('/product/'+id);
     };
+    this.getIndiProduct = function(id){
+      console.log(22222222);
+      console.log(typeof id);
+      return $http.get(id+'/product');
+    };
     this.addProduct = function(product){
       return $http.post('/product/new', product);
     };

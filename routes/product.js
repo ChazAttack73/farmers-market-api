@@ -11,7 +11,9 @@ var Product = db.Product;
 router.use(bodyParser.json());
 
 //Being called from VendorServer by getProductsFromVendorsByEvent function
+
 router.get('/:id', function(req, res) {
+  console.log("3.4.5.6.7.8");
   Product.findAll({
       include: [{
           model: Vendor,
@@ -32,6 +34,16 @@ router.get('/:id', function(req, res) {
      productsArray.push(productObj);
     }
     res.send (productsArray);
+  });
+});
+
+router.get('/:id/product', function(req, res) {
+  console.log(3333333);
+  Product.findOne({
+          where: { id: req.params.id }
+  })
+  .then(function(product){
+    res.send (product);
   });
 });
 
