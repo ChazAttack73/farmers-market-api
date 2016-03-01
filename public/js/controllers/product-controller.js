@@ -97,17 +97,11 @@ angular.module('myApp')
       $scope.noNewPost = !$scope.noNewPost;
     };
 
-    //This is throwing error because it runs when vendorPrivatePage uses this controller
-    //but it does not have an id to give it
-    // ProductService.getProduct(id).success(function(data){
-    //   $scope.Product = data;
-    // });
-
-    //This is throwing error because it runs when vendorPrivatePage uses this controller
-    //but it does not have an id to give it
-    ProductService.getProduct(id).success(function(data){
-    $scope.Product = data;
-    });
+    $scope.getOneProduct = function(id) {
+      ProductService.getProduct(id).success(function(data){
+      $scope.Product = data;
+      });
+    };
 
     $scope.postProduct=function(product) {
       if (product === undefined) {

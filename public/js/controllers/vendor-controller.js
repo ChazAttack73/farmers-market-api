@@ -64,8 +64,6 @@ angular.module('myApp')
     };
 
     $scope.loginVendor = function(vendorLoginCredentials){
-
-      console.log('At vendorservice', vendorLoginCredentials);
       vendorLoginCredentials.type = 'vendor';
       VendorService.loginVen(vendorLoginCredentials).success(function(result) {
         $rootScope.loggedInVendor = result;
