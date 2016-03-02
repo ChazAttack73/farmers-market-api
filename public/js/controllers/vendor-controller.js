@@ -151,6 +151,9 @@ angular.module('myApp')
       $scope.vendorValue=true;
     };
 
+     $scope.changeView = function () {
+      $scope.venAndProd=false;
+    };
     $scope.postProduct = function(product) {
       if(!product.name && product.price && product.quantity && product.description && product.product_picture) {
         $scope.error = "Please fill out all fields about your product";
