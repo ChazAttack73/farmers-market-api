@@ -528,9 +528,6 @@ body {
     }
   }
 
-  .toggledBtn {
-    opacity: 0.7;
-  }
 
   .chooseVendor {
     @include loginToggleBtn;
@@ -539,6 +536,10 @@ body {
   .chooseUser {
     @include loginToggleBtn;
   }
+}
+
+.toggledBtn {
+  opacity: 0.7;
 }
 
 .formWrapper {
