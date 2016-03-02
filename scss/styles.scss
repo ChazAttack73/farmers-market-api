@@ -869,16 +869,16 @@ body {
   overflow: auto;
 }
 .suggestions-list li {
-  color: red;
+  color: #000000;
   padding: 10px 10px;
   height:10px;
   cursor: pointer;
-  background: tan;
-  border-bottom: 1px solid green;
+  background: #f9f9f9;
+  border-bottom: 1px solid #eeeeee;
   width:234px;
 }
 .suggestions-list li:hover {
-  background: yellow;
+  background: #eeeeee;
 }
 .suggestions-list li:active,
 .suggestions-list li.active {
