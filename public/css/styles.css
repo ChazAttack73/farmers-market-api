@@ -73,7 +73,9 @@ body {
     opacity: 0; }
   .mobileMenu li {
     list-style-type: none;
-    border-top: 1px solid #575450; }
+    border-top: 1px solid #575450;
+    height: 0;
+    opacity: 0; }
   .mobileMenu a {
     text-decoration: none;
     color: #575450;
@@ -87,7 +89,7 @@ body {
     height: auto;
     opacity: 1; }
   .mobileMenu.menuOn li {
-    height: 40px;
+    height: auto;
     opacity: 1; }
   .mobileMenu.menuOn a {
     height: auto;

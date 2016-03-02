@@ -126,11 +126,10 @@ body {
   }
 
   li {
-    // height: 80px;
     list-style-type: none;
     border-top: 1px solid $gray;
-    // height: 0;
-    // opacity: 0;
+    height: 0;
+    opacity: 0;
   }
 
   a {
@@ -151,7 +150,7 @@ body {
   }
 
   li {
-    height: 40px;
+    height: auto;
     opacity: 1;
   }
 
