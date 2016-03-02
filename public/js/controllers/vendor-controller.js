@@ -141,6 +141,14 @@ angular.module('myApp')
       });
     };
 
+    $scope.getIndividualProduct = function(prodId){
+      console.log('getIndividualProduct prodId', prodId);
+      $scope.venAndProd=false;
+      ProductService.getIndiProduct(prodId).success(function(data){
+      console.log(111111, data );
+        $scope.Product = data;
+      });
+    };
 
 
     // if($route.current.$$route.originalPath==='/vendor/private') {
@@ -151,9 +159,6 @@ angular.module('myApp')
       $scope.vendorValue=true;
     };
 
-     $scope.changeView = function () {
-      $scope.venAndProd=false;
-    };
     $scope.postProduct = function(product) {
       if(!product.name && product.price && product.quantity && product.description && product.product_picture) {
         $scope.error = "Please fill out all fields about your product";
