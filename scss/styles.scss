@@ -977,3 +977,54 @@ body {
     }
   }
 }
+
+// ===================== All Vendors that Carry a Product View
+
+.shopContainer {
+  @include flexDisplayRow;
+  justify-content: center;
+  background-color: $tan;
+  color: $gray;
+  font-family: $mont;
+  height: 350px;
+  width: 350px;
+  margin: 10px;
+  text-align: center;
+
+  .shopName {
+    flex: $flexFull;
+    font-family: $sixCaps;
+    font-size: 3em;
+  }
+
+  .shopSeparator {
+    height: 1.1%;
+    flex: 0 0 33%;
+    background-color: $tan - 20;
+  }
+
+  .shopProduct {
+    flex: $flexFull;
+    font-size: 1.5em;
+  }
+
+  .shopQuantity {
+    flex: $flexFull;
+  }
+
+  .shopPrice {
+    flex: $flexFull;
+  }
+
+  .shopProductPicture {
+    flex: $flexFull;
+    max-width: 200px;
+    max-height: 200px;
+    margin: 5px;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
