@@ -78,7 +78,9 @@ body {
     opacity: 0; }
   .mobileMenu li {
     list-style-type: none;
-    border-top: 1px solid #575450; }
+    border-top: 1px solid #575450;
+    height: 0;
+    opacity: 0; }
   .mobileMenu a {
     text-decoration: none;
     color: #575450;
@@ -92,7 +94,7 @@ body {
     height: auto;
     opacity: 1; }
   .mobileMenu.menuOn li {
-    height: 40px;
+    height: auto;
     opacity: 1; }
   .mobileMenu.menuOn a {
     height: auto;
@@ -377,15 +379,13 @@ body {
   font-family: "Montserrat", sans-serif;
   color: #575450; }
 
-.chooseLoginWrapper {
+.loginNavbar {
   display: flex;
   flex-flow: row wrap;
   height: auto;
   flex: 0 0 90%;
   justify-content: space-between; }
-  .chooseLoginWrapper .toggledBtn {
-    opacity: 0.7; }
-  .chooseLoginWrapper .chooseVendor {
+  .loginNavbar .chooseVendor {
     height: 40px;
     width: 49.5%;
     text-align: center;
@@ -397,12 +397,12 @@ body {
     font-weight: 600; }
 
 @media (min-width: 421px) and (max-width: 768px) {
-  .chooseLoginWrapper .chooseVendor {
+  .loginNavbar .chooseVendor {
     height: 100px;
     width: 49.5%;
     font-size: 1em;
     line-height: 100px; } }
-  .chooseLoginWrapper .chooseUser {
+  .loginNavbar .chooseUser {
     height: 40px;
     width: 49.5%;
     text-align: center;
@@ -414,78 +414,115 @@ body {
     font-weight: 600; }
 
 @media (min-width: 421px) and (max-width: 768px) {
-  .chooseLoginWrapper .chooseUser {
+  .loginNavbar .chooseUser {
     height: 100px;
     width: 49.5%;
     font-size: 1em;
     line-height: 100px; } }
 
-.loginWrapper {
+.toggledBtn {
+  opacity: 0.7; }
+
+.formWrapper {
   display: flex;
   flex-flow: row wrap;
   flex: 0 0 90%;
   height: 40%;
   background-image: url("./../images/tan-bg.jpg"); }
-  .loginWrapper .loginTitle {
+  .formWrapper .formTitle {
     font-family: "Six Caps", sans-serif;
     flex: 0 0 70%;
     margin: 10px 0px;
     font-size: 3.0em;
     text-align: center; }
-  .loginWrapper .vendorLoginLogo {
+  .formWrapper .vendorLogo {
     flex: 0 0 30%;
     margin: auto; }
-    .loginWrapper .vendorLoginLogo svg {
+    .formWrapper .vendorLogo svg {
       height: 90%;
       width: 90%; }
-    .loginWrapper .vendorLoginLogo path {
+    .formWrapper .vendorLogo path {
       fill: #575450; }
-  .loginWrapper .userLoginLogo {
+  .formWrapper .shoppingCartLogo {
     flex: 0 0 30%;
     background-image: url("./../images/shopper-icon.svg");
     background-size: initial;
     background-position: center;
     background-repeat: no-repeat; }
 
-.loginForm {
+.formContainer {
   display: flex;
   flex-flow: row wrap;
   flex: 0 0 100%;
   justify-content: center; }
-  .loginForm .loginFieldset {
+  .formContainer .formFieldset {
     flex: 0 0 100%;
     border: 0;
     padding: 0.01em 30px 0 30px;
     margin: 0;
     min-width: 0; }
-  .loginForm label {
+  .formContainer label {
     font-size: 0.65em;
     font-weight: 700;
     height: auto; }
-  .loginForm input {
+  .formContainer input {
     display: block;
     height: 40px;
     border: 0;
     box-shadow: inset 0px 1px 6px #575450;
-    width: 100%; }
-  .loginForm .loginSubmitBtn {
+    width: 100%;
+    font-size: 1.2em;
+    color: #575450;
+    padding-left: 5px; }
+  .formContainer .formSubmitBtn {
     font-family: "Montserrat", sans-serif;
+    font-size: 0.8em;
     font-weight: 700;
     color: #F4F3D5;
     height: 40px;
     background-image: url("./../images/charcoal-bg.png");
     box-shadow: 0px 2px 5px #575450;
     width: 100%;
-    margin: 30px 0 60px 0; }
+    margin: 30px 0 60px 0;
+    text-transform: uppercase; }
 
 .regMainWrapper {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  font-family: "Montserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif;
+  color: #575450; }
 
-.regWrapper {
-  flex: 0 0 80%; }
+.regHeader {
+  flex: 0 0 90%;
+  height: 50px;
+  background: url("./../images/tan-bg.jpg");
+  margin: 15px 0px;
+  text-align: center;
+  line-height: 50px; }
+
+.regNavbar {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 0 0 90%;
+  height: 40px;
+  justify-content: space-between; }
+
+.regNavBtn {
+  flex: 0 0 32.8%;
+  background: url("./../images/tan-bg.jpg");
+  font-size: 0.7em;
+  text-align: center;
+  line-height: 40px; }
+
+.eventLogo {
+  flex: 0 0 30%;
+  margin: auto; }
+  .eventLogo svg {
+    height: 90%;
+    width: 90%; }
+  .eventLogo path {
+    fill: #575450; }
 
 .vendorHeader {
   display: flex;

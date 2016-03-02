@@ -1,34 +1,35 @@
 <div class="loginMainWrapper">
-  <div class="chooseLoginWrapper" ng-init="displayLogin=true">
-    <div class="chooseVendor" ng-click="displayLogin=false">
+  <div class="loginNavbar" ng-init="displayLogin=true">
+    <div class="chooseVendor" ng-class="{true:'toggledBtn', false:''}[displayLogin]" ng-click="displayLogin=false">
       <span>VENDORS</span>
     </div>
-    <div class="chooseUser" ng-click="displayLogin=true">
+    <div class="chooseUser" ng-class="{true:'', false:'toggledBtn'}[displayLogin]" ng-click="displayLogin=true">
       <span>SHOPPERS</span>
     </div>
   </div>
 
-  <div class="loginWrapper" ng-show="displayLogin">
-    <div class="loginTitle">
+  <div class="formWrapper" ng-show="displayLogin">
+    <div class="formTitle">
       <span>SHOPPER LOGIN</span>
     </div>
-    <div class="userLoginLogo"></div>
-    <div class="loginForm">
-      <fieldset class="loginFieldset">
+    <div class="shoppingCartLogo"></div>
+    <div class="formContainer">
+      <fieldset class="formFieldset">
         <label for="user_email">EMAIL:</label>
         <input id="user_email" value="" ng-model="user.username">
         <label for="user_password">PASSWORD:</label>
         <input id="user_password" value="" ng-model="user.password">
-        <input class="loginSubmitBtn" type="submit" value="Login" ng-click="loginUser(user)">
+        <input class="formSubmitBtn" type="submit" value="Login" ng-click="loginUser(user)">
       </fieldset>
     </div>
   </div>
 
-  <div class="loginWrapper" ng-hide="displayLogin">
-    <div class="loginTitle">
+  <div class="formWrapper" ng-hide="displayLogin">
+    <div class="formTitle">
       <span>VENDOR LOGIN</span>
     </div>
-    <div class="vendorLoginLogo">
+
+    <div class="vendorLogo">
       <?xml version="1.0" encoding="UTF-8" standalone="no"?>
       <svg width="57px" height="45px" viewBox="0 0 57 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
           <!-- Generator: Sketch 3.5.2 (25235) - http://www.bohemiancoding.com/sketch -->
@@ -47,13 +48,14 @@
           </g>
       </svg>
     </div>
-    <div class="loginForm">
-      <fieldset class="loginFieldset">
+
+    <div class="formContainer">
+      <fieldset class="formFieldset">
         <label for="vendor_name">COMPANY USERNAME:</label>
         <input id="vendor_name" value="" ng-model="vendor.username">
         <label for="vendor_password">PASSWORD:</label>
         <input id="vendor_password" value="" ng-model="vendor.password">
-        <input class="loginSubmitBtn" type="submit" value="Login" ng-click="loginVendor(vendor)">
+        <input class="formSubmitBtn" type="submit" value="Login" ng-click="loginVendor(vendor)">
       </fieldset>
     </div>
   </div>

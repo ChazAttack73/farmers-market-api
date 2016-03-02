@@ -139,6 +139,10 @@ angular.module('myApp')
       if($scope.stripe===undefined){
         return $scope.error = "Please fill out all required fields";
       }
+      if(!$scope.stripe.number || !$scope.stripe.cvc || !$scope.stripe.exp_month || !$scope.stripe.exp_year){
+        return $scope.error = "Missing fields";
+      }
+
       if($scope.Product.quantity<=0){
         return $scope.error = "SOLD OUT";
       }
