@@ -702,16 +702,16 @@ body {
   overflow: auto; }
 
 .suggestions-list li {
-  color: red;
+  color: #000000;
   padding: 10px 10px;
   height: 10px;
   cursor: pointer;
-  background: tan;
-  border-bottom: 1px solid green;
+  background: #f9f9f9;
+  border-bottom: 1px solid #eeeeee;
   width: 234px; }
 
 .suggestions-list li:hover {
-  background: yellow; }
+  background: #eeeeee; }
 
 .suggestions-list li:active,
 .suggestions-list li.active {
@@ -789,3 +789,38 @@ body {
     #aloha #payment-form .privateVendorButton:active {
       position: relative;
       top: 1px; }
+
+.shopContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  background-color: #F4F3D5;
+  color: #575450;
+  font-family: "Montserrat", sans-serif;
+  height: 350px;
+  width: 350px;
+  margin: 10px;
+  text-align: center; }
+  .shopContainer .shopName {
+    flex: 0 0 100%;
+    font-family: "Six Caps", sans-serif;
+    font-size: 3em; }
+  .shopContainer .shopSeparator {
+    height: 1.1%;
+    flex: 0 0 33%;
+    background-color: #e0dfc1; }
+  .shopContainer .shopProduct {
+    flex: 0 0 100%;
+    font-size: 1.5em; }
+  .shopContainer .shopQuantity {
+    flex: 0 0 100%; }
+  .shopContainer .shopPrice {
+    flex: 0 0 100%; }
+  .shopContainer .shopProductPicture {
+    flex: 0 0 100%;
+    max-width: 200px;
+    max-height: 200px;
+    margin: 5px; }
+    .shopContainer .shopProductPicture img {
+      height: 100%;
+      width: 100%; }

@@ -56,19 +56,24 @@
     </div>
     <div ng-init="getVendorAndProducts(loggedInVendor)">
       <div class="postProductDiv" ng-hide="noNewPost">
-        <div>
+
+
+
+    <p>
           Enter a new product below.  You can choose a predefined category from the drop down list.  This is recommended even if you offer a specific variety (you can list that in your description).  If your product is outside the predefined options, select new.  If you have one, please include a picture!:
-        </div>
-        <div ng-init="getAllProducts()">
+    </p>
+
+        <div ng-init="getAllProducts()" class="list-wrapper">
           <label for="product_name">Product Name</label>
           <div>
             <input class="inputA" id="product_name" type="text" ng-keydown="checkKeyDown($event)" ng-keyup="checkKeyUp($event)" ng-model="product.name" ng-change="search()" />
           </div>
-          <ul>
-            <li ng-repeat="name in suggestions | unique : name" ng-class="{active : selectedIndex === $index}" ng-click="AssignValueAndHide($index)">{{name}}</li>
+          <ul class="suggestions-list">
+            <li ng-repeat="name in suggestions track by $index" ng-class="{active:selectedIndex===$index}" ng-click="AssignValueAndHide($index)">{{name}}</li>
           </ul>
-            <!-- <option ng-repeat="product in Products | unique:'name' | orderBy:'name' | filter:product.name=searchProductsFilter"  value="{{product.name}}">{{product.name}}</option> -->
         </div>
+
+
           <br>
         <div>
           <label for="product_price">Product Price</label>
