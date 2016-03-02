@@ -48,6 +48,7 @@ function logErrors(err, req, res, next) {
 
 //Being called from VendorService regVendor function
 router.post('/register', function(req, res, next){
+  console.log(4444444444444444, req.body);
   hash(req)
   .then(function(hash) {
     var userObj = {
@@ -62,6 +63,7 @@ router.post('/register', function(req, res, next){
     };
     Vendor.create(userObj)
     .then(function(user){
+      console.log(5555555555, user);
       req.login(user, function(err) {
         if(err) {
           return next(err);

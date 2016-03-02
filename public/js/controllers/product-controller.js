@@ -11,7 +11,6 @@ angular.module('myApp')
     $rootScope.loggedInVendor = $localStorage.loggedInVendor;
 
     //Define Suggestions List
-    $rootScope.suggestions = [];
     $rootScope.selectedIndex = -1;
 
     $scope.getAllProducts = function () {
@@ -28,18 +27,15 @@ angular.module('myApp')
     };
 
     $rootScope.search = function() {
+      $rootScope.suggestions = [];
       var myMaxSuggestionListLength = 0;
-      console.log('at search function $scope.productNames and myMaxSuggestionListLength', $scope.productNames, myMaxSuggestionListLength);
       for (var i=0; i<$rootScope.productNames.length; i++) {
         var searchItemsSmallLetters = angular.lowercase($rootScope.productNames[i]);
-        var searchTextSmallLetters = angular.lowercase($scope.searchText);
-        console.log('looking at this', searchItemsSmallLetters.indexOf(searchTextSmallLetters), searchTextSmallLetters);
+        var searchTextSmallLetters = angular.lowercase($scope.product.name);
         if ( searchItemsSmallLetters.indexOf(searchTextSmallLetters) !== -1) {
           $rootScope.suggestions.push(searchItemsSmallLetters);
-      console.log('on search function $scope.suggestions', $scope.suggestions);
           myMaxSuggestionListLength += 1;
           if (myMaxSuggestionListLength === 5) {
-            console.log('does my myMaxSuggestionListLength go over 5?');
             break;
           }
         }
@@ -48,9 +44,8 @@ angular.module('myApp')
 
     //Keep Track Of Search Text Value During The Selection From The Suggestions List
     $rootScope.$watch('selectedIndex',function(val){
-      console.log('at $watch looking at selectedIndex value ', val);
       if(val !== -1) {
-       $scope.searchText = $rootScope.suggestions[$rootScope.selectedIndex];
+       $scope.product.name = $rootScope.suggestions[$rootScope.selectedIndex];
      }
     });
 
@@ -58,7 +53,6 @@ angular.module('myApp')
       //Function To Call on ng-keydown
     $rootScope.checkKeyDown = function(event){
       if(event.keyCode === 40){//down key, increment selectedIndex
-        console.log('did you hit the down key??');
         event.preventDefault();
         if($rootScope.selectedIndex+1 !== $rootScope.suggestions.length){
           $rootScope.selectedIndex++;
@@ -77,8 +71,8 @@ angular.module('myApp')
     //Function To Call on ng-keyup
     $scope.checkKeyUp = function(event){
       if(event.keyCode !== 8 || event.keyCode !== 46){//delete or backspace
-        if($scope.searchText === ""){
-          $scope.suggestions = [];
+        if($scope.product.name === ""){
+          $rootScope.suggestions = [];
         }
       }
     };
@@ -87,9 +81,7 @@ angular.module('myApp')
     //List Item Events
     //Function To Call on ng-click
     $rootScope.AssignValueAndHide = function(index){
-       $scope.searchText = $rootScope.suggestions[index];
-       $scope.product.name = $scope.searchText;
-      console.log('are you here??? at AssignValueAndHide looking at index and $scope.searchText', index, $scope.searchText);
+       $scope.product.name = $rootScope.suggestions[index];
        $rootScope.suggestions=[];
     };
     //======================================

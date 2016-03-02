@@ -9,6 +9,7 @@ var CONFIG = require("./../config/config");
 var Order = db.Order;
 var Payment = db.Payment;
 var Product = db.Product;
+var Vendor = db.Vendor;
 var StripeVendor = db.StripeVendor;
 var stripe = require("stripe")("sk_test_L3fF5CjV33nFCv2dg7vcKQmz");
 
@@ -21,48 +22,71 @@ router.post('/:id',function( req, res){
     productQuantity : req.body.productQuantity,
     totalCost : req.body.amount,
     UserId : req.body.user.id,
-    ProductId : req.body.product
-  }).
-  then(function(order){
-       Payment.create({
+    ProductId : req.body.product //change to req.params.id
+
+    // find the vendor id to the product
+  })
+  //add another then to retrieve the Vendor and info
+  .then(function(order){
+      Payment.create({
       token : req.body.token,
       OrderId : order.id
     })
-    .then(function(data){
-      var charge = stripe.charges.create({
-        amount: req.body.amount, // amount in cents, again
-        currency: "usd",
-        source: req.body.token,
-        //destination: stripeVendor_user_id     //ac_sdipufghpdsfighfdgpdsfig this is an example of what i'm looking for, the stripe_user_id, from the response body
-        description: "Example charge",
-        //
-        //application_fee : that is the % of the charge that we want to take
-        metadata:{
-          productId: req.body.product,
-          productQuantity: req.body.productQuantity,
-          //other thing if wanted like tax, subtotal, and etc
-        }
+  .then(function(data){
+    Product.findOne({
+      where:{
+        id : req.body.product
+      }
+    })
+  .then(function(data){
+    Vendor.findOne({
+      where: {
+        id : data.VendorId
+      }
+    })
+  .then(function(data){
+    StripeVendor.findOne({
+      where: {
+        VendorId : data.id
+      }
+    })
+  .then(function(data){
+    var charge = stripe.charges.create({
+      amount: req.body.amount, // amount in cents, again
+      currency: "usd",
+      source: req.body.token,
+      destination : data.stripe_user_id,  //stripeVendor_user_id     //ac_sdipufghpdsfighfdgpdsfig this is an example of what i'm looking for, the stripe_user_id, from the response body
+      description : "Example charge",
+      //
+      //application_fee : that is the % of the charge that we want to take
+      metadata:{
+        productId: req.body.product,
+        productQuantity: req.body.productQuantity,
+        //other thing if wanted like tax, subtotal, and etc
+      }
 
-      }, function(err, charge) {
-        if (err && err.type === 'StripeCardError') {
-          // The card has been declined
-          return res.json('error');
-        }
+    }, function(err, charge) {
+      if (err && err.type === 'StripeCardError') {
+        // The card has been declined
+        return res.json('error');
+      }
 
-        Product.findById(req.body.product).then(function(product) {
-          return product.decrement('quantity', {by: req.body.productQuantity});
-        });
-
+      Product.findById(req.body.product).then(function(product) {
+        return product.decrement('quantity', {by: req.body.productQuantity});
       });
-      res.json(charge);
-    });
 
+    });
+    res.json(charge);
+  });
+  });
+  });
+  });
   });
 });
 
 router.get('/callback', function(req, res){
   console.log("req.query");
-  // res.redirect('/vendor/private');
+
   request.post({
     url: 'https://connect.stripe.com/oauth/token',
     form: {
@@ -72,34 +96,36 @@ router.get('/callback', function(req, res){
       client_secret: CONFIG.development.stripe.secret_key
     }
   }, function(err, response, body) {
-    console.log('err', err);
-    console.log('response', response);
-    console.log('body', body);
 
     var accessToken = JSON.parse(body).access_token;
 
     body = JSON.parse(body);
     // Do something with your accessToken
-
     // For demo"s sake, output in response:
 
-
-//80457604856754039678349586754093687345897345096873405968734059687
-    //=====46-028475-47829-876-9428762-9ew68795449-w68724-98
-    //this is where i save body to the StripeVendor table
     StripeVendor.create({
       access_token : accessToken,
       token_type : body.token_type,
       stripe_user_id : body.stripe_user_id,
-      scope : body.scope
-      //VendorId :
+      scope : body.scope,
+      VendorId : req.user.id
     })
-    //and then redirect them to the vendor/private
+    // .then(function(data){
+    //   //req.body.updatedAt = "now()";
+    //   Vendor.update(
+    //     {
+    //       stripeId : data.stripe_user_id,
+    //       updatedAt : "now()"
+    //     }, {
+    //     where : {
+    //       id : data.VendorId
+    //     }
+    //   });
+    // })
     .then(function(data){
-      console.log(data);
       return res.redirect('/#/vendor/private');
     });
-    // return res.send({ "Your Token": body });
+    //return; //res.send({ "Your Token": body });
   });
   // return;
 });
