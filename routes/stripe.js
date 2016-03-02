@@ -18,6 +18,8 @@ var vendorForCallBack = null;
 router.use(bodyParser.json({ extended: false }));
 
 router.post('/:id',function( req, res){
+  var productName = null;
+  var vendorName = null;
   Order.create({
     productQuantity : req.body.productQuantity,
     totalCost : req.body.amount,
@@ -39,12 +41,14 @@ router.post('/:id',function( req, res){
       }
     })
   .then(function(data){
+    productName = data.name;
     Vendor.findOne({
       where: {
         id : data.VendorId
       }
     })
   .then(function(data){
+    vendorName = data.name;
     StripeVendor.findOne({
       where: {
         VendorId : data.id
@@ -60,13 +64,23 @@ router.post('/:id',function( req, res){
       //
       //application_fee : that is the % of the charge that we want to take
       metadata:{
+        vendor_name : vendorName,
         productId: req.body.product,
+        product_name : productName,
         productQuantity: req.body.productQuantity,
+        quantity_purchased : req.body.productQuantity
         //other thing if wanted like tax, subtotal, and etc
       }
 
     }, function(err, charge) {
       if (err && err.type === 'StripeCardError') {
+
+        //dofigh[odaigheqpighad[oighqo[agh[odigha[doghu]]]]]
+        //hfpasdiufhapsdiuhfapsidufhaspdiufhapsidufhadsipfuh
+        ///phasdifhaspdoifasodifhasdpfiuhasdpifuhasdpfiuhsdapfiuh
+        //hpfaisdufhpsadiofjaspodifhapsdofhiapsidufh
+        //fhpaisduhfpiasudhfaispduhfpaisudfhpiasduhfa
+        //error
         // The card has been declined
         return res.json('error');
       }
