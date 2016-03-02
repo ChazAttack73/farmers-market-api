@@ -155,6 +155,7 @@ angular.module('myApp')
       var cvc = $scope.stripe.cvc;
       var exp_month = $scope.stripe.exp_month;
       var exp_year = $scope.stripe.exp_year;
+      var quantity = $scope.requested.quantity;
 
       if(number && cvc && exp_month && exp_year){
         return stripe.card.createToken($scope.stripe)
@@ -165,8 +166,8 @@ angular.module('myApp')
           payment.token = response.id;
           payment.routeParams = id;
           payment.product = $scope.Product.id;
-          payment.productQuantity = 1;
-          payment.amount = $scope.Product.price;
+          payment.productQuantity = quantity;
+          payment.amount = $scope.Product.price * quantity;
           payment.user = $rootScope.loggedInVendor; //this is actually a user and not a vendor
 
           ProductService.chargeProduct(payment);
