@@ -7,7 +7,6 @@ angular.module('myApp')
       return $http.get('/product/');
     };
     this.getProduct = function(id){
-      console.log('peekaboooooo!');
       return $http.get('/product/'+id);
     };
     this.getIndiProduct = function(id){
@@ -16,12 +15,12 @@ angular.module('myApp')
     this.addProduct = function(product){
       return $http.post('/product/new', product);
     };
-    this.editProduct = function(product){
-      return $http.put('/edit', product);
+    this.editProduct = function(product, id){
+      return $http.put('/product/edit/' + id, product);
     };
 
-    this.deleteProduct = function(product) {
-      return $http.delete('/delete/' + product._id);
+    this.deleteProduct = function(productID) {
+      return $http.delete('/product/delete/' + productID);
     };
 
     this.chargeProduct = function(product){

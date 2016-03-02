@@ -11,7 +11,6 @@ var Product = db.Product;
 router.use(bodyParser.json());
 
 //Being called from VendorServer by getProductsFromVendorsByEvent function
-
 router.get('/:id', function(req, res) {
   Product.findAll({
       include: [{
@@ -94,43 +93,31 @@ router.post( '/:id', function ( req, res ) {
     });
   });
 
-router.put('/:id', function( req, res){
+router.put('/edit/:id', function( req, res){
   req.body.updatedAt = "now()";
-  Product.update(
-    req.body, {
-    where : {
-      id : req.params.id
-    }
-  })
-  .then(function(ProductUpdateCount){
-    return Product.findOne({
-      where:{
-        id:req.params.id
-      }
+  Product.findById(req.params.id)
+  .then(function(data) {
+    data.update(req.body)
+    .then(function (product){
+      res.json( product );
     });
-  })
-  .then(function(product){
-    res.json( product );
   });
-
-
 });
 
-router.delete('/:id', function( req, res){
+
+router.delete('/delete/:id', function( req, res){
   Product.destroy({
     where: {
       id: req.params.id
     }
   })
-  .then(function(){
-    Product.findAll()
-    .then( function ( products ) {
-      res.json( products );
+  .then(function(data) {
+    res.json(data);
+  })
+  .catch(function(err){
+      console.log(err);
     });
-  });
-
 });
-
 
 
 module.exports = router;

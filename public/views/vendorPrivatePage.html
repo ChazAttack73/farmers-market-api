@@ -94,16 +94,20 @@
 
 
 
-
-
-      <div class="productContent" ng-repeat="product in singleVendor.Products">
-        <div class="product">
-          <div>{{product.Products}}</div>
+      <div ng-repeat="product in singleVendor.Products">
+        <div ng-show="noProductEdit">
+          <div>{{product.name}}</div>
           <div>{{product.price}}</div>
           <div>{{product.quantity}}</div>
           <div>{{product.description}}</div>
           <div>{{product.product_picture}}</div>
+          <button type='button' ng-click=
+          "noProductEdit=!noProductEdit">Edit Product</button>
+        </div>
+
+        <div class="product" ng-hide="noProductEdit">
           <div>
+            <input type="hidden" value="{{product.id}}" ng-value="product.id" ng-model="product.id"></input>
             <label for="product_name">Product Name</label>
             <input id="product_name" type="text" ng-model="product.name" ng-value="product.name">
           </div>
@@ -125,7 +129,8 @@
             <input id="product_product_picture" ng-value="product.product_picture" type="text" ng-model="product.product_picture">
           </div>
           <div class="commit">
-            <button type='button' ng-click="editProduct(product)"> Edit product</button> <button type='button' ng-click="deleteProduct(product)"> Delete product</button>
+            <button type="button" ng-click="submitEdit(product); noProductEdit=true">Commit Changes</button>
+            <button type='button' ng-click="delProduct(product.id); noProductEdit=true"> Delete product</button>
           </div>
         </div>
       </div>

@@ -111,6 +111,23 @@ router.get( '/:id', function( req, res) {
 });
 
 
+router.get( '/:productName/:id', function( req, res) {
+  Vendor.findAll({
+    where:{
+      EventId: req.params.id
+    },
+    include : [
+    {
+      model: Product,
+      where: {
+        name: req.params.productName
+      }
+    }]
+  })
+  .then (function (vendorInfo){
+    res.send( vendorInfo );
+  });
+});
 
 //Being called from VendorService by logoutVen function
 router.post('/logout', function(req, res) {
@@ -129,7 +146,6 @@ router.post('/:id',function(req,res){
 
 //Being called from VendorService by editVendorInfo function
 router.put('/:id', function( req, res){
-  console.log('here at server edit for vendor?', req.params);
   req.body.updatedAt = "now()";
   Vendor.findById(req.params.id)
   .then(function(data) {
