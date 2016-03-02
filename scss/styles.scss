@@ -59,6 +59,11 @@ body {
   justify-content: center;
 }
 
+.master {
+  @include flexDisplayRow;
+  justify-content: center;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
@@ -978,9 +983,13 @@ body {
   }
 }
 
+.thankYou {
+  color: $tan;
+}
+
 // ===================== All Vendors that Carry a Product View
 
-.shopContainer {
+.shopMaster {
   @include flexDisplayRow;
   justify-content: center;
   background-color: $tan;
@@ -991,40 +1000,53 @@ body {
   margin: 10px;
   text-align: center;
 
-  .shopName {
-    flex: $flexFull;
-    font-family: $sixCaps;
-    font-size: 3em;
-  }
+  .shopContainer {
+    @include flexDisplayRow;
+    justify-content: center;
+    // background-color: $tan;
+    // color: $gray;
+    // font-family: $mont;
+    // height: 350px;
+    // width: 350px;
+    // margin: 10px;
+    // text-align: center;
 
-  .shopSeparator {
-    height: 1.1%;
-    flex: 0 0 33%;
-    background-color: $tan - 20;
-  }
+    .shopName {
+      flex: $flexFull;
+      font-family: $sixCaps;
+      font-size: 3em;
+    }
 
-  .shopProduct {
-    flex: $flexFull;
-    font-size: 1.5em;
-  }
+    .shopSeparator {
+      height: 3px;
+      flex: 0 0 33%;
+      background-color: $tan - 20;
+      margin: 5px 0px;
+    }
 
-  .shopQuantity {
-    flex: $flexFull;
-  }
+    .shopProduct {
+      flex: $flexFull;
+      font-size: 1.5em;
+    }
 
-  .shopPrice {
-    flex: $flexFull;
-  }
+    .shopQuantity {
+      flex: $flexFull;
+    }
 
-  .shopProductPicture {
-    flex: $flexFull;
-    max-width: 200px;
-    max-height: 200px;
-    margin: 5px;
+    .shopPrice {
+      flex: $flexFull;
+    }
 
-    img {
-      height: 100%;
-      width: 100%;
+    .shopProductPicture {
+      flex: $flexFull;
+      max-width: 200px;
+      max-height: 200px;
+      margin: 5px;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
     }
   }
 }
