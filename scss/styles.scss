@@ -1040,13 +1040,6 @@ body {
   .shopContainer {
     @include flexDisplayRow;
     justify-content: center;
-    // background-color: $tan;
-    // color: $gray;
-    // font-family: $mont;
-    // height: 350px;
-    // width: 350px;
-    // margin: 10px;
-    // text-align: center;
 
     .shopName {
       flex: $flexFull;
