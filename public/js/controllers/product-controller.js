@@ -97,9 +97,7 @@ angular.module('myApp')
     };
 
     $scope.getIndividualProduct = function(){
-      console.log(111111);
       var params = $location.url();
-      console.log(params);
       ProductService.getIndiProduct($location.url()).success(function(data){
         $scope.Product = data;
       });
@@ -145,6 +143,14 @@ angular.module('myApp')
 
       if($scope.Product.quantity<=0){
         return $scope.error = "SOLD OUT";
+      }
+
+      if($scope.requested.quantity>$scope.Product.quantity){
+        return $scope.error = "Not enough products in inventory for desired product request";
+      }
+
+      if($scope.requested.quantity<1){
+        return $scope.error = "quantity must be 1 or higher";
       }
       // a validation to make sure someone is logged in.
       //if(loggin checker thing here, if someone isn't logged in){
