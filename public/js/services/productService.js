@@ -11,8 +11,6 @@ angular.module('myApp')
       return $http.get('/product/'+id);
     };
     this.getIndiProduct = function(id){
-      console.log(22222222);
-      console.log(typeof id);
       return $http.get(id+'/product');
     };
     this.addProduct = function(product){
@@ -27,8 +25,11 @@ angular.module('myApp')
     };
 
     this.chargeProduct = function(product){
-      console.log(555555555, product);
       return $http.post('http://localhost:3000/stripe/'+product.routeParams, product);
+    };
+
+    this.setVendorId = function(result){
+      return $http.post('http://localhost:3000/stripe/', result);
     };
 
   }]);
