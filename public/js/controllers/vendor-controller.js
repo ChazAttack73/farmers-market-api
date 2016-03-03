@@ -58,7 +58,7 @@ angular.module('myApp')
         $rootScope.loggedInVendor = result;
         $rootScope.loggedInVendor.user = true;
         $localStorage.loggedInVendor = $rootScope.loggedInVendor;
-        $location.url('/user/private');
+        $location.url('/');
       }).error(function(error) {
           $scope.error ="Wrong username or password";
       });
@@ -143,7 +143,7 @@ angular.module('myApp')
 
     $scope.getIndividualProduct = function(prodId){
       console.log('getIndividualProduct prodId', prodId);
-      $scope.venAndProd=false;
+      $scope.venAndProd = false;
       ProductService.getIndiProduct(prodId).success(function(data){
       console.log(111111, data );
         $scope.Product = data;
@@ -156,6 +156,7 @@ angular.module('myApp')
     // }
 
     $scope.clickButton = function () {
+      $scope.venAndProd = true;
       $scope.vendorValue=true;
     };
 

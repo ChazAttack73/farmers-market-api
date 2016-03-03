@@ -1,25 +1,28 @@
+<div>
+  <div class="vendorHeader" ng-controller="EventController" ng-init = "getOneEvent()">
+    <div class="vendorName">{{oneEvent.name}}</div>
+    <div class="vendorGraphic"></div>
+    <div class="vendorDays">{{oneEvent.days}}</div>
+    <div class="vendorTime">{{oneEvent.time}}</div>
+    <br>
+    <div class="vendorAddress">{{oneEvent.address}}</div>
+  </div>
+
+  <div class="vendorNavBar" ng-init="vendorOn=true; getAllVendorsForEvent()">
+    <!-- <a href="/#/vendor/view/{{vendor.EventId}}"> -->
+      <div class="navbarVendor" ng-click="clickButton(); vendorOn=true; vendorValue=true"; "venAndProd=true">
+      VENDORS
+      </div>
+      <div class="navbarProduce" ng-click="vendorOn=false; getAllProductsForEvent(); productValue=true; venAndProd=true">PRODUCE</div>
+  </div>
+</div>
+
+<!-- Everything below is dynamic. -->
 <div class="master" ng-init="venAndProd=true" ng-show="venAndProd">
-  <div class="eventVendorsMain">
-    <div class="vendorHeader" ng-controller="EventController" ng-init = "getOneEvent()">
-      <div class="vendorName">{{oneEvent.name}}</div>
-      <div class="vendorGraphic"></div>
-      <div class="vendorDays">{{oneEvent.days}}</div>
-      <div class="vendorTime">{{oneEvent.time}}</div>
-      <br>
-      <div class="vendorAddress">{{oneEvent.address}}</div>
-    </div>
-
-    <div class="vendorNavBar" ng-init="vendorOn=true; getAllVendorsForEvent()">
-      <!-- <a href="/#/vendor/view/{{vendor.EventId}}"> -->
-        <div class="navbarVendor" ng-click="clickButton(); vendorOn=true; vendorValue=true"; "venAndProd=true">
-        VENDORS
-        </div>
-        <div class="navbarProduce" ng-click="vendorOn=false; getAllProductsForEvent(); productValue=true; "venAndProd=true"">PRODUCE</div>
-    </div>
-
-    <div class=masterVendorView ng-if="vendorOn">
+  <div class="eventVendorsMain" ng-if="vendorOn">
+    <div class=masterVendorView  >
       <div class="vendorTab" ng-show="vendorValue">
-        <div class="vendorListingCard" ng-repeat= "vendor in Vendors">
+        <div class="vendorListingCard" ng-repeat= "vendor in Vendors" >
           <div ng-click="getVendorAndProducts(vendor)">
             <div class="vendorContent">
               <div class="vendorCompanyName">{{vendor.name}}</div>
@@ -62,6 +65,7 @@
     </div>
   </div>
 
+<!-- 2 Product Divisions Below show on !vendorOn -->
   <div class="masterProductView" ng-if="!vendorOn">
     <div id="productPage" ng-show="productValue">
       <div id="productInfo">
@@ -81,7 +85,7 @@
     <div class="shopMaster" ng-hide="productValue">
       <div ng-repeat="stuff in VendorsWithTheProduct">
         <div class="shopContainer" ng-click="getIndividualProduct(stuff.Products[0].id)">
-       :QQ   <div class="shopName">{{stuff.name}}</div>
+          <div class="shopName">{{stuff.name}}</div>
           <div class="shopSeparator"></div>
           <div class="shopProduct">{{stuff.Products[0].name}}</div>
           <div class="shopQuantity">{{stuff.Products[0].quantity}}</div>
@@ -95,8 +99,7 @@
   </div>
 </div>
 
-
-
+<!-- Beginning of final page -->
 <div ng-hide="venAndProd">
   <div id="productPage" ng-init="aloha=true">
     <div id="aloha" ng-show="aloha">
@@ -117,7 +120,7 @@
       <div class="form-row">
         <label>
           <span>Quantity:</span>
-          <input type="number" size="3" ng-model="requested.quantity" />
+          <input type="number" size="3" min="1" max="{{Product.quantity" ng-model="requested.quantity" />
         </label>
       </div>
 
