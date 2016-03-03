@@ -9,6 +9,11 @@ body {
   background-image: url("./../images/charcoal-bg.png");
   justify-content: center; }
 
+.master {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center; }
+
 .uppercase {
   text-transform: uppercase; }
 
@@ -793,7 +798,10 @@ body {
       position: relative;
       top: 1px; }
 
-.shopContainer {
+.thankYou {
+  color: #F4F3D5; }
+
+.shopMaster {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -804,26 +812,76 @@ body {
   width: 350px;
   margin: 10px;
   text-align: center; }
-  .shopContainer .shopName {
-    flex: 0 0 100%;
+  .shopMaster .shopContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center; }
+    .shopMaster .shopContainer .shopName {
+      flex: 0 0 100%;
+      font-family: "Six Caps", sans-serif;
+      font-size: 3em; }
+    .shopMaster .shopContainer .shopSeparator {
+      height: 3px;
+      flex: 0 0 33%;
+      background-color: #e0dfc1;
+      margin: 5px 0px; }
+    .shopMaster .shopContainer .shopProduct {
+      flex: 0 0 100%;
+      font-size: 1.5em; }
+    .shopMaster .shopContainer .shopQuantity {
+      flex: 0 0 100%; }
+    .shopMaster .shopContainer .shopPrice {
+      flex: 0 0 100%; }
+    .shopMaster .shopContainer .shopProductPicture {
+      flex: 0 0 100%;
+      max-width: 200px;
+      max-height: 200px;
+      margin: 5px; }
+      .shopMaster .shopContainer .shopProductPicture img {
+        height: 100%;
+        width: 100%; }
+
+.editUserMaster {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  background-color: #F4F3D5;
+  padding: 5px;
+  color: #575450;
+  font-family: "Montserrat", sans-serif;
+  width: 300px;
+  box-shadow: 3px 3px 5px 6px #484541; }
+  .editUserMaster fieldset {
+    border: 0;
+    padding: 0.01em 0px 0 0px;
+    margin: 5px 0px 0px 5px;
+    min-width: 0; }
+    .editUserMaster fieldset label {
+      display: block; }
+    .editUserMaster fieldset input {
+      width: 250px;
+      height: 40px; }
+  .editUserMaster h2 {
+    text-align: center;
     font-family: "Six Caps", sans-serif;
-    font-size: 3em; }
-  .shopContainer .shopSeparator {
-    height: 1.1%;
-    flex: 0 0 33%;
-    background-color: #e0dfc1; }
-  .shopContainer .shopProduct {
-    flex: 0 0 100%;
-    font-size: 1.5em; }
-  .shopContainer .shopQuantity {
-    flex: 0 0 100%; }
-  .shopContainer .shopPrice {
-    flex: 0 0 100%; }
-  .shopContainer .shopProductPicture {
-    flex: 0 0 100%;
-    max-width: 200px;
-    max-height: 200px;
-    margin: 5px; }
-    .shopContainer .shopProductPicture img {
-      height: 100%;
-      width: 100%; }
+    font-size: 2.5em;
+    letter-spacing: 2px; }
+  .editUserMaster .editUserSeparator {
+    height: 3px;
+    background-color: #e0dfc1;
+    margin: 5px 35px 10px 35px; }
+  .editUserMaster .commit {
+    text-align: center;
+    margin: 10px 0px 5px 0px; }
+    .editUserMaster .commit .formSubmitBtn {
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.8em;
+      font-weight: 700;
+      color: #F4F3D5;
+      height: 40px;
+      background-image: url("./../images/charcoal-bg.png");
+      box-shadow: 0px 2px 5px #575450;
+      width: 100%;
+      margin: 10px 0 10px 0;
+      text-transform: uppercase;
+      border: none; }

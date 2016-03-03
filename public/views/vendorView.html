@@ -1,4 +1,4 @@
-<div ng-init="venAndProd=true" ng-show="venAndProd">
+<div class="master" ng-init="venAndProd=true" ng-show="venAndProd">
   <div class="eventVendorsMain">
     <div class="vendorHeader" ng-controller="EventController" ng-init = "getOneEvent()">
       <div class="vendorName">{{oneEvent.name}}</div>
@@ -79,7 +79,7 @@
       </div>
     </div>
   </div>
-  <div ng-hide="productValue">
+  <div class="shopMaster" ng-hide="productValue">
     <div ng-repeat="stuff in VendorsWithTheProduct">
       <div class="shopContainer">
         <div class="shopName">{{stuff.name}}</div>
