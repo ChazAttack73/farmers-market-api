@@ -35,9 +35,15 @@ router.get('/:id', function(req, res) {
   });
 });
 
-router.get('/:id/product', function(req, res) {
+router.get('/product/:id', function(req, res) {
   Product.findOne({
-          where: { id: req.params.id }
+      where: {
+        id: req.params.id
+      },
+      include : [
+        {
+        model: Vendor
+        }]
   })
   .then(function(product){
     res.send (product);

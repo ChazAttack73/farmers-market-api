@@ -96,13 +96,6 @@ angular.module('myApp')
       });
     };
 
-    $scope.getIndividualProduct = function(){
-      var params = $location.url();
-      ProductService.getIndiProduct($location.url()).success(function(data){
-        $scope.Product = data;
-      });
-    };
-
     $scope.postProduct=function(product) {
       if (product === undefined) {
         $scope.noNewPost = false;
@@ -192,8 +185,10 @@ angular.module('myApp')
 
         })
         .catch(function (err) {
-          if (err.type && /^Stripe/.test(err.type)) {
-            console.log('Stripe error: ', err.message);
+          //if (err.type && /^Stripe/.test(err.type)) {
+          if (err) {
+            //console.log('Stripe error: ', err.message);
+            return  $scope.error = "Stripe error: " + err.message;
           }
           else {
             console.log('Other error occurred, possibly with your API', err.message);

@@ -10,7 +10,7 @@ angular.module('myApp')
       return $http.get('/product/'+id);
     };
     this.getIndiProduct = function(id){
-      return $http.get(id+'/product');
+      return $http.get('/product/product/' + id);
     };
     this.addProduct = function(product){
       return $http.post('/product/new', product);
