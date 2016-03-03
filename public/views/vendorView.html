@@ -111,6 +111,16 @@
         <p class="product_quantity">{{Product.quantity}} in stock!</p>
         <p class="product_description">{{Product.description}}</p>
       </div>
+
+      <div class="error">{{error}}</div>
+
+      <div class="form-row">
+        <label>
+          <span>Quantity:</span>
+          <input type="number" size="3" ng-model="requested.quantity" />
+        </label>
+      </div>
+
       <div id="payment-form">
         <form ng-submit="handleStripe()">
           <span class="payment-errors"></span>

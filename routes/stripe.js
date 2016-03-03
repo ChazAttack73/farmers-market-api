@@ -62,7 +62,7 @@ router.post('/:id',function( req, res){
       destination : data.stripe_user_id,  //stripeVendor_user_id     //ac_sdipufghpdsfighfdgpdsfig this is an example of what i'm looking for, the stripe_user_id, from the response body
       description : "Example charge",
       //
-      //application_fee : that is the % of the charge that we want to take
+      //application_fee : req.body.amount * 0.10,//that is the % of the charge that we want to take
       metadata:{
         vendor_name : vendorName,
         productId: req.body.product,
@@ -73,16 +73,39 @@ router.post('/:id',function( req, res){
       }
 
     }, function(err, charge) {
-      if (err && err.type === 'StripeCardError') {
+      if (err) {
 
-        //dofigh[odaigheqpighad[oighqo[agh[odigha[doghu]]]]]
-        //hfpasdiufhapsdiuhfapsidufhaspdiufhapsidufhadsipfuh
-        ///phasdifhaspdoifasodifhasdpfiuhasdpifuhasdpfiuhsdapfiuh
-        //hpfaisdufhpsadiofjaspodifhapsdofhiapsidufh
-        //fhpaisduhfpiasudhfaispduhfpaisudfhpiasduhfa
-        //error
-        // The card has been declined
-        return res.json('error');
+        switch (err.type) {
+          case 'StripeCardError':
+            // A declined card error
+            err.message = "aloha"; // => e.g. "Your card's expiration year is invalid."
+            break;
+          case 'RateLimitError':
+            // Too many requests made to the API too quickly
+            err.message = "Too many requests made to the API too quickly";
+            break;
+          case 'StripeInvalidRequestError':
+            // Invalid parameters were supplied to Stripe's API
+            err.message = "Invalid characters in fields, please try again";
+            break;
+          case 'StripeAPIError':
+            // An error occurred internally with Stripe's API
+            err.message = "Stripe Error";
+            break;
+          case 'StripeConnectionError':
+            // Some kind of error occurred during the HTTPS communication
+            err.message = "Connection Error";
+            break;
+          case 'StripeAuthenticationError':
+            // You probably used an incorrect API key
+            err.message = "Incorrect API Key";
+            break;
+          default:
+            // Handle any other types of unexpected errors
+            err.message = "Error, please try again";
+            break;
+        }
+        return res.json(err);
       }
 
       Product.findById(req.body.product).then(function(product) {
