@@ -10,6 +10,13 @@
 
     <div class="error">{{error}}</div>
 
+    <div class="form-row">
+      <label>
+          <span>Quantity:</span>
+          <input type="number" size="3" ng-model="requested.quantity" />
+        </label>
+    </div>
+
     <div id="payment-form">
       <form ng-submit="handleStripe()">
         <span class="payment-errors"></span>
@@ -17,7 +24,7 @@
         <div class="form-row">
           <label>
             <span>Card Number</span>
-            <input type="text" size="16" data-stripe="number" ng-model="stripe.number" payments-validate="card" payments-type-model="type" payments-format="card" />
+            <input type="text" size="18" data-stripe="number" ng-model="stripe.number" payments-validate="card" payments-type-model="type" payments-format="card" />
           </label>
         </div>
 

@@ -80,7 +80,8 @@ body {
     text-decoration: none;
     color: #575450;
     height: 0;
-    opacity: 0; }
+    opacity: 0;
+    display: block; }
 
 .mobileMenu.menuOn {
   height: auto;

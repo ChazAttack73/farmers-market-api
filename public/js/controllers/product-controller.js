@@ -96,7 +96,6 @@ angular.module('myApp')
       });
     };
 
-
     $scope.postProduct=function(product) {
       if (product === undefined) {
         $scope.noNewPost = false;
@@ -138,6 +137,14 @@ angular.module('myApp')
       if($scope.Product.quantity<=0){
         return $scope.error = "SOLD OUT";
       }
+
+      if($scope.requested.quantity>$scope.Product.quantity){
+        return $scope.error = "Not enough products in inventory for desired product request";
+      }
+
+      if($scope.requested.quantity<1){
+        return $scope.error = "quantity must be 1 or higher";
+      }
       // a validation to make sure someone is logged in.
       //if(loggin checker thing here, if someone isn't logged in){
       //  return $scope.error = "need to log in"
@@ -147,6 +154,7 @@ angular.module('myApp')
       var cvc = $scope.stripe.cvc;
       var exp_month = $scope.stripe.exp_month;
       var exp_year = $scope.stripe.exp_year;
+      var quantity = $scope.requested.quantity;
 
       if(number && cvc && exp_month && exp_year){
         return stripe.card.createToken($scope.stripe)
@@ -157,8 +165,8 @@ angular.module('myApp')
           payment.token = response.id;
           payment.routeParams = id;
           payment.product = $scope.Product.id;
-          payment.productQuantity = 1;
-          payment.amount = $scope.Product.price;
+          payment.productQuantity = quantity;
+          payment.amount = $scope.Product.price * quantity;
           payment.user = $rootScope.loggedInVendor; //this is actually a user and not a vendor
 
           ProductService.chargeProduct(payment);
