@@ -72,7 +72,7 @@
         <p class="productDescription"> {{product.description}} </p>
       </div>
     ​  <div class="productMain">
-        <div class="eventProductContent" ng-repeat="product in productsForEvent" >
+        <div class="eventProductContent" ng-repeat="product in productsForEvent | unique:'name'" >
       ​    <div>
             <div class="product" ng-click="getAllVendsWithProdCat(product.name)">
               <img class="productImage"  src="{{product.product_picture}}" alt="">

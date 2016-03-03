@@ -16,8 +16,10 @@ angular.module('myApp')
     $scope.getAllProducts = function () {
       ProductService.getProducts().success(function(data){
         $rootScope.productNames = [];
-        for(var x=0; x<data.length; x++) {
-          $rootScope.productNames.push(data[x].name);
+        for(var x = 0; x < data.length; x++) {
+          if($rootScope.productNames.indexOf(angular.uppercase(data[x].name)) === -1) {
+            $rootScope.productNames.push(angular.uppercase(data[x].name));
+          }
         }
 
         //Sort Array alphabetically
@@ -30,10 +32,10 @@ angular.module('myApp')
       $rootScope.suggestions = [];
       var myMaxSuggestionListLength = 0;
       for (var i=0; i<$rootScope.productNames.length; i++) {
-        var searchItemsSmallLetters = angular.lowercase($rootScope.productNames[i]);
-        var searchTextSmallLetters = angular.lowercase($scope.product.name);
-        if ( searchItemsSmallLetters.indexOf(searchTextSmallLetters) !== -1) {
-          $rootScope.suggestions.push(searchItemsSmallLetters);
+        var searchItemsCAPLetters = angular.uppercase($rootScope.productNames[i]);
+        var searchTextCAPLetters = angular.uppercase($scope.product.name);
+        if ( searchItemsCAPLetters.indexOf(searchTextCAPLetters) !== -1) {
+          $rootScope.suggestions.push(searchItemsCAPLetters);
           myMaxSuggestionListLength += 1;
           if (myMaxSuggestionListLength === 5) {
             break;
