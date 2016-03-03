@@ -4,20 +4,20 @@
     <span>REGISTER A NEW . . .</span>
   </div>
 
-  <div class="regNavbar" ng-init="shopper=true; event=false; vendor=false">
-    <div class="regNavBtn" ng-class="{true:'', false:'toggledBtn'}[shopper]" ng-click="shopper=true; event=false; vendor=false">
+  <div class="regNavbar" ng-init="shopperReg=true; eventReg=false; vendorReg=false">
+    <div class="regNavBtn" ng-class="{true:'', false:'toggledBtn'}[shopperReg]" ng-click="shopperReg=true; eventReg=false; vendorReg=false">
       <span>SHOPPER</span>
     </div>
-    <div class="regNavBtn" ng-class="{true:'', false:'toggledBtn'}[event]" ng-click="shopper=false; event=true; vendor=false">
+    <div class="regNavBtn" ng-class="{true:'', false:'toggledBtn'}[eventReg]" ng-click="shopperReg=false; eventReg=true; vendorReg=false">
       <span>EVENT</span>
     </div>
-    <div class="regNavBtn" ng-class="{true:'', false:'toggledBtn'}[vendor]" ng-click="shopper=false; event=false; vendor=true">
+    <div class="regNavBtn" ng-class="{true:'', false:'toggledBtn'}[vendorReg]" ng-click="shopperReg=false; eventReg=false; vendorReg=true">
       <span>VENDOR</span>
     </div>
   </div>
 
 
-  <div class="formWrapper" ng-if="shopper">
+  <div class="formWrapper" ng-show="shopperReg" ng-hide="eventReg || vendorReg">
     <div class="formTitle">
       <span>SHOPPER REGISTRATION</span>
     </div>
@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <div class="formWrapper" ng-if="event">
+  <div class="formWrapper" ng-show="eventReg" ng-hide="shopperReg || vendorReg">
     <div class="formTitle">
       <span>EVENT REGISTRATION</span>
     </div>
@@ -76,7 +76,7 @@
     </div>
   </div>
 
-  <div class="formWrapper" ng-if="vendor">
+  <div class="formWrapper" ng-show="vendorReg" ng-hide="shopperReg || eventReg">
     <div class="formTitle">
       <span>VENDOR REGISTRATION</span>
     </div>
