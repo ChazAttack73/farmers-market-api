@@ -31,9 +31,9 @@
         <label for="user_verifyPassword">VERIFY PASSWORD</label>
         <input id="user_verifyPassword "type="password" ng-model="user.verifyPassword">
         <input class="formSubmitBtn" type="submit" value="register" ng-click="registerUser(user); user = null">
-        <!-- <div class="commit">
+        <div class="commit">
           <button class="loginSubmitBtn" type='button' ng-click='registerUser(user); user = null'>REGISTER</button>
-        </div> -->
+        </div>
       </fieldset>
     </div>
   </div>
@@ -69,9 +69,9 @@
         <label for="event_picture">EVENT PICTURE</label>
         <input id="event_picture "type="text" ng-model="event.event_picture">
         <input class="formSubmitBtn" type="submit" value="register" ng-click="registerEvent(event); event = null">
-        <!-- <div class="commit">
+        <div class="commit">
           <button class="formSubmitBtn" type='button' ng-click='registerEvent(event); event=null'>REGISTER</button>
-        </div> -->
+        </div>
       </fieldset>
     </div>
   </div>
@@ -124,9 +124,9 @@
         <input id="vendor_EventId" type="hidden" ng-model="vendor.EventId"></input>
         <div class="error">{{error}}</div>
         <input class="formSubmitBtn" type="submit" value="register" ng-click="registerVendor(vendor)">
-        <!-- <div class="commit">
+        <div class="commit">
           <button class="formSubmitBtn" type='button' ng-click='registerVendor(vendor)'>Register</button>
-        </div> -->
+        </div>
       </fieldset>
     </div>
   </div>

@@ -885,3 +885,38 @@ body {
       margin: 10px 0 10px 0;
       text-transform: uppercase;
       border: none; }
+
+.ng-enter {
+  transition-delay: 0.5s;
+  transition: 0.5s linear all;
+  opacity: 0; }
+
+.ng-enter.ng-enter-active {
+  transition-delay: 0.5s;
+  opacity: 1; }
+
+.ng-leave {
+  transition: 0.5s linear all;
+  opacity: 1; }
+
+.ng-leave.ng-leave-active {
+  opacity: 0;
+  margin-left: 20px; }
+
+.fade.ng-leave {
+  animation: my_fade_animation 0.5s linear;
+  -webkit-animation: my_fade_animation 0.5s linear; }
+
+@keyframes my_fade_animation {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0;
+    margin-left: 20px; } }
+
+@-webkit-keyframes my_fade_animation {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0;
+    margin-left: 20px; } }

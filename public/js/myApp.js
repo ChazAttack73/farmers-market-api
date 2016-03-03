@@ -3,7 +3,8 @@ angular.module('myApp', [
   'ngRoute',
   'ngStorage',
   'angular.filter',
-  'angular-stripe'
+  'angular-stripe',
+  'ngAnimate'
   ]);
 
 var myApp = angular.module('myApp');
