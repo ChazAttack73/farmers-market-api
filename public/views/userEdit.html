@@ -1,5 +1,8 @@
-<fieldset>
+<div class="editUserMaster">
+  <fieldset>
+
       <h2>EDIT USER PROFILE</h3>
+      <div class="editUserSeparator"></div>
 
       <label for="user_email">EMAIL</label>
       <input id="user_email "type="text" ng-model="user.email">
@@ -16,7 +19,7 @@
       <br>
 
       <div class="commit">
-        <button type='button' ng-click='registerUser(user); user = null'>REGISTER</button>
+        <input class="formSubmitBtn" type='button' value="REGISTER" ng-click='registerUser(user); user = null'>
       </div>
-
-    </fieldset>
+  </fieldset>
+</div>
