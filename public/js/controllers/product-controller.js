@@ -96,13 +96,6 @@ angular.module('myApp')
       });
     };
 
-    $scope.getIndividualProduct = function(){
-      var params = $location.url();
-      ProductService.getIndiProduct($location.url()).success(function(data){
-        $scope.Product = data;
-      });
-    };
-
     $scope.postProduct=function(product) {
       if (product === undefined) {
         $scope.noNewPost = false;

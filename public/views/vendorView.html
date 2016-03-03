@@ -11,10 +11,10 @@
 
     <div class="vendorNavBar" ng-init="vendorOn=true; getAllVendorsForEvent()">
       <!-- <a href="/#/vendor/view/{{vendor.EventId}}"> -->
-        <div class="navbarVendor" ng-click="clickButton(); vendorOn=true; vendorValue=true">
+        <div class="navbarVendor" ng-click="clickButton(); vendorOn=true; vendorValue=true"; "venAndProd=true">
         VENDORS
         </div>
-        <div class="navbarProduce" ng-click="vendorOn=false; getAllProductsForEvent(); productValue=true">PRODUCE</div>
+        <div class="navbarProduce" ng-click="vendorOn=false; getAllProductsForEvent(); productValue=true; "venAndProd=true"">PRODUCE</div>
     </div>
 
     <div class=masterVendorView ng-if="vendorOn">
@@ -47,8 +47,8 @@
           <button class="privateVendorButton" type="button" ng-click="clickButton()">Back</button>
         </div>
       ​  <div class="vendorMain">
-          <div class="vendorProduct" ng-repeat="product in singleVendor.Products" >
-            <a class="privateVendorProduct" ng-href="/#/product/{{product.id}}">
+          <div class="vendorProduct" ng-repeat="product in singleVendor.Products" ng-click="getIndividualProduct(product.id)">
+            <a class="privateVendorProduct">
               <div class="vendorProductContainer">
                 <img class="privateVendorProductImage" src="{{product.product_picture}}">
                 <h4 class="privateVendorProductName">{{product.name}} </h4>
@@ -78,25 +78,82 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="shopMaster" ng-hide="productValue">
-    <div ng-repeat="stuff in VendorsWithTheProduct">
-      <div class="shopContainer">
-        <div class="shopName">{{stuff.name}}</div>
-        <div class="shopSeparator"></div>
-        <div class="shopProduct">{{stuff.Products[0].name}}</div>
-        <div class="shopQuantity">{{stuff.Products[0].quantity}}</div>
-        <div class="shopProductPicture">
-          <img src="{{stuff.Products[0].product_picture}}">
+    <div class="shopMaster" ng-hide="productValue">
+      <div ng-repeat="stuff in VendorsWithTheProduct">
+        <div class="shopContainer" ng-click="getIndividualProduct(stuff.Products[0].id)">
+          <div class="shopName">{{stuff.name}}</div>
+          <div class="shopSeparator"></div>
+          <div class="shopProduct">{{stuff.Products[0].name}}</div>
+          <div class="shopQuantity">{{stuff.Products[0].quantity}}</div>
+          <div class="shopProductPicture">
+            <img src="{{stuff.Products[0].product_picture}}">
+          </div>
+          <div class="shopPrice">${{stuff.Products[0].price}}</div>
         </div>
-        <div class="shopPrice">${{stuff.Products[0].price}}</div>
       </div>
     </div>
   </div>
 </div>
+
+
+
 <div ng-hide="venAndProd">
-  THE FINAL PAGE!!!!!!!!
-  <div ng-click="venAndProd=true">
-    Click here to return to what you were doing
+  <div id="productPage" ng-init="aloha=true">
+    <div id="aloha" ng-show="aloha">
+      <div>
+        <button ng-click="venAndProd=true" type="button">Click here to return to your search</button>
+      </div>
+      <div id="productInfo">
+        <img src="{{Product.product_picture}}" class="productThumbnail">
+        <h1 class="product_name">{{Product.name}}</h1>
+        <p class="product_price">By {{Product.Vendor.name}}</p>
+        <p class="product_price">${{Product.price}}</p>
+        <p class="product_quantity">{{Product.quantity}} in stock!</p>
+        <p class="product_description">{{Product.description}}</p>
+      </div>
+      <div id="payment-form">
+        <form ng-submit="handleStripe()">
+          <span class="payment-errors"></span>
+
+          <div class="form-row">
+            <label>
+              <span>Card Number</span>
+              <input type="text" size="16" data-stripe="number" ng-model="stripe.number" payments-validate="card" payments-type-model="type" payments-format="card" />
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              <span>CVC</span>
+              <input type="text" size="4" data-stripe="cvc" ng-model="stripe.cvc" payments-validate="cvc" payments-type-model="type"/>
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              <span>Expiration (MM/YYYY)</span>
+              <input type="text" size="2" data-stripe="exp-month" ng-model="stripe.exp_month" payments-validate="expiry"/>
+            </label>
+            <span> / </span>
+            <input type="text" size="4" data-stripe="exp-year" ng-model="stripe.exp_year"/>
+          </div>
+
+          <button class="privateVendorButton" type="submit">Submit Payment</button>
+        </form>
+      </div>
+
+      <!-- <div class="existingCard">
+        <p>**** **** **** {{last4}}</p> how to get the last code
+        <p>address line 1</p>
+        <p>address line 2</p>
+        <a href="">change card</a>
+        <button type="submit">Submit Payment</button>
+      </div> -->
+    </div>
+
+    <div class="thankYou" ng-hide="aloha">
+      Thank you for supporting local farmers
+    </div>
   </div>
+
 </div>
