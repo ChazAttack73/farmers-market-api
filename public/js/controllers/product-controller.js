@@ -37,7 +37,7 @@ angular.module('myApp')
         if ( searchItemsCAPLetters.indexOf(searchTextCAPLetters) !== -1) {
           $rootScope.suggestions.push(searchItemsCAPLetters);
           myMaxSuggestionListLength += 1;
-          if (myMaxSuggestionListLength === 5) {
+          if (myMaxSuggestionListLength === 3) {
             break;
           }
         }
@@ -224,7 +224,6 @@ angular.module('myApp')
 
 
     $scope.submitEdit = function(product) {
-      console.log('what product are you editing????', product);
       ProductService.editProduct(product, product.id).then(function(data){
         VendorService.getOneVendorAndProducts($rootScope.loggedInVendor.id).success(function (vendor){
           //see if anyway to arrange by id with filter
@@ -235,7 +234,6 @@ angular.module('myApp')
 
     $scope.delProduct = function(productID) {
       ProductService.deleteProduct(productID).then(function(data) {
-        console.log('ldsjfljsdfljsdf', data);
         VendorService.getOneVendorAndProducts($rootScope.loggedInVendor.id).success(function (vendor){
           //see if anyway to arrange by id with filter
           $rootScope.singleVendor = vendor;

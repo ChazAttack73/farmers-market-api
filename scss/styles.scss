@@ -907,18 +907,18 @@ body {
 .suggestions-list {
   position: absolute;
   list-style-type: none;
-  margin: 0 0 0 23px;
+  margin: 0 0 0 35px;
   padding: 0;
   overflow: auto;
 }
 .suggestions-list li {
   color: #000000;
   padding: 10px 10px;
-  height:10px;
+  height:30px;
   cursor: pointer;
   background: #f9f9f9;
   border-bottom: 1px solid #eeeeee;
-  width:234px;
+  width:229px;
 }
 .suggestions-list li:hover {
   background: #eeeeee;
@@ -927,7 +927,7 @@ body {
 .suggestions-list li.active {
   color: #FFFFFF;
   background: #0099FF;
-  width:234px;
+  width:229px;
 }
 .suggestions-list:focus{
   outline:none;

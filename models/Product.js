@@ -5,7 +5,7 @@ module.exports = function ( sequelize, DataTypes ) {
       allowNull: false
     },
     price : {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(4),
       allowNull: false
     },
     quantity : DataTypes.INTEGER,
