@@ -59,6 +59,11 @@ body {
   justify-content: center;
 }
 
+.master {
+  @include flexDisplayRow;
+  justify-content: center;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
@@ -1016,9 +1021,13 @@ body {
   }
 }
 
+.thankYou {
+  color: $tan;
+}
+
 // ===================== All Vendors that Carry a Product View
 
-.shopContainer {
+.shopMaster {
   @include flexDisplayRow;
   justify-content: center;
   background-color: $tan;
@@ -1029,40 +1038,107 @@ body {
   margin: 10px;
   text-align: center;
 
-  .shopName {
-    flex: $flexFull;
+  .shopContainer {
+    @include flexDisplayRow;
+    justify-content: center;
+
+    .shopName {
+      flex: $flexFull;
+      font-family: $sixCaps;
+      font-size: 3em;
+    }
+
+    .shopSeparator {
+      height: 3px;
+      flex: 0 0 33%;
+      background-color: $tan - 20;
+      margin: 5px 0px;
+    }
+
+    .shopProduct {
+      flex: $flexFull;
+      font-size: 1.5em;
+    }
+
+    .shopQuantity {
+      flex: $flexFull;
+    }
+
+    .shopPrice {
+      flex: $flexFull;
+    }
+
+    .shopProductPicture {
+      flex: $flexFull;
+      max-width: 200px;
+      max-height: 200px;
+      margin: 5px;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+// ==================== Edit User Profile Page
+
+.editUserMaster {
+  @include flexDisplayRow;
+  justify-content: center;
+  background-color: $tan;
+  padding: 5px;
+  color: $gray;
+  font-family: $mont;
+  width: 300px;
+  box-shadow: 3px 3px 5px 6px $gray - 15;
+
+  fieldset {
+    border: 0;
+    padding: 0.01em 0px 0 0px;
+    margin: 5px 0px 0px 5px;
+    min-width: 0;
+
+    label {
+      display: block;
+    }
+
+    input {
+      width: 250px;
+      height: 40px;
+    }
+  }
+
+  h2 {
+    text-align: center;
     font-family: $sixCaps;
-    font-size: 3em;
+    font-size: 2.5em;
+    letter-spacing: 2px;
   }
 
-  .shopSeparator {
-    height: 1.1%;
-    flex: 0 0 33%;
+  .editUserSeparator {
+    height: 3px;
     background-color: $tan - 20;
+    margin: 5px 35px 10px 35px;
   }
 
-  .shopProduct {
-    flex: $flexFull;
-    font-size: 1.5em;
-  }
+  .commit {
+    text-align: center;
+    margin: 10px 0px 5px 0px;
 
-  .shopQuantity {
-    flex: $flexFull;
-  }
-
-  .shopPrice {
-    flex: $flexFull;
-  }
-
-  .shopProductPicture {
-    flex: $flexFull;
-    max-width: 200px;
-    max-height: 200px;
-    margin: 5px;
-
-    img {
-      height: 100%;
+    .formSubmitBtn {
+      font-family: $mont;
+      font-size: 0.8em;
+      font-weight: 700;
+      color: $tan;
+      height: 40px;
+      background-image: $charcoal-bg;
+      box-shadow: 0px 2px 5px $gray;
       width: 100%;
+      margin: 10px 0 10px 0;
+      text-transform: uppercase;
+      border: none;
     }
   }
 }
