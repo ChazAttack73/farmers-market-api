@@ -18,6 +18,7 @@ var vendorForCallBack = null;
 router.use(bodyParser.json({ extended: false }));
 
 router.post('/:id',function( req, res){
+  console.log('req.body', req.body);
   var productName = null;
   var vendorName = null;
   Order.create({
@@ -30,6 +31,7 @@ router.post('/:id',function( req, res){
   })
   //add another then to retrieve the Vendor and info
   .then(function(order){
+     console.log('are you getting to stripe post', order);
       Payment.create({
       token : req.body.token,
       OrderId : order.id
