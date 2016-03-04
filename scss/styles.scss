@@ -122,8 +122,8 @@ body {
   z-index: 100;
   height: 0;
   opacity: 0;
-  transition: height 0.25s ease;
-  transition: opacity 0.25s ease;
+  transition: height 0.2s ease;
+  transition: opacity 0.2s ease;
 
   ul {
     height: 0;
@@ -239,7 +239,7 @@ body {
       @include centerer;
       font-family: $sixCaps;
       color: $gray;
-      font-size: 4em;
+      font-size: 3em;
       line-height: 110%;
       padding: 5% 0;
       max-height: 240px;
@@ -553,6 +553,7 @@ body {
   flex: 0 0 90%;
   height: 40%;
   background-image: $tan-bg;
+  margin-bottom: 10px;
 
   .formTitle {
     font-family: $sixCaps;
@@ -565,6 +566,8 @@ body {
   .vendorLogo {
     flex: 0 0 30%;
     margin: auto;
+    height: 100px;
+    width: 100px;
 
     svg {
       height: 90%;
@@ -624,7 +627,7 @@ body {
     background-image: $charcoal-bg;
     box-shadow: 0px 2px 5px $gray;
     width: 100%;
-    margin: 30px 0 60px 0;
+    margin: 30px 0 40px 0;
     text-transform: uppercase;
   }
 }
@@ -665,6 +668,8 @@ body {
 .eventLogo {
   flex: 0 0 30%;
   margin: auto;
+  height: 100px;
+  width: 100px;
 
   svg {
     height: 90%;
@@ -1154,7 +1159,7 @@ body {
   opacity:1;
 }
 .ng-leave {
-  transition:0.5s linear all;
+  transition:0.5s all;
   opacity:1;
 
 }

@@ -4,7 +4,7 @@ angular.module('myApp', [
   'ngStorage',
   'angular.filter',
   'angular-stripe',
-  'ngAnimate'
+  // 'ngAnimate'
   ]);
 
 var myApp = angular.module('myApp');

@@ -40,7 +40,7 @@
         <li ng-show="loggedInVendor">
           <a href="" ng-click="whosLoggedIn()">PROFILE</a>
         </li>
-        <li>
+        <li ng-hide="loggedInVendor">
           <a href="/#/register">SIGN UP</a>
         </li>
         <li ng-show="loggedInVendor">
@@ -76,7 +76,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js"></script> -->
 
     <script src="js/angular-stripe.js"></script>
 
