@@ -5,7 +5,7 @@ module.exports = function ( sequelize, DataTypes ) {
       allowNull: false
     },
     price : {
-      type: DataTypes.FLOAT(2).ZEROFILL,
+      type: DataTypes.FLOAT(2),
       allowNull: false
     },
     quantity : DataTypes.INTEGER,

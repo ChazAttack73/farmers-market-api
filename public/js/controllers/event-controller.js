@@ -53,6 +53,7 @@ angular.module('myApp')
     EventService.addUser(new_user)
 
     .success(function(result){
+      console.log('what do I get back from registering user', result);
       $rootScope.loggedInVendor = result; //this is actually a user and not a vendor
       $rootScope.loggedInVendor.user = true;
       $localStorage.loggedInVendor = $rootScope.loggedInVendor;
