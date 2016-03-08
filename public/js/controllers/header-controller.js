@@ -11,7 +11,7 @@ $rootScope.loggedInVendor = $localStorage.loggedInVendor;
 $scope.whosLoggedIn = function() {
     if($localStorage.loggedInVendor.user) {
       $location.url('/user/private');
-    } else if(!$localStorage.loggedInVendor.user) {
+    } else if($localStorage.loggedInVendor.vendor) {
       $location.url('/vendor/private');
     }
   };

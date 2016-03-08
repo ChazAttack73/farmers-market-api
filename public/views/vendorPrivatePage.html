@@ -59,14 +59,14 @@
 
 
 
-    <!-- <p>
+          <!-- <p>
           Enter a new product below.  You can choose a predefined category from the drop down list.  This is recommended even if you offer a specific variety (you can list that in your description).  If your product is outside the predefined options, select new.  If you have one, please include a picture!:
-    </p> -->
-    <br>
-    <br>
+          </p> -->
+        <br>
+        <br>
         <div ng-init="getAllProducts()" class="list-wrapper">
           <label for="product_name">Product Name</label>
-            <input type="text" class="inputA" ng-keydown="checkKeyDown($event)" ng-keyup="checkKeyUp($event)" id="product_name" ng-model="product.name" ng-change="search()" />
+            <input type="text" class="inputA" ng-keydown="checkKeyDown($event)" ng-keyup="checkKeyUp($event)" id="product_name" ng-model="product.name" ng-change="search()">
 
           <ul class="suggestions-list">
             <li ng-repeat="name in suggestions track by $index" ng-class="{active : selectedIndex===$index}" ng-click="AssignValueAndHide($index)">{{name}}</li>
@@ -112,7 +112,7 @@
 
         <div class="product" ng-hide="noProductEdit">
           <div>
-            <input type="hidden" value="{{product.id}}" ng-value="product.id" ng-model="product.id"></input>
+            <input type="hidden" value="{{product.id}}" ng-value="product.id" ng-model="product.id">
             <label for="product_name">Product Name</label>
             <input id="product_name" type="text" ng-model="product.name" ng-value="product.name">
           </div>

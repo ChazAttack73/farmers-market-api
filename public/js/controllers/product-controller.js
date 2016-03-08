@@ -79,6 +79,38 @@ angular.module('myApp')
       }
     };
 
+    $scope.postProduct=function(product) {
+      if (product === undefined) {
+        $scope.noNewPost = false;
+        $scope.errorDiv = false;
+        return $scope.error = "You left all fields blank.  Please retry."
+        }
+        if(product.name === undefined ||
+          product.price === undefined ||
+          product.quantity === undefined ||
+          product.description === undefined
+        ) {
+          $scope.noNewPost = false;
+          $scope.errorDiv = false;
+          return $scope.error = "Please fill out all required fields";
+        } else {
+          console.log('you heeeerrreee???');
+          $scope.product = null;
+          $scope.noNewPost = true;
+          $scope.errorDiv = true;
+          $scope.error = null;
+          product.VendorId = $rootScope.loggedInVendor.id;
+          ProductService.addProduct(product).then(function(data) {
+          $rootScope.singleVendor.Products.push(data.config.data);
+        });
+        return;
+        }
+        $scope.noNewPost = false;
+        $scope.errorDiv = false;
+        return $scope.error = 'Unknown error. Please try again';
+    };
+
+
     //List Item Events
     //Function To Call on ng-click
     $rootScope.AssignValueAndHide = function(index){

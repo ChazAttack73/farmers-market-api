@@ -42,6 +42,7 @@ angular.module('myApp')
       } else {
         VendorService.regVendor($scope.vendor).success(function(result) {
           $rootScope.loggedInVendor = result;
+          $rootScope.loggedInVendor.vendor = true;
           $localStorage.loggedInVendor = $rootScope.loggedInVendor;
           $location.url('/vendor/private');
           $window.location.href = ('https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_7ys0ugAueODi8W6rX3rWgIbwLuHANGt8&scope=read_write');
@@ -71,6 +72,7 @@ angular.module('myApp')
       vendorLoginCredentials.type = 'vendor';
       VendorService.loginVen(vendorLoginCredentials).success(function(result) {
         $rootScope.loggedInVendor = result;
+        $rootScope.loggedInVendor.vendor = true;
         $localStorage.loggedInVendor = $rootScope.loggedInVendor;
         $location.url('/vendor/private');
       }).error(function(error) {
@@ -143,36 +145,6 @@ angular.module('myApp')
     //     });
     //   }
     // };
-
-
-    $scope.postProduct=function(product) {
-      if (product === undefined) {
-        $scope.noNewPost = false;
-        $scope.errorDiv = false;
-        return $scope.error = "You left all fields blank.  Please retry."
-        }
-        if(product.name === undefined ||
-          product.price === undefined ||
-          product.quantity === undefined ||
-          product.description === undefined
-        ) {
-          $scope.noNewPost = false;
-          $scope.errorDiv = false;
-          return $scope.error = "Please fill out all required fields";
-        } else {
-          $scope.noNewPost = true;
-          $scope.errorDiv = true;
-          $scope.error = null;
-          product.VendorId = $rootScope.loggedInVendor.id;
-          ProductService.addProduct(product).then(function(data) {
-          $rootScope.singleVendor.Products.push(data.config.data);
-        });
-        return;
-        }
-        $scope.noNewPost = false;
-        $scope.errorDiv = false;
-        return $scope.error = 'Unknown error. Please try again';
-    };
 
     //Did not write this function...BB
     $scope.handleStripe = function(){
