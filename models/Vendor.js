@@ -1,3 +1,4 @@
+//Assigned constraints and datatypes--BB
 module.exports = function ( sequelize, DataTypes ) {
   var Vendor = sequelize.define( "Vendor", {
     name : {
@@ -5,7 +6,6 @@ module.exports = function ( sequelize, DataTypes ) {
       allowNull: false,
       unique: true
     },
-
     password : {
       type: DataTypes.STRING( 255 ),
       allowNull: false
@@ -34,7 +34,8 @@ module.exports = function ( sequelize, DataTypes ) {
       type: DataTypes.STRING,
       allowNull: true,
     }
-  }, {
+  },
+  {
     classMethods: {
       associate: function ( models ) {
         Vendor.hasMany( models.Product, {foreignKey: 'VendorId'});

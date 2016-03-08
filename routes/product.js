@@ -1,3 +1,4 @@
+//This route was stubbed out for me but I added all database queries
 var express = require('express');
 var app = express();
 var router = express.Router();
@@ -58,19 +59,7 @@ router.get( '/', function ( req, res ) {
     });
   });
 
-// router.get( '/:id', function( req, res){
-//   Product.findOne({
-//     where:{
-//       VendorId: req.params.id
-//     }
-//   })
-//   .then (function (product){
-//     res.json( product );
-//   });
-// });
-
 router.post('/new', function(req, res){
-  console.log('req.body on Product post', req.body);
   var productObj = {
     name : req.body.name,
     price : req.body.price,
@@ -90,7 +79,6 @@ router.post('/new', function(req, res){
   });
 });
 
-//This should probably go in product router
 router.post( '/:id', function ( req, res ) {
   req.body.VendorId = req.params.id;
   Product.create(req.body)

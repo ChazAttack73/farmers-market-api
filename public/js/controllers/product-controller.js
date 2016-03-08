@@ -1,5 +1,5 @@
 "use strict";
-
+//Created this controller and all functions below...BB
 angular.module('myApp')
   .controller('ProductController', ['$scope', 'ProductService', 'EventService', '$rootScope', 'VendorService', '$location', '$localStorage', '$routeParams','stripe', '$http', function($scope, ProductService, EventService, $rootScope, VendorService, $location, $localStorage, $routeParams, stripe, $http) {
     $scope.Products= [];
@@ -78,7 +78,6 @@ angular.module('myApp')
         }
       }
     };
-    //======================================
 
     //List Item Events
     //Function To Call on ng-click
@@ -92,33 +91,15 @@ angular.module('myApp')
       $scope.noNewPost = !$scope.noNewPost;
     };
 
-    $scope.getOneProduct = function(id) {
-      ProductService.getProduct(id).success(function(data){
-      $scope.Product = data;
-      });
-    };
-
-
-  // $scope.checkout = function(){
-  //   //this will go to User table
-  //     //if($rootScope.loggedInVendor.false){     //this is a user and not a vendor
-  //       //show the card form to make token
-  //     //} else{
-  //       //bring out the div to show if they want to use the same card number
-  //       //a button to confirm payment
-  //       //a button to change payment - pops out another payment form
-  //     //}
-  // };
-
-
-
-
-
+    // $scope.getOneProduct = function(id) {
+    //   ProductService.getProduct(id).success(function(data){
+    //   $scope.Product = data;
+    //   });
+    // };
 
     $scope.submitEdit = function(product) {
       ProductService.editProduct(product, product.id).then(function(data){
         VendorService.getOneVendorAndProducts($rootScope.loggedInVendor.id).success(function (vendor){
-          //see if anyway to arrange by id with filter
           $rootScope.singleVendor = vendor;
         });
       });
@@ -127,7 +108,6 @@ angular.module('myApp')
     $scope.delProduct = function(productID) {
       ProductService.deleteProduct(productID).then(function(data) {
         VendorService.getOneVendorAndProducts($rootScope.loggedInVendor.id).success(function (vendor){
-          //see if anyway to arrange by id with filter
           $rootScope.singleVendor = vendor;
         });
       });

@@ -1,5 +1,5 @@
 "use strict";
-
+//Created this controller and all functions below except where designated...BB
 angular.module('myApp')
   .controller('VendorController', ['$scope', 'VendorService', 'ProductService', 'EventService', '$location', '$rootScope', '$localStorage', '$routeParams', '$route', '$window','stripe', '$http', function($scope, VendorService, ProductService, EventService, $location, $rootScope, $localStorage, $routeParams, $route, $window, stripe, $http){
     $scope.vendorPrivate = true;
@@ -10,6 +10,7 @@ angular.module('myApp')
 
     var id = $routeParams.id;
 
+    //Did not create this function...BB
     $scope.loadEvent = function(id) {
       $scope.selectedEvent = [];
       EventService.getOneEventService(id).success(function(data){
@@ -50,6 +51,8 @@ angular.module('myApp')
       return $scope.error = 'Unknown error. Please try again';
     };
 
+    //This function was based on the loginVendor function.  Did not create
+    //this function...BB
     $scope.loginUser = function(userLoginCredentials){
 
       userLoginCredentials.type = 'user';
@@ -91,30 +94,6 @@ angular.module('myApp')
       });
     };
 
-    // $scope.registerUser = function(user) {
-
-    //   if(!user.username && user.password && user.verifyPassword){
-    //     $scope.error = "Please completely fill out form";
-    //     return false;
-    //   }
-
-    //   if(user.password !== user.verifyPassword){
-    //     $scope.error = "verify password does not match";
-    //     return false;
-    //   }
-
-    //   var newUser = {
-    //     username : user.username,
-    //     password : user.password
-    //   };
-
-    //   VendorService.registerUser(newUser).success(function(result){
-
-    //     $location.url('/');
-    //   }).error(function(error){
-    //     $scope.error = "Please try again";
-    //   });
-    // };
 
     $scope.editVendor = function(vendor) {
       VendorService.editVendorInfo(vendor, $rootScope.loggedInVendor.id).success(function(data) {
@@ -127,7 +106,6 @@ angular.module('myApp')
     $scope.getVendorAndProducts = function(vendor) {
       $rootScope.singleVendor = null;
       $scope.vendorValue=false;
-      //var param1 = $routeParams.param1;
       VendorService.getOneVendorAndProducts(vendor.id).success(function (vendor){
         $rootScope.singleVendor = vendor;
       });
@@ -142,35 +120,29 @@ angular.module('myApp')
     };
 
     $scope.getIndividualProduct = function(prodId){
-      console.log('getIndividualProduct prodId', prodId);
       $scope.venAndProd = false;
       ProductService.getIndiProduct(prodId).success(function(data){
-      console.log(111111, data );
         $scope.Product = data;
       });
     };
 
-
-    // if($route.current.$$route.originalPath==='/vendor/private') {
-    //  $scope.getVendorAndProducts({id: 3});
-    // }
 
     $scope.clickButton = function () {
       $scope.venAndProd = true;
       $scope.vendorValue=true;
     };
 
-    $scope.postProduct = function(product) {
-      if(!product.name && product.price && product.quantity && product.description && product.product_picture) {
-        $scope.error = "Please fill out all fields about your product";
-      } else {
-        ProductService.addProduct($scope.product).success(function(result) {
+    // $scope.postProduct = function(product) {
+    //   if(!product.name && product.price && product.quantity && product.description && product.product_picture) {
+    //     $scope.error = "Please fill out all fields about your product";
+    //   } else {
+    //     ProductService.addProduct($scope.product).success(function(result) {
 
-        }).error(function(error){
-          $scope.error = "Unknown error. Please try again.";
-        });
-      }
-    };
+    //     }).error(function(error){
+    //       $scope.error = "Unknown error. Please try again.";
+    //     });
+    //   }
+    // };
 
 
     $scope.postProduct=function(product) {
@@ -193,7 +165,6 @@ angular.module('myApp')
           $scope.error = null;
           product.VendorId = $rootScope.loggedInVendor.id;
           ProductService.addProduct(product).then(function(data) {
-          //$scope.product = null;
           $rootScope.singleVendor.Products.push(data.config.data);
         });
         return;
@@ -203,6 +174,7 @@ angular.module('myApp')
         return $scope.error = 'Unknown error. Please try again';
     };
 
+    //Did not write this function...BB
     $scope.handleStripe = function(){
       if($scope.stripe===undefined){
         return $scope.error = "Please fill out all required fields";
@@ -222,10 +194,6 @@ angular.module('myApp')
       if($scope.requested.quantity<1){
         return $scope.error = "quantity must be 1 or higher";
       }
-      // a validation to make sure someone is logged in.
-      //if(loggin checker thing here, if someone isn't logged in){
-      //  return $scope.error = "need to log in"
-      //}
 
       var number = $scope.stripe.number;
       var cvc = $scope.stripe.cvc;
@@ -269,13 +237,6 @@ angular.module('myApp')
           }
           else {
             console.log('Other error occurred, possibly with your API', err.message);
-
-            // Stripe.customers.create({
-            //   description: 'Customer for test@example.com',
-            //   source: response.id // the token
-            //   }, function(err, customer) {
-            //     // asynchronously called
-            //   });
 
           }
         });

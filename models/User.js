@@ -13,7 +13,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       allowNull: false
     }
-  }, {
+  },
+  {
     classMethods: {
       associate: function( models){
         User.hasMany( models.Order, {foreignKey: 'UserId'});

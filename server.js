@@ -17,7 +17,6 @@ var Event = db.Event;
 var Vendor = db.Vendor;
 var User = db.User;
 var Product = db.Product;
-//make sure to type 'sequelize init' in the iTerm
 
 app.use(session(CONFIG.SESSION));
 app.use(passport.initialize());

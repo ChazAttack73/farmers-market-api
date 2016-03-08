@@ -4,11 +4,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    // refresh_token: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false
-    //   //unique:true
-    // },
     token_type: {
       type: DataTypes.STRING,
       allowNull: false
@@ -21,7 +16,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-  }, {
+  },
+  {
     classMethods: {
       associate: function( models){
         StripeVendor.belongsTo( models.Vendor, {foreignKey: 'VendorId'});

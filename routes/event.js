@@ -1,3 +1,5 @@
+//did not write this route...BB
+
 var express = require('express');
 var app = express();
 var router = express.Router();
@@ -6,7 +8,6 @@ var Event = db.Event;
 var Vendor = db.Vendor;
 var Product = db.Product;
 var bodyParser = require('body-parser');
-//var flash = require('connect-flash');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
@@ -44,17 +45,6 @@ router.get('/events/:id', function(req, res){
     res.json(event);
   });
 });
-
-// router.get( '/:id', function( req, res){
-//   Vendor.findAll({
-//     where:{
-//       EventId: req.params.id
-//     }
-//   })
-//   .then (function (events){
-//     res.json( events );
-//   });
-// });
 
 router.post( '/:id', function ( req, res ) {
   req.body.EventId = req.params.id;
@@ -98,24 +88,5 @@ router.delete('/:id', function( req, res){
     });
   });
 });
-
-// router.get('/:id/product', function( req, res){
-//   Event.findOne({
-//     where:{
-//       id: req.params.id
-//     },
-//     include : [
-//     {
-//       model: Vendor,
-//         include : [
-//       {
-//         model: Product
-//       }]
-//     }]
-//   })
-//   .then (function (vendorInfo){
-//     res.json( vendorInfo );
-//   });
-// });
 
 module.exports = router;

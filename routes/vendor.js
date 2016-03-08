@@ -8,7 +8,6 @@ var cookieParser = require('cookie-parser');
 var Vendor = db.Vendor;
 var Product = db.Product;
 var bodyParser = require('body-parser');
-//var flash = require('connect-flash');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
@@ -48,7 +47,6 @@ function logErrors(err, req, res, next) {
 
 //Being called from VendorService regVendor function
 router.post('/register', function(req, res, next){
-  console.log(4444444444444444, req.body);
   hash(req)
   .then(function(hash) {
     var userObj = {

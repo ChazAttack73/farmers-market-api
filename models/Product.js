@@ -1,3 +1,4 @@
+//Assigned constraints and some datatypes--BB
 module.exports = function ( sequelize, DataTypes ) {
   var Product = sequelize.define( "Product", {
     name : {
@@ -11,7 +12,8 @@ module.exports = function ( sequelize, DataTypes ) {
     quantity : DataTypes.INTEGER,
     description : DataTypes.STRING( 255 ),
     product_picture : DataTypes.STRING( 255 )
-  }, {
+  },
+  {
     classMethods: {
       associate: function ( models ) {
         Product.belongsTo( models.Vendor,{foreignKey: 'VendorId'} );

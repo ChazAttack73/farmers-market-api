@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       unique: true
     }
-  }, {
+  },
+  {
     classMethods: {
       associate: function( models){
         Payment.belongsTo( models.Order, {foreignKey: 'OrderId'});

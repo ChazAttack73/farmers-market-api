@@ -1,5 +1,7 @@
 "use strict";
 
+//Created this service and all functions...BB
+
 angular.module('myApp')
   .service('VendorService', ['$http', function($http){
     this.getVendors = function(id){

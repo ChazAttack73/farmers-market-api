@@ -1,11 +1,12 @@
 "use strict";
 
+//Did not write this controller but did help with functions as noted below...BB
 angular.module('myApp')
 .controller('EventController', ['$scope', '$routeParams', 'EventService', 'ProductService', '$rootScope', 'VendorService', '$location', '$localStorage', function($scope, $routeParams, EventService, $rootScope, ProductService, VendorService, $location, $localStorage){
   $scope.Events = [];
   $scope.EventService = EventService;
 
-
+//Wrote Service for this as well as calling it in the HTML
   $scope.getOneEvent = function() {
     var id = $routeParams.id;
     EventService.getOneEventService(id).success(function(data){
@@ -29,9 +30,11 @@ angular.module('myApp')
     });
   };
 
+  //This function was modifed from the registerVendor which I wrote.  Created
+  //schema to check if user or vendor is logged in..BB
   $scope.registerUser = function(user){
     if(user===undefined || user === null){
-      //EEEEERRRRRRROOOOOOOORRRRRRRRR
+      //ERROR
       return $location.url('/register');
     }
 
@@ -53,7 +56,6 @@ angular.module('myApp')
     EventService.addUser(new_user)
 
     .success(function(result){
-      console.log('what do I get back from registering user', result);
       $rootScope.loggedInVendor = result; //this is actually a user and not a vendor
       $rootScope.loggedInVendor.user = true;
       $localStorage.loggedInVendor = $rootScope.loggedInVendor;

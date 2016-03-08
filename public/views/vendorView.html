@@ -9,7 +9,6 @@
   </div>
 
   <div class="vendorNavBar" ng-init="vendorOn=true; getAllVendorsForEvent()">
-    <!-- <a href="/#/vendor/view/{{vendor.EventId}}"> -->
       <div class="navbarVendor" ng-click="clickButton(); vendorOn=true; vendorValue=true"; "venAndProd=true">
       VENDORS
       </div>
@@ -155,14 +154,6 @@
           <button class="privateVendorButton" type="submit">Submit Payment</button>
         </form>
       </div>
-
-      <!-- <div class="existingCard">
-        <p>**** **** **** {{last4}}</p> how to get the last code
-        <p>address line 1</p>
-        <p>address line 2</p>
-        <a href="">change card</a>
-        <button type="submit">Submit Payment</button>
-      </div> -->
     </div>
 
     <div class="thankYou" ng-hide="aloha">

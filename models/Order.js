@@ -8,7 +8,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.FLOAT,
       allowNull: false
     }
-  }, {
+  },
+  {
     classMethods: {
       associate: function( models) {
         Order.belongsTo(models.User, {foreignKey:'UserId'});

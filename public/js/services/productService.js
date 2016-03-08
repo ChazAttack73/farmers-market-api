@@ -1,14 +1,17 @@
 
 "use strict";
 
+//Created this Service and all functions except 'chargeProduct'
+//and 'setVendorId'...BB
+
 angular.module('myApp')
   .service('ProductService', ['$http', function($http){
     this.getProducts = function(){
       return $http.get('/product/');
     };
-    this.getProduct = function(id){
-      return $http.get('/product/'+id);
-    };
+    // this.getProduct = function(id){
+    //   return $http.get('/product/'+id);
+    // };
     this.getIndiProduct = function(id){
       return $http.get('/product/product/' + id);
     };

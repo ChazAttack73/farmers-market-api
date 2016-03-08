@@ -25,7 +25,7 @@ router.post('/:id',function( req, res){
     productQuantity : req.body.productQuantity,
     totalCost : req.body.amount,
     UserId : req.body.user.id,
-    ProductId : req.body.product //change to req.params.id
+    ProductId : req.body.product
 
     // find the vendor id to the product
   })
@@ -61,17 +61,16 @@ router.post('/:id',function( req, res){
       amount: req.body.amount, // amount in cents, again
       currency: "usd",
       source: req.body.token,
-      destination : data.stripe_user_id,  //stripeVendor_user_id     //ac_sdipufghpdsfighfdgpdsfig this is an example of what i'm looking for, the stripe_user_id, from the response body
+      destination : data.stripe_user_id,  //stripeVendor_user_id
       description : "Example charge",
-      //
-      //application_fee : req.body.amount * 0.10,//that is the % of the charge that we want to take
+
+      //application_fee : req.body.amount * 0.10
       metadata:{
         vendor_name : vendorName,
         productId: req.body.product,
         product_name : productName,
         productQuantity: req.body.productQuantity,
         quantity_purchased : req.body.productQuantity
-        //other thing if wanted like tax, subtotal, and etc
       }
 
     }, function(err, charge) {
@@ -80,7 +79,7 @@ router.post('/:id',function( req, res){
         switch (err.type) {
           case 'StripeCardError':
             // A declined card error
-            err.message = "aloha"; // => e.g. "Your card's expiration year is invalid."
+            err.message = "Error"; // => e.g. "Your card's expiration year is invalid."
             break;
           case 'RateLimitError':
             // Too many requests made to the API too quickly
@@ -149,18 +148,6 @@ router.get('/callback', function(req, res){
       scope : body.scope,
       VendorId : req.user.id
     })
-    // .then(function(data){
-    //   //req.body.updatedAt = "now()";
-    //   Vendor.update(
-    //     {
-    //       stripeId : data.stripe_user_id,
-    //       updatedAt : "now()"
-    //     }, {
-    //     where : {
-    //       id : data.VendorId
-    //     }
-    //   });
-    // })
     .then(function(data){
       return res.redirect('/#/vendor/private');
     });

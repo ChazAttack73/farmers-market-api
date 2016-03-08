@@ -79,7 +79,7 @@ router.post( '/', function ( req, res ) {
 
         });
     } else {
-      //EEEEERRRRRROOOOOOOORRRRRR
+      //ERROR
       return res.send("username already taken");
     }
   });
