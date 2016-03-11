@@ -1,5 +1,5 @@
 //Created this and all functions and routes.  Some routes were
-//assigned different controllers by the other authors...BB
+//assigned different controllers by the other contributors...BB
 angular.module('myApp', [
   'ngRoute',
   'ngStorage',

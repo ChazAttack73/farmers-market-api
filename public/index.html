@@ -37,7 +37,7 @@
           <a href="/#/">HOME</a>
         </li>
         <li ng-hide="loggedInVendor">
-          <a href="/#/login" ng-click="loggedInUser=!loggedInUser">LOGIN</a>
+          <a href="/#/login" ng-click="">LOGIN</a>
         </li>
         <li ng-show="loggedInVendor">
           <a href="" ng-click="whosLoggedIn()">PROFILE</a>
@@ -57,7 +57,7 @@
       </div>
 
       <div class="navbarButton" ng-hide="loggedInVendor">
-        <a href="/#/login" ng-click="loggedInUser=!loggedInUser">LOGIN</a>
+        <a href="/#/login" ng-click="">LOGIN</a>
       </div>
 
       <div class="navbarButton" ng-show="loggedInVendor">
@@ -87,10 +87,10 @@
     <script src="js/controllers/product-controller.js"></script>
     <script src="js/controllers/vendor-controller.js"></script>
     <script src="js/controllers/event-controller.js"></script>
+    <script src="js/controllers/header-controller.js"></script>
     <script src="js/services/productService.js"></script>
     <script src="js/services/vendorService.js"></script>
     <script src="js/services/eventService.js"></script>
-    <script src="js/controllers/header-controller.js"></script>
     <script src="js/angular-filter.js"></script>
   </body>
 </html>

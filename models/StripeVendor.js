@@ -1,3 +1,4 @@
+//Did not do any work on this model
 module.exports = function(sequelize, DataTypes) {
   var StripeVendor = sequelize.define("StripeVendor", {
     access_token: {

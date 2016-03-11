@@ -1,3 +1,8 @@
+//This server file was stubbed out for me but I created the
+//session and the local strategy and database query as well
+//as the use of bcrypt (hash and salt for password) and the
+//authentication check...BB
+//
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');

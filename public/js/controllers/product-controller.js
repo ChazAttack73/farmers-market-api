@@ -1,5 +1,5 @@
-"use strict";
 //Created this controller and all functions below...BB
+"use strict";
 angular.module('myApp')
   .controller('ProductController', ['$scope', 'ProductService', 'EventService', '$rootScope', 'VendorService', '$location', '$localStorage', '$routeParams','stripe', '$http', function($scope, ProductService, EventService, $rootScope, VendorService, $location, $localStorage, $routeParams, stripe, $http) {
     $scope.Products= [];
@@ -94,7 +94,6 @@ angular.module('myApp')
           $scope.errorDiv = false;
           return $scope.error = "Please fill out all required fields";
         } else {
-          console.log('you heeeerrreee???');
           $scope.product = null;
           $scope.noNewPost = true;
           $scope.errorDiv = true;

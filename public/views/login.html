@@ -1,3 +1,4 @@
+<!-- Set up login functions for Vendors guided collaborator on how to use ng-init, ng-click and ng-show/hide...BB-->
 <div class="loginMainWrapper">
   <div class="loginNavbar" ng-init="displayLogin=true">
     <div class="chooseVendor" ng-class="{true:'toggledBtn', false:''}[displayLogin]" ng-click="displayLogin=false">
@@ -18,7 +19,7 @@
         <label for="user_email">EMAIL:</label>
         <input id="user_email" value="" ng-model="user.username">
         <label for="user_password">PASSWORD:</label>
-        <input id="user_password" value="" ng-model="user.password">
+        <input id="user_password" value="" ng-model="user.password" type="password">
         <input class="formSubmitBtn" type="submit" value="Login" ng-click="loginUser(user)">
       </fieldset>
     </div>
@@ -54,7 +55,7 @@
         <label for="vendor_name">COMPANY USERNAME:</label>
         <input id="vendor_name" value="" ng-model="vendor.username">
         <label for="vendor_password">PASSWORD:</label>
-        <input id="vendor_password" value="" ng-model="vendor.password">
+        <input id="vendor_password" value="" ng-model="vendor.password" type="password">
         <input class="formSubmitBtn" type="submit" value="Login" ng-click="loginVendor(vendor)">
       </fieldset>
     </div>

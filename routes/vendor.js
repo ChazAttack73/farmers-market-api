@@ -1,3 +1,5 @@
+//This route was stubbed out for me but I created all routes except where noted
+//below...BB
 var express = require('express');
 var app = express();
 var router = express.Router();
@@ -35,6 +37,7 @@ function hash(req) {
   });
   });
 }
+
 
 //Need to modify this to res. back an error (custom message or a
 //send server error code.  Can call this middleware function on
@@ -108,7 +111,7 @@ router.get( '/:id', function( req, res) {
   });
 });
 
-
+//Did not create this route below or query...BB
 router.get( '/:productName/:id', function( req, res) {
   Vendor.findAll({
     where:{
@@ -135,12 +138,6 @@ router.post('/logout', function(req, res) {
   });
 });
 
-router.post('/:id',function(req,res){
-  Product.create(req.body)
-  .then(function(product){
-    res.json(product);
-  });
-});
 
 //Being called from VendorService by editVendorInfo function
 router.put('/:id', function( req, res){

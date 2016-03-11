@@ -1,3 +1,4 @@
+//Did not do any work on this model
 module.exports = function(sequelize, DataTypes) {
   var Payment = sequelize.define("Payment", {
     token: {

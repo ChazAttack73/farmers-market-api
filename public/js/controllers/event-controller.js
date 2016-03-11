@@ -2,9 +2,10 @@
 
 //Did not write this controller but did help with functions as noted below...BB
 angular.module('myApp')
-.controller('EventController', ['$scope', '$routeParams', 'EventService', 'ProductService', '$rootScope', 'VendorService', '$location', '$localStorage', function($scope, $routeParams, EventService, $rootScope, ProductService, VendorService, $location, $localStorage){
+.controller('EventController', ['$scope', '$routeParams', 'EventService', '$rootScope', 'ProductService', 'VendorService', '$location', '$localStorage', function($scope, $routeParams, EventService, $rootScope, ProductService, VendorService, $location, $localStorage){
   $scope.Events = [];
   $scope.EventService = EventService;
+  $rootScope.loggedInVendor = $localStorage.loggedInVendor;
 
 //Wrote Service for this as well as calling it in the HTML
   $scope.getOneEvent = function() {

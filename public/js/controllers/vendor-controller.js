@@ -100,6 +100,7 @@ angular.module('myApp')
     $scope.editVendor = function(vendor) {
       VendorService.editVendorInfo(vendor, $rootScope.loggedInVendor.id).success(function(data) {
         $rootScope.loggedInVendor = data;
+        $rootScope.loggedInVendor.vendor = true;
         $localStorage.loggedInVendor = $rootScope.loggedInVendor;
         $location.url('/vendor/private');
       });
@@ -134,17 +135,6 @@ angular.module('myApp')
       $scope.vendorValue=true;
     };
 
-    // $scope.postProduct = function(product) {
-    //   if(!product.name && product.price && product.quantity && product.description && product.product_picture) {
-    //     $scope.error = "Please fill out all fields about your product";
-    //   } else {
-    //     ProductService.addProduct($scope.product).success(function(result) {
-
-    //     }).error(function(error){
-    //       $scope.error = "Unknown error. Please try again.";
-    //     });
-    //   }
-    // };
 
     //Did not write this function...BB
     $scope.handleStripe = function(){

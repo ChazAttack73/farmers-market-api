@@ -1,4 +1,4 @@
-//Assigned constraints and some datatypes--BB
+//Assigned constraints and some datatypes as well as relationships--BB
 module.exports = function ( sequelize, DataTypes ) {
   var Product = sequelize.define( "Product", {
     name : {

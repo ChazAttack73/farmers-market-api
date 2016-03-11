@@ -9,9 +9,6 @@ angular.module('myApp')
     this.getProducts = function(){
       return $http.get('/product/');
     };
-    // this.getProduct = function(id){
-    //   return $http.get('/product/'+id);
-    // };
     this.getIndiProduct = function(id){
       return $http.get('/product/product/' + id);
     };

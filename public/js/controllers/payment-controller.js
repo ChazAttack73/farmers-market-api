@@ -1,3 +1,5 @@
+//Did not create this controller
+
 app.controller('PaymentController', function ($scope, $http, stripe) {
   $scope.charge = function () {
     return stripe.card.createToken($scope.payment.card)

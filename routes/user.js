@@ -1,3 +1,5 @@
+//Did not create this route but did create the local strategy, the hash and salt process
+//for the password using bcrypt.  This route was based off the vendor route...BB
 var express = require('express');
 var app = express();
 var router = express.Router();
@@ -51,7 +53,6 @@ router.get( '/', function ( req, res ) {
   });
 
 router.post( '/', function ( req, res ) {
-  console.log(req.body.email);
   User.findOne({
     where:{
       email: req.body.email
