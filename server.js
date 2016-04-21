@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var CONFIG = require('./config/config.js');
+var CONFIG = require('./config/config.json');
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
@@ -35,24 +35,5 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.listen(3000,function(){
-console.log('         ___  ___          ');
-console.log('        /   \/   \   ');
-console.log('        |        |    ');
-console.log('         T  --  T      ');
-console.log('         |      |       ');
-console.log('         |      |       ');
-console.log('         |      |       ');
-console.log('         |      |      ');
-console.log('         |      |      ');
-console.log('         |      |      ');
-console.log('         |      |      ');
-console.log('         |      |      ');
-console.log('         |      |      ');
-console.log('         |      |      ');
-console.log('         |      |      ');
-console.log('     ___ |      | ___   ');
-console.log('    /   \-      -/   \   ');
-console.log('    |                |   ');
-console.log('    |                |');
-console.log('    \________________/    ');  db.sequelize.sync();
+  db.sequelize.sync();
 });
