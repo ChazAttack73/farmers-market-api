@@ -1,4 +1,10 @@
-angular.module('myApp', ['ngRoute', 'ngStorage']);
+
+angular.module('myApp', [
+  'ngRoute',
+  'ngStorage',
+  'angular.filter',
+  'angular-stripe'
+  ]);
 
 var myApp = angular.module('myApp');
 
@@ -24,38 +30,56 @@ var checkedLoggedIn=function($q, $timeout, $http, $location, $rootScope) {
 };
 
 myApp
-.config(['$routeProvider', function($routeProvider){
+.config(['$routeProvider','stripeProvider', function($routeProvider, stripeProvider){
   //config
+
+  stripeProvider.setPublishableKey('pk_test_zjMkVWS57QxqiP9XPIdiy7uF');
 
   $routeProvider
     .when('/', {
       templateUrl : 'views/landing.html',
-      // controller : 'productController',
-      // resolve: {
-      //   loggedin: checkedLoggedIn
-      // }
+      controller : 'EventController'
+    })
+    .when('/login', {
+      templateUrl : 'views/login.html',
+      controller : 'VendorController'
+    })
+    .when('/vendor/private', {
+      templateUrl : 'views/vendorPrivatePage.html',
+      controller : 'VendorController',
+      resolve: {
+        loggedin: checkedLoggedIn
+      }
+    })
+    .when('/vendor/view/:id', {
+      templateUrl : 'views/vendorView.html',
+      controller : 'VendorController'
+    })
+    .when('/vendor/:param1',{
+      templateUrl : 'views/vendorProfile.html',
+      controller : 'VendorController'
+    })
+    .when('/product/view', {
+      templateUrl : 'views/productView.html',
+      controller : 'ProductController'
+    })
+    .when('/product/:id', {
+      templateUrl : 'views/individualProduct.html',
+      controller : 'ProductController'
+    })
+    .when('/register', {
+      templateUrl : 'views/register.html',
+      controller : 'EventController'
+    })
+    .when('/user/private', {
+      templateUrl : 'views/userEdit.html',
+      controller : 'VendorController'
     });
-//     .when('/cards', {
-//       templateUrl : 'views/cards.html',
-//       controller : 'CardController',
-//       resolve: {
-//         loggedin: checkedLoggedIn
-//       }
-//     })
-//     .when('/login', {
-//       templateUrl : 'views/login.html',
-//       controller : 'UserController'
-//     })
-//     .when('/register', {
-//       templateUrl : 'views/register.html',
-//       controller : 'UserController'
-//     });
 }])
 
 .run(['$rootScope', '$localStorage', function($rootScope, $localStorage){
-  // if($localStorage.hasOwnProperty("creator_user")) {
-  // }
+  if($localStorage.hasOwnProperty("loggedInVendor")) {
+  }
   //initialize
-  // $rootScope.user_full_name = $localStorage.user_full_name  || '!loggedin';
-  // $rootScope.creator_user = $localStorage.creator_user || '!loggedin';
+  //$rootScope.loggedInVendor = $localStorage.loggedInVendor || '!loggedin';
 }]);

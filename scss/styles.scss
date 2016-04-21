@@ -1,0 +1,1144 @@
+@import "./../node_modules/include-media/dist/_include-media";
+
+$breakpoints: (
+  'phone': 420px,
+  'tablet': 768px,
+  'desktop': 1024px
+);
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+///// **VARIABLES**
+
+$lightGray: #7f7a75;
+$black: #0F0F0E;
+$gray: #575450;
+$tan: #F4F3D5;
+$mont: 'Montserrat', sans-serif;
+$sixCaps: 'Six Caps', sans-serif;
+$percent: 100%;
+$flexFull: 0 0 100%;
+$flexHalf: 0 0 50%;
+$charcoal-bg: url('./../images/charcoal-bg.png');
+$tan-bg: url('./../images/tan-bg.jpg');
+$leaves: url('./../images/leaves.svg');
+$vendor: url('./../images/small-vendors.svg');
+$smallLeaves: url('./../images/small-leaves.svg');
+$shopper: url('./../images/shopper-icon.svg');
+
+///// **MIXINS**
+
+@mixin flexDisplayRow {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+@mixin centerer {
+  position: absolute;
+  top: $percent/2;
+  left: $percent/2;
+  transform: translate(-$percent/2, -$percent/2);
+}
+
+@mixin menuPlacement {
+  position: fixed;
+  top: 0%;
+  right: 0%;
+  height: 50px;
+}
+
+///// **MAIN STYLING**
+
+body {
+  @include flexDisplayRow;
+  background-image: $charcoal-bg;
+  justify-content: center;
+}
+
+.master {
+  @include flexDisplayRow;
+  justify-content: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.mainTitleBar {
+  height: 50px;
+  width: $percent;
+  background-color: $black;
+  font-family: $mont;
+  color: $gray;
+  font-size: 0.8em;
+  font-weight: 700;
+  line-height: 50px;
+  text-align: center;
+  position: fixed;
+  z-index: 1;
+
+  .mobileNav {
+    @include media( ">phone") {
+      display: none;
+    }
+
+    @include menuPlacement;
+    width: 50px;
+
+    .hamburgerHack1 {
+      @include centerer;
+      height: 20px;
+      width: 20px;
+      border-top: 2px solid $gray;
+      border-bottom: 2px solid $gray;
+
+      .hamburgerHack2 {
+        @include centerer;
+        height: 2px;
+        width: 15px;
+        border: 1px solid $gray;
+      }
+    }
+  }
+}
+
+.mobileMenu {
+  @include media( ">phone") {
+    display: none;
+  }
+
+  width: 120px;
+  position: fixed;
+  top: 50px;
+  right: 0;
+  background-color: $black;
+  font-family: $mont;
+  text-align: center;
+  font-size: 1.0em;
+  z-index: 100;
+  height: 0;
+  opacity: 0;
+  transition: height 0.25s linear;
+  transition: opacity 0.25s linear;
+
+  ul {
+    height: 0;
+    opacity: 0;
+  }
+
+  li {
+    list-style-type: none;
+    border-top: 1px solid $gray;
+    height: 0;
+    opacity: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: $gray;
+    height: 0;
+    opacity: 0;
+    display: block;
+  }
+}
+
+.mobileMenu.menuOn {
+  height: auto;
+  opacity: 1;
+
+  ul {
+    height: auto;
+    opacity: 1;
+  }
+
+  li {
+    height: auto;
+    opacity: 1;
+  }
+
+  a {
+    height: auto;
+    opacity: 1;
+  }
+}
+
+
+.navbarButtonContainer {
+  @include media( "<=phone" ) {
+    display: none;
+  }
+
+
+  @include flexDisplayRow;
+  @include menuPlacement;
+  line-height: 50px;
+  font-family: $mont;
+  z-index: 1;
+
+  .navbarButton {
+    font-size: 0.8em;
+    font-weight: 700;
+    margin-right: 10px;
+    align-self: center;
+
+    a {
+      color: $tan;
+      text-decoration: none;
+      transition: 0s ease;
+    }
+  }
+}
+
+
+.view {
+  @include flexDisplayRow;
+  width: $percent;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.eventsContent {
+  flex: 0 0 $percent * 0.8;
+
+  @include media( ">phone", "<=tablet" ) {
+    flex: 0 0 $percent * 0.39;
+    margin: 15px;
+  }
+  @include media( ">tablet" ) {
+    flex: 0 0 $percent * 0.29;
+    margin: 15px;
+  }
+
+  margin: 20px 0px;
+  box-shadow: 3px 3px 5px 6px $gray - 15;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.eventContainer {
+  @include flexDisplayRow;
+  height: 500px;
+  width: $percent;
+  background-image: $tan-bg;
+  text-align: center;
+  justify-content: center;
+
+  .eventTopHalf {
+    position: relative;
+    flex: $flexFull;
+    height: $percent/2;
+
+    .eventName {
+      @include centerer;
+      font-family: $sixCaps;
+      color: $gray;
+      font-size: 4em;
+      line-height: 110%;
+      padding: 5% 0;
+      max-height: 240px;
+      overflow: hidden;
+    }
+  }
+
+  .separatorLine {
+    height: 0.5%;
+    flex: $flexHalf;
+    background-color: $tan - 20;
+  }
+
+  .eventBottomHalf {
+    @include flexDisplayRow;
+    flex: $flexFull;
+    height: $percent/2;
+    font-family: $mont;
+    color: $gray;
+    justify-content: center;
+    font-size: 0.7em;
+    font-weight: 700;
+    line-height: 90%;
+
+    .eventDays {
+      flex: $flexFull;
+      margin-top: 7%;
+    }
+
+    .eventTimes {
+      flex: $flexFull;
+    }
+
+    .eventLocation {
+      flex: $flexFull;
+      height: $percent/5;
+    }
+
+    .eventLogo {
+      flex: 0 0 30%;
+      height: $percent * 0.3;
+      margin-bottom: 7%;
+      background-image: $leaves;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+}
+
+// ============ Vendor View Layout
+.eventVendorsMain {
+  @include flexDisplayRow;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  font-family: Arial;
+}
+
+.vendorNavBar {
+  display: flex;
+  flex-flow: row nowrap;
+  flex: 0 0 100%;
+  margin: 3px 0px;
+  justify-content: center;
+  align-content: center;
+  font-family: $mont;
+  margin-bottom: 45px;
+
+  a {
+    text-decoration: none;
+  }
+
+  .navbarVendor{
+    flex: 0 0 10%;
+    background-image: $vendor;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 75px;
+    text-align: center;
+    line-height: 175px;
+    margin-top: 15px;
+    color: $tan;
+    opacity: 0.3;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+    margin-right: 5px;
+  }
+
+  .navbarVendor:hover {
+    color: $tan;
+    opacity: 1;
+    transition: 0.6s ease;
+  }
+
+  .navbarProduce {
+    flex: 0 0 10%;
+    background-image: $smallLeaves;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 75px;
+    text-align: center;
+    line-height: 175px;
+    margin-top: 15px;
+    color: $tan;
+    opacity: 0.3;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+    margin-left: 5px;
+  }
+
+  .navbarProduce:hover{
+    color: $tan;
+    opacity: 1;
+    transition: 0.6s ease;
+  }
+}
+
+.listingButton {
+  flex: 0 0 15%;
+  font-size: 30px;
+  text-align: center;
+  opacity: 0.90;
+  color: #E7DDD4;
+  box-shadow: 2px 2px #221F1C;
+  border: 1px solid red;
+}
+
+.listingButton.vendorButton {
+  margin-right: 1px;
+  text-shadow: 1px 1px 2px #361D06;
+  box-shadow: 2px 2px 2px #361D06;
+  background-repeat: no-repeat;
+}
+
+.listingButton.productButton {
+  margin-left: 1px;
+  background-color: #8DAD8B;
+  border: 1px solid #0D2D05;
+  text-shadow: 1px 1px 2px #0D2D05;
+  box-shadow: 2px 2px 2px #0D2D05;
+}
+
+//================== Vendor Listing Cards
+
+.vendorTab {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.vendorListingCard {
+  height: 300px;
+  width: 350px;
+  margin: 10px 15px;
+  border: 1px solid #361D06;
+}
+
+.vendorContent {
+  @include flexDisplayRow;
+  align-content: space-between;
+  width: 100%;
+  height: 300px;
+  background-color: $tan;
+  color: $gray;
+  justify-content: center;
+
+  .vendorCompanyName {
+    flex: 0 0 100%;
+    height: 35%;
+    font-size: 3em;
+    opacity: 0.9;
+    text-align: center;
+    padding-top: 4px;
+    font-family: $sixCaps;
+    font-weight: 100;
+    margin-bottom: -15px;
+  }
+
+  .vendorSeparator {
+    height: 1.1%;
+    flex: 0 0 33%;
+    background-color: $tan - 20;
+    margin-top: -15px;
+    margin-bottom: 20px;
+  }
+
+  .vendorCompanyPic {
+    flex: 0 0 75%;
+    height: 60%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+.featuredProducts {
+  flex: 0 0 25%;
+  height: 85%;
+}
+
+.productPics {
+  flex: 0 0 60%;
+  height: 50%;
+}
+
+// ============= Product Listing Cards
+
+.allProductsList {
+  display: flex;
+  flex-flow: row wrap;
+  height: 100%;
+  width: 100%;
+  border: 1px solid blue;
+}
+
+.productBox {
+  flex: 0 0 50%;
+  height: 100px;
+  border: 1px solid orange;
+
+}
+
+.productContent {
+  flex: 0 0 50%;
+  border: 1px solid red;
+}
+
+.productPic {
+  flex: 0 0 100%;
+  height: 75%;
+  border: 1px solid green;
+}
+
+.productName {
+  flex: 0 0 100%;
+  height: 75%;
+  border: 1px solid purple;
+}
+
+.vendorPrivatePage {
+  justify-content: left;
+}
+
+.postProductDiv {
+  margin-top: 20px;
+}
+
+
+.error {
+  color : red;
+  font-weight : 700;
+}
+
+///// **LOGIN PAGE** /////
+
+.loginMainWrapper {
+  @include flexDisplayRow;
+  width: 100%;
+  margin: 20px 0px;
+  justify-content: center;
+  font-family: $mont;
+  color: $gray;
+}
+
+
+.loginNavbar {
+  @include flexDisplayRow;
+  height: auto;
+  flex: 0 0 90%;
+  justify-content: space-between;
+
+  @mixin loginToggleBtn {
+    height: 40px;
+    width: 49.5%;
+    text-align: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: $tan-bg;
+    font-size: 0.7em;
+    line-height: 40px;
+    font-weight: 600;
+
+    @include media( ">phone", "<=tablet" ) {
+      height: 100px;
+      width: 49.5%;
+      font-size: 1em;
+      line-height: 100px;
+    }
+  }
+
+
+  .chooseVendor {
+    @include loginToggleBtn;
+  }
+
+  .chooseUser {
+    @include loginToggleBtn;
+  }
+}
+
+.toggledBtn {
+  opacity: 0.7;
+}
+
+.formWrapper {
+  @include flexDisplayRow;
+  flex: 0 0 90%;
+  height: 40%;
+  background-image: $tan-bg;
+
+  .formTitle {
+    font-family: $sixCaps;
+    flex: 0 0 70%;
+    margin: 10px 0px;
+    font-size: 3.0em;
+    text-align: center;
+  }
+
+  .vendorLogo {
+    flex: 0 0 30%;
+    margin: auto;
+
+    svg {
+      height: 90%;
+      width: 90%;
+    }
+
+    path {
+      fill: $gray;
+    }
+  }
+
+  .shoppingCartLogo {
+    flex: 0 0 30%;
+    background-image: $shopper;
+    background-size: initial;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+.formContainer {
+  @include flexDisplayRow;
+  flex: $flexFull;
+  justify-content: center;
+
+  .formFieldset {
+    flex: $flexFull;
+    border: 0;
+    padding: 0.01em 30px 0 30px;
+    margin: 0;
+    min-width: 0;
+  }
+
+  label {
+    font-size: 0.65em;
+    font-weight: 700;
+    height: auto;
+  }
+
+  input {
+    display: block;
+    height: 40px;
+    border: 0;
+    box-shadow: inset 0px 1px 6px $gray;
+    width: 100%;
+    font-size: 1.2em;
+    color: $gray;
+    padding-left: 5px;
+  }
+
+  .formSubmitBtn {
+    font-family: $mont;
+    font-size: 0.8em;
+    font-weight: 700;
+    color: $tan;
+    height: 40px;
+    background-image: $charcoal-bg;
+    box-shadow: 0px 2px 5px $gray;
+    width: 100%;
+    margin: 30px 0 60px 0;
+    text-transform: uppercase;
+  }
+}
+
+///// **REGISTRATION PAGE**
+
+.regMainWrapper {
+  @include flexDisplayRow;
+  justify-content: center;
+  font-family: $mont;
+  color: $gray;
+}
+
+.regHeader {
+  flex: 0 0 90%;
+  height: 50px;
+  background: $tan-bg;
+  margin: 15px 0px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.regNavbar {
+  @include flexDisplayRow;
+  flex: 0 0 90%;
+  height: 40px;
+  justify-content: space-between;
+}
+
+.regNavBtn {
+  flex: 0 0 32.8%;
+  background: $tan-bg;
+  font-size: 0.7em;
+  text-align: center;
+  line-height: 40px;
+}
+
+.eventLogo {
+  flex: 0 0 30%;
+  margin: auto;
+
+  svg {
+    height: 90%;
+    width: 90%;
+  }
+
+  path {
+    fill: $gray;
+  }
+}
+
+// ============= Vendor Listing by Event
+
+.vendorHeader {
+  @include flexDisplayRow;
+  justify-content: center;
+  background-color: $tan;
+  height: 400px;
+  width: 100%;
+  margin-top: -10px;
+
+  .vendorName {
+    flex: 0 0 100%;
+    font-size: 5em;
+    font-family: $sixCaps;
+    margin-top: 25px;
+    margin-bottom: -25px;
+    color: $gray;
+    letter-spacing: 3px;
+    text-align: center;
+  }
+
+  .vendorGraphic {
+    background-image: url('./../images/leaves-and-lines.svg');
+    background-repeat: no-repeat;
+    width: 250px;
+  }
+
+  .vendorDays {
+    flex: 0 0 100%;
+    text-align: center;
+    font-family: $mont;
+    color: $gray;
+    margin-top: 15px;
+  }
+
+  .vendorTime {
+    flex: 0 0 100%;
+    text-align: center;
+    margin-top: -40px;
+    font-family: $mont;
+    color: $gray;
+  }
+
+  .vendorAddress {
+    flex: 0 0 100%;
+    text-align: center;
+    font-family: $mont;
+    color: $gray;
+    margin-top: -35px;
+  }
+}
+
+// ======================== Product Listing by Event
+
+.productMain {
+  @include flexDisplayRow;
+  justify-content: center;
+
+  .eventProductContent {
+  @include flexDisplayRow;
+
+    .product {
+      flex: 0 0 25%;
+      height: 200px;
+      width: 150px;
+      margin: 15px;
+      background-color: $tan;
+
+      .productImage {
+        height: 150px;
+        width: 150px;
+        padding: 6px;
+      }
+
+      .eventProductName {
+        text-align: center;
+        line-height: 40px;
+        color: $gray;
+      }
+    }
+  }
+}
+
+// ============================= Individual Vendor View
+
+#vendorInfo {
+  @include flexDisplayRow;
+  width: 350px;
+  background-color: $tan;
+  justify-content: center;
+  text-align: center;
+  color: $gray;
+  font-family: $mont;
+  margin: 5px;
+
+  a {
+    color: $gray;
+  }
+
+  .vendor_name {
+    flex: 0 0 100%;
+    margin-bottom: 10px;
+    font-family: $sixCaps;
+    font-size: 3em;
+    opacity: 0.9;
+    font-weight: 100;
+  }
+
+  .separator {
+    flex: 0 0 33%;
+    background-color: $tan - 20;
+    height: 3px;
+    margin-bottom: 10px;
+  }
+
+  .vendorProfilePic {;
+    margin-top: 10px;
+    flex: $flexFull;
+
+    img {
+      max-height: 45%;
+      max-width: 80%;
+    }
+  }
+
+  .vendorDescription {
+    flex: $flexFull;
+  }
+
+
+  .vendorEmail {
+    flex: $flexFull;
+  }
+
+  .privateVendorButton {
+    -moz-box-shadow: 0px 1px 0px 0px #3d3b37;
+    -webkit-box-shadow: 0px 1px 0px 0px #3d3b37;
+    box-shadow: 0px 1px 0px 0px #3d3b37;
+    background-color:#575450;
+    -moz-border-radius:15px;
+    -webkit-border-radius:15px;
+    border-radius:15px;
+    border:2px solid #333029;
+    display:inline-block;
+    cursor:pointer;
+    color:#f4f3d5;
+    font-family:Arial;
+    font-size:14px;
+    font-weight:bold;
+    padding:4px 8px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #000000;
+    margin: 10px;
+  }
+  .privateVendorButton:hover {
+    background-color:#575450;
+  }
+  .privateVendorButton:active {
+    position:relative;
+    top:1px;
+  }
+}
+
+.vendorMain {
+  @include flexDisplayRow;
+  justify-content: center;
+  font-family: $mont;
+
+  .vendorProduct {
+    @include flexDisplayRow;
+
+    .vendorProductContainer {
+      @include flexDisplayRow;
+      min-height:200px;
+      width: 150px;
+      margin: 15px;
+      background-color: $tan;
+
+      a {
+        text-decoration: none;
+      }
+
+      .privateVendorProductImage {
+        height: 150px;
+        width: 150px;
+        padding: 6px;
+      }
+      .privateVendorProductName {
+        flex: $flexFull;
+        color: $gray;
+        text-align: center;
+      }
+      .productPrice {
+        flex: $flexFull;
+        color: $gray;
+        text-align: center;
+      }
+      .productQuantity {
+        flex: $flexFull;
+        color: $gray;
+        padding-bottom: 6px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.list-wrapper {
+  position:absolute;
+  width:300px;
+  height:150px;
+  top:40%;
+  margin-top:-75px;
+  left:50%;
+  margin-left:-150px;
+}
+
+.label{
+  padding:5px 0px;
+  text-align:center;
+}
+.inputA {
+  width:230px;
+  height:30px;
+  outline:none;
+  padding:0px 10px;
+  margin:0px auto;
+  display:block;
+}
+.suggestions-list {
+  position: absolute;
+  list-style-type: none;
+  margin: 0 0 0 23px;
+  padding: 0;
+  overflow: auto;
+}
+.suggestions-list li {
+  color: #000000;
+  padding: 10px 10px;
+  height:10px;
+  cursor: pointer;
+  background: #f9f9f9;
+  border-bottom: 1px solid #eeeeee;
+  width:234px;
+}
+.suggestions-list li:hover {
+  background: #eeeeee;
+}
+.suggestions-list li:active,
+.suggestions-list li.active {
+  color: #FFFFFF;
+  background: #0099FF;
+  width:234px;
+}
+.suggestions-list:focus{
+  outline:none;
+}
+
+// ========================= Individual Product View
+
+#aloha {
+  @include flexDisplayRow;
+  justify-content: center;
+  height: 350px;
+  width: 350px;
+
+
+  #productInfo {
+    @include flexDisplayRow;
+    flex: $flexFull;
+    justify-content: center;
+    background-color: $tan;
+    height: 100%;
+    width: 100%;
+    color: $gray;
+    font-family: $mont;
+
+    img {
+      height: 65%;
+      width: 100%;
+      margin: 6px;
+    }
+
+    .product_name {
+      flex: $flexFull;
+      text-align: center;
+    }
+
+    .product_price {
+      flex: $flexFull;
+      text-align: center;
+    }
+
+    .product_quantity {
+      flex: $flexFull;
+      text-align: center;
+    }
+
+    .product_description {
+      flex: $flexFull;
+      text-align: center;
+    }
+  }
+
+  #payment-form {
+    @include flexDisplayRow;
+    flex: $flexFull;
+    justify-content: center;
+    background-color: $tan;
+    margin-top: 5px;
+    padding: 10px;
+    // height: 150px;
+    width: 300px;
+    font-family: $mont;
+    color: $gray;
+
+    .privateVendorButton {
+      -moz-box-shadow: 0px 1px 0px 0px #3d3b37;
+      -webkit-box-shadow: 0px 1px 0px 0px #3d3b37;
+      box-shadow: 0px 1px 0px 0px #3d3b37;
+      background-color:#575450;
+      -moz-border-radius:15px;
+      -webkit-border-radius:15px;
+      border-radius:15px;
+      border:2px solid #333029;
+      display:inline-block;
+      cursor:pointer;
+      color:#f4f3d5;
+      font-family:Arial;
+      font-size:14px;
+      font-weight:bold;
+      padding:4px 8px;
+      text-decoration:none;
+      text-shadow:0px 1px 0px #000000;
+      margin: 15px 0px 5px 70px;
+    }
+    .privateVendorButton:hover {
+      background-color:#575450;
+    }
+    .privateVendorButton:active {
+      position:relative;
+      top:1px;
+    }
+  }
+}
+
+.thankYou {
+  color: $tan;
+}
+
+// ===================== All Vendors that Carry a Product View
+
+.shopMaster {
+  @include flexDisplayRow;
+  justify-content: center;
+  background-color: $tan;
+  color: $gray;
+  font-family: $mont;
+  height: 350px;
+  width: 350px;
+  margin: 10px;
+  text-align: center;
+
+  .shopContainer {
+    @include flexDisplayRow;
+    justify-content: center;
+
+    .shopName {
+      flex: $flexFull;
+      font-family: $sixCaps;
+      font-size: 3em;
+    }
+
+    .shopSeparator {
+      height: 3px;
+      flex: 0 0 33%;
+      background-color: $tan - 20;
+      margin: 5px 0px;
+    }
+
+    .shopProduct {
+      flex: $flexFull;
+      font-size: 1.5em;
+    }
+
+    .shopQuantity {
+      flex: $flexFull;
+    }
+
+    .shopPrice {
+      flex: $flexFull;
+    }
+
+    .shopProductPicture {
+      flex: $flexFull;
+      max-width: 200px;
+      max-height: 200px;
+      margin: 5px;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+// ==================== Edit User Profile Page
+
+.editUserMaster {
+  @include flexDisplayRow;
+  justify-content: center;
+  background-color: $tan;
+  padding: 5px;
+  color: $gray;
+  font-family: $mont;
+  width: 300px;
+  box-shadow: 3px 3px 5px 6px $gray - 15;
+
+  fieldset {
+    border: 0;
+    padding: 0.01em 0px 0 0px;
+    margin: 5px 0px 0px 5px;
+    min-width: 0;
+
+    label {
+      display: block;
+    }
+
+    input {
+      width: 250px;
+      height: 40px;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    font-family: $sixCaps;
+    font-size: 2.5em;
+    letter-spacing: 2px;
+  }
+
+  .editUserSeparator {
+    height: 3px;
+    background-color: $tan - 20;
+    margin: 5px 35px 10px 35px;
+  }
+
+  .commit {
+    text-align: center;
+    margin: 10px 0px 5px 0px;
+
+    .formSubmitBtn {
+      font-family: $mont;
+      font-size: 0.8em;
+      font-weight: 700;
+      color: $tan;
+      height: 40px;
+      background-image: $charcoal-bg;
+      box-shadow: 0px 2px 5px $gray;
+      width: 100%;
+      margin: 10px 0 10px 0;
+      text-transform: uppercase;
+      border: none;
+    }
+  }
+}

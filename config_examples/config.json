@@ -18,5 +18,9 @@
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
+  },
+  "PORT" : 3000,
+  "SESSION" : {
+    "secret" : "Keyboard Cat"
   }
 }

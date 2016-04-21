@@ -1,0 +1,144 @@
+<div class="vendorPrivatePage">
+  <div ng-show="vendorPrivate" class="ng-hide">
+    <div>{{loggedInVendor.name}}</div>
+    <div>{{loggedInVendor.phone}}</div>
+    <div>{{loggedInVendor.email}}</div>
+    <div>{{loggedInVendor.website}}</div>
+    <div>{{loggedInVendor.description}}</div>
+    <div>{{loggedInVendor.company_pic}}</div>
+
+    <input type="button" value="Edit Profile"ng-click="vendorPrivate=!vendorPrivate">
+  </div>
+
+  <fieldset ng-show="!vendorPrivate">
+    <h3>Edit Profile</h3>
+    <div>
+      <label for="vendor_name"> Company name </label>
+      <input id="vendor_name"  type="text" ng-model="vendor.name" ng-value="loggedInVendor.name" autofocus>
+    </div>
+
+    <div>
+      <label for="vendor_phone">Phone Number</label>
+      <input id="vendor_phone" ng-value="loggedInVendor.phone" type="text" ng-model="vendor.phone">
+    </div>
+
+    <div>
+      <label for="vendor_email">Email</label>
+      <input id="vendor_email" ng-value="loggedInVendor.email" type="text" ng-model="vendor.email">
+    </div>
+
+    <div>
+      <label for="vendor_website">Website (if you have one)</label>
+      <input id="vendor_website" ng-value="loggedInVendor.website" type="text" ng-model="vendor.website">
+    </div>
+
+    <div>
+      <label for="vendor_description">Brief description of your company</label>
+      <input id="vendor_description" ng-value="loggedInVendor.description" type="text" ng-model="vendor.description">
+    </div>
+    <div>
+      <label for="vendor_company_pic">Image of your company </label>
+      <input id="vendor_company_pic" ng-value="loggedInVendor.company_pic" type="text" ng-model="vendor.company_pic">
+    </div>
+    <div class="finishEdit">
+      <button type='button' ng-click=
+      "editVendor(vendor); vendorPrivate=!vendorPrivate">Submit Changes</button>
+      <button type='button' ng-click=
+      "deleteVendor(vendor); vendorPrivate=!vendorPrivate">Delete Vendor</button>
+    </div>
+  </fieldset>
+
+
+
+  <div class="masterPrivateVendProductsNPost" ng-init="noNewPost=true" ng-controller="ProductController">
+    <div ng-show="noNewPost">
+      <button type="button" ng-click="clickButt()">Post New Product</button>
+    </div>
+    <div ng-init="getVendorAndProducts(loggedInVendor)">
+      <div class="postProductDiv" ng-hide="noNewPost">
+
+
+
+    <p>
+          Enter a new product below.  You can choose a predefined category from the drop down list.  This is recommended even if you offer a specific variety (you can list that in your description).  If your product is outside the predefined options, select new.  If you have one, please include a picture!:
+    </p>
+
+        <div ng-init="getAllProducts()" class="list-wrapper">
+          <label for="product_name">Product Name</label>
+          <div>
+            <input class="inputA" id="product_name" type="text" ng-keydown="checkKeyDown($event)" ng-keyup="checkKeyUp($event)" ng-model="product.name" ng-change="search()" />
+          </div>
+          <ul class="suggestions-list">
+            <li ng-repeat="name in suggestions track by $index" ng-class="{active:selectedIndex===$index}" ng-click="AssignValueAndHide($index)">{{name}}</li>
+          </ul>
+        </div>
+
+
+          <br>
+        <div>
+          <label for="product_price">Product Price</label>
+          <input id="product_price" type="text" ng-model="product.price">
+        </div>
+        <div>
+          <label for="product_quantity">Product Quantity</label>
+          <input id="product_quantity" type="text" ng-model="product.quantity">
+        </div>
+        <div>
+          <label for="product_image">Product Description</label>
+          <input id="product_image" type="text" ng-model="product.description">
+        </div>
+        <div>
+          <label for="product_image">Product Image</label>
+          <input id="product_image" type="text" ng-model="product.product_picture">
+          <div class="commit">
+            <button type="button" ng-click="postProduct(product)">Post</button>
+          </div>
+          <div ng-hide="errorDiv" class="error">{{error}}</div>
+        </div>
+      </div>
+
+
+
+      <div ng-repeat="product in singleVendor.Products">
+        <div ng-show="noProductEdit">
+          <div>{{product.name}}</div>
+          <div>{{product.price}}</div>
+          <div>{{product.quantity}}</div>
+          <div>{{product.description}}</div>
+          <div>{{product.product_picture}}</div>
+          <button type='button' ng-click=
+          "noProductEdit=!noProductEdit">Edit Product</button>
+        </div>
+
+        <div class="product" ng-hide="noProductEdit">
+          <div>
+            <input type="hidden" value="{{product.id}}" ng-value="product.id" ng-model="product.id"></input>
+            <label for="product_name">Product Name</label>
+            <input id="product_name" type="text" ng-model="product.name" ng-value="product.name">
+          </div>
+          <div>
+          DOES NOT DISPAY CENTS IF IT IS .00
+            <label for="product_price">Product Price</label>
+            <input id="product_price" ng-value="product.price" type="text" ng-model="product.price">
+          </div>
+          <div>
+            <label for="product_quantity">Product Quantity</label>
+            <input id="product_quantity" ng-value="product.quantity" type="text" ng-model="product.quantity">
+          </div>
+          <div>
+            <label for="product_description">Product Description</label>
+            <input id="product_description" ng-value="product.description" type="text" ng-model="product.description">
+          </div>
+          <div>
+            <label for="product_poduct_picture">Product Image</label>
+            <input id="product_product_picture" ng-value="product.product_picture" type="text" ng-model="product.product_picture">
+          </div>
+          <div class="commit">
+            <button type="button" ng-click="submitEdit(product); noProductEdit=true">Commit Changes</button>
+            <button type='button' ng-click="delProduct(product.id); noProductEdit=true"> Delete product</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,60 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <link rel="stylesheet" href="/css/styles.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
-<body ng-app="myApp">
-  <div class="navbar">
-    <a href="/">
-      <div class="navlogo"></div>
-    </a>
-    <div id="login" class="user">
-      <button ng-class="{ 'hidden' : login_user}" class="button" type="button" ng-click="login_user = !login_user">Login</button>
-      <div id="hideMe" ng-class="{ 'hidden' : ! login_user}" class="login">
-     <!--    <form ng-submit="login(vendor)">
-          <br>
-          Username:<input class="vendor_name" value="{{vendor.username}}" ng-model="vendor.username">
-          <br>
-          Password:<input class="vendor_password" value="{{vendor.password}}" ng-model="vendor.password"type="password">
-          <br><br>
-          <input type="submit" value="Login" class="button">
-        </form>
-        <br>
-        <div class="error">{{error}}</div>
-        <h4>Click Below to Register!</h4>
-        <span>
-          <button class="button"><a href="/#/register">Register</a></button>
-        </span> -->
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Six+Caps' rel='stylesheet' type='text/css'>
+
+
+<!--     /////////////////////////////////////// -->
+
+
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+
+<!--     ///////////////////////////////////////// -->
+  </head>
+
+  <body ng-app="myApp">
+    <div class="mainTitleBar">HOMEGROWN ALOHA™
+      <div class="mobileNav" ng-click="myVar==='menuOn' ? myVar='' : myVar='menuOn'">
+        <div class="hamburgerHack1">
+          <div class="hamburgerHack2"></div>
+        </div>
       </div>
     </div>
-    <div id="register" class="user"><!-- Registration link redirects to one page with checkbox(Vendor or not) --></div>
-  </div>
 
+    <div class="mobileMenu" ng-class="myVar" ng-click="myVar=''">
+      <ul ng-controller="HeaderController">
+        <li>
+          <a href="/#/">HOME</a>
+        </li>
+        <li ng-hide="loggedInVendor">
+          <a href="/#/login" ng-click="loggedInUser=!loggedInUser">LOGIN</a>
+        </li>
+        <li ng-show="loggedInVendor">
+          <a href="" ng-click="whosLoggedIn()">PROFILE</a>
+        </li>
+        <li>
+          <a href="/#/register">SIGN UP</a>
+        </li>
+        <li ng-show="loggedInVendor">
+          <a href="" ng-click="logoutButton()">LOGOUT</a>
+        </li>
+      </ul>
+    </div>
 
-  <!-- HTML Layout Game Plan
-  landing page Events
-  one sign in and registration link top right
-    registration link directs to one page
-      checkbox: vendor or not
-  description section
-  events
-  -->
+    <div class="navbarButtonContainer" ng-controller="HeaderController">
+      <div class="navbarButton">
+        <a href="/#/">HOME</a>
+      </div>
 
+      <div class="navbarButton" ng-hide="loggedInVendor">
+        <a href="/#/login" ng-click="loggedInUser=!loggedInUser">LOGIN</a>
+      </div>
 
-  <div ng-view></div>
+      <div class="navbarButton" ng-show="loggedInVendor">
+        <!-- Kai..why an href and an ng-href here with two different routes? -->
+        <a href="" ng-click="whosLoggedIn()">PROFILE</a>
+        </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
-  <script src="js/myApp.js"></script>
-  <script src="js/controllers/product-controller.js"></script>
-  <script src="js/controllers/vendor-controller.js"></script>
-  <script src="js/productService.js"></script>
-  <script src="js/vendorService.js"></script>
-</body>
+      <div class="navbarButton">
+        <a href="/#/register">SIGN UP</a>
+      </div>
+
+      <div class="navbarButton" ng-show="loggedInVendor">
+        <a href="" ng-click="logoutButton()">LOGOUT</a>
+      </div>
+    </div>
+
+    <div class="view" ng-view></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js"></script>
+
+    <script src="js/angular-stripe.js"></script>
+
+    <script src="js/myApp.js"></script>
+
+   <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script> -->
+    <script src="js/controllers/product-controller.js"></script>
+    <script src="js/controllers/vendor-controller.js"></script>
+    <script src="js/controllers/event-controller.js"></script>
+    <script src="js/services/productService.js"></script>
+    <script src="js/services/vendorService.js"></script>
+    <script src="js/services/eventService.js"></script>
+    <script src="js/controllers/header-controller.js"></script>
+    <script src="js/angular-filter.js"></script>
+  </body>
 </html>
